@@ -57,6 +57,8 @@ highlighter: pygments # default python pygments have been replaced by pygments.r
 lsi: true
 pygments: true
 auto: true
+gems:
+  - jekyll-sitemap
 
 paginate:  6          # Posts per page on the blog index
 paginate_path: "blog/page/:num"  # Directory base for pagination URLs eg. /posts/2/
