@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Archiving a (Rails) site as static files on Nginx - Vermillion Phoinix by Alfred Sun</title>
+  <meta name="author" content="Alfred Sun">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="apple-touch-icon-precomposed" href="images/touch-icon.png">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+  <link href="/octostrap3/atom.xml" rel="alternate" title="Vermillion Phoinix by Alfred Sun" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Archiving a (Rails) site as static files on Nginx - Vermillion Phoinix by Alfred Sun">
+  
+
+  <!-- % include custom/head.html % -->
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/ArchitectsDaughter.css" rel='stylesheet' type='text/css' />
+	<link href="/stylesheets/font-awesome.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print" />
+	<script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
+	<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrapper">
+      <header role="banner">
+        <!--a id="fork-me-on-github-ribbon" href="https://github.com/Alfred-Sun/octostrap3.git">
+  <img class="gh-ribbon" src="/images/forkme_right_blue_3276b1.png" alt="Fork me on GitHub">
+</a-->
+
+<div id="header">
+  <div class="inner">
+	<h1>Vermillion Phoinix</h1>
+	<p>孤独，是给你思考自己的时间；在一个人的日子里，你要做的只有一件事：把自己变得<font color="red"><strong>更优秀</strong></font>！</p>
+
+	<a href="https://github.com/Alfred-Sun" class="button"><small>Follow me on</small> GitHub</a>
+  </div>
+</div>
+
+<div id="menu">
+<div class="clearfix">
+	<ul class="top-nav">
+	  <li ><a href="/">Home</a></li>
+	  <li  ><a href="/blog">Blog</a></li>
+	  <li  ><a href="/blog/archives">Archives</a></li>
+	  <li  ><a href="/code">Code</a></li>
+	  <li  ><a href="/about">About Me</a></li>
+	</ul>
+	<div class="site-search repo-scope js-site-search" role="search">
+		<a class="icon-rss" href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" />
+		
+		<form action="https://74.125.205.147/search" class="js-site-search-form" method="GET">
+			<input type="hidden" name="q" value="site:alfred-sun.github.io">
+			<input id="cse-search-field" type="text" name="q" results="0" placeholder="Search">
+		</form>
+		
+	</div>
+</div>
+</div>
+
+
+      </header>
+      <div id="content-wrapper" role="main" class="container">
+        <div class="inner clearfix">
+          <p>I had an old Rails 2 app (a blog) that still got visits, but no updates. It&rsquo;s effectively been read-only for years.</p>
+
+<p>Since I&rsquo;m consolidating servers, I wanted to get rid of the machine it was hosted on, and moving the Rails app elsewhere wouldn&rsquo;t be trivial.</p>
+
+<p>So I replaced it with a static copy of the site. Just flat files.</p>
+
+<p>(I also made a database dump just in case I want to make it dynamic again in the future.)</p>
+
+<p>This is how I did it.</p>
+
+<h2>Archive the site</h2>
+
+<p>I installed <a href="https://www.gnu.org/software/wget/">wget</a> via <a href="http://brew.sh/">Homebrew</a> since I didn&rsquo;t have it on my Mac:</p>
+
+<pre><code>brew install wget
+</code></pre>
+
+<p>If you don&rsquo;t have it already on e.g. Ubuntu, try</p>
+
+<pre><code>sudo apt-get install wget
+</code></pre>
+
+<p>Then I told wget to archive the site:</p>
+
+<pre><code>wget --convert-links --mirror mysite.com
+</code></pre>
+
+<p>It will end up in a <code>./mysite.com</code> directory.</p>
+
+<h2>Upload the site</h2>
+
+<pre><code>rsync -azv mysite.com myserver:apps
+</code></pre>
+
+<p>Substituting whatever server and path you prefer. I keep sites in subdirectories of <code>~/apps</code>.</p>
+
+<p>You could also call <code>wget</code> on the server, of course, and skip the upload step. I wanted a local copy and to verify the download with my local tools.</p>
+
+<h2>Configure Nginx</h2>
+
+<p>In the Nginx configuration for the site, I had to do some special things:</p>
+
+<pre><code class="nginx">server {
+  # …
+
+  location / {
+    try_files $request_uri $uri $uri/ =404;
+    default_type text/html;
+  }
+
+  location /stylesheets {
+    try_files $request_uri $uri $uri/ =404;
+    default_type text/css;
+  }
+
+  location /javascripts {
+    try_files $request_uri $uri $uri/ =404;
+    default_type text/javascript;
+  }
+
+  location /images/uploads {
+    try_files $request_uri $uri $uri/ =404;
+    default_type image/jpg;
+  }
+}
+</code></pre>
+
+<p>I needed <code>try_files $request_uri</code> so that requesting e.g. <code>index.html?page=2</code> or <code>stylesheets/all.css?1393152599</code> would look for a file by that exact name, query string and all.</p>
+
+<p>And I needed the <code>default_type</code> declarations to handle HTML files archived without an extension, as well as e.g. stylesheets ending with a query string.</p>
+
+<p>I only had JPG uploads, but you could <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location">use a regexp</a> for more complex needs.</p>
+
+<p>Hope this helps!</p>
+
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="inner clearfix">
+  <div id="f_left">Theme created by <a href="http://www.lessthanweb.com/products/plain-fields">Jason Long</a> - Powered by <a href="https://github.com/Alfred-Sun">Alfred Sun</a>
+</div>
+<div id="f_right">Copyright &copy; 2014 - <a href="http://alfred-sun.github.io" title="Vermillion Phoinix by Alfred Sun">Alfred Sun</a> 
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+</div>
+
+      <!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="javascripts/main.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+    </div>
+  </body>
+</html>
