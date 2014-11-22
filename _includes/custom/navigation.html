@@ -1,0 +1,33 @@
+<!--a id="fork-me-on-github-ribbon" href="https://github.com/Alfred-Sun/octostrap3.git">
+  <img class="gh-ribbon" src="{{ root_url }}/images/forkme_right_blue_3276b1.png" alt="Fork me on GitHub">
+</a-->
+
+<div id="header">
+  <div class="inner">
+	<h1>{{ site.subtitle }}</h1>
+	<p>孤独，是给你思考自己的时间；在一个人的日子里，你要做的只有一件事：把自己变得<font color="red"><strong>更优秀</strong></font>！</p>
+
+	<a href="https://github.com/Alfred-Sun" class="button"><small>Follow me on</small> GitHub</a>
+  </div>
+</div>
+
+<div id="menu">
+<div class="clearfix">
+	<ul class="top-nav">
+	  <li {% if page.navbar == 'home' %}class="current"{% endif %}><a href="{{ root_url }}/">Home</a></li>
+	  <li  {% if page.navbar == 'blog' %}class="current"{% endif %}><a href="{{ root_url }}/blog">Blog</a></li>
+	  <li  {% if page.navbar == 'archive' %}class="current"{% endif %}><a href="{{ root_url }}/blog/archives">Archives</a></li>
+	  <li  {% if page.navbar == 'code' %}class="current"{% endif %}><a href="{{ root_url }}/code">Code</a></li>
+	  <li  {% if page.navbar == 'about' %}class="current"{% endif %}><a href="{{ root_url }}/about">About Me</a></li>
+	</ul>
+	<div class="site-search repo-scope js-site-search" role="search">
+		<a class="icon-rss" href="{{ root_url }}/atom.xml" rel="subscribe-rss" title="subscribe via RSS" />
+		{% if site.simple_search %}
+		<form action="{{ site.simple_search }}" class="js-site-search-form" method="GET">
+			<input type="hidden" name="q" value="site:{{ site.shorthand_url }}">
+			<input id="cse-search-field" type="text" name="q" results="0" placeholder="Search">
+		</form>
+		{% endif %}
+	</div>
+</div>
+</div>
