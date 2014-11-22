@@ -53,7 +53,12 @@ highlighter: pygments # default python pygments have been replaced by pygments.r
 # pygments: true
 # safe: false
 
+# -- Build Command Options -- #
 lsi: true
+pygments: true
+safe: true
+auto: true
+
 paginate:  6          # Posts per page on the blog index
 paginate_path: "blog/page/:num"  # Directory base for pagination URLs eg. /posts/2/
 recent_posts: 4       # Posts in the sidebar Recent Posts section
