@@ -56,7 +56,6 @@ highlighter: pygments # default python pygments have been replaced by pygments.r
 # -- Build Command Options -- #
 lsi: true
 pygments: true
-safe: true
 auto: true
 
 paginate:  6          # Posts per page on the blog index
