@@ -799,7 +799,7 @@ footer a:hover {
 #menu ul.top-nav {
 	position: relative;
 	margin: 0;
-	padding: 10px 0px 0px 0px;
+	padding: 2px 0px 0px 0px;
 	float: left
 }
 
@@ -810,6 +810,7 @@ footer a:hover {
 	position: relative;
 	float: left;
 	text-align: center;
+	background: url(../images/top_bg.png) no-repeat right -646px;
 }
 
 #menu ul.top-nav>li.separate {
@@ -821,14 +822,17 @@ footer a:hover {
 #menu ul.top-nav>li>a {
 	padding: 0 0.8em;
 	display: block;
-	height: 25px;
-	line-height: 1;
+	/*height: 25px;*/
+	line-height: 1.7;
 	color: #FFF;
 	font-weight: normal;
 	font-size: 1.25em;
 	text-decoration: none; /* 去掉下划线 */
-	border-right: 2px solid rgba(158, 231, 108, 0.2); /* 在左侧加上分隔线 */
+	/*border-right: 2px solid rgba(158, 231, 108, 0.2); 在左侧加上分隔线 */
 	transition: .3s
+}
+#menu ul.top-nav>li:last-child {
+	background: 0;
 }
 
 #menu ul.top-nav>li:last-child>a {
@@ -839,22 +843,23 @@ footer a:hover {
 	color: #2183F4;
 }
 
-.current a {
+.current>a {
   color: #2183F4;
   border-bottom: 4px solid #9EE76C;
   text-decoration: none;
 }
 
-a.icon-rss {
+#menu a.icon-rss {
   color: #BFBFBF;
   font-size: 30px;
   cursor: pointer;
   transition: .3s;
   float: right;
   padding: 8px 0 0 0;
+  text-decoration: none;
 }
 
-a.icon-rss:hover {
+#menu a.icon-rss:hover {
   color: #E0E0E0;
 }
 

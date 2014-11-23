@@ -42,6 +42,10 @@ destination: ./_site
 plugins: ./_plugins
 code_dir: downloads/code
 category_dir: blog/categories
+
+safe: false
+
+# Conversion
 markdown: rdiscount
 rdiscount:
   extensions:
@@ -49,17 +53,9 @@ rdiscount:
     - footnotes
     - smart
 highlighter: pygments # default python pygments have been replaced by pygments.rb
-
 # pygments: true
-# safe: false
 
-# -- Build Command Options -- #
 lsi: true
-pygments: true
-auto: true
-gems:
-  - jekyll-sitemap
-
 paginate:  6          # Posts per page on the blog index
 paginate_path: "blog/page/:num"  # Directory base for pagination URLs eg. /posts/2/
 recent_posts: 4       # Posts in the sidebar Recent Posts section

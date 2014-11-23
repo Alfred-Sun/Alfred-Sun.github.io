@@ -21,7 +21,7 @@
 	  <li  {% if page.navbar == 'about' %}class="current"{% endif %}><a href="{{ root_url }}/about">About Me</a></li>
 	</ul>
 	<div class="site-search repo-scope js-site-search" role="search">
-		<a class="icon-rss" href="{{ root_url }}/atom.xml" rel="subscribe-rss" title="subscribe via RSS" />
+		<a class="icon-rss" href="{{ root_url }}/atom.xml" rel="subscribe-rss" title="subscribe via RSS"></a>
 		{% if site.simple_search %}
 		<form action="{{ site.simple_search }}" class="js-site-search-form" method="GET">
 			<input type="hidden" name="q" value="site:{{ site.shorthand_url }}">
