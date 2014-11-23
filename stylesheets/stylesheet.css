@@ -417,6 +417,19 @@ optgroup {
   font-weight: bold;
 }
 
+/* Override the css of Bootstrap */
+* {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 /* Tables
    ========================================================================== */
 
@@ -778,7 +791,7 @@ footer a:hover {
 .clearfix {display: block;}
 
 
-/* Menu */
+/* Menu (include search and rss)*/
 #menu {
 	font: 16px verdana, arial, sans-serif;
 	background-color: #3E423A;
@@ -1010,13 +1023,16 @@ font-size: 39px;
 }
 
 .icon-chevron-circle-up { /*兼容ie6、7*/
-	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61d;');
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf139;');
 }
 .icon-chevron-circle-down {
-	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe61e;');
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf13a;');
 }
 .icon-comments-o {
-	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe603;');
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e6;');
+}
+.icon-rss {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09e;');
 }
 
 
