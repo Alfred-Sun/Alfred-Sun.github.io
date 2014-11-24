@@ -52,8 +52,8 @@
 	content: "\f13a"
 }
 
-.icon-paw:before {
-  content: "\f1b0";
+.icon-hand-o-right:before {
+  content: "\f0a4";
 }
 
 .icon-rss:before {
@@ -64,12 +64,16 @@
   content: "\f09b";
 }
 
-.icon-qq:before {
-  content: "\f1d6";
-}
-
 .icon-weibo:before {
   content: "\f18a";
+}
+
+.icon-paw:before {
+  content: "\f1b0";
+}
+
+.icon-qq:before {
+  content: "\f1d6";
 }
 
 .icon-twitter:before {
