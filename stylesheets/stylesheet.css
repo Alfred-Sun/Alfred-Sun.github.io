@@ -550,6 +550,11 @@ aside#sidebar a {
   display: block;
 }
 
+aside#sidebar a:hover {
+  color: #2879d0;
+  text-decoration: underline;
+}
+
 aside#sidebar ul>a>li>i {
   color: #777;
   line-height: 1.3;
@@ -586,7 +591,6 @@ aside#sidebar ul.sns-links>a>li>img {
 }
 
 aside#sidebar ul.sns-links>a:hover {
-  color: #2183F4;
   text-decoration: none;
 }
 
@@ -915,9 +919,11 @@ footer a:hover {
 
 #menu ul.top-nav>li>a:hover {
 	color: #2183F4;
+	transition: none;
+	border-bottom: 4px solid #9EE76C;
 }
 
-.current>a {
+#menu ul.top-nav>li.current>a {
   color: #2183F4;
   border-bottom: 4px solid #9EE76C;
   text-decoration: none;
