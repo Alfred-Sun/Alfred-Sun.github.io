@@ -1,6 +1,6 @@
 ---
 layout: page
-navbar: About
+navbar: about
 title: "About Octostrap3"
 date: 2013-10-03 23:49
 comments: true
