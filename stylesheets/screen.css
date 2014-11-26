@@ -510,15 +510,7 @@ a:hover {
   padding-top: 30px;
 }
 
-#main-content {
-  width: 690px;
-  float: left;
-}
-
-#main-content img {
-  max-width: 100%;
-}
-
+/* side-bar style */
 aside#sidebar {
   width: 240px;
   padding-left: 10px;
@@ -698,6 +690,15 @@ form {
 
 /* GENERAL ELEMENT TYPE STYLES */
 
+#main-content {
+  width: 690px;
+  float: left;
+}
+
+#main-content img {
+  max-width: 100%;
+}
+
 #main-content h1 {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 2.8em;
@@ -840,6 +841,304 @@ footer a {
 }
 footer a:hover {
   color: #444;
+}
+
+/* post content style */
+#main-content article.post {
+	clear: both;
+	position: relative;
+}
+
+#main-content .postunder {
+	clear:both;
+	position:relative;
+	margin:10px 0 10px;
+}
+
+#main-content article.post h2 a {
+	color: #1869d0;
+	text-decoration: none;
+}
+#main-content article.post h2 a:hover {
+	color: #900;
+}
+#main-content article.post h2 {
+	padding:7px 0 0 0;
+	font-family: 'Microsoft Yahei',Verdana,Arial,Helvetica,sans-serif;
+}
+#main-content article.post h2:before {
+	content: "";
+	color: #9ddcff;
+	padding: 0px;
+	margin: auto;
+}
+
+#main-content article.post h2,#comments h4 {
+	font-size:20px;
+	color: #40aa52;
+	text-decoration: none;
+	font-weight: 500;
+}
+#comments h4{
+	height:28px;
+}
+#comments #response{
+	border-bottom:1px solid #ddd;
+}
+#main-content article.post h3 {
+	color:#40aa52;
+	margin-top:8px;
+	border-left:solid 5px #40aa52;
+	padding-left:15px;
+}
+
+#main-content .post .blue {
+	font-family:'Courier New','Microsoft Yahei',Helvetica, sans-serif;
+	white-space:pre-wrap;
+	background-color:#eaf7ff;
+}
+
+#main-content .post .con ul {
+	margin: 5px 0;
+}
+
+#main-content .post .con li {
+	list-style-type:none;
+	min-height:20px;
+	line-height:1.4em;
+	padding:4px 0px;
+	margin-left:1.1em;
+}
+
+#main-content .post .con ul li {
+	list-style:disc inside;
+}
+
+#main-content .post .con ol li {
+	list-style:decimal inside;
+}
+
+.post .con .oddli {
+-webkit-transition:background .3s linear;
+-moz-transition:background .3s linear;
+-o-transition:background .3s linear;
+transition:background .3s linear;
+}
+
+.post .info {
+line-height:22px;
+padding:10px 0 0 10px;
+color:#666;
+text-transform:uppercase;
+float:right;
+}
+
+.post .con .tags ul{
+margin:0;
+}
+.tags{
+overflow:auto;
+margin:12px 0 0 0;
+}
+.post .tags ul li{
+float:left;
+list-style-type:none;
+margin-right:9px;
+padding:0 3px 0 0;
+/*background:url(images/tags.png) no-repeat right -25px;*/
+}
+.post .tags ul li a{
+/*background:url(images/tags.png) no-repeat 0 0px;*/
+float:left;
+height:19px;
+line-height:17px;
+color:white;
+padding:0 4px 0 7px;
+white-space:nowrap;
+font-size:12px;
+}
+
+.bicolumn ul li {
+text-transform:uppercase;
+}
+
+.post .pageinfo {
+height:4px;
+margin-top:12px;
+/*background:url(images/post_h2.gif) top no-repeat;*/
+position:relative;
+padding:2px 0 0;
+}
+
+.post .info span a {
+color:#666;
+}
+
+.post .intro {
+font-size:14px;
+margin:10px 3px;
+}
+
+.post .intro p {
+text-align:justify;
+text-justify:inter-ideograph;
+padding:5px 0;
+}
+
+.post p.read-more {
+/*background:url(images/icons.gif) 0 -315px no-repeat;*/
+padding-left:17px;
+font-size:12px;
+}
+
+.post .intro p img {
+max-width:600px;
+}
+
+.post .con {
+	font-family: 'Microsoft Yahei',Verdana,Arial,Helvetica,sans-serif;
+	color: #444;
+	padding: 0;
+}
+
+.post .con img {
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
+max-width:600px;
+padding:5px;
+border:solid 1px #ddd;
+}
+
+.post .con img {
+max-width:600px;
+}
+
+.post .con .about-img{
+vertical-align: middle;
+margin-right: 5px;
+width: 16px;
+height: 16px;
+}
+
+.imgtitle {
+position:absolute;
+margin:-41px 0 0 12px;
+color:/*#11648A*/
+#fff;
+font-size:11px;
+}
+
+.imgtitle em {
+font-style:normal;
+}
+
+.box {
+background:url(images/ico-com.png) 3px 3px no-repeat;
+padding-left:20px;
+height:20px;
+line-height:20px;
+color:#40aa52;
+position:relative;
+margin:0 20px 8px 13px;
+}
+
+.place {
+background:url(images/icons.gif) 3px -222px no-repeat;
+padding-left:20px;
+height:18px;
+line-height:18px;
+margin:38px 0 0;
+position:absolute;
+right:335px;
+}
+
+.post .con p {
+	text-align:justify;
+	text-justify:inter-ideograph;
+	padding:10px 0;
+	/*text-indent:2em;*/
+}
+.post .con div p {
+text-align:justify;
+text-justify:inter-ideograph;
+padding: 0;
+text-indent: 0;
+}
+.post .con p.imgc{
+text-align: center;
+}
+.post .con p a {
+color:#40aa52;
+text-decoration:none;
+}
+.post .con p.more a {
+margin:0;
+}
+.post .con p a:hover {
+text-decoration:underline;
+}
+
+code{
+/*margin: 0px 3px;
+padding: 3px 6px;*/
+margin: 0 0.5em;
+padding: 0.1em 0.5em;
+white-space: nowrap;
+border: 1px solid #CCCCCC;
+background-color: #E2E2E2;
+border-radius: 3px;
+}
+.post .con pre code {
+display: block;
+padding: 0.5em 1em;
+margin: 1em 0;
+border: 1px solid #CCCCCC;
+background: #E2E2E2;
+font-family: Consolas,Menlo,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono","Courier New",monospace,serif;
+/*overflow: auto;
+max-height: 500px;*/
+line-height: 18px;
+white-space:pre-wrap;
+word-wrap:break-word
+}
+
+
+
+.date {
+	color:#333;
+	text-transform:uppercase;
+	font-family:Georgia,serif;
+	font-weight:normal;
+	text-shadow:1px 1px 0 #ddd;
+	width:80px;
+	height:30px;
+	float:left;
+	margin:4px 10px 0 0;
+	padding:0 10px 0 0;
+	border-right:1px solid #ddd;
+}
+.date .day {
+	font-size:30px;
+	float:left;
+	line-height:56px;
+	margin-top:-14px;
+	color:#165CD4;
+	font-weight:800;
+}
+#main-content .post .date .month {
+	font-size:12px;
+	position:relative;
+	top:-4px;
+	width:35px;
+	float:right;
+}
+.date .year {
+	font-size:12px;
+	position:relative;
+	top:-10px;
+	width:35px;
+	float:right;
 }
 
 /* MISC */
@@ -1007,11 +1306,11 @@ Menu
 
 /* webkit */
 #cse-search-field::-webkit-input-placeholder {
-    background: url(../images/google_custom_search_watermark.gif) 5% 60% no-repeat rgb(255, 255, 255);
+    background: url(../images/google_custom_search_watermark.gif) 5% 100% no-repeat rgb(255, 255, 255);
 }
 /* mozila */
 #cse-search-field::-moz-placeholder {
-    background: url(../images/google_custom_search_watermark.gif) 5% 60% no-repeat rgb(255, 255, 255);
+    background: url(../images/google_custom_search_watermark.gif) 5% 100% no-repeat rgb(255, 255, 255);
 }
 
 /* Search Field */
@@ -1051,7 +1350,7 @@ html.ios #cse-search-button {
   display: none;
 }
 
-/* footer */
+/* footer style */
 #footer {
   border-top: 3px double #7f7f7f;
   margin: 15px auto;
