@@ -11,8 +11,21 @@
   </div>
 </div>
 
+<!-- Google Custom Search >
+    <script>
+      (function() {
+        var cx = '005512552974801634858:xtncfmg2jaq';
+        var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+		
+		//gcse.src = '{{ root_url }}/javascripts/cse.js';
+		
+        //var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+      })();
+   </script -->
+
 <div id="menu">
-<div class="clearfix">
+<div class="inner clearfix">
 	<ul class="top-nav">
 	  <li {% if page.navbar == 'home' %}class="current"{% endif %}><a href="{{ root_url }}/">Home</a></li>
 	  <li  {% if page.navbar == 'blog' %}class="current"{% endif %}><a href="{{ root_url }}/blog">Blog</a></li>
@@ -21,11 +34,11 @@
 	  <li  {% if page.navbar == 'about' %}class="current"{% endif %}><a href="{{ root_url }}/about">About Me</a></li>
 	</ul>
 	<div class="site-search repo-scope js-site-search" role="search">
-		<a class="icon-rss" href="{{ root_url }}/atom.xml" rel="subscribe-rss" title="subscribe via RSS"></a>
+		<a class="icon-rss" href="{{ root_url }}/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"></a>
 		{% if site.simple_search %}
-		<form action="{{ site.simple_search }}" class="js-site-search-form" method="GET">
-			<input type="hidden" name="q" value="site:{{ site.shorthand_url }}">
-			<input id="cse-search-field" type="text" name="q" results="0" placeholder="Search">
+		<form action="{{ site.simple_search }}" class="js-site-search-form" method="GET" target="_blank" >
+			<input type="hidden" name="q" value="site:{{ site.shorthand_url }}" />
+			<input id="cse-search-field" type="text" name="q" results="0" placeholder=" " title="search" autocomplete="off" spellcheck="false" />
 		</form>
 		{% endif %}
 	</div>

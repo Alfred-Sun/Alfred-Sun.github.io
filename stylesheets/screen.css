@@ -501,7 +501,7 @@ a:hover {
 
 .inner {
   position: relative;
-  width: 960px;
+  width: 975px;
   margin: 0 auto;
 }
 
@@ -521,7 +521,7 @@ a:hover {
 
 aside#sidebar {
   width: 240px;
-  /*padding-left: 20px;*/
+  padding-left: 10px;
   min-height: 504px;
   float: right;
   background: transparent url(../images/sidebar-bg.jpg) 0 0 no-repeat;
@@ -533,7 +533,7 @@ aside#sidebar h2 {
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  padding: 0px 0px 10px 20px;
+  padding: 0px 0px 10px 25px;
   margin-top: 25px;
   margin-bottom: 15px;
   border-bottom: 5px solid #555;
@@ -869,11 +869,6 @@ footer a:hover {
 	box-shadow: 0 1px 0 rgba(255,255,255,0.4),0 0px 10px rgba(0,0,0,0.1)
 }
 
-#menu div.clearfix {
-	width: 960px;
-	margin: 0 auto
-}
-
 #menu ul.top-nav {
 	position: relative;
 	margin: 0;
@@ -1006,8 +1001,17 @@ Menu
 .site-search form {
   position: relative;
   float: right;
-  padding: 4px 10px 4px 4px;
+  padding: 4px 10px 4px 0px;
   background: none;
+}
+
+/* webkit */
+#cse-search-field::-webkit-input-placeholder {
+    background: url(../images/google_custom_search_watermark.gif) 5% 60% no-repeat rgb(255, 255, 255);
+}
+/* mozila */
+#cse-search-field::-moz-placeholder {
+    background: url(../images/google_custom_search_watermark.gif) 5% 60% no-repeat rgb(255, 255, 255);
 }
 
 /* Search Field */
@@ -1018,13 +1022,17 @@ Menu
   padding: 0.4em 0.6em;
   border: 1.5px solid rgb(255, 255, 255);
   border-radius: 60px;
-  -webkit-background-clip: padding;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  -webkit-box-shadow: #d1d1d1 0 1px;
-  -moz-box-shadow: #d1d1d1 0 1px;
   box-shadow: #fff 0 1px;
   line-height: 1.1em;
+  background-clip: padding-box;
+  margin: 0px;
+  height: auto;
+  outline: none;
+  /*background: url(../images/google_custom_search_watermark.gif) 5% 60% no-repeat rgb(255, 255, 255);*/
+  -webkit-background-clip: padding;
+  -moz-background-clip: padding;
+  -webkit-box-shadow: #d1d1d1 0 1px;
+  -moz-box-shadow: #d1d1d1 0 1px;
 }
 #cse-search-field:focus {
   color: #444;
@@ -1032,7 +1040,7 @@ Menu
   -webkit-box-shadow: #80b1df 0 0 4px, #80b1df 0 0 3px inset;
   -moz-box-shadow: #80b1df 0 0 4px, #80b1df 0 0 3px inset;
   box-shadow: #80b1df 0 0 4px, #80b1df 0 0 3px inset;
-  background-color: #fff;
+  background: #fff;
   outline: none;
 }
 html.ios #cse-search-field {
