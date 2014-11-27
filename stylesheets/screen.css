@@ -844,6 +844,13 @@ footer a:hover {
 }
 
 /* post content style */
+#main-content article {
+	padding-top: 0;
+	margin-bottom: 2.2em;
+	padding-bottom: 1em;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x;
+}
+
 #main-content article.post {
 	clear: both;
 	position: relative;
@@ -856,11 +863,11 @@ footer a:hover {
 }
 
 #main-content article.post h2 a {
-	color: #1869d0;
+	color: #0278ec;
 	text-decoration: none;
 }
 #main-content article.post h2 a:hover {
-	color: #900;
+	color: #444;
 }
 #main-content article.post h2 {
 	padding:7px 0 0 0;
@@ -877,7 +884,7 @@ footer a:hover {
 	font-size:20px;
 	color: #40aa52;
 	text-decoration: none;
-	font-weight: 500;
+	font-weight: bold;
 }
 #comments h4{
 	height:28px;
@@ -1054,16 +1061,16 @@ right:335px;
 }
 
 .post .con p {
-	text-align:justify;
-	text-justify:inter-ideograph;
-	padding:10px 0;
+	text-align: justify;
+	text-justify: inherit;
+	padding: 15px 0 0;
 	/*text-indent:2em;*/
 }
 .post .con div p {
-text-align:justify;
-text-justify:inter-ideograph;
-padding: 0;
-text-indent: 0;
+	text-align: justify;
+	text-justify: inherit;
+	padding: 0;
+	text-indent: 0;
 }
 .post .con p.imgc{
 text-align: center;
@@ -1139,6 +1146,31 @@ word-wrap:break-word
 	top:-10px;
 	width:35px;
 	float:right;
+}
+
+#main-content .post footer {
+	margin-top: 1em;
+	padding: 0 0 1em;
+}
+
+#main-content .post footer>a[rel=full-article] {
+	font-family: "PT Serif",Georgia,Times,"Times New Roman",serif;
+	font-size: 16px;
+	background: #ebebeb;
+	display: inline-block;
+	padding: .4em .8em;
+	margin-right: .5em;
+	text-decoration: none;
+	color: #6e6e6e;
+	-webkit-transition: background-color 0.5s;
+	-moz-transition: background-color 0.5s;
+	-o-transition: background-color 0.5s;
+	transition: background-color 0.5s
+}
+#main-content .post footer>a[rel=full-article]:hover {
+	background: #0278ec;
+	text-shadow: none;
+	color: #f8f8f8
 }
 
 /* MISC */

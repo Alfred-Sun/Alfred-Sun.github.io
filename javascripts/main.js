@@ -4,7 +4,7 @@
 "use strict";
 /*
 @email:          hopekayo@gmail.com
-@description:    钛媒体js开发版
+@description:    refer to 钛媒体js开发版
 @time:           2014-7-28 4:01 PM
 */
 
@@ -59,7 +59,7 @@ Tmt.global = function($form){
             html += '<div class="js-scroll-comment" title="查看评论"><i class="icon-publish"></i></div>'
         }
         html += '<div class="js-scroll-down" title="转到底部"><i class="icon-arr-down"></i></div></div>';
-        $("footer").append(html);
+        // $("footer").append(html);
         var $top_button     = $(".js-scroll-top"),
             $down_button    = $(".js-scroll-down"),
             $comment_button = $(".js-scroll-comment");

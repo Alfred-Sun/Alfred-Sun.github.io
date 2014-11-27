@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Jquery取得iframe中元素的几种方法（转载）
+external-url: http://www.blogjava.net/GavinMiao/archive/2011/08/30/357580.html
 ---
 
 iframe在复合文档中经常用到，利用jquery操作iframe可以大幅提高效率，这里收集一些基本操作
