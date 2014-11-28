@@ -1,35 +1,39 @@
 ---
 layout: page
 navbar: about
-title: "About Octostrap3"
+title: "About Me"
 date: 2013-10-03 23:49
 comments: true
 sharing: true
 footer: true
 ---
 
-**Octostrap3** started because I really wanted to use Bootstrap while posting
+<p>
+	I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.			-- <b>Alfred Sun</b>
+</p>
+
+<!--**Octostrap3** started because I really wanted to use Bootstrap while posting
 [on my blog](https://kaworu.ch) and all Octopress themes were based on
-Bootstrap 2.x.
+Bootstrap 2.x.-->
 
-<h2>Code & Contributing</h2>
+<h3>Code & Contributing</h3>
 
-For Octostrap3 issues, questions and pull requests check
-[the GitHub repository](https://github.com/kAworu/octostrap3).
+For blog issues, questions and pull requests check
+[the GitHub repository](https://github.com/Alfred-Sun/Alfred-Sun.github.io).
 
 <small class="text-muted">
 The source of this blog is also available
-[here](https://github.com/kAworu/octostrap3/tree/gh-pages-src).  All the
+[here](https://github.com/Alfred-Sun/Alfred-Sun.github.io/tree/master).  All the
 content on this blog is under a Creative Commons license
 [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/).
 </small>
 
 
-<h2>License</h2>
+<h3>License</h3>
 
-Just as Octopress **Octostrap3** is under the MIT License.
+Just as Octopress **Vermillion Phoinix** is under the MIT License.
 
-<h2>Kudos</h2>
+<h3>Kudos</h3>
 
 - [Twitter Bootstrap](http://getbootstrap.com/) for the CSS & Javascript magic
   tricks.

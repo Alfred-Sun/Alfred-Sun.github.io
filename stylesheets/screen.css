@@ -453,7 +453,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
   background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Helvetica, Verdana, Arial, sans-serif;
   font-weight: 400;
   color: #666;
 }
@@ -870,8 +870,9 @@ footer a:hover {
 	color: #444;
 }
 #main-content article.post h2 {
+	font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Helvetica, Verdana, Arial, sans-serif;
+	font-weight: bold;
 	padding:7px 0 0 0;
-	font-family: 'Microsoft Yahei',Verdana,Arial,Helvetica,sans-serif;
 }
 #main-content article.post h2:before {
 	content: "";
@@ -884,7 +885,6 @@ footer a:hover {
 	font-size:20px;
 	color: #40aa52;
 	text-decoration: none;
-	font-weight: bold;
 }
 #comments h4{
 	height:28px;
@@ -930,6 +930,33 @@ footer a:hover {
 -moz-transition:background .3s linear;
 -o-transition:background .3s linear;
 transition:background .3s linear;
+}
+
+.post .con {
+	font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Helvetica, Verdana, Arial, sans-serif;
+	font-weight: normal;
+	color: #444;
+	padding: 0;
+}
+
+.post .con img {
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
+max-width:600px;
+padding:5px;
+border:solid 1px #ddd;
+}
+
+.post .con img {
+max-width:600px;
+}
+
+.post .con .about-img{
+vertical-align: middle;
+margin-right: 5px;
+width: 16px;
+height: 16px;
 }
 
 .post .info {
@@ -1000,32 +1027,6 @@ font-size:12px;
 
 .post .intro p img {
 max-width:600px;
-}
-
-.post .con {
-	font-family: 'Microsoft Yahei',Verdana,Arial,Helvetica,sans-serif;
-	color: #444;
-	padding: 0;
-}
-
-.post .con img {
--moz-border-radius:3px;
--webkit-border-radius:3px;
-border-radius:3px;
-max-width:600px;
-padding:5px;
-border:solid 1px #ddd;
-}
-
-.post .con img {
-max-width:600px;
-}
-
-.post .con .about-img{
-vertical-align: middle;
-margin-right: 5px;
-width: 16px;
-height: 16px;
 }
 
 .imgtitle {
@@ -1153,6 +1154,7 @@ word-wrap:break-word
 	padding: 0 0 1em;
 }
 
+/* article footer */
 #main-content .post footer>a[rel=full-article] {
 	font-family: "PT Serif",Georgia,Times,"Times New Roman",serif;
 	font-size: 16px;
@@ -1347,7 +1349,7 @@ Menu
 
 /* Search Field */
 #cse-search-field {
-  width: 180px;
+  width: 185px;
   float: right;
   font-family: helvetica, sans-serif;
   padding: 0.4em 0.6em;
