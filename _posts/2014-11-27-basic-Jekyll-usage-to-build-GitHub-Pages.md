@@ -2,6 +2,7 @@
 layout: post
 title: Basic Jekyll Usage and API Introduction (Liquid)
 categories: Jekyll
+tags: [Jekyll,Liquid]
 ---
 
 Reference:
