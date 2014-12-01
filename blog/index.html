@@ -37,14 +37,14 @@ navbar: blog
 	{% endfor %}
 	
 	<ul class="pager">
-      {% if paginator.next_page %}
-        <li class="previous"><a href="{{paginator.next_page_path}}">&laquo; Prev</a></li>
+      {% if paginator.previous_page %}
+        <li class="previous"><a href="{{paginator.previous_page_path}}">&laquo; Prev</a></li>
       {% else %}
         <li class="previous disabled"><a href="#">&laquo; Prev</a></li>
       {% endif %}
       <li><a href="{{ root_url }}/blog/archive">Blog Archives</a></li>
-      {% if paginator.previous_page %}
-        <li class="next"><a href="{{paginator.previous_page_path}}">Next &raquo;</a></li>
+      {% if paginator.next_page %}
+        <li class="next"><a href="{{paginator.next_page_path}}">Next &raquo;</a></li>
       {% else %}
         <li class="next disabled"><a href="#">Next &raquo;</a></li>
       {% endif %}
