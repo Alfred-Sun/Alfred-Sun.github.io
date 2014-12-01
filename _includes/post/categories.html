@@ -1,11 +1,14 @@
-{% capture category %}{% if post %}{{ post.categories | category_links | size }}{% else %}{{ page.categories | category_links | size }}{% endif %}{% endcapture %}
-{% unless category == '0' %}
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
+{% unless categories == '0' %}
 <span class="categories">
+  posted in 
   {% if post %}
-    {{ post.categories | category_links }}
+    {% for category in post.categories %}
+		<a href="{{ root_url }}/blog/category/#{{ category }}-ref"" title="{{ category }}" rel="category">{{ category }}</a>{% unless forloop.last %}，{% endunless %}
+    {% endfor %}
   {% else %}
-    {{ page.categories | category_links }}
+    {% for category in page.categories %}
+		<a href="{{ root_url }}/blog/category/#{{ category }}-ref"" title="{{ category }}" rel="category">{{ category }}</a>{% unless forloop.last %}，{% endunless %}
+    {% endfor %}
   {% endif %}
 </span>
 {% endunless %}

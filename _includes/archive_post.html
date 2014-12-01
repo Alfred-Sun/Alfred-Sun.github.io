@@ -1,6 +1,16 @@
-{% capture category %}{{ post.categories | size }}{% endcapture %}
-<h2 class="post-title" itemprop="name headline"><a href="{{ root_url }}{{ post.url }}" itemprop="url">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></h2>
-<p class="meta text-muted">
-  {% include post/date.html %}{{ time }}
+{% capture categories %}{% if post %}{{ post.categories | size }}{% else %}{{ page.categories | size }}{% endif %}{% endcapture %}
+{% capture tags %}{% if post %}{{ post.tags | size }}{% else %}{{ page.tags | size }}{% endif %}{% endcapture %}
+
+<h1 class="post-title">
+  <a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a>
+</h1>
+
+<time datetime="{{ post.date | datetime | date_to_xmlschema }}" pubdate>{{ post.date | date: "<span class='month'>%b</span> <span class='day'>%d</span> <span class='year-hide'>%Y</span>"}}
+</time>
+
+{% if category != '0' or tags != '0' %}
+<footer>
   {% include post/categories.html %}
-</p>
+  {% include post/tags.html %}
+</footer>
+{% endif %}

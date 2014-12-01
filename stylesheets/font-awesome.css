@@ -40,6 +40,14 @@
   content: "\f003";
 }
 
+.icon-th-list:before {
+  content: "\f00b";
+}
+
+.icon-tags:before {
+  content: "\f02c";
+}
+
 .icon-comments-o:before {
 	content: "\f0e6"
 }

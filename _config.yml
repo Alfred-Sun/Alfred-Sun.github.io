@@ -25,7 +25,7 @@ date_format: "%a %e %b %Y, %l:%M %p"
 # "%B %e, %Y at %H:%M %Z"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /octostrap3/atom.xml
+subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
@@ -87,7 +87,7 @@ blog_index_asides: [
 # ----------------------- #
 
 # Github repositories
-github_user: kAworu
+github_user: Alfred Sun
 github_repo_count: 4
 github_show_profile_link: true
 github_skip_forks: true
@@ -121,7 +121,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: octostrap3
+disqus_short_name: alfredsun
 disqus_show_comment_count: true
 
 # Google Analytics

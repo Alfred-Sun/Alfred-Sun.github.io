@@ -828,7 +828,7 @@ dl dd {
 }
 
 footer {
-  background: transparent url('../images/hr.png') 0 0 no-repeat;
+  /* background: transparent url('../images/hr.png') 0 0 no-repeat;*/
   margin-top: 40px;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -842,6 +842,188 @@ footer a {
 footer a:hover {
   color: #444;
 }
+
+/* page content style */
+.page-content {
+	text-align: justify;
+	float: left;
+	margin-bottom: 30px;
+}
+
+.entry-content {
+	font-size: 16px;
+	width: 690px;
+}
+
+.page-header .entry-title {
+	margin-top: 0;
+}
+
+.page-content article header {
+	position: relative;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 1em;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x;
+}
+
+.page-content article header h1 {
+	margin: 0;
+	font-weight: bold;
+	font-size: 35px;
+	line-height: 1.2;
+	color: #333;
+}
+
+@media only screen and (min-width: 400px) {
+	.page-content article header {
+		margin-bottom: 1.5em;
+		padding-bottom: 1em;
+		background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x;
+	}
+}
+/*.page-content article h2:first-child, article header+h2 {
+	background: none;
+}*/
+
+.page-content article .feature {
+	padding-top: .5em;
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x;
+	font-size: 2.0em;
+	font-style: italic;
+	line-height: 1.3em;
+}
+
+#blog-archives {
+	color: #bbb;
+}
+
+#blog-archives article {
+	padding: 0.5em 0 1em;
+	position: relative;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x;
+}
+
+#blog-archives article:last-child {
+	background: none;
+}
+
+#blog-archives article footer {
+	padding: 0 0 0.5em;
+	margin: 0;
+}
+
+#blog-archives h1 {
+	color: #222;
+	margin-top: 0;
+	margin-bottom: .3em;
+}
+
+#blog-archives h2 {
+	display: none;
+}
+
+#blog-archives h1 {
+	font-size: 25px;
+}
+
+#blog-archives h1 a {
+	text-decoration: none;
+	color: #444;
+	font-size: 20px;
+	font-weight: normal;
+	display: inline-block;
+}
+
+#blog-archives h1 a:hover {
+	color: #0278ec;
+	text-decoration: underline
+}
+
+#blog-archives time {
+	color: #bbb;
+	font-size: 12px;
+	line-height: 1.1em;
+}
+
+#blog-archives time .month,#blog-archives time .day {
+	display: inline-block;
+}
+
+#blog-archives time .month {
+	text-transform: uppercase;
+}
+
+#blog-archives p {
+	margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 400px) {
+	#blog-archives article {
+		margin-left: 6em
+	}
+
+	#blog-archives h2 {
+		margin-bottom: .3em;
+		margin-top: 0;
+		font-family: Georgia,serif;
+		font-size: 30px;
+		font-weight: bold;
+		display: inline-block;
+		position: relative;
+		top: -1px;
+		float: left;
+		padding-top: 0.2em;
+		background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') top left repeat-x;
+	}
+
+	#blog-archives h2:first-child {
+		background: none;
+	}
+
+	#blog-archives time {
+		position: absolute;
+		text-align: right;
+		left: 0em;
+		top: 20px;
+	}
+
+	#blog-archives .year-hide {
+		display: none;
+	}
+
+	#blog-archives article {
+		padding-left: 4.5em;
+		padding-bottom: .5em;
+	}
+}
+
+#blog-archives footer {
+	font-size: 16px;
+	color: #777;
+}
+
+#blog-archives span.categories {
+	padding-right: 15px;
+	overflow:auto;
+}
+#blog-archives span.categories>a {
+	color: #555;
+	font-weight: bold;
+	text-decoration: underline;
+}
+#blog-archives span.categories>a:hover {
+	color: #0278ec;
+}
+#blog-archives span.tags {
+	overflow:auto;
+	margin:12px 0 0 0;
+}
+
 
 /* post content style */
 #main-content article {
@@ -969,10 +1151,6 @@ float:right;
 
 .post .con .tags ul{
 margin:0;
-}
-.tags{
-overflow:auto;
-margin:12px 0 0 0;
 }
 .post .tags ul li{
 float:left;
