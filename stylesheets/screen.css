@@ -933,7 +933,7 @@ footer a:hover {
 
 #blog-archives h1 a {
 	text-decoration: none;
-	color: #444;
+	color: #222;
 	font-size: 20px;
 	font-weight: normal;
 	display: inline-block;
@@ -1012,7 +1012,7 @@ footer a:hover {
 	overflow:auto;
 }
 #blog-archives span.categories>a {
-	color: #555;
+	color: #777;
 	font-weight: bold;
 	text-decoration: underline;
 }
@@ -1286,7 +1286,7 @@ font-family: Consolas,Menlo,Monaco,"Lucida Console","Liberation Mono","DejaVu Sa
 max-height: 500px;*/
 line-height: 18px;
 white-space:pre-wrap;
-word-wrap:break-word
+word-wrap:break-word;
 }
 
 
@@ -1345,12 +1345,17 @@ word-wrap:break-word
 	-webkit-transition: background-color 0.5s;
 	-moz-transition: background-color 0.5s;
 	-o-transition: background-color 0.5s;
-	transition: background-color 0.5s
+	transition: background-color 0.5s;
 }
 #main-content .post footer>a[rel=full-article]:hover {
 	background: #0278ec;
 	text-shadow: none;
-	color: #f8f8f8
+	color: #f8f8f8;
+}
+
+#main-content ul.pager a[href*=archive]:before, #main-content ul.pager a[href*=archive]:after {
+    content: '\2012';
+    padding: 0 .3em;
 }
 
 /* MISC */
@@ -1377,14 +1382,14 @@ word-wrap:break-word
 	position: relative;
 	/*z-index: 10;*/
 	border-bottom: 1px solid #cacaca;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.4),0 0px 10px rgba(0,0,0,0.1)
+	box-shadow: 0 1px 0 rgba(255,255,255,0.4),0 0px 10px rgba(0,0,0,0.1);
 }
 
 #menu ul.top-nav {
 	position: relative;
 	margin: 0;
 	padding: 3px 0px 0px 0px;
-	float: left
+	float: left;
 }
 
 #menu ul.top-nav>li {
@@ -1400,7 +1405,7 @@ word-wrap:break-word
 #menu ul.top-nav>li.separate {
 	border-right: 1px solid #FAFAFA;
 	box-shadow: 1px 0 0 #e0e0e0;
-	padding-right: 15px
+	padding-right: 15px;
 }
 
 #menu ul.top-nav>li>a {
@@ -1413,7 +1418,7 @@ word-wrap:break-word
 	font-size: 1.25em;
 	text-decoration: none; /* 去掉下划线 */
 	/*border-right: 2px solid rgba(158, 231, 108, 0.2); 在左侧加上分隔线 */
-	transition: .3s
+	transition: .3s;
 }
 #menu ul.top-nav>li:last-child {
 	background: 0;
