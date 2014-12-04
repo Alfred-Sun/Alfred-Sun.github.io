@@ -42,7 +42,7 @@ navbar: blog
       {% else %}
         <li class="previous disabled"><a href="#">&laquo; Prev</a></li>
       {% endif %}
-      <li><a href="{{ root_url }}/blog/archive">Blog Archives</a></li>
+      <li><a href="{{ root_url }}/{{ site.archive_dir }}">Blog Archives</a></li>
       {% if paginator.next_page %}
         <li class="next"><a href="{{paginator.next_page_path}}">Next &raquo;</a></li>
       {% else %}

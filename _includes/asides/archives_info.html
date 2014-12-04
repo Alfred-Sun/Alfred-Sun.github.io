@@ -4,9 +4,14 @@
 <section>
   <h2><a href="{{ root_url }}/{{ site.archive_dir}}">Archives</h2>
   <ul>
-    {% for item in (0..site.categories.size) %}{% unless forloop.last %}
-    {% capture this_word %}{{ category_words[item] | strip_newlines }}{% endcapture %}
-    <li><a href="{{ root_url }}/{{ site.archive_dir }}#{{ this_word | cgi_escape }}-ref" rel="nofollow">{{ this_word }}</a></li>
-    {% endunless %}{% endfor %}
+	{% for post in site.posts reverse %}
+	{% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+	{% capture this_month %}{{ post.date | date: "%m" }}{% endcapture %}
+	{% unless _year == this_year and _month == this_month %}
+	  <li><a href="{{ root_url }}/{{ site.archive_dir }}#{{ this_year }}-{{ this_month }}-ref" rel="nofollow">{{ this_year }}-{{ this_month }}</a></li>
+	  {% assign _year = this_year %}
+	  {% assign _month = this_month %}
+	{% endunless %}
+	{% endfor %}
   </ul>
 </section>

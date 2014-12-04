@@ -8,12 +8,27 @@ footer: false
 <div id="blog-archives">
 {% for post in site.posts reverse %}
 {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+{% capture this_month %}{{ post.date | date: "%m" }}{% endcapture %}
+  {% assign is_ref = false %}
+{% unless year == this_year and month == this_month %}
+  {% assign year_month = this_year | append: '-' | append: this_month %}
+  {% assign id_year_month = 'id="' | append: year_month | append: '-ref"' %}
+  {% assign is_ref = true %}
+  {% if month != this_month %}
+    {% assign month = this_month %}
+  {% endif %}
+{% endunless %}
 {% unless year == this_year %}
   {% assign year = this_year %}
-  <h2 class="year">{{ year }}</h2>
+  <h2 class="year"id="{{ year }}-ref">{{ year }}</h2>
 {% endunless %}
 <article>
   {% include archive_post.html %}
 </article>
 {% endfor %}
+{% assign this_year = nil %}
+{% assign this_month = nil %}
+{% assign year_month = nil %}
+{% assign id_year_month = nil %}
+{% assign is_ref = nil %}
 </div>
