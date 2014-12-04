@@ -12,6 +12,30 @@ footer: true
 	I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.			-- <b>Alfred Sun</b>
 </p>
 
+<p>
+My Geek Code Explained
+
+The Geek Code is a perhaps a little silly in-joke among geeks; a way of introducing yourself to another geek by how you score on different geeky things, such as Star Trek or programming tools.
+
+What follows is my geek code:
+
+-----BEGIN GEEK CODE BLOCK-----
+Version: 3.12
+GCS/L/P d--@ s+:-- !a C++(++++) UBL++++$ P++$ L++$ E+++ W- N+++ o+
+K++ w O- M V PS+++ PE Y++ PGP++ t 5 X+@ R@ !tv b+++ DI++ D--- G e++ 
+h---- r+++ y?
+------END GEEK CODE BLOCK------
+
+Here it is in expanded and explained form with some comments by me (marked with “MC”):
+http://www.geekcode.com/geek.html
+http://mj.ucw.cz/geek/
+http://alip.github.io/en/
+
+</p>
+
+Mail: 
+echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
+
 <!--**Octostrap3** started because I really wanted to use Bootstrap while posting
 [on my blog](https://kaworu.ch) and all Octopress themes were based on
 Bootstrap 2.x.-->

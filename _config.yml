@@ -40,8 +40,10 @@ permalink: /blog/:year/:month/:day/:title/
 source: .
 destination: ./_site
 plugins: ./_plugins
-code_dir: downloads/code
-category_dir: blog/categories
+code_dir: downloads/code/
+category_dir: blog/category/
+tag_dir: blog/tag/
+archive_dir: blog/archive/
 
 safe: false
 

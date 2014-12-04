@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Jquery取得iframe中元素的几种方法（转载）
+categories:
+- Javascript
 external-url: http://www.blogjava.net/GavinMiao/archive/2011/08/30/357580.html
 ---
 
