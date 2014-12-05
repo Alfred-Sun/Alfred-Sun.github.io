@@ -48,6 +48,10 @@
   content: "\f02c";
 }
 
+.icon-link:before {
+  content: "\f0c1";
+}
+
 .icon-comments-o:before {
 	content: "\f0e6"
 }

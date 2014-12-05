@@ -40,22 +40,6 @@ navbar: home
 </section>
 
 <aside id="sidebar">
-
-	<h2>Recent Posts</h2>
-	<ul class="posts">
-		{% for post in site.posts limit: site.recent_posts %}
-		<a href="{{ post.url }}"><li><i class="icon-hand-o-right"></i>{{ post.title }}</li></a>
-		{% endfor %}
-	</ul>
-
-	<h2>Contact Me</h2>
-	<ul class="sns-links">
-		<a href="{{ site.github_site }}" target="_blank"><li><i class="icon-github" title="GitHub"></i>@Alfred Sun</li></a>
-		<a href="{{ site.weibo_site }}" target="_blank"><li><i class="icon-weibo" title="Weibo"></i>@sama</li></a>
-		<a href="{{ site.baidu_site }}" target="_blank"><li><i class="icon-paw" title="Baidu"></i>@baidu</li></a>
-		<a href="{{ site.qq_site }}" target="_blank"><li><i class="icon-qq" title="QQ"></i>@qq</li></a>
-		<a href="{{ site.byhh_site }}" target="_blank"><li><img src="{{ root_url }}/images/dfbb_logosmall.gif" title="白云黄鹤" />@dfbb</li></a>
-		<a href="mailto:{{ site.author.gmail }}"><li><i class="icon-envelope-o" title="Gmail"></i>@gmail.com</li></a>
-	</ul>
-
+	{% include asides/recent_posts.html %}
+	{% include asides/contact_info.html %}
 </aside>

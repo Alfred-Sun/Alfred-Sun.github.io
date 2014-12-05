@@ -20,7 +20,7 @@
   <ul class="tag-list">
   {% for post in pages_list[this_word] %}
   {% if post.title != null %}
-  <li>{{ post.date | date: "%Y-%m-%d" }} &raquo; <a href="{{ root_url }}{{ post.url }}" rel="nofollow">{{ post.title }}</a></li>
+  <li><span>{{ post.date | date: "%d&ensp;%b&ensp;%Y" }}</span> &raquo; <a href="{{ root_url }}{{ post.url }}" rel="nofollow" target="_blank">{{ post.title }}</a></li>
   {% endif %}
   {% endfor %}
   </ul>

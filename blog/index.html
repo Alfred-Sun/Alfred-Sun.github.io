@@ -12,7 +12,7 @@ navbar: blog
 		  <span class="year">{{ post.date | date:"%Y" }}</span>
 		 </div>
 		  <header>
-		  <h2><a href="{{ root_url }}{{post.url}}" title="{{ post.title }}">
+		  <h2><a href="{{ root_url }}{{post.url}}" title="{{ post.title }}" target="_blank">
 			{% if site.titlecase %}
 				{{ post.title | titlecase }}
 			{% else %}
@@ -30,7 +30,7 @@ navbar: blog
 		  <!--a class="more" href="{{ root_url }}{{ post.url }}">[继续阅读]</a-->
 		  </p>
 		  <footer>
-			<a rel="full-article" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>
+			<a rel="full-article" href="{{ root_url }}{{ post.url }}" target="_blank">{{ site.excerpt_link }}</a>
 		  </footer>
 		</div>
 	</article>
@@ -53,26 +53,8 @@ navbar: blog
 </section>
 
 <aside id="sidebar">
-	<h2>Recent Posts</h2>
-	<ul class="posts">
-		{% for post in site.posts limit: site.recent_posts %}
-		<a href="{{ root_url }}{{ post.url }}"><li><i class="icon-hand-o-right"></i>{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</li></a>
-		{% endfor %}
-	</ul>
-
-	<h2>Contact Me</h2>
-	<ul class="sns-links">
-		<a href="{{ site.github_site }}" target="_blank"><li><i class="icon-github" title="GitHub"></i>@Alfred Sun</li></a>
-		<a href="{{ site.weibo_site }}" target="_blank"><li><i class="icon-weibo" title="Weibo"></i>@sama</li></a>
-		<a href="{{ site.baidu_site }}" target="_blank"><li><i class="icon-paw" title="Baidu"></i>@baidu</li></a>
-		<a href="{{ site.qq_site }}" target="_blank"><li><i class="icon-qq" title="QQ"></i>@qq</li></a>
-		<a href="{{ site.byhh_site }}" target="_blank"><li><img src="{{ root_url }}/images/dfbb_logosmall.gif" title="白云黄鹤" />@dfbb</li></a>
-		<a href="mailto:{{ site.author.gmail }}"><li><i class="icon-envelope-o" title="Gmail"></i>@gmail.com</li></a>
-	</ul>
-	
-	<h2>Tag Cloud</h2>
-	<ul></ul>
-	
-	<h2>Categories</h2>
-	<ul></ul>
+	{% include asides/recent_posts.html %}
+	{% include asides/contact_info.html %}
+	{% include asides/categories_info.html %}
+	{% include asides/tags_info.html %}
 </aside>

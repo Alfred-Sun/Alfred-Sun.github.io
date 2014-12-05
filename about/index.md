@@ -6,6 +6,7 @@ date: 2013-10-03 23:49
 comments: true
 sharing: true
 footer: true
+sidebar: false
 ---
 
 <p>

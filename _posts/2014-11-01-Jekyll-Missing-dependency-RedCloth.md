@@ -1,5 +1,5 @@
 ---
-title: What happened to my Jekyll ?
+title: What happened to my Jekyll
 layout: default
 ---
 {{ page.title }}

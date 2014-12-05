@@ -487,6 +487,10 @@ a:hover {
   margin-bottom: 0.2em;
   width: 540px;
 }
+#header h1 a {
+  color: #fff;
+  text-decoration: none;
+}
 
 #header h2 {
   font-size: 26px;
@@ -540,14 +544,20 @@ aside#sidebar h2 a:hover {
   text-decoration: none;
 }
 
+aside#sidebar ul.archive-list {
+  font-weight: bold;
+  list-style: inherit;
+  padding-left: 43px;
+}
+
 aside#sidebar li {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   word-break: break-all;
 }
 
 aside#sidebar a {
   color: #555;
-  font-weight: normal;
+  font-weight: bold;
   display: block;
 }
 
@@ -1290,7 +1300,7 @@ font-size: 39px;
 }
 
 #blog-category-tag .tag-list {
-	font-size: 16px;
+	font-size: 17px;
 	text-align: left;
 	padding-left: 30px;
 }
@@ -1298,21 +1308,24 @@ font-size: 39px;
 	font-weight: 500;
 	padding-left: 8px;
 }
+#blog-category-tag .tag-list span {
+	color: #aaa;
+	font-family: Monaco, "Courier New", monospace;
+	font-size: 80%;
+}
 
 #blog-category-tag .tag-box {
 	font-size: 19px;
 	padding: 0px;
-	margin-bottom: 30px;
+	margin: 25px auto 40px;
 	display: table;
 	list-style: none outside none;
 }
-
 #blog-category-tag .tag-box li {
 	line-height: 1.7;
 	display: inline-block;
 	margin: 0 2px;
 }
-
 #blog-category-tag .tag-box li a {
 	/*padding: 2px 4px;
 	background-color: rgba(255,204,204,0.3);*/
@@ -1346,6 +1359,9 @@ font-size: 39px;
 }
 #main-content article.post h2 a:hover {
 	color: #444;
+}
+#main-content article.post h2 a:visited {
+  color: #8B1A56;
 }
 #main-content article.post h2 {
 	font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Helvetica, Verdana, Arial, sans-serif;
