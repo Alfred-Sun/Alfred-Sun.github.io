@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "Archiving a (Rails) site as static files on Nginx"
 date: 2014-08-07 11:15
 comments: true
@@ -18,6 +18,8 @@ So I replaced it with a static copy of the site. Just flat files.
 
 This is how I did it.
 
+
+<!--more-->
 
 ## Archive the site
 

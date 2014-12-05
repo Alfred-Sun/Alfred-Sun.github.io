@@ -1,52 +1,102 @@
----
-layout: default
-navbar: blog
-single: true
----
+{% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}{% include post/head.html %}
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="{{ root_url }}/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="http://weibo.com/symdfbb/" target="_blank" style="margin-left:-5px;"><img src="http://www.weibo.com/favicon.ico" alt="" width="25"/></a>
+            <a href="https://github.com/Alfred-Sun/beiyuublog/" target="_blank" style="text-align:center;"><img src="http://www.github.com/favicon.ico" alt="" width="22"/></a>
+            <a href="http://instagram.com/beiyuu/" target="_blank" style="text-align:right"><img src="http://d36xtkk24g8jdx.cloudfront.net/bluebar/00c6602/images/ico/favicon.ico" alt="" width="22"/></a>
+        </div>
+    </div>
 
-<div class="row">
-  <div class="page-content {% unless page.sidebar == false or site.post_asides == empty and site.default_asides == empty %}col-md-9{% else %}col-md-12{% endunless %}" itemscope itemtype="http://schema.org/Blog">
-    <meta itemprop="name" content="{{site.title}}" />
-    {% if site.description %}<meta itemprop="description" content="{{site.description}}" />{% endif %}
-    <meta itemprop="url" content="{{site.url}}" />
-    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-      % include article.html %}
-      <footer>
-        <p class="meta text-muted">
-          {% include post/author.html %}
-          {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
-          {% include post/categories.html %}
-        </p>
-        {% unless page.sharing == false %}
-          {% include post/sharing.html %}
-        {% endunless %}
-        {% if page.previous.url or page.next.url %}
-          <ul class="meta text-muted pager">
-            {% if page.previous.url %}
-            <li class="previous"><a href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&laquo; {{page.previous.title}}</a></li>
-            {% endif %}
-            {% if page.next.url %}
-            <li class="next"><a href="{{page.next.url}}" title="Next Post: {{page.next.title}}">{{page.next.title}} &raquo;</a></li>
-            {% endif %}
-          </ul>
-        {% endif %}
-      </footer>
-    </article>
-    {% if site.disqus_short_name and page.comments == true %}
-      <section>
-        <h2>Comments</h2>
-        <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
-      </section>
-    {% endif %}
-  </div>
+    <!--
+	* post content
+	-->
+	<link rel="stylesheet" href="{{ root_url }}/javascripts/google-code-prettify/prettify.css" />
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
 
-  {% unless page.sidebar == false or site.post_asides == empty and site.default_asides == empty %}
-  <aside class="sidebar col-md-3">
-    {% if site.post_asides.size %}
-      <!-- % include_array post_asides %} -->
-    {% else %}
-      <!-- % include_array default_asides %} -->
-    {% endif %}
-  </aside>
-  {% endunless %}
-</div>
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="{{ root_url }}{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
+			<p class="entry-date">{{ page.date | date: "%Y-%m-%d" }}</p>
+
+			{{ content }}
+
+			<div id="disqus_container">
+				<div style="margin-bottom:20px" class="right">
+					<script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script>
+				</div>
+				<a href="#" class="comment" onclick="return false;">点击查看评论</a>
+				<div id="disqus_thread"></div>
+			</div>
+		</div>
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+		</div>
+
+		<div class="sidenav">
+			<h2>Blog</h2>
+			<ul class="artical-list">
+			{% for post in site.categories.javascript %}
+				<li><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<script src="{{ root_url }}/javascripts/post.js" type="text/javascript"></script>
+
+    <div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span-->
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>
