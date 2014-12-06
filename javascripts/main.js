@@ -55,7 +55,7 @@ Tmt.global = function($form){
 
     var scrollTopDown=function(){
         var html='<div class="scroll-top-down"><div class="js-scroll-top" title="返回顶部"><i class="icon-arr-up"></i></div>';
-        if($("#comment").length>0){
+        if($("#comments_container").length>0){
             html += '<div class="js-scroll-comment" title="查看评论"><i class="icon-publish"></i></div>'
         }
         html += '<div class="js-scroll-down" title="转到底部"><i class="icon-arr-down"></i></div></div>';
@@ -70,7 +70,7 @@ Tmt.global = function($form){
             Tmt.global.animateGoto($("#footer").position().top)
         });
         $comment_button.click(function(){
-            Tmt.global.animateGoto($("#comment").position().top)
+            Tmt.global.animateGoto($("#comments_container").position().top)
         });
     }
 
@@ -1925,7 +1925,7 @@ Tmt.dashboard = (function() {
                         category = items[i].category_arr;
                         cat_length = category.length;
                         html += '<li class="clear article">' + '<div class="show"><a target="_blank" href="/' + items[i].ID+ '.html" class="tit">' + items[i].post_title + '</a><p class="info"><a target="_blank" href="/author/' + items[i].user_login + '" class="author">' + items[i].display_name+ '</a><span class="point">•</span><span class="time">' + items[i].post_date + '</span>';
-                        html += '<span class="point">•</span><span><a target="_blank" href="/' + items[i].ID + '.html#comment">' + items[i].comment_count + ' 条评论</a></span></p><p class="part">' + items[i].post_excerpt + '</p></div></li>';
+                        html += '<span class="point">•</span><span><a target="_blank" href="/' + items[i].ID + '.html#comments_container">' + items[i].comment_count + ' 条评论</a></span></p><p class="part">' + items[i].post_excerpt + '</p></div></li>';
                     }
                     $(".my-content .mod-article-list").append(html)
                     $button.removeClass('disabled').html('加载更多');
@@ -2437,7 +2437,7 @@ Tmt.index = (function() {
                    '             <a target="_blank" href="'+data.author_url+'" class="author">'+data.post_author_name+'</a>'+
                    '             <span class="point">•</span>'+
                    '             <span class="time">'+data.post_date+'</span>'+cat_name+edit+
-                   '             <span class="comment"><a target="_blank" href="'+data.url+'#comment"><i class="icon-comment"></i>'+data.comment_count+'</a></span>'+
+                   '             <span class="comment"><a target="_blank" href="'+data.url+'#comments_container"><i class="icon-comment"></i>'+data.comment_count+'</a></span>'+
                    '         </p>'+
                    '         <p class="abstract">'+data.post_excerpt+'</p>'+tag+
                    '     </div>'+

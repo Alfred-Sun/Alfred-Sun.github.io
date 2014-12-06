@@ -118,8 +118,8 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .wiki ul ul{list-style:circle;margin-top:10px;margin-bottom:10px;}
 
 /***************contact style*************/
-#disqus_container {font-size:12px;}
-#disqus_container a.comment{font-size:14px;}
+#comments_container {font-size:12px;}
+#comments_container a.comment{font-size:14px;}
 h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
 .about-link a {margin-right:10px;font-weight:bold;font-style:italic;font-size:13px;color:#E50053}
 
@@ -142,6 +142,35 @@ h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
 .home-contact { color:#fff; margin-top:2px; background:#000; padding:8px 0 7px; text-align:center; display:none;}
 .home-contact a { width:30px; display:inline-block; }
 .home-contact img { width:18px; }
+
+/***** sidebar for scroll top-bottom ******/
+.scroll-top-down {
+width: 75px;
+position: fixed;
+top: 40%;
+right: -5px;
+text-align: center;
+}
+.scroll-top-down div {
+margin-bottom: 5px;
+}
+.scroll-top-down i {
+font-size: 40px;
+color: #000;
+cursor: pointer;
+}
+.scroll-top-down i.icon-comments-o {
+font-size: 39px;
+}
+.icon-chevron-circle-up { /*兼容ie6、7*/
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf139;');
+}
+.icon-chevron-circle-down {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf13a;');
+}
+.icon-comments-o {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e6;');
+}
 
 @media screen and (max-width: 750px){
     body {font-size:14px;}
