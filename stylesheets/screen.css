@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Font Awesome 官网：http://fortawesome.github.io/Font-Awesome/
  * 即时定制的可伸缩矢量图标；
  * 公有302种图标任你选择；
@@ -548,6 +548,13 @@ aside#sidebar ul.archive-list {
   font-weight: bold;
   list-style: inherit;
   padding-left: 43px;
+}
+
+aside#sidebar ul.recent_posts a {
+  font-weight: 500;
+}
+aside#sidebar ul.recent_posts li {
+  margin-bottom: 10px;
 }
 
 aside#sidebar li {
@@ -1165,6 +1172,7 @@ font-size: 39px;
 }
 
 #blog-archives article {
+	text-align: left;
 	padding: 0.5em 0 1em;
 	position: relative;
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x;
@@ -1226,7 +1234,9 @@ font-size: 39px;
 
 @media only screen and (min-width: 400px) {
 	#blog-archives article {
-		margin-left: 6em
+		margin-left: 6em;
+		padding-left: 4.5em;
+		padding-bottom: .5em;
 	}
 
 	#blog-archives h2 {
@@ -1257,11 +1267,6 @@ font-size: 39px;
 	#blog-archives .year-hide {
 		display: none;
 	}
-
-	#blog-archives article {
-		padding-left: 4.5em;
-		padding-bottom: .5em;
-	}
 }
 
 #blog-archives footer {
@@ -1289,13 +1294,13 @@ font-size: 39px;
 
 /* Category/Tag Page */
 #blog-category-tag h2 {
-	font-size: 21px;
-	font-weight: 700;
+	font-size: 17px;
+	font-weight: 500;
 	line-height: 1.3;
 	color: #555;
 	padding-left: 25px;
 	padding-bottom: 3px;
-	margin: 15px auto 5px;
+	margin: 15px auto 0px;
 	border-left: solid 6px #555;
 }
 
