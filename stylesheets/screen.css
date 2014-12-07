@@ -1383,6 +1383,7 @@ font-size: 39px;
 #main-content article.post h2,#comments h4 {
 	font-size:20px;
 	color: #40aa52;
+	text-align: left;
 	text-decoration: none;
 }
 #comments h4{

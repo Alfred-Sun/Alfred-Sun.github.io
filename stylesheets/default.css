@@ -1,6 +1,7 @@
 /**
  * Author:           BeiYuu
  * Contact:          beiyuu.com
+ * Update By:        Alfred Sun
  */
 
 /* 重置浏览器CSS */
@@ -119,7 +120,36 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 
 /***************contact style*************/
 #comments_container {font-size:12px;}
-#comments_container a.comment{font-size:14px;}
+#comments_container a.comment, a.comment_ {
+	display: inline;
+	padding: .2em .7em .2em;
+	margin-right: 10px;
+	font-size:14px;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: rgb(67, 145, 234);
+}
+#comments_container a.actived {
+	background-color: #ED5565;
+}
+#comments_container a.comment:hover, a.comment_:hover {
+	text-decoration: none;
+	background-color: #ED5565;
+}
+#comments_container ul {
+	padding-top: 8px;
+}
+#comments_container li {
+	float: left;
+	list-style: none;
+}
+div.hideDivElement {
+	display: none;
+}
 h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
 .about-link a {margin-right:10px;font-weight:bold;font-style:italic;font-size:13px;color:#E50053}
 

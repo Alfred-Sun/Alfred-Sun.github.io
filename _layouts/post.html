@@ -7,8 +7,8 @@
         </div>
         <div class="home-contact">
             <a href="http://weibo.com/symdfbb/" target="_blank" style="margin-left:-5px;"><img src="http://www.weibo.com/favicon.ico" alt="" width="25"/></a>
-            <a href="https://github.com/Alfred-Sun/beiyuublog/" target="_blank" style="text-align:center;"><img src="http://www.github.com/favicon.ico" alt="" width="22"/></a>
-            <a href="http://instagram.com/beiyuu/" target="_blank" style="text-align:right"><img src="http://d36xtkk24g8jdx.cloudfront.net/bluebar/00c6602/images/ico/favicon.ico" alt="" width="22"/></a>
+            <a href="https://github.com/Alfred-Sun/" target="_blank" style="text-align:center;"><img src="http://www.github.com/favicon.ico" alt="" width="22"/></a>
+            <a href="http://instagram.com/symdfbb/" target="_blank" style="text-align:right"><img src="http://d36xtkk24g8jdx.cloudfront.net/bluebar/00c6602/images/ico/favicon.ico" alt="" width="22"/></a>
         </div>
     </div>
 
@@ -34,15 +34,15 @@
 			{{ content }}
 
 			<div id="comments_container">
-				<div style="margin-bottom:20px" class="right">
-					<script type="text/javascript" charset="utf-8">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
 					(function(){
 					  var _w = 86 , _h = 16;
 					  var param = {
 						url:location.href,
 						type:'6',
 						count:'', /**是否显示分享数，1显示(可选)*/
-						appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
 						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
 						pic:'', /**分享图片的路径(可选)*/
 						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
@@ -55,10 +55,19 @@
 					  }
 					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
 					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a></div>
+					<script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdText":"Vermillion Phoinix","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 					</script>
 				</div>
-				<a href="#" class="comment" onclick="return false;">点击查看评论</a>
+				<div style="margin-bottom: 50px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
 				<div id="disqus_thread"></div>
+				<div class="ds-thread" {% if page.id %}data-thread-key="{{ page.id }}"{% endif %} data-title="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}" {% if page.url %}data-url="{{ page.url }}"{% endif %}></div>
 			</div>
 
 			<div id="footer">

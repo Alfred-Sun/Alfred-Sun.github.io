@@ -21,22 +21,66 @@ $(document).ready(function(){
         }
     };
 
-    $('pre').addClass('prettyprint linenums'); //添加Google code Hight需要的class
+    $('pre').addClass('prettyprint linenums'); //添加Google code Highlight需要的class
 
+	// Disqus Comments
     window.disqus_shortname = 'alfredsun'; // required: replace example with your forum shortname
     $('#comments_container .comment').on('click',function(){
-        $(this).html('加载中...');
-        var that = this;
-        $.getScript('http://' + disqus_shortname + '.disqus.com/embed.js',function(){
-			//$(that).remove();
-		});
+        if (!$(this).hasClass("actived")) {
+			if ($('#comments_container .comment_').hasClass("actived")) {
+				$('.ds-thread').addClass("hideDivElement");
+				$('#comments_container .comment_').removeClass("actived");
+			}
+			$(this).addClass("actived");
+			if ($('#disqus_thread').hasClass("hideDivElement")) {
+				$('#disqus_thread').removeClass("hideDivElement");
+			} else {
+				$(this).html('Loading...');
+				var that = this;
+				$.getScript('http://' + disqus_shortname + '.disqus.com/embed.js', function() {
+					window.setTimeout(function() {
+						$(that).html('Disqus');
+					}, 1000);
+					//$(that).remove();
+				});
+			}
+		} else {
+			$('#disqus_thread').addClass("hideDivElement");
+			$(this).removeClass("actived");
+		}
+    });
+	// Duoshuo Comments
+	window.duoshuoQuery = {short_name:"alfredsun"};
+	$('#comments_container .comment_').on('click',function(){
+		if (!$(this).hasClass("actived")) {
+			if ($('#comments_container .comment').hasClass("actived")) {
+				$('#disqus_thread').addClass("hideDivElement");
+				$('#comments_container .comment').removeClass("actived");
+			}
+			$(this).addClass("actived");
+			if ($('.ds-thread').hasClass("hideDivElement")) {
+				$('.ds-thread').removeClass("hideDivElement");
+			} else {
+				$(this).html('Loading...');
+				var that = this;
+				$.getScript('http://static.duoshuo.com/embed.js', function() {
+					window.setTimeout(function() {
+						$(that).html('Duoshuo');
+					}, 500);
+					//$(that).remove();
+				});
+			}
+		} else {
+			$('.ds-thread').addClass("hideDivElement");
+			$(this).removeClass("actived");
+		}
     });
 
     $('.entry a').each(function(index,element){
         var href = $(this).attr('href');
         if(href){
             if(href.indexOf('#') == 0){
-            }else if ( href.indexOf('/') == 0 || href.toLowerCase().indexOf('beiyuu.com')>-1 ){
+            }else if ( href.indexOf('/') == 0 || href.toLowerCase().indexOf('alfred-sun.github.io')>-1 ){
             }else if ($(element).has('img').length){
             }else{
                 $(this).attr('target','_blank');
