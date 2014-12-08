@@ -6,9 +6,9 @@
             <a class="home-follow" href="#" title="Contact Me">+</a>
         </div>
         <div class="home-contact">
-            <a href="http://weibo.com/symdfbb/" target="_blank" style="margin-left:-5px;"><img src="http://www.weibo.com/favicon.ico" alt="" width="25"/></a>
-            <a href="https://github.com/Alfred-Sun/" target="_blank" style="text-align:center;"><img src="http://www.github.com/favicon.ico" alt="" width="22"/></a>
-            <a href="http://instagram.com/symdfbb/" target="_blank" style="text-align:right"><img src="http://d36xtkk24g8jdx.cloudfront.net/bluebar/00c6602/images/ico/favicon.ico" alt="" width="22"/></a>
+            <a href="mailto:{{ site.author.gmail }}" title="Gmail" style="margin-left:-5px;"><img src="/images/gmail.png" alt="" width="25"/></a>
+			<a href="{{ site.github_site }}" title="GitHub" target="_blank"<!--style="text-align:right"-->><img src="/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="{{ site.author.school }}" title="HUST" target="_blank" style="text-align:center;"><img src="/images/hust.png" alt="" width="25"/></a>
         </div>
     </div>
 
@@ -56,8 +56,8 @@
 					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
 					})()
 					</script-->
-					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a></div>
-					<script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdText":"Vermillion Phoinix","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+					<script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }} {% if page.description %}//{{ page.description }} ...{% endif %}","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 					</script>
 				</div>
 				<div style="margin-bottom: 50px;">

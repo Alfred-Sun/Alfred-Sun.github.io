@@ -8,7 +8,7 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="author" content="{{ site.author.name }}" />
     <meta name="renderer" content="webkit">
-    <meta name="description" content="Alfred's Blog" />
+    <meta name="description" content="{% if page.description %}{{ page.description }} | ]{% endif %}Alfred's Blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel='stylesheet' href="{{ root_url }}/stylesheets/font-awesome.css" type='text/css' />
     <link rel="stylesheet" href="{{ root_url }}/stylesheets/default.css" type="text/css" />
