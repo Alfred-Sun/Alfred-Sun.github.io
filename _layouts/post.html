@@ -29,9 +29,23 @@
 	<div id="content">
 		<div class="entry">
 			<h1 class="entry-title"><a href="{{ root_url }}{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
-			<p class="entry-date">{{ page.date | date: "%Y-%m-%d" }}</p>
+			<!--p class="entry-date">{{ page.date | date: "%Y-%m-%d" }}</p-->
+			{% include post/label.html %}
 
 			{{ content }}
+
+			{% if page.previous.url or page.next.url %}
+			<footer>
+			<p class="meta">
+			{% if page.next.url %}
+            <a class="basic-alignment left" href="{{page.next.url}}" title="Previous Post: {{page.next.title}}">&laquo; {{page.next.title | truncate: 40 }}</a>
+            {% endif %}
+            {% if page.previous.url %}
+            <a class="basic-alignment right" href="{{page.previous.url}}" title="Next Post: {{page.previous.title}}">{{page.previous.title | truncate: 40 }} &raquo;</a>
+            {% endif %}
+			</p>
+			</footer>
+			{% endif %}
 
 			<div id="comments_container">
 				<div style="margin-bottom: 20px;" class="right">
@@ -71,7 +85,7 @@
 			</div>
 
 			<div id="footer">
-			{% include post-footer.html %}
+			{% include post/footer.html %}
 			{% include after_footer.html %}
 			</div>
 		</div> <!-- end of entry -->
@@ -81,10 +95,14 @@
 		</div>
 
 		<div class="sidenav">
-			<h2>Blog</h2>
+			<h2>Related Blog</h2>
 			<ul class="artical-list">
-			{% for post in site.categories.javascript %}
-				<li><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></li>
+			{% for category in page.categories %}
+				{% for post in site.categories[category] %}
+				{% unless post.id == page.id %}
+					<li><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></li>
+				{% endunless %}
+				{% endfor %}
 			{% endfor %}
 			</ul>
 		</div>

@@ -8,7 +8,7 @@
 <time {% if is_ref == true %}{{ id_year_month }}{% endif %} datetime="{{ post.date | datetime | date_to_xmlschema }}" pubdate>{{ post.date | date: "<span class='month'>%b</span> <span class='day'>%d</span> <span class='year-hide'>%Y</span>"}}
 </time>
 
-{% if category != '0' or tags != '0' %}
+{% if categories != '0' or tags != '0' %}
 <footer>
   {% include post/categories.html %}
   {% include post/tags.html %}

@@ -71,7 +71,6 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .entry blockquote{margin-left:25px;font-size:14px;font-style:italic}
 .entry img{max-width:670px;display:block;margin:10px auto;}
 
-
 .index-content .aside {
     position: fixed;
     top: 0;
@@ -118,8 +117,28 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .wiki ul li{margin-bottom:5px;}
 .wiki ul ul{list-style:circle;margin-top:10px;margin-bottom:10px;}
 
+footer p.meta {
+	margin-bottom: auto;
+	font-size: .85em;
+	line-height: 1.8em;
+	clear: both;
+	overflow: hidden;
+}
+.basic-alignment.left {
+	float: left;
+	margin-right: 1.5em;
+}
+.basic-alignment.right {
+	float: right;
+	margin-left: 1.5em;
+}
+
 /***************contact style*************/
-#comments_container {font-size:12px;}
+#comments_container {
+	font-size:12px;
+	border-top: 5px solid rgba(21,25,25,0.8);
+	padding-top: 1.5em;
+}
 #comments_container a.comment, a.comment_ {
 	display: inline;
 	padding: .2em .7em .2em;
@@ -142,6 +161,7 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 }
 #comments_container ul {
 	padding-top: 8px;
+	margin-top: auto;
 }
 #comments_container li {
 	float: left;

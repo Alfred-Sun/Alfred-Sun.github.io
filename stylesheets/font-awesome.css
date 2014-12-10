@@ -52,6 +52,10 @@
   content: "\f0c1";
 }
 
+.icon-comment-o:before {
+  content: "\f0e5";
+}
+
 .icon-comments-o:before {
 	content: "\f0e6"
 }
