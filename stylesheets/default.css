@@ -175,11 +175,11 @@ footer p.meta {
 #comments_container {
 	font-size:12px;
 	border-top: 5px solid rgba(21,25,25,0.8);
-	padding-top: 1.5em;
+	padding-top: .8em;
 }
 #comments_container a.comment, a.comment_ {
 	display: inline;
-	padding: .2em .7em .2em;
+	padding: .2em .7em .3em;
 	margin-right: 10px;
 	font-size:14px;
 	font-weight: 500;
@@ -198,7 +198,7 @@ footer p.meta {
 	background-color: #ED5565;
 }
 #comments_container ul {
-	padding-top: 8px;
+	padding-top: 7px;
 	margin-top: auto;
 }
 #comments_container li {
