@@ -117,6 +117,44 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .wiki ul li{margin-bottom:5px;}
 .wiki ul ul{list-style:circle;margin-top:10px;margin-bottom:10px;}
 
+#content .pageInfo {
+	font-size: .85em;
+	margin: 20px auto 10px;
+	height: 28px;
+	line-height: 28px;
+	color: #9FA3A7;
+	border-bottom: dotted 1px #D8D8D8;
+}
+#content .pageInfo .point {
+	background: transparent;
+	margin: 0 5px;
+}
+#content .pageInfo .comment {
+	float: right;
+	padding-left: 10px;
+	border-left: solid 1px #E0E0E0;
+	height: 18px;
+	margin-top: 5px;
+	line-height: 18px;
+}
+#content .pageTag {
+	font-size: .85em;
+	margin-bottom: 20px;
+	display: block;
+}
+#content .pageTag a {
+	background: rgb(67, 145, 234);
+	color: #fff;
+	padding: 0 5px;
+	line-height: 25px;
+	display: inline-block;
+	text-decoration: none;
+}
+#content .pageTag a:hover {
+	opacity: .8;
+	filter: alpha(opacity=80);
+}
+
 footer p.meta {
 	margin-bottom: auto;
 	font-size: .85em;
@@ -144,7 +182,7 @@ footer p.meta {
 	padding: .2em .7em .2em;
 	margin-right: 10px;
 	font-size:14px;
-	font-weight: 700;
+	font-weight: 500;
 	line-height: 1;
 	color: #fff;
 	text-align: center;

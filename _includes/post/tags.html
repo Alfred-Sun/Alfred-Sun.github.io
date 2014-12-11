@@ -3,11 +3,11 @@
 <span class="tags">
   {% if post %}
     {% for tag in post.tags %}
-		<a class="tag label label-primary" href="{{ root_url }}/{{ site.tag_dir }}#{{ tag }}-ref"" title="{{ tag }}" rel="tag">{{ tag | join: "/" }}</a>
+		<a class="tag label label-primary" href="{{ root_url }}/{{ site.tag_dir }}#{{ tag | cgi_escape }}-ref"" title="{{ tag }}" rel="tag">{{ tag | join: "/" }}</a>
     {% endfor %}
   {% else %}
     {% for tag in page.tags %}
-		<a class="tag label label-primary" href="{{ root_url }}/{{ site.tag_dir }}#{{ tag }}-ref"" title="{{ tag }}" rel="tag">{{ tag | join: "/" }}</a>
+		<a class="tag label label-primary" href="{{ root_url }}/{{ site.tag_dir }}#{{ tag | cgi_escape }}-ref"" title="{{ tag }}" rel="tag">{{ tag | join: "/" }}</a>
     {% endfor %}
   {% endif %}
 </span>
