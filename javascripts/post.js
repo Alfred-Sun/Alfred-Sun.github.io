@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
     var isMobile = {
         Android: function() {
@@ -233,10 +233,13 @@ $(document).ready(function(){
                     menuIndexTop = $('#menuIndex').offset().top;
                     menuIndexLeft = $('#menuIndex').offset().left;
 
-                    $(window).trigger('scroll')
+                    $(window).trigger('scroll');
                     $('#menuIndex').css('max-height',$(window).height()-80);
                 });
-            })
+
+				$(window).trigger('scroll');
+
+            });
 
             //用js计算屏幕的高度
             $('#menuIndex').css('max-height',$(window).height()-80);
@@ -255,4 +258,5 @@ $(document).ready(function(){
         $("head").append("<link rel='stylesheet' type='text/css' href='/stylesheets/css3-ani.css'/>");
         $.getScript('/javascripts/css3-ani.js',function(){});
     }
+
 });

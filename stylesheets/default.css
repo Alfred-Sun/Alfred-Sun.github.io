@@ -57,12 +57,12 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 
 
 /****************entry style**************/
-.sidenav { width:240px; background:#fff; float:right; padding:20px; margin-bottom:50px; box-shadow:0 1px 4px #ccc; }
+.sidenav { width:240px; background:#fff; float:right; padding:20px; margin-bottom:40px; box-shadow:0 1px 4px #ccc; }
 .sidenav h2 { font-size:18px; color:#333; margin-bottom:15px; }
 .sidenav ul { margin-bottom:50px; }
 .sidenav li { margin-bottom:12px; word-break: break-all;}
 .sidenav a { color:#555; font-size:14px; display:block;}
-.entry{margin-bottom:80px;width:680px; float:left; background:#fff; padding:30px; box-shadow:0 2px 6px #ccc; }
+.entry{margin-bottom:20px;width:680px; float:left; background:#fff; padding:30px; box-shadow:0 2px 6px #ccc; }
 .entry ul{margin-bottom:25px;margin-left:25px;}
 .entry p+ul {margin-top:-20px;}
 .entry ul li{margin-bottom:5px;list-style:disc;line-height:1.8em;}
@@ -117,6 +117,7 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .wiki ul li{margin-bottom:5px;}
 .wiki ul ul{list-style:circle;margin-top:10px;margin-bottom:10px;}
 
+/***************label style*************/
 #content .pageInfo {
 	font-size: .85em;
 	margin: 20px auto 10px;
@@ -139,20 +140,21 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 }
 #content .pageTag {
 	font-size: .85em;
-	margin-bottom: 20px;
+	margin-bottom: 25px;
 	display: block;
 }
 #content .pageTag a {
 	background: rgb(67, 145, 234);
 	color: #fff;
 	padding: 0 5px;
-	line-height: 25px;
+	line-height: 24px;
 	display: inline-block;
 	text-decoration: none;
 }
 #content .pageTag a:hover {
 	opacity: .8;
 	filter: alpha(opacity=80);
+	transition: .3s;
 }
 
 footer p.meta {
@@ -171,7 +173,7 @@ footer p.meta {
 	margin-left: 1.5em;
 }
 
-/***************contact style*************/
+/***************comment style*************/
 #comments_container {
 	font-size:12px;
 	border-top: 5px solid rgba(21,25,25,0.8);
@@ -195,6 +197,7 @@ footer p.meta {
 }
 #comments_container a.comment:hover, a.comment_:hover {
 	text-decoration: none;
+	transition: .3s;
 	background-color: #ED5565;
 }
 #comments_container ul {
@@ -216,8 +219,9 @@ h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
 #menuIndex {overflow:auto;}
 #menuIndex a {display:block; padding:2px 0; }
 #menuIndex a:hover {text-decoration:none;}
-#menuIndex ul {margin-bottom:10px;}
+#menuIndex ul {margin-bottom:0px;}
 #menuIndex ul li{font-size:12px;margin-bottom:5px;word-wrap:break-word;padding-left:10px;}
+#menuIndex ul li:last-child {margin-bottom:0px;}
 #menuIndex ul li.on{background-color:#f5f5f5;}
 #menuIndex li.h1{font-size:14px;font-weight:normal;padding-left:0;margin-bottom:10px;}
 #menuIndex li.h3{padding-left:25px;}
