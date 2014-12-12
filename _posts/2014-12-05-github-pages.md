@@ -269,6 +269,8 @@ Jekyll的配置写在_config.yml文件中，可配置项有很多，我们不去
 
 我们选择最下面的`Universal Code`就好，然后会看到一个介绍页面，把下面这段代码复制到你的模板里面，可以只复制到显示文章的模板中：
 
+<!--?prettify lang=html linenums=true?-->
+
     <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

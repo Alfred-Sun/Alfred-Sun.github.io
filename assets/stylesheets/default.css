@@ -45,12 +45,12 @@ a.external:hover {background-position:right -15px;}
 h2 {font-size:22px;font-weight:bold;margin-bottom:25px;}
 h3 {font-size:18px;font-weight:bold;margin-bottom:25px;}
 h4,h5,h6 {font-weight:bold;margin-bottom:15px;}
-p {margin-bottom:40px;line-height:1.8em;}
-code {background:#eee;border:1px solid #ccc;padding:0 5px;font-family:"Courier";line-height:14px;font-size:14px;word-wrap:break-word; }
-pre {background-color:#000;padding:15px;overflow:auto;margin-bottom:40px;font-size:14px;border: 1px solid #eee;-webkit-border-radius: 4px 4px 4px 4px;-moz-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;color:#b9bdb6;margin-top:-20px; }
+p {margin-bottom:30px;line-height:1.8em;}
+code {background:#eee;border:1px solid #ccc;padding:0 5px;font-family:monospace;line-height:14px;font-size:14px;word-wrap:break-word; }
+pre {background-color:#fff;padding:15px;overflow:auto;margin-bottom:20px;font-size:14px;border: 1px solid #eee;-webkit-border-radius: 4px 4px 4px 4px;-moz-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;color:#b9bdb6;margin-top:-10px; max-height: 600px;}
 h4+pre, h3+pre { margin-top:20px; }
-pre code{background-color:transparent;border:none;padding:0;word-wrap:normal;}
-pre ol{margin-left:25px;list-style-type:decimal;}
+pre code{background-color:transparent;border:none;padding:0;word-wrap:normal;white-space: pre-wrap;}
+pre ol{margin-left:35px;list-style-type:decimal;}
 
 /************layout style*****************/
 #content {width:1060px;margin:90px auto 60px;min-height:400px;height:auto !important;height:400px; }
@@ -64,11 +64,12 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .sidenav li:last-child { margin-bottom:5px;}
 .sidenav a { color:#555; font-size:14px; display:block;}
 .entry{margin-bottom:20px;width:680px; float:left; background:#fff; padding:30px; box-shadow:0 2px 6px #ccc; }
+/* background: rgba(199, 237, 204,1); */
 .entry ul{margin-bottom:25px;margin-left:25px;}
 .entry p+ul {margin-top:-20px;}
 .entry ul li{margin-bottom:5px;list-style:disc;line-height:1.8em;}
-.entry ol{margin-bottom:25px;margin-left:25px;}
-.entry ol li{margin-bottom:5px;list-style:decimal;line-height:1.1em;}
+.entry ol{margin-bottom:25px;margin-left:35px;}
+.entry ol li{margin-bottom:5px;list-style-type:decimal;line-height:1.1em;}
 .entry blockquote{margin-left:25px;font-size:14px;font-style:italic}
 .entry img{max-width:670px;display:block;margin:10px auto;}
 
@@ -159,6 +160,7 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 }
 
 footer p.meta {
+	margin-top: 30px;
 	margin-bottom: auto;
 	font-size: .85em;
 	line-height: 1.8em;

@@ -233,11 +233,13 @@ jiathis: true
 
 2、在 `source/_includes/post/sharing.html` 尾部的`</div>`之前添加如下行
 
+{% raw %}
 ```
-  {% if site.jiathis %}
-    {% include post/jiathis.html %}
-  {% endif %}   
+{% if site.jiathis %}
+  {% include post/jiathis.html %}
+{% endif %}   
 ```
+{% endraw %}
 
 3、创建 `source/_includes/post/jiathis.html ` 文件，将从[JiaThis](http://www.jiathis.com/)获得的代码放入其中
 
