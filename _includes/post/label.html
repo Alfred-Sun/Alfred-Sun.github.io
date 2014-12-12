@@ -36,11 +36,11 @@
 {% capture categories %}
   {% if post %}
     {% for category in post.categories %}
-		<a href="{{ root_url }}/{{ site.category_dir }}#{{ category | cgi_escape }}-ref" title="Category: {{ category }}" rel="category">{{ category | join: "/" }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
+		<a href="{{ root_url }}/{{ site.category_dir }}#{{ category | cgi_escape }}-ref" title="Category: {{ category }}" rel="category">{{ category | join: "/" }}</a>{% unless forloop.last %},{% endunless %}
     {% endfor %}
   {% else %}
     {% for category in page.categories %}
-		<a href="{{ root_url }}/{{ site.category_dir }}#{{ category | cgi_escape }}-ref" title="Category: {{ category }}" rel="category">{{ category | join: "/" }}</a>{% unless forloop.last %},&nbsp;{% endunless %}
+		<a href="{{ root_url }}/{{ site.category_dir }}#{{ category | cgi_escape }}-ref" title="Category: {{ category }}" rel="category">{{ category | join: "/" }}</a>{% unless forloop.last %},{% endunless %}
     {% endfor %}
   {% endif %}
 {% endcapture %}
