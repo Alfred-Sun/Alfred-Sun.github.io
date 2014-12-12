@@ -246,7 +246,7 @@ $(document).ready(function() {
         }
     })();
 
-    $.getScript('/javascripts/google-code-prettify/prettify.js',function(){
+    $.getScript('/assets/javascripts/google-code-prettify/prettify.js',function(){
         prettyPrint();
     });
 
@@ -255,8 +255,8 @@ $(document).ready(function() {
     }
 
     if(/css3-animation/.test(location.href)){
-        $("head").append("<link rel='stylesheet' type='text/css' href='/stylesheets/css3-ani.css'/>");
-        $.getScript('/javascripts/css3-ani.js',function(){});
+        $("head").append("<link rel='stylesheet' type='text/css' href='/assets/stylesheets/css3-ani.css'/>");
+        $.getScript('/assets/javascripts/css3-ani.js',function(){});
     }
 
 });

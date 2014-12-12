@@ -1,6 +1,8 @@
 ---
 title: 单点登录SSO的实现原理
-layout: default
+layout: post
+category: technique
+tags: [sso]
 ---
 
 h1. {{ page.title }}
@@ -11,7 +13,7 @@ h1. {{ page.title }}
 验证信任
 只要解决了以上的问题，达到了开头讲得效果就可以说是SSO。最简单实现SSO的方法就是用Cookie，实现流程如下所示：
 
-<img src="/images/sso.gif" alt="Storage of trust on Client" />
+<img src="{{ root_url }}{{ site.picuture_dir }}/sso.gif" alt="Storage of trust on Client" />
 
 
 不然发现以上的方案是把信任存储在客户端的Cookie里，这种方法虽然实现方便但立马会让人质疑两个问题：
@@ -22,7 +24,7 @@ Cookie不安全
 
 一般说来，大型系统会采取在服务端存储信任关系的做法，实现流程如下所示：
 
-<img src="/images/sso_.gif" alt="Storage of trust on Server" />
+<img src="{{ root_url }}{{ site.picuture_dir }}/images/sso_.gif" alt="Storage of trust on Server" />
 
 以上方案就是要把信任关系存储在单独的SSO系统（暂且这么称呼它）里，说起来只是简单地从客户端移到了服务端，但其中几个问题需要重点解决：
 

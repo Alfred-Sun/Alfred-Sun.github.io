@@ -45,6 +45,11 @@ code_dir: downloads/code/
 category_dir: blog/category/
 tag_dir: blog/tag/
 archive_dir: blog/archive/
+asset_dir:
+  images: assets/images
+  fonts: assets/fonts
+  stylesheets: assets/stylesheets
+  javascripts: assets/javascripts
 
 safe: false
 
@@ -84,6 +89,14 @@ blog_index_asides: [
 ]
 # post_asides:
 # page_asides:
+
+# ----------------------- #
+#   Blog Media Directory   #
+# ----------------------- #
+picuture_dir: /media/picutures
+video_dir: /media/videos
+music_dir: /media/music
+document_dir: /media/documents
 
 # ----------------------- #
 #   3rd Party Settings    #

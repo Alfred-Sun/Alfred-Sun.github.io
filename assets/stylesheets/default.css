@@ -36,7 +36,7 @@ body .hide{display:none;}
 body {font-family: "微软雅黑","Arial","Helvetica","sans-serif";font-size:16px;}
 a {color:#4A75B5;text-decoration:none;outline:none;}
 a:hover {text-decoration:underline}
-a.external {padding-right:13px;background:url('/images/icons.gif') no-repeat right 1px;}
+a.external {padding-right:13px;background:url('../images/icons.gif') no-repeat right 1px;}
 a.external:hover {background-position:right -15px;}
 .entry-title,.entry-title a {font-size:30px;font-weight:bold;margin-bottom:6px;color:#000;text-align:center;word-wrap: break-word;}
 .entry-title a:hover {text-decoration:none;}
@@ -85,13 +85,13 @@ pre ol{margin-left:25px;list-style-type:decimal;}
     background-position:50% 50%;
 }
 .blog .aside{
-    background-image:url(https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*cF2i1ZosSP_UTJig.jpeg);
+    background-image:url(../images/0*cF2i1ZosSP_UTJig.jpeg);
 }
 .opinion .aside{
-    background-image:url(https://dnqgz544uhbo8.cloudfront.net/_/fp/img/bestof/june-2013.CaUUbO2jIECgCmldhmxCCA.jpg);
+    background-image:url(../images/june-2013.CaUUbO2jIECgCmldhmxCCA.jpg);
 }
 .project .aside{
-    background-image:url('https://d233eq3e3p3cv0.cloudfront.net/max/1000/0*kTUZamBulGQZg1MW.jpeg')
+    background-image:url('../images/0*kTUZamBulGQZg1MW.jpeg')
 }
 .index-content .section { margin-left:30%; padding-top:80px; padding-right:15%; ;}
 
