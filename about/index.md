@@ -9,39 +9,37 @@ footer: true
 sidebar: false
 ---
 
-<p>
-	I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.			-- <b>Alfred Sun</b>
-</p>
+I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.			-- <b>Alfred Sun</b>
 
-<p>
-My Geek Code Explained
+## [Resume](http://resume.github.io/?alfred-sun)
+
+## My Geek Code Explained
 
 The Geek Code is a perhaps a little silly in-joke among geeks; a way of introducing yourself to another geek by how you score on different geeky things, such as Star Trek or programming tools.
 
 What follows is my geek code:
 
------BEGIN GEEK CODE BLOCK-----
-Version: 3.12
-GCS/L/P d--@ s+:-- !a C++(++++) UBL++++$ P++$ L++$ E+++ W- N+++ o+
-K++ w O- M V PS+++ PE Y++ PGP++ t 5 X+@ R@ !tv b+++ DI++ D--- G e++ 
-h---- r+++ y?
-------END GEEK CODE BLOCK------
+	-----BEGIN GEEK CODE BLOCK-----
+	Version: 3.12
+	GCS/L/P d--@ s+:-- !a C++(++++) UBL++++$ P++$ L++$ E+++ W- N+++ o+
+	K++ w O- M V PS+++ PE Y++ PGP++ t 5 X+@ R@ !tv b+++ DI++ D--- G e++ 
+	h---- r+++ y?
+	------END GEEK CODE BLOCK------
 
 Here it is in expanded and explained form with some comments by me (marked with “MC”):
-http://www.geekcode.com/geek.html
-http://mj.ucw.cz/geek/
-http://alip.github.io/en/
 
-</p>
+	http://www.geekcode.com/geek.html
+	http://mj.ucw.cz/geek/
+	http://alip.github.io/en/
 
-Mail: 
-echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
+## Email: 
+	echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
 
 <!--**Octostrap3** started because I really wanted to use Bootstrap while posting
 [on my blog](https://kaworu.ch) and all Octopress themes were based on
 Bootstrap 2.x.-->
 
-<h3>Code & Contributing</h3>
+## Code & Contributing
 
 For blog issues, questions and pull requests check
 [the GitHub repository](https://github.com/Alfred-Sun/Alfred-Sun.github.io).
@@ -54,11 +52,11 @@ content on this blog is under a Creative Commons license
 </small>
 
 
-<h3>License</h3>
+## License
 
 Just as Octopress **Vermillion Phoinix** is under the MIT License.
 
-<h3>Kudos</h3>
+## Kudos
 
 - [Twitter Bootstrap](http://getbootstrap.com/) for the CSS & Javascript magic
   tricks.
