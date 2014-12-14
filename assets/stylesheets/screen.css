@@ -859,7 +859,7 @@ footer a:hover {
 #menu {
 	font: 16px verdana, arial, sans-serif;
 	background-color: #3E423A;
-	background: -moz-linear-gradient(#fafafa, #eaeaea);
+	/*background: -moz-linear-gradient(#fafafa, #eaeaea);*/
 /* background:-webkit-linear-gradient(#fafafa, #eaeaea);
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#eaeaea')"; */
 	position: relative;
@@ -1010,7 +1010,7 @@ Menu
 }
 /* mozila */
 #cse-search-field::-moz-placeholder {
-    background: url(../images/google_custom_search_watermark.gif) 5% 100% no-repeat rgb(255, 255, 255);
+    background: url(../images/google_custom_search_watermark.gif) 10% 65% no-repeat ;
 }
 
 /* Search Field */
@@ -1019,11 +1019,12 @@ Menu
   float: right;
   font-family: helvetica, sans-serif;
   padding: 0.4em 0.6em;
-  border: 1.5px solid rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 60px;
   box-shadow: #fff 0 1px;
   line-height: 1.1em;
   background-clip: padding-box;
+  background-color: white;
   margin: 0px;
   height: auto;
   outline: none;

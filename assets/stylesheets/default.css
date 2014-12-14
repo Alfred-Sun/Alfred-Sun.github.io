@@ -148,7 +148,8 @@ pre ol{margin-left:35px;list-style-type:decimal;}
 #content .pageTag a {
 	background: rgb(67, 145, 234);
 	color: #fff;
-	padding: 0 5px;
+	padding: 0px 5px;
+	margin: 1px auto;
 	line-height: 24px;
 	display: inline-block;
 	text-decoration: none;
