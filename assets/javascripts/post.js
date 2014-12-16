@@ -21,7 +21,7 @@ $(document).ready(function() {
         }
     };
 
-    $('pre').addClass('prettyprint linenums'); //添加Google code Highlight需要的class
+    // $('pre').addClass('prettyprint linenums'); //添加Google code Highlight需要的class
 
 	// Disqus Comments
     window.disqus_shortname = 'alfredsun'; // required: replace example with your forum shortname
@@ -246,9 +246,9 @@ $(document).ready(function() {
         }
     })();
 
-    $.getScript('/assets/javascripts/google-code-prettify/prettify.js',function(){
-        prettyPrint();
-    });
+    // $.getScript('/assets/javascripts/google-code-prettify/prettify.js',function(){
+//         prettyPrint();
+//    });
 
     if(/\#comment/.test(location.hash)){
         $('#comments_container .comment').trigger('click');

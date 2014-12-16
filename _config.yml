@@ -52,19 +52,26 @@ asset_dir:
   javascripts: assets/javascripts
 
 safe: false
+encoding: "utf-8"
 
 # Conversion
-markdown: rdiscount
-rdiscount:
+# enable github favored Markdown
+markdown: redcarpet  # rdiscount
+# rdiscount:
+redcarpet:
   extensions:
+    - fenced_code_blocks
+    - highlight
+    - tables
+    - strikethrough
     - autolink
     - footnotes
     - smart
-highlighter: pygments # default python pygments have been replaced by pygments.rb
+highlighter: pygments # Jekyll's default python pygments have been replaced by pygments.rb
 # pygments: true
 
-lsi: true
-paginate:  7          # Posts per page on the blog index
+lsi: false				# Produce an index for related posts or not
+paginate:  7			# Posts per page on the blog index
 paginate_path: "blog/page/:num"  # Directory base for pagination URLs eg. /posts/2/
 recent_posts: 10       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles

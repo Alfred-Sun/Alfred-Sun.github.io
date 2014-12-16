@@ -4,7 +4,7 @@ title: 使用Github Pages建独立博客
 author: BeiYuu
 updated: 2014-12-09 11:15
 description: Github本身就是不错的代码社区，他也提供了一些其他的服务，比如Github Pages，使用它可以很方便的建立自己的独立博客，并且免费。
-category: javascript
+category: github pages
 external-url: http://beiyuu.com/github-pages/
 ---
 
@@ -68,11 +68,13 @@ Git是版本管理的未来，他的优点我不再赘述，相关资料很多�
 ###2、备份和移除原来的ssh key设置：
 因为已经存在key文件，所以需要备份旧的数据并删除：
 
-    $ ls
-    config	id_rsa	id_rsa.pub	known_hosts
-    $ mkdir key_backup
-    $ cp id_rsa* key_backup
-    $ rm id_rsa*
+```sh
+$ ls
+config	id_rsa	id_rsa.pub	known_hosts
+$ mkdir key_backup
+$ cp id_rsa* key_backup
+$ rm id_rsa*
+```
 
 ###3、生成新的SSH Key：
 输入下面的代码，就可以生成新的key文件，我们只需要默认设置就好，所以当需要输入文件名的时候，回车就好。
@@ -270,30 +272,33 @@ Jekyll的配置写在_config.yml文件中，可配置项有很多，我们不去
 我们选择最下面的`Universal Code`就好，然后会看到一个介绍页面，把下面这段代码复制到你的模板里面，可以只复制到显示文章的模板中：
 
 <!--?prettify lang=html linenums=true?-->
+```html
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'example'; // required: replace example with your forum shortname 这个地方需要改成你配置的网站名
 
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'example'; // required: replace example with your forum shortname 这个地方需要改成你配置的网站名
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+```
 
 配置完之后，你也可以做一些异步加载的处理，提高性能，比如我就在最开始页面打开的时候不显示评论，当你想看评论的时候，点击“显示评论”再加载Disqus的模块。代码很简单，你可以参考我的写法。
 
-    $('#disqus_container .comment').on('click',function(){
-            $(this).html('加载中...');
-            var disqus_shortname = 'beiyuu';
-            var that = this;
-            BYB.includeScript('http://' + disqus_shortname + '.disqus.com/embed.js',function(){$(that).remove()}); //这是一个加载js的函数
-    });
+```javascript
+$('#disqus_container .comment').on('click',function(){
+		$(this).html('加载中...');
+		var disqus_shortname = 'beiyuu';
+		var that = this;
+		BYB.includeScript('http://' + disqus_shortname + '.disqus.com/embed.js',function(){$(that).remove()}); //这是一个加载js的函数
+});
+```
 
 如果你不喜欢Disqus的样式，你也可以根据他生成的HTML结构，自己改写样式覆盖它的，Disqus现在也提供每个页面的评论数接口，[帮助文档][12]在这里可以看到。
 
@@ -307,12 +312,16 @@ Google的高亮插件使用也比较方便，只需要在`<pre>`的标签上加�
 
 作为生活在水深火热的墙内人民，有必要进行下面一步修改gem的源，方便我们更快的下载所需组建：
 
-    sudo gem sources --remove http://rubygems.org/
-    sudo gem sources -a http://ruby.taobao.org/
+```bash
+sudo gem sources --remove http://rubygems.org/
+sudo gem sources -a http://ruby.taobao.org/
+```
 
 然后用Gem安装jekyll
 
-    $ gem install jekyll
+```sh
+$ gem install jekyll
+```
 
 不过一般如果有出错提示，你可能需要这样安装：
 

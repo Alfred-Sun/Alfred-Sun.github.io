@@ -32,8 +32,11 @@ Here it is in expanded and explained form with some comments by me (marked with 
 	http://mj.ucw.cz/geek/
 	http://alip.github.io/en/
 
-## Email: 
-	echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
+## Email:
+
+```sh
+echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
+```
 
 <!--**Octostrap3** started because I really wanted to use Bootstrap while posting
 [on my blog](https://kaworu.ch) and all Octopress themes were based on

@@ -22,7 +22,7 @@ Install Python 2.x and set env path for pygments
 
 ## 5. 关于代码高亮
 
-- 用js插件：[DlHightLight][1]或**[Google Code Prettify][2]**或**[Highlight.js][3]**或**[dp.SyntaxHighlighter][4]**
+- 用js插件：[DlHightLight][1]或**[Google Code Prettify][2]**或<u>**[Highlight.js][3]**</u>或**[dp.SyntaxHighlighter][4]**
 - 用gist：推荐菜鸟使用，省心省事，支持语言多
 - 用pygment：要安装python以及python的包管理软件，定制code style CSS文件，又是个大坑，不建议菜鸟使用，尤其是使用windows的
 
