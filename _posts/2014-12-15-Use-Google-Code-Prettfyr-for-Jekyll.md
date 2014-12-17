@@ -14,17 +14,15 @@ tags: [Jekyll, google-code-prettfy]
 <script type="text/javascript" src="/assets/themes//google-code-prettify/prettify.js"></script>
 ```
 
-考虑到加载速度，最好js写到文档末尾，body闭合标签之前，css写到头部
-
-之后，还需要加上如下代码，用于识别并高亮代码块，这个需要使用jQuery
+考虑到加载速度，最好js写到文档末尾，body闭合标签之前，css写到头部之后，还需要加上如下代码，用于识别并高亮代码块，这个需要使用jQuery
 
 ```javascript
 $(function() {
-  window.prettyPrint && prettyPrint();
+    window.prettyPrint && prettyPrint();
 });
 ```
 
-现在，就可以使用<pre></pre>标签进行高亮了，
+现在，就可以使用`<pre></pre>`标签进行高亮了，
 
 ```html
 <pre class="prettyPrint">
@@ -32,7 +30,7 @@ $(function() {
 </pre>
 ```
 
-但这样会有些问题，就是在书写html代码的时候，html标签会被浏览器认为是标签而不是代码的字符。而markdown的语法写的代码其实已经解决了这个问题，所以，我们可以利用如下的js代码，来避免自己用<pre></pre>写代码所出现的问题，同样需要jQuery支持
+但这样会有些问题，就是在书写html代码的时候，html标签会被浏览器认为是标签而不是代码的字符。而markdown的语法写的代码其实已经解决了这个问题，所以，我们可以利用如下的js代码，来避免自己用`<pre></pre>`写代码所出现的问题，同样需要jQuery支持
 
 ```javascript
 $(function() {

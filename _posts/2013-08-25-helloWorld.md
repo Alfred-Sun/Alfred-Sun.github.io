@@ -90,7 +90,7 @@ int combinational_lock() {
 }
 {% endhighlight %}
 
-C# Code:
+C# Code by `<pre>` tag:
 
 <pre class="brush: csharp; highlight: [2,4]">
 public IEnumerator&lt;String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
