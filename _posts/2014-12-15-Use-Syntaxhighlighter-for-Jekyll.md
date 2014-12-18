@@ -3,6 +3,7 @@ layout: post
 title: Jekyll中用SyntaxHighlighter
 category: GitHub Pages
 tags: [Jekyll, SyntaxHighlighter]
+author: Alfred Sun
 ---
 
 ## SyntaxHighligher

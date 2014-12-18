@@ -33,6 +33,19 @@ hr{
 	border-bottom:1px dashed #cfcfcf;
 	margin:30px 0;
 }
+blockquote{
+	margin:0 25px 25px;
+	padding:15px 15px;
+	border-left:10px solid #eee;
+	border-color:#D6DBDF;
+	background:none repeat scroll 0 0 rgba(102,128,153,.05);
+	/*border-color:#333;
+	background:none repeat scroll 0 0 rgba(51,51,51,.5);*/
+}
+blockquote p, .entry blockquote ul{
+	margin-top: auto;
+	margin-bottom: auto;
+}
 
 .clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 .clearfix{zoom:1;}
@@ -52,10 +65,10 @@ a.external:hover {background-position:right -15px;}
 .entry-title a:hover {text-decoration:none;}
 .entry-date {text-align:center;color:#999;margin-bottom:60px;font-size:14px;}
 
-h2 {font-size:22px;font-weight:bold;margin-bottom:25px;}
+h2 {font-size:22px;font-weight:bold;margin:25px auto;}
 h3 {font-size:18px;font-weight:bold;margin-bottom:25px;}
 h4,h5,h6 {font-weight:bold;margin-bottom:15px;}
-p {margin-bottom:30px;line-height:1.8em;}
+p {margin-bottom:25px;line-height:1.8em;text-align:justify;word-wrap:break-word;}
 
 
 code {background:#eee;color:#C7254E;border:1px solid #ccc;padding:0 5px;font-family:inherit;line-height:14px;font-size:14px;word-wrap:break-word; }
@@ -71,7 +84,7 @@ h4+pre, h3+pre { margin-top:20px; }
 pre ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
 pre ::selection { background:#FF5E99; color:#fff; text-shadow: none; }
 
-pre code{color:#F8F8F2;background-color:transparent;border:none;padding:0;word-wrap:normal;white-space: pre-wrap;}
+pre code{color:#F8F8F2;background-color:transparent;border:none;padding:0;word-wrap:normal;white-space:pre-wrap;word-break:break-all;word-wrap: break-word;}
 pre ol{margin-left:35px;list-style-type:decimal;}
 
 pre code span.lineno {

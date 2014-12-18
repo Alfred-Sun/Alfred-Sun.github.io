@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Creating Tag Cloud Using R and Flash / JavaScript (SWFObject)
-external-url: http://yihui.name/en/2009/06/creating-tag-cloud-using-r-and-flash-javascript-swfobject/
 categories:
 - Computer Science
 - Featured
@@ -20,6 +19,8 @@ tags:
 - Tag Cloud
 - Wordpress
 - wp-cumulus
+author: Yihui Xie
+external-url: http://yihui.name/en/2009/06/creating-tag-cloud-using-r-and-flash-javascript-swfobject/
 ---
 
 Tag cloud is a bunch of words drawn in a graph with their sizes proportional to their frequency; it's widely used in blogs to visualize tags. We can observe important words quickly from a tag cloud, as they often appear in large fontsize. Tony N. Brown asked how to [graphically represent frequency of words in a speech](https://stat.ethz.ch/pipermail/r-help/2009-June/200645.html) the other day in R-help list, which is actually a problem about the tag cloud:

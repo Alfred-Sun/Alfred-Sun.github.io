@@ -4,6 +4,7 @@ title: "用jekyll和jQuery实现异步加载文章列表"
 date: 2014-12-11 02:30
 comments: true
 categories: [jekyll, javascript]
+author: ypchen
 description: 本文主要讨论如何用jekyll模板生成json，使用jQuery的插件waypoint，实现异步加载文章列表
 keywords: jekyll, javascript
 external-url: http://yanping.me/cn/blog/2012/10/10/asynchronous-loading-post-list-with-jekyll-and-jQuery/

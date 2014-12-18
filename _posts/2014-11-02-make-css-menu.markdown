@@ -1,6 +1,14 @@
- HTML中的<UL>标签中li横向排列
-2011-07-22 20:10 48181人阅读 评论(10) 收藏 举报
+---
+layout: post
+title: HTML中的<UL>标签中li横向排列
+category: Html
+tags: [html, css]
+---
+
+2011-07-22 20:10
+
 htmlcssfloatclass文档浏览器
+
 第一步、编写横向菜单的HTML代码架构
 
 请将以下代码添加到HTML文档的导航栏区域中。
