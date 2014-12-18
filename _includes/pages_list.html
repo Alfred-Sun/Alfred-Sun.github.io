@@ -7,7 +7,7 @@
   {% for item in (0..pages_list.size) %}
   {% unless forloop.last %}
 	  {% capture this_word %}{{ category_words[item] | strip_newlines }}{% endcapture %}
-	  <li><a class="label label-primary" href="#{{ this_word | cgi_escape }}-ref" title="{{ this_word }}" rel="nofollow">{{ this_word }} <sup>{{ pages_list[this_word].size }}</sup>
+	  <li><a class="label label-primary" href="#{{ this_word }}-ref" title="{{ this_word }}" rel="nofollow">{{ this_word }} <sup>{{ pages_list[this_word].size }}</sup>
 	  </a></li>
   {% endunless %}
   {% endfor %}
@@ -16,7 +16,8 @@
 {% for item in (0..pages_list.size) %}
 {% unless forloop.last %}
 {% capture this_word %}{{ category_words[item] | strip_newlines }}{% endcapture %}
-  <h2 id="{{ this_word | cgi_escape }}-ref">{{ this_word }}</h2>
+  <!--h2 id="{{ this_word | cgi_escape }}-ref">{{ this_word }}</h2-->
+  <h2 id="{{ this_word }}-ref">{{ this_word }}</h2>
   <ul class="tag-list">
   {% for post in pages_list[this_word] %}
   {% if post.title != null %}
