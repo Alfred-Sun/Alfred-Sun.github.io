@@ -1,6 +1,6 @@
 ---
+layout: post
 title: What happened to my Jekyll
-layout: default
 ---
 {{ page.title }}
 

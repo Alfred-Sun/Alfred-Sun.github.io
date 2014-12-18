@@ -10,8 +10,9 @@ keywords: jekyll, javascript
 external-url: http://yanping.me/cn/blog/2012/10/10/asynchronous-loading-post-list-with-jekyll-and-jQuery/
 ---
 
-{:.info}
-本文主要讨论如何用基于jQuery的插件waypoint，实现异步加载jekyll模板生成的json文件，生成文章列表。
+前言(Introduction)
+
+> 本文主要讨论如何用基于jQuery的插件waypoint，实现异步加载jekyll模板生成的json文件，生成文章列表。
 
 我在[另一个博客的文章列表](http://art.yanping.me/archives/)里使用了异步加载的技术，不过直接看页面的html源代码是看不出来的。编译之前的代码在[这里](https://github.com/yanping/art/blob/gh-pages/archives/index.html)。
 

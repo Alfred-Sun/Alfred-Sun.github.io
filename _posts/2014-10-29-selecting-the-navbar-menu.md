@@ -18,7 +18,8 @@ possible to control which menu is selected on each page or post.
 We will use (again) a
 [front-matter variable](http://jekyllrb.com/docs/frontmatter/). If you check in
 `source/_includes/custom/navigation.html` the menu looks like this:
-% codeblock source/_includes/custom/navigation.html %}
+
+```html
 {% raw %}
 <!-- ... -->
 <div class="navbar-collapse collapse">
@@ -31,13 +32,14 @@ We will use (again) a
     </li>
 <!-- ... -->
 {% endraw %}
-% endcodeblock %}
+```
 
 By default, `page.navbar` is <em>'Blog'</em> for the blog index page and each
 posts. You can set it yourself easily in the <strong>front-matter</strong> (for
 pages or even posts if you want).  This example is from the
-[installation]({{ root_url }}/setup/install) page:
-% codeblock installation page front-matter %}
+[installation]({{ root_url }}/octostrap3/setup/install) page:
+
+```
 ---
 layout: page
 navbar: Setup
@@ -46,7 +48,6 @@ comments: true
 sharing: true
 footer: true
 ---
-
-% endcodeblock %}
+```
 
 Enjoy !
