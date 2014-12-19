@@ -25,9 +25,9 @@ List some issues about firefox when working with it, and would update all the ti
 
 Windows 7环境下Install Firefox后，启动Firefox报错：
 
-"Your Firefox profile cannot be loaded. It may be missing or inaccessible."
+> "Your Firefox profile cannot be loaded. It may be missing or inaccessible."
 
-![Profile Missing]({{ sites.picuture_dir }})/firefox-related-issues/f1.png)
+![Profile Missing]({{ site.picture_dir }}/firefox-related-issues/f1.png)
 
 **原因**：排除权限问题外，基本是跟`Profiles.ini`文件相关。
 

@@ -100,7 +100,7 @@ blog_index_asides: [
 # ----------------------- #
 #   Blog Media Directory   #
 # ----------------------- #
-picuture_dir: /media/picutures
+picture_dir: /media/pictures
 video_dir: /media/videos
 music_dir: /media/music
 document_dir: /media/documents
