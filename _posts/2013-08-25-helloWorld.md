@@ -37,6 +37,8 @@ Class CustomerInfo
 End Class
 {% endhighlight %}
 
+<!--more-->
+
 `test`
 
 Check *out* this neat program I wrote:

@@ -4,6 +4,7 @@ title: Jekyll中用SyntaxHighlighter
 category: GitHub Pages
 tags: [Jekyll, SyntaxHighlighter]
 author: Alfred Sun
+keywords: GitHub Pages, Syntax Highlight
 ---
 
 ## SyntaxHighligher

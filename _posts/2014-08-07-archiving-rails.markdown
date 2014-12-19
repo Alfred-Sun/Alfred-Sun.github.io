@@ -18,7 +18,6 @@ So I replaced it with a static copy of the site. Just flat files.
 
 This is how I did it.
 
-
 <!--more-->
 
 ## Archive the site

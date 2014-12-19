@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 如何高效利用GitHub
+category: GitHub
 author: 阳志平
 updated: 2014-12-13 23:15
+keywords: GitHub Usage
 description: 位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。
-category: GitHub
 external-url: http://www.yangzhiping.com/tech/github.html
 ---
 

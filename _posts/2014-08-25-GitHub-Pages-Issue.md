@@ -14,6 +14,8 @@ missing, and don't know why ?
 
 ## 4. should install bellows:
 
+<!--more-->
+
 https://github.com/oneclick/rubyinstaller/wiki/Development-Kit
 http://rubyinstaller.org/add-ons/devkit
 Install Python 2.x and set env path for pygments

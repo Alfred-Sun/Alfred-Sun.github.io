@@ -8,6 +8,8 @@ author: Alfred Sun
 
 这个博客，到现在换了好几个代码高亮的工具，之前的SyntaxHIghlighter虽然漂亮，无奈加载太慢，只能舍弃了。现在用的这个是google-code-prettfy，效果也相当不错。最重要的是，非常小，加载速度比SyntaxHighlighter快得多，而且，可以直接使用markdown的语法去写代码。
 
+<!--more-->
+
 首先需要两个文件，prettify.js和prettify.css，自己去官网去下。把这两个放到模板中，如下
 
 ```html

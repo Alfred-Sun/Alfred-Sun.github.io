@@ -3,6 +3,7 @@ layout: post
 title: gem相关命令使用
 categories: Ruby
 tags: [gem]
+keywords: ruby, gem
 ---
 
 ## 1.显示gem的帮助和版本

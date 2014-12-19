@@ -16,6 +16,8 @@ external-url: http://yanping.me/cn/blog/2012/10/10/asynchronous-loading-post-lis
 
 我在[另一个博客的文章列表](http://art.yanping.me/archives/)里使用了异步加载的技术，不过直接看页面的html源代码是看不出来的。编译之前的代码在[这里](https://github.com/yanping/art/blob/gh-pages/archives/index.html)。
 
+<!--more-->
+
 首先，生成文章列表数据的json模板是：
 
 ```
@@ -52,13 +54,13 @@ perPageItem: 100
 初始加载网页时，文章主题列表是静态的html，由jekyll生成：
 
 ```html {% raw %}
-	<ul class="posts">
-	{% for post in site.posts limit:page.initItem %}
-	  <li class="listing-item">
-		<time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-		<a href="{{site.baseurl}}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-	  </li>{% endfor %}
-	</ul>
+<ul class="posts">
+{% for post in site.posts limit:page.initItem %}
+  <li class="listing-item">
+	<time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+	<a href="{{site.baseurl}}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+  </li>{% endfor %}
+</ul>
 {% endraw %}
 ```
 
@@ -69,43 +71,43 @@ perPageItem: 100
 ```html
 {% raw %}
 
-	{% if site.posts.size > page.initItem %}
-	<script src="/js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/js/waypoints.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-	  $(document).ready(function() {
-		// 关于waypoint，请看 http://imakewebthings.com/jquery-waypoints/
-		var $loading = $("<div class='loading' style='text-align:center'><img src='/images/loading.gif'></div>"),
-		$footer = $('footer'),
-		opts = {
-		  offset: '100%'
-		};
+{% if site.posts.size > page.initItem %}
+<script src="/js/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/waypoints.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+	// 关于waypoint，请看 http://imakewebthings.com/jquery-waypoints/
+	var $loading = $("<div class='loading' style='text-align:center'><img src='/images/loading.gif'></div>"),
+	$footer = $('footer'),
+	opts = {
+	  offset: '100%'
+	};
 
-		var count = {{ page.initItem }}; // 初始文章数
-		var count_sup = 0; // 循环上界，初始为0
-		$footer.waypoint(function(event, direction) {
-		  $footer.waypoint('remove');
-		  $('.posts').append($loading);
-		  $.getJSON("../post.json", function(data) {
-			var content = "";
-			count_sup = count + {{ page.perPageItem }}; // 循环上界每次增加page.perPageItem项
-			var delta = 0; // 局部计数器
-			$.each(data, function(i, item) {
-			  if (i >= count & i < count_sup) {
-				content += "<li class='listing-item'><time datetime='" + item.date + "'>" + item.date + "</time>";
-				content += "<a href='" + item.url + "' title='" + item.title + "'>" + item.title + "</a></li>";
-				delta++;
-			  }
-			});
-			count += delta;
-			$('div.loading').remove();
-			$(".posts").append(content);
-			if (count < data.length) $footer.waypoint(opts);
-		  });
-		}, opts);
+	var count = {{ page.initItem }}; // 初始文章数
+	var count_sup = 0; // 循环上界，初始为0
+	$footer.waypoint(function(event, direction) {
+	  $footer.waypoint('remove');
+	  $('.posts').append($loading);
+	  $.getJSON("../post.json", function(data) {
+		var content = "";
+		count_sup = count + {{ page.perPageItem }}; // 循环上界每次增加page.perPageItem项
+		var delta = 0; // 局部计数器
+		$.each(data, function(i, item) {
+		  if (i >= count & i < count_sup) {
+			content += "<li class='listing-item'><time datetime='" + item.date + "'>" + item.date + "</time>";
+			content += "<a href='" + item.url + "' title='" + item.title + "'>" + item.title + "</a></li>";
+			delta++;
+		  }
+		});
+		count += delta;
+		$('div.loading').remove();
+		$(".posts").append(content);
+		if (count < data.length) $footer.waypoint(opts);
 	  });
-	</script>
-	{% endif %}
+	}, opts);
+  });
+</script>
+{% endif %}
 
 {% endraw %}
 ```
@@ -116,8 +118,6 @@ perPageItem: 100
 2. 充分利用Liquid模板的特性，在js代码中，也引用了Liquid模板数据`{% raw %}{{ page.initItem }}{% endraw %}`和`{% raw %}{{ page.perPageItem }}{% endraw %}`
 3. `.getJSON()`读取数据形成列表之后，语句
 
-```
 	if (count < data.length) $footer.waypoint(opts);
-```
 
- 是要判断已经加载的文章主题数是否到达总数，如果比总数小，就会在新的底部`$footer`上注册为*waypoint*，然后再向下拉页面，到达底部还会触发事件，然后接着读取数据，直到数据已经读取完毕。
+是要判断已经加载的文章主题数是否到达总数，如果比总数小，就会在新的底部`$footer`上注册为*waypoint*，然后再向下拉页面，到达底部还会触发事件，然后接着读取数据，直到数据已经读取完毕。
