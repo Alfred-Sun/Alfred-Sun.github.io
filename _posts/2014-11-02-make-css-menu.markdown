@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HTML中的&lt;UL&gt;标签中li横向排列
+title: html中的&lt;ul&gt;标签中&lt;li&gt;横向排列
 category: Html
 tags: [html, css]
 ---

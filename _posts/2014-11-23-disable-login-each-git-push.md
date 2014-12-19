@@ -48,7 +48,7 @@ git config --global credential.helper store
 ### 2.1 添加环境变量
 
 在windows中添加一个HOME环境变量，变量名:HOME,变量值：%USERPROFILE%
-<img src="{{ site.picuture_dir }}/github_env.jpg" />
+<img src="{{ site.picture_dir }}/github_env.jpg" />
 
 ### 2.2 创建git用户名和密码存储文件
 

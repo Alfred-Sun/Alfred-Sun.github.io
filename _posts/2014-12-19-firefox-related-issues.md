@@ -37,19 +37,21 @@ Windows 7环境下Install Firefox后，启动Firefox报错：
 
 Old Profiles.ini:
 
-	[General]
-	StartWithLastProfile=1
+<pre>
+[General]
+StartWithLastProfile=1
 
-	[Profile0]
-	Name=default
-	IsRelative=1
-	Path=Profiles/r8gi0ws7.default
-	Default=1
+[Profile0]
+Name=default
+IsRelative=1
+Path=Profiles<font color="fuchsia">/r8gi0ws7.default</font>
+Default=1
 
-	[Profile1]
-	Name=dev-edition-default
-	IsRelative=1
-	Path=Profiles/86xqzf6m.dev-edition-default
+[Profile1]
+Name=dev-edition-default
+IsRelative=1
+Path=Profiles/86xqzf6m.dev-edition-default
+</pre>
 
 因为清掉了Profile0中的Path值对应的路径，所以Launch Firefox失败。
 
@@ -59,19 +61,21 @@ Old Profiles.ini:
 
 New Profiles.ini:
 
-	[General]
-	StartWithLastProfile=1
+<pre>
+[General]
+StartWithLastProfile=1
 
-	[Profile0]
-	Name=default
-	IsRelative=1
-	Path=Profiles/3rv0l2m8.default
-	Default=1
+[Profile0]
+Name=default
+IsRelative=1
+Path=Profiles<font color="cyan">/3rv0l2m8.default</font>
+Default=1
 
-	[Profile1]
-	Name=dev-edition-default
-	IsRelative=1
-	Path=Profiles/86xqzf6m.dev-edition-default
+[Profile1]
+Name=dev-edition-default
+IsRelative=1
+Path=Profiles/86xqzf6m.dev-edition-default
+</pre>
 
 **Further learing**: Profile Manager
 
