@@ -41,6 +41,14 @@ End Class
 
 `test`
 
+
+1. Fork the site on GitHub
+2. Create a new post in the _posts directory and fill out the relevant YAML fields
+3. Make a 250x200 thumbnail and drop it in the thumbnails directory.
+4. List its filename in the post's markdown file.
+5. Test it out, then push your changes up and open a pull request.
+
+
 Check *out* this neat program I wrote:
 
 ```
@@ -91,6 +99,40 @@ int combinational_lock() {
 		}
 }
 {% endhighlight %}
+
+
+| 项目        | 价格   |  数量  |
+| --------   | -----:  | :----:  |
+| 计算机     | $1600 |   5     |
+| 手机        |   $12   |   12   |
+| **管线**        |    $1    |  234  |
+
+| Function name    | Description                    |
+| ---------------- | ------------------------------ |
+| `help()`      | Display the help window.       |
+| `destroy()`   | **Destroy your computer!**     |
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<p>paragraph <b>emphasis</b>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+That's some text with a footnote.[^text]
+
+[^text]: And that's the footnote.
+
+- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> are supported
+- [x] list syntax is required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
+
+<example@email.com>
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+
 
 C# Code by `<pre>` tag:
 

@@ -1,7 +1,9 @@
 ---
 layout: post
 title: GitHub Pages Issue
-category: GitHub
+category: GitHub Pages
+keywords: github pages, issue
+description: 
 ---
 
 ## 1. if the blog is forked from other, then must update and commit at least one time before it works with GitHub.

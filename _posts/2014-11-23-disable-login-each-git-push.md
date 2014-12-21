@@ -31,7 +31,9 @@ https://{username}:{password}@github.com
 
 进入git bash终端， 输入如下命令：
 
+```sh
 git config --global credential.helper store
+```
 
 执行完后查看%HOME%目录下的.gitconfig文件，会多了一项：
 
