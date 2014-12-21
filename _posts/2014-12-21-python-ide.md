@@ -19,6 +19,8 @@ description: Python IDE开发工具
 - pycharm 收费软件,网上评价很高,安装之后发现,慢,丑,挫,10秒钟删除
 - Ulipad 使用过一次,没有特别好感,删除
 
+<!--more-->
+
 ## python各种编辑器常见的问题
 
 - 缩进混乱
