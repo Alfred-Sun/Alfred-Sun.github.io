@@ -1,5 +1,5 @@
 ---
-title: This is my title
+title: Hello World
 layout: post
 categories: [test, javascript]
 ---
