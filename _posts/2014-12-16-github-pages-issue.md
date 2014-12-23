@@ -149,7 +149,21 @@ Windows环境下使用`pygments.rb`高亮code，即使plugin正常运行，但�
 此处的详细代码逻辑见[这里][commit#90]。
 
 规避这个warning有两个变通的方法:   
-a. 上面链接的commit是其一，可以直接修改本地的代码；   
+a. 上面链接的commit是其一，可以直接修改本地的 [popen.rb][commit#90] 代码;
+
+<pre># Detect a suitable Python binary to use. We can't just use `python2`
+# because apparently some old versions of Debian only have `python` or
+# something like that.
+def python_binary
+	<font color="cyan">if RUBY_PLATFORM =~ /(mswin|mingw|cygwin|bccwin)/
+		return 'python'
+	end</font>
+	@python_binary ||= begin
+		`which python2`
+		$?.success? ? "python2" : "python"
+	end
+end</pre>
+
 b. 另一方法见[Fix Python hunting logic on Windows][commit#138]。(需要注意的是，这个方法需要安装[Python Launcher]，目的是利用`py -2`调用Python 2.x解释器)
 
 [commit#90]: https://github.com/koron/pygments.rb/commit/edf6665506b57b333c5f8838d86a9f7ab3016517
