@@ -1,6 +1,6 @@
 ---
 layout: post
-title: window.location属性
+title: window.location 属性
 category: JavaScript
 tags: [window, location]
 author: Alfred Sun

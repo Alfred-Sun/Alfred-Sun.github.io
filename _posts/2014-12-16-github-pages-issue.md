@@ -21,8 +21,8 @@ It's missing, and don't know why ?
 
 <!--more-->
 
-https://github.com/oneclick/rubyinstaller/wiki/Development-Kit   
-http://rubyinstaller.org/add-ons/devkit
+- [RubyInstaller Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)   
+- [DevKit Overview](http://rubyinstaller.org/add-ons/devkit)
 
 
 ## 5. Liquid Exception: cannot load such file -- yajl/2.0/yajl
@@ -79,8 +79,8 @@ gem install yajl-ruby-1.1.0.gem
 ```
 
 相关的 yajl-ruby issue:   
-https://github.com/brianmario/yajl-ruby/issues/116   
-https://github.com/jekyll/jekyll-help/issues/50
+- [brianmario/yajl-ruby#116](https://github.com/brianmario/yajl-ruby/issues/116)   
+- [jekyll/jekyll-help#50](https://github.com/jekyll/jekyll-help/issues/50)
 
 [RubyInstaller 2.0]: https://groups.google.com/d/msg/rubyinstaller/mg5ailNICvM/QbBfNByec-0J
 [yajl]: http://rubygems.org/gems/yajl-ruby/versions/1.1.0
@@ -92,7 +92,7 @@ Check your `PATH` environment variable, like `;C:\python27`;
 Make sure that have installed Python 2.x and set env path for pygments.rb call.
 
 相关的 Jekyll issue:   
-https://github.com/jekyll/jekyll/issues/2551
+- [jekyll/jekyll#2551](https://github.com/jekyll/jekyll/issues/2551)
 
 __Note:__   
 之所以要安裝 Python 是因為 代码高亮 plugin -- [pygments.rb][]，是基于 Python 的代码高亮工具 [Pygments][] 的一个 Ruby wrapper，雖然 Pygments 支援 Python 2 版和 3 版，不過由於 Ruby 和 Python 之間的橋接是用 RubyPython 完成，而 [rubypython][] 目前只支援 Python 2。所以還是乖乖安裝 2 版吧！（见pygments.rb的`README.md`）
@@ -129,19 +129,24 @@ Tags: Formula Periodic Sequence
 {% endraw %}
 
 相关的 Jekyll issue:   
-[Why Jekyll convert my Capital words into lowercase in Categories](http://stackoverflow.com/questions/19074064/why-jekyll-convert-my-capital-words-into-lowercase-in-categories)   
-https://github.com/jekyll/jekyll/issues/842
+- [Why Jekyll convert my Capital words into lowercase in Categories](http://stackoverflow.com/questions/19074064/why-jekyll-convert-my-capital-words-into-lowercase-in-categories)   
+- [jekyll/jekyll#842](https://github.com/jekyll/jekyll/issues/842)
 
 
 ## 8. warning: cannot close fd before spawn; 'which' is not recognized as an internal or external command, operable program or batch file
 
 Windows环境下使用`pygments.rb`高亮code，即使plugin正常运行，但目前还存在这个麻烦的问题。因为是warning，所以本地运行Jekyll，一般可以忽略。   
-然而由于博主强迫症发作，本着追求完美的心态，就仔细追查了这个问题的根源。   
-其实还是由Windows和Linux的系统环境造成的，确实比较麻烦。虽说解决方法有很多，目前 pygments.rb 0.6.0 仍然未得到解决。
+然而博主由于强迫症猝发，本着追求完美的心态，就仔细追查了这个问题的根源。   
+其实还是由Windows和Linux的系统环境造成的，确实比较麻烦。虽说解决方法有几个，目前 pygments.rb 0.6.0 仍然未得到解决。
 
 ![cannot close fd before spawn]({{ site.picture_dir }}/github-pages-issue/cannot_close_fd.png '"cannot close fd before spawn"')
 
-
+相关的 GitHub Issue:   
+- [tmm1/pygments.rb#90](https://github.com/tmm1/pygments.rb/pull/90)   
+- [tmm1/pygments.rb#138](https://github.com/tmm1/pygments.rb/pull/138)   
+- [rtomayko/posix-spawn#61](https://github.com/rtomayko/posix-spawn/issues/61)   
+- [jekyll/jekyll#2789](https://github.com/jekyll/jekyll/issues/2789)   
+- [jekyll/jekyll#2052](https://github.com/jekyll/jekyll/issues/2052)
 
 
 ## 9. 关于代码高亮

@@ -24,11 +24,9 @@ navbar: blog
 		  </a></h2>
 		  </header>
 		<div class="con">
-		  <p>
-		  {{ post.excerpt | strip_html }}
+		  {{ post.excerpt }} <!--post.excerpt | strip_html-->
 		  <!--{{ post.content | split: site.excerpt_separator | first | strip_html }}-->
 		  <!--a class="more" href="{{ root_url }}{{ post.url }}">[继续阅读]</a-->
-		  </p>
 		  <footer>
 			<a rel="full-article" href="{{ root_url }}{{ post.url }}" target="_blank">{{ site.excerpt_link }}</a>
 		  </footer>

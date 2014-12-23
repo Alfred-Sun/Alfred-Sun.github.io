@@ -20,6 +20,8 @@ The current ruby platform versions:
 	bundler		1.7.9
 	RedCloth	4.2.9
 
+<!--more-->
+
 Always throw error, when build Jekyll and start server:
 
 	You are missing a library required for Textile. Please run:

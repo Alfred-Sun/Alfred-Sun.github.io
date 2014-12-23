@@ -444,7 +444,7 @@ table {
 
 td,
 th {
-  padding: 0;
+  padding: 4px;
 }
 
 /* LAYOUT STYLES */
@@ -687,12 +687,13 @@ hr {
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border: 1px solid #ebebeb;
 }
 
 th {
-  font-weight: 500;
+  border: 1px solid #ebebeb;
+  font-weight: 700;
 }
 
 td {
@@ -1400,6 +1401,19 @@ font-size: 39px;
 	background-color:#eaf7ff;
 }
 
+#main-content .post .con blockquote {
+	margin: 25px auto;
+	font-size: 1.0em;
+	padding: 0 0 0 20px;
+}
+#main-content .post .con blockquote p {
+	padding: 5px 0px;
+}
+#main-content .post .con blockquote ul li {
+	list-style:circle outside none;
+	margin: auto;
+}
+
 #main-content .post .con ul {
 	margin: 5px 0;
 }
@@ -1413,7 +1427,8 @@ font-size: 39px;
 }
 
 #main-content .post .con ul li {
-	list-style:disc inside;
+	padding-left: 5px;
+	list-style:square outside none;
 }
 
 #main-content .post .con ol li {
@@ -1431,9 +1446,21 @@ transition:background .3s linear;
 	font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Helvetica, Verdana, Arial, sans-serif;
 	font-weight: normal;
 	color: #444;
-	padding: 0;
+	padding: 15px 0 0;
 }
-
+#main-content article.post .con h2 {
+	font-size:18px;
+	color: #555;
+	text-indent: 0px;
+	padding: 0 0 10px;
+	margin: 10px auto;
+}
+#main-content article.post .con h3 {
+	color:#444;
+	font-size: 16px;
+	margin:10px auto;
+	padding-left:18px;
+}
 .post .con .tags ul{
 margin:0;
 }
@@ -1458,7 +1485,8 @@ font-size:12px;
 .post .con p {
 	text-align: justify;
 	text-justify: inherit;
-	padding: 15px 0 0;
+	padding: 0;
+	margin: 0 auto 15px;
 	/*text-indent:2em;*/
 }
 .post .con div p {
@@ -1467,14 +1495,14 @@ font-size:12px;
 	padding: 0;
 	text-indent: 0;
 }
-.post .con p a {
+.post .con p a, .post .con li a {
 color:#40aa52;
 text-decoration:none;
 }
 .post .con p.more a {
 margin:0;
 }
-.post .con p a:hover {
+.post .con p a:hover, .post .con li a:hover {
 text-decoration:underline;
 }
 
