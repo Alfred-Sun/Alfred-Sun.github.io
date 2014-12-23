@@ -21,8 +21,8 @@ It's missing, and don't know why ?
 
 <!--more-->
 
-- [RubyInstaller Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)   
-- [DevKit Overview](http://rubyinstaller.org/add-ons/devkit)
+\- [RubyInstaller Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)   
+\- [DevKit Overview](http://rubyinstaller.org/add-ons/devkit)
 
 
 ## 5. Liquid Exception: cannot load such file -- yajl/2.0/yajl
@@ -52,7 +52,7 @@ This will require you have the extra dependencies required for that gem to
 compile. Look at the gem documentation for the requirements. 
 ```
 
-解决方法，要么改用1.9.x的 Ruby ，要么下载要求的[.gem][yajl]文件(not the pre-compiled one)，重新安装`yajl`
+解决方法，要么改用1.9.x的 Ruby ，要么下载要求的[.gem][yajl]文件(not the pre-compiled one)，重新安装`yajl`。
 
 ```sh
 gem uninstall yajl-ruby
@@ -65,7 +65,10 @@ bundle check
 __Note:__   
 Bundler will keep attempting to install x86-mingw32, so you will need to be careful when doing `bundle install` or `bundle update`.
 
-或者也可以试试下载[.gem][yajl]文件，本地编译，不过windows下面可能不行，因为没有`Make`命令。
+或者也可以试试下载[.gem][yajl]文件，本地编译（注意，version必须指定为 **1.1.0**），不过windows下面可能还有点问题，因为没有`make` `gcc`命令（默认Git Shell不会安装Linux的编译指令），所以需要下载安装native Win32下的GNU开发环境[MinGW][]或者[Cygwin][]。
+
+[MinGW]: http://www.mingw.org/
+[Cygwin]: http://www.cygwin.com/
 
 ```sh
 # build it yourself by installing rubyinstaller, the devkit and running:
@@ -140,6 +143,18 @@ Windows环境下使用`pygments.rb`高亮code，即使plugin正常运行，但�
 其实还是由Windows和Linux的系统环境造成的，确实比较麻烦。虽说解决方法有几个，目前 pygments.rb 0.6.0 仍然未得到解决。
 
 ![cannot close fd before spawn]({{ site.picture_dir }}/github-pages-issue/cannot_close_fd.png '"cannot close fd before spawn"')
+
+如图中所示，'which' not found 是因为Windows Shell环境找不到这个命令（Cygwin和MinGW是可以找到的）。   
+问题实质不在posix-spawn上，它没有调用`which`，而是pygments.rb调用`which`查询Windows下面Python的路径。由于pygments.rb要求Python 2.x，而Python 2.x和3.x可能同时在系统中存在，不同于Linux的是，Windows下无法判断`which`寻找到的`python`指令的版本，因而没有合适的处理这里。   
+此处的详细代码逻辑见[这里][commit#90]。
+
+规避这个warning有两个变通的方法:   
+a. 上面链接的commit是其一，可以直接修改本地的代码；   
+b. 另一方法见[Fix Python hunting logic on Windows][commit#138]。(需要注意的是，这个方法需要安装[Python Launcher]，目的是利用`py -2`调用Python 2.x解释器)
+
+[commit#90]: https://github.com/koron/pygments.rb/commit/edf6665506b57b333c5f8838d86a9f7ab3016517
+[commit#138]: https://github.com/hickford/pygments.rb/commit/c6554620e34f3b73c1915b287ac59cc9d977a20a
+[Python Launcher]: https://docs.python.org/3.3/using/windows.html#python-launcher-for-windows
 
 相关的 GitHub Issue:   
 - [tmm1/pygments.rb#90](https://github.com/tmm1/pygments.rb/pull/90)   

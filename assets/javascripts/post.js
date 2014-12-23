@@ -156,7 +156,7 @@ $(document).ready(function() {
                     var selector = $(this).attr('data-id') ? '#'+$(this).attr('data-id') : 'h1'
                     var scrollNum = $(selector).offset().top;
 
-                    $('body, html').animate({ scrollTop: scrollNum-30 }, 400, 'swing');
+                    $('body, html').animate({ scrollTop: scrollNum-20 }, 400, 'swing');
                 });
         }
 

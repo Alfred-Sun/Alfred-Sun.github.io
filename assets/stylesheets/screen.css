@@ -1447,7 +1447,7 @@ transition:background .3s linear;
 	font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Helvetica, Verdana, Arial, sans-serif;
 	font-weight: normal;
 	color: #444;
-	padding: 15px 0 0;
+	padding: 15px 0 0 10px;
 }
 #main-content article.post .con h2 {
 	font-size:18px;
