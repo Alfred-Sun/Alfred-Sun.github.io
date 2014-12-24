@@ -6,7 +6,7 @@ tags: [CSS, Scroll-bars]
 author: Alfred Sun
 updated: 2014-12-24 20:07
 keywords: scrollbar, css
-description: 
+description: 总结IE、Firefox、Chrome三大浏览器，用CSS设置滚动条样式的方法
 ---
 
 ## 前言
