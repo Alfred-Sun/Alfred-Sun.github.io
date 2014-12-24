@@ -63,7 +63,7 @@ pre .vi { color: #bb60d5 } /* Name.Variable.Instance */
 pre .il { color: #40a070 } /* Literal.Number.Integer.Long */
 .highlight pre .hll { background-color: #49483e }
 .highlight pre  { background: #474949;/*#272822;*/ color: #f8f8f2 }
-.highlight pre .c { color: #75715e } /* Comment */
+.highlight pre .c { color: #ADA783/*#75715e*/ } /* Comment */
 .highlight pre .err { color: #960050; background-color: #1e0010 } /* Error */
 .highlight pre .k { color: #66d9ef } /* Keyword */
 .highlight pre .l { color: #ae81ff } /* Literal */

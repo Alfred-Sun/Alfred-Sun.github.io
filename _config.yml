@@ -104,6 +104,7 @@ picture_dir: /media/pictures
 video_dir: /media/videos
 music_dir: /media/music
 document_dir: /media/documents
+demo_dir: /media/demo
 
 # ----------------------- #
 #   3rd Party Settings    #
@@ -150,6 +151,7 @@ disqus_show_comment_count: true
 # Google Analytics
 google_analytics_tracking_id:
 baidu_statistics_tracking_id: a8e39b00a0e3f52df3e0deea5d0a691b
+cnzz_statistics_tracking_id: 1253608568
 
 # Facebook Like
 facebook_like: true

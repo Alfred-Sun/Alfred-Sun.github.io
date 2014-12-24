@@ -82,6 +82,7 @@ $(document).ready(function() {
             if(href.indexOf('#') == 0){
             }else if ( href.indexOf('/') == 0 || href.toLowerCase().indexOf('alfred-sun.github.io')>-1 ){
             }else if ($(element).has('img').length){
+				$(this).attr('target','_blank');
             }else{
                 $(this).attr('target','_blank');
                 $(this).addClass('external');

@@ -72,6 +72,10 @@
   content: "\f0a4";
 }
 
+.icon-file-text:before {
+  content: "\f15c";
+}
+
 .icon-rss:before {
   content: "\f09e";
 }
