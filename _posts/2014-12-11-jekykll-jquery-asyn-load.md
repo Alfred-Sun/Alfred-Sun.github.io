@@ -20,7 +20,7 @@ external-url: http://yanping.me/cn/blog/2012/10/10/asynchronous-loading-post-lis
 
 ## 文章列表 JSON 数据
 
-首先，生成文章列表数据的json模板是：
+首先，生成文章列表数据的json模板（记得保存问json格式的文件）：
 
 ```
 {% raw %}---
@@ -38,7 +38,8 @@ layout: nil
 {% endraw %}
 ```
 
-这在前面的[文章](http://chen.yanping.me/cn/blog/2012/04/19/jekyll-with-json/)里提到过。   
+这在前面的[文章](http://chen.yanping.me/cn/blog/2012/04/19/jekyll-with-json/)里提到过。（Alfred Sun: 博主感觉同一博客里面异步加载文章列表意义不大；因为每次访问GitHub博客时，都会执行Jekyll生成新的网站，当然JSON文件每次也会一起重新生成；与其写代码异步加载费时费力，不如直接写进HTML，随同页面一起载入。唯一有用之处，就如作者所言，维护多个博客时，相互间可以引用文章列表。）
+
 但是如果JSON文件不在同一域中，出于安全性考虑就无法用`getJSON`请求它；这种情况下，可以将JSON数据包在JS文件里面，然后浏览器跨域加载外部JS就可以了，演示实例看[这里]({{ site.demo_dir }}/get_json_of_posts.html)。
 
 
