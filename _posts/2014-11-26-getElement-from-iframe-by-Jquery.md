@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jquery取得iframe中元素的几种方法（转载）
+title: jQuery取得iframe中元素的几种方法（转载）
 categories:
   - Javascript
 author: GavinMiao

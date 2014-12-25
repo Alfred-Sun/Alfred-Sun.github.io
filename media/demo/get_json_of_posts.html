@@ -1,0 +1,90 @@
+---
+layout: null
+title: jQuery 实现异步加载文章列表
+keywords: getJSON, GitHub Pages
+description: jQuery 实现异步加载文章列表
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="{{site.author.name}}" />
+	<meta name="keywords" content="{{ page.keywords }}" />
+	<meta name="description" content="{{ page.description }}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
+    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+    <link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
+	<title>{{ page.title }}</title>
+	<script type="text/javascript" src="{{ site.root }}/{{ site.asset_dir.javascripts }}/jquery-1.10.2.min.js"></script>
+	<!--[if lt IE 9]>
+	<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<style type="text/css">
+		
+	</style>
+  </head>
+  <body>
+	<div class="container">
+		<div class="top">
+			<a href="{{ site.root }}/">Skip to home</a>
+			<span style="float: right;">{{ site.subtitle }}</span>
+		</div>
+		<div class="main">
+			<h1>{{ page.title }}</h1>
+			<div class="content">
+			<div class="loading"><img src="{{ site.root }}/{{ site.asset_dir.images }}/loading.gif">Loading...</div>
+			<div id="cardflip"><div id="card_count" class="card5">5</div></div>
+			<div id="post_list"></div>
+			<script>
+				function timeCount() {
+					var c=4;
+					var t;
+					function timedCount() {
+						if (c === 0) {
+							$("#card_count").fadeOut("slow", function() {
+								if (!! _POSTS.list) {
+									  var data = _POSTS.list;
+									  var content = "<ul class=\"compact recent\">";
+									  $.each(data,
+									  function(i, item) {
+										content += "<li><span class=\"date\">" + item.date + "</span><a href=\"" + item.url + "\">" + item.title + "</a></li>";
+									  });
+									  content += "</ul>";
+									  $(".loading").remove();
+									  $("#post_list").hide();
+									  $("#post_list").append(content);
+									  $("#post_list").fadeIn("slow");
+								} else {
+									$(".loading").html("<font color='red'>Load Error</font>");
+									console.log("ERROR");
+								}
+							});
+							return;
+						}
+						$("#card_count").addClass("card"+c);
+						$("#card_count").html(c);
+						c=c-1;
+						t=setTimeout(timedCount, 1000);
+					}
+					setTimeout(timedCount, 500);
+				}
+				
+				$(document).ready(function() {
+					//$.getJSON("{{ site.demo_dir }}/posts_list.json",
+					//function(data) {
+					$.getScript("{{ site.demo_dir }}/posts_list.js",
+					function() {
+						timeCount();
+					});
+				});
+				
+			</script>
+			</div>
+	</div>
+	<div style="display:none">
+	{% include baidu_statistics.html %}
+	{% include cnzz_statistics.html %}
+	{% include google_analytics.html %}
+	</div>
+  </body>
+</html>

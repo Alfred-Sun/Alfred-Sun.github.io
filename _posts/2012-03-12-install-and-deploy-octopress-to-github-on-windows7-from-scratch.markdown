@@ -2,8 +2,7 @@
 layout: post
 title: "在 Windows7 下从头开始安装部署 Octopress"
 date: 2012-03-12 09:14
-comments: true
-categories: [octopress, github]
+categories: [octopress, github pages]
 #published: false 
 #toc: true
 ---

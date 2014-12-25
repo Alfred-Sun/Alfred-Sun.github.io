@@ -98,7 +98,7 @@
 			<h2>Related Blog</h2>
 			<ul class="artical-list">
 			{% for category in page.categories %}
-				{% for post in site.categories[category] %}
+				{% for post in site.categories[category] limit: 7 %}
 				{% unless post.id == page.id %}
 					<li><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></li>
 				{% endunless %}
