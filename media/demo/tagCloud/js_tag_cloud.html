@@ -1,0 +1,178 @@
+---
+layout: null
+title: addywaddy/jquery.tagcloud.js @ GitHub
+keywords: tag cloud, jquery
+description: jQuery TagCloud 实现标签云
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<meta name="author" content="{{site.author.name}}" />
+	<meta name="keywords" content="{{ page.keywords }}" />
+	<meta name="description" content="{{ page.description }}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
+    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+    <link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
+	<title>{{ page.title }}</title>
+	{% include baidu_statistics.html %}
+	{% include google_analytics.html %}
+	
+	<script src="{{ site.root }}/{{ site.asset_dir.javascripts }}/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+	    $("#tagcloud a").tagcloud();
+	    
+	    $('#tagForm').submit(function() {
+	      $("#tagcloud a").tagcloud({
+          size: {
+            start: parseInt($('#minFont').val()), 
+            end: parseInt($('#maxFont').val()), 
+            unit: $('#unit').val()
+          }, 
+          color: {
+            start: "#"+$('#startColour').val(), 
+            end: "#"+$('#endColour').val()
+          }
+        })
+        return false;
+      })
+    })
+    
+	</script>
+	<style type="text/css">
+	h1 {font-size: 40px;}
+	h1 .small { font-size: 0.4em; }
+	h1 a { text-decoration: none }
+	h2 { font-size: 1.5em; color: #000000; margin:20px auto; }
+    h3 { text-align: center; color: #000000; }
+	#demo p {text-align: center;margin-top:18px;}
+    a { color: #000000; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download {top:30px;right:200px;position:absolute;}
+		pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { font-size: 16px;text-align:center;padding-top:25px;font-style: italic; }
+    
+    .main {
+      text-align:center;
+	  font-family: "helvetica";
+	  color: #000000;
+    }
+    #tagcloud a {
+  	  text-decoration: none;
+  	}
+
+  	#tagcloud a:hover {
+  	  text-decoration: underline;
+  	}
+
+  	#tagcloud {
+	  width: 85%;
+  	  margin: 40px auto;
+  	  font: 75% Arial, "MS Trebuchet", sans-serif;
+  	}
+	</style>
+	
+</head>
+
+<body>
+  <div class="container">
+	<div class="top">
+		<a href="{{ site.root }}/">Skip to home</a>
+		<span style="float: right;">{{ site.subtitle }}</span>
+	</div>
+	<a href="http://github.com/addywaddy/jquery.tagcloud.js"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 10000;" src="./forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+	<div class="main">
+		<h1>jquery.tagcloud.js</h1>
+		<div class="download">
+		  <a href="http://github.com/addywaddy/jquery.tagcloud.js/zipball/master">
+			<img border="0" width="90" src="./zip.png"></a>
+		  <a href="http://github.com/addywaddy/jquery.tagcloud.js/tarball/master">
+			<img border="0" width="90" src="./tar.png"></a>
+		</div>
+		<div class="content">
+			<div id="demo">
+			  <div id="tagcloud">
+				<a href="#" rel="0.1">Lorem</a>
+				<a href="#" rel="11">ipsum</a>
+				<a href="#" rel="3">dolor</a>
+				<a href="#" rel="4">sit</a>
+				<a href="#" rel="5">amet,</a>
+				<a href="#" rel="6">consectetur</a>
+				<a href="#" rel="8">elit,</a>
+				<a href="#" rel="5">sed</a>
+				<a href="#" rel="7">do</a>
+				<a href="#" rel="3">eiusmod</a>
+				<a href="#" rel="1">tempor</a>
+				<a href="#" rel="12">incididunt</a>
+				<a href="#" rel="1">ut</a>
+				<a href="#" rel="2">labore</a>
+				<a href="#" rel="5">et</a>
+				<a href="#" rel="7">dolore</a>
+				<a href="#" rel="1">magna</a>
+				<a href="#" rel="4">aliqua.</a>
+				<a href="#" rel="1">Ut</a>
+				<a href="#" rel="2">enim</a>
+				<a href="#" rel="10">ad</a>
+				<a href="#" rel="4">minim</a>
+				<a href="#" rel="1">veniam,</a>
+				<a href="#" rel="1">quis</a>
+				<a href="#" rel="8">nostrud</a>
+				<a href="#" rel="1">exercitation</a>
+				<a href="#" rel="3">ullamco</a>
+				<a href="#" rel="1">laboris</a>
+				<a href="#" rel="11">nisi</a>
+				<a href="#" rel="10">ut</a>
+				<a href="#" rel="3">aliquip</a>
+				<a href="#" rel="5">ex</a>
+				<a href="#" rel="7">ea</a>
+				<a href="#" rel="1">commodo</a>
+				<a href="#" rel="6">consequat.</a>
+				<a href="#" rel="1">Duis</a>
+				<a href="#" rel="1">aute</a>
+				<a href="#" rel="1">dolor</a>
+				<a href="#" rel="1">in</a>
+				<a href="#" rel="1">reprehenderit</a>
+				<a href="#" rel="1">voluptate</a>
+				<a href="#" rel="1">velit</a>
+			  </div>
+			  <form action="#" method="get" accept-charset="utf-8" id="tagForm">
+				<h2>Font</h2>
+				<p>
+				  <input type="text" value="7" id="minFont">
+				  <label for="min">to </label><input type="text" value="24" id="maxFont">
+				  <select name="unit" id="unit">
+					<option selected value="pt">pt</option>
+					<option value="px">px</option>
+					<option value="em">em</option>        
+				  </select>
+				</p>
+				<h2>Colour Gradient</h2>
+				<p>
+				  <label># </label>
+				  <input type="text" value="CDE" id="startColour">
+				  <label>to # </label><input type="text" value="F25" id="endColour">
+				</p>
+
+				<p><input type="submit" value="Rebuild Cloud"></p>
+			  </form>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#tagcloud a").tagcloud();
+		</script>
+		<div class="footer">
+		  get the source code on GitHub : <a href="http://github.com/addywaddy/jquery.tagcloud.js">addywaddy/jquery.tagcloud.js</a>
+		</div>
+	</div>
+  </div>
+  <div style="display:none">
+	{% include cnzz_statistics.html %}
+  </div>
+</body>
+</html>

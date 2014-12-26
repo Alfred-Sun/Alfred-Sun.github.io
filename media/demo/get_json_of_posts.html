@@ -15,12 +15,68 @@ description: jQuery 实现异步加载文章列表
     <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
     <link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
 	<title>{{ page.title }}</title>
+	{% include baidu_statistics.html %}
+	{% include google_analytics.html %}
 	<script type="text/javascript" src="{{ site.root }}/{{ site.asset_dir.javascripts }}/jquery-1.10.2.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<style type="text/css">
-		
+		.recent {
+			list-style-type: square;
+			list-style-position: outside;
+			padding: 20px 40px;
+			text-align: justify;
+			margin: 50px auto;
+			display: block;
+		}
+		.date {
+			text-align: left;
+			margin:auto 40px auto 5px;
+		}
+		.loading{float: left;padding: 50px 20px 10px;font-weight:bold;}
+		.loading img{padding-right: 10px;}
+		.try_again{padding:5px;margin-left:20px;bottom:80px;position:absolute;font-style: italic;display:block;}
+		.disabled, .disabled:focus{color: #777;cursor: not-allowed;}
+		#cardflip {
+			width: 200px;
+			height: 200px;
+			float:  right;
+			right: 20px;
+			position: relative;
+			margin: 60px auto;
+			-webkit-perspective: 800px;
+			-moz-perspective: 800px;
+			-o-perspective: 800px;
+			perspective: 800px;
+		}
+		#card_count {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			-webkit-transition: -webkit-transform 1s;
+			-moz-transition: -moz-transform 1s;
+			-o-transition: -o-transform 1s;
+			transition: transform 1s;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-o-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			line-height: 200px;
+			color: white;
+			text-align: center;
+			font-weight: bold;
+			font-size: 140px;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			-o-backface-visibility: hidden;
+			backface-visibility: hidden;
+		}
+		.card5{background: #2c3e50;}
+		.card4{background: #8e44ad;}
+		.card3{background-color: #27ae60;}
+		.card2{background: #3498db;}
+		.card1{background-color: #e74c3c;}
 	</style>
   </head>
   <body>
@@ -87,17 +143,16 @@ description: jQuery 实现异步加载文章列表
 						$("#card_count").html(5);
 						$("#card_count").attr("class", "card5");
 						$("#card_count").fadeIn();
-						timeCount();
+						setTimeout(timeCount, 500);
 					});
 				});
 				
 			</script>
 			</div>
+		</div>
 	</div>
 	<div style="display:none">
-	{% include baidu_statistics.html %}
 	{% include cnzz_statistics.html %}
-	{% include google_analytics.html %}
 	</div>
   </body>
 </html>

@@ -1,0 +1,17 @@
+{% if site.cnzz_statistics_tracking_id %}
+  <!-- CNZZ Statistics-asynchronize -->
+  <script>
+  (function() {
+    var cnzz_data = document.createElement("script");
+    cnzz_data.src = "//s11.cnzz.com/z_stat.php?id={{ site.cnzz_statistics_tracking_id }}&amp;show=pic1";
+	cnzz_data.type="text/javascript";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(cnzz_data, s);
+	var cnzz_data_ = document.createElement("script");
+	cnzz_data_.src = "//c.cnzz.com/core.php?web_id={{ site.cnzz_statistics_tracking_id }}&amp;show=pic1&amp;t=z";
+	cnzz_data_.type="text/javascript";
+	cnzz_data_.charset="utf-8";
+	s.parentNode.insertBefore(cnzz_data_, s);
+  })();
+  </script>
+{% endif %}
