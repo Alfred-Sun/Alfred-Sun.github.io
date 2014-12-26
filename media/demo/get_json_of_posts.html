@@ -35,6 +35,7 @@ description: jQuery 实现异步加载文章列表
 			<div class="loading"><img src="{{ site.root }}/{{ site.asset_dir.images }}/loading.gif">Loading...</div>
 			<div id="cardflip"><div id="card_count" class="card5">5</div></div>
 			<div id="post_list"></div>
+			<button class="try_again" style="display:none;" click="return false;">Try again !</button>
 			<script>
 				function timeCount() {
 					var c=4;
@@ -44,7 +45,7 @@ description: jQuery 实现异步加载文章列表
 							$("#card_count").fadeOut("slow", function() {
 								if (!! _POSTS.list) {
 									  var data = _POSTS.list;
-									  var content = "<ul class=\"compact recent\">";
+									  var content = "<ul id=\"posts\" class=\"compact recent\">";
 									  $.each(data,
 									  function(i, item) {
 										content += "<li><span class=\"date\">" + item.date + "</span><a href=\"" + item.url + "\">" + item.title + "</a></li>";
@@ -53,7 +54,7 @@ description: jQuery 实现异步加载文章列表
 									  $(".loading").remove();
 									  $("#post_list").hide();
 									  $("#post_list").append(content);
-									  $("#post_list").fadeIn("slow");
+									  $("#post_list").fadeIn("slow", function(){if($(".try_again").hasClass("disabled"))$(".try_again").removeClass("disabled");else $(".try_again").show();});
 								} else {
 									$(".loading").html("<font color='red'>Load Error</font>");
 									console.log("ERROR");
@@ -74,6 +75,18 @@ description: jQuery 实现异步加载文章列表
 					//function(data) {
 					$.getScript("{{ site.demo_dir }}/posts_list.js",
 					function() {
+						timeCount();
+					});
+					$(".try_again").on('click',function() {
+						if ($(this).hasClass("disabled")) {
+							return;
+						}
+						$(this).addClass("disabled");
+						clearTimeout();
+						$("#posts").remove();
+						$("#card_count").html(5);
+						$("#card_count").attr("class", "card5");
+						$("#card_count").fadeIn();
 						timeCount();
 					});
 				});

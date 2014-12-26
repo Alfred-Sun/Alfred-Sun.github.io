@@ -129,8 +129,10 @@ h1 {
 	text-align: left;
 	margin:auto 40px auto 5px;
 }
-.loading{float: left;padding: 70px 20px 10px;font-weight:bold;}
+.loading{float: left;padding: 50px 20px 10px;font-weight:bold;}
 .loading img{padding-right: 10px;}
+.try_again{padding:5px;margin-left:20px;bottom:80px;position:absolute;font-style: italic;display:block;}
+.disabled, .disabled:focus{color: #777;cursor: not-allowed;}
 #cardflip {
 	width: 200px;
 	height: 200px;
