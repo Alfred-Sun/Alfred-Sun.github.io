@@ -1,10 +1,11 @@
 ---
 layout: post
-title: Jekyll中用SyntaxHighlighter
+title: Jekyll 中用 SyntaxHighlighter
 category: GitHub Pages
 tags: [Jekyll, SyntaxHighlighter]
 author: Alfred Sun
-keywords: GitHub Pages, Syntax Highlight
+keywords: GitHub Pages, SyntaxHighlight
+description: 本文介绍如何使用SyntaxHighlight JS插件高亮代码，以及如何在GitHub Pages中引进这个插件。
 ---
 
 ## SyntaxHighligher

@@ -123,7 +123,7 @@ description: jQuery 实现异步加载文章列表
 						c=c-1;
 						t=setTimeout(timedCount, 1000);
 					}
-					setTimeout(timedCount, 500);
+					t=setTimeout(timedCount, 500);
 				}
 				
 				$(document).ready(function() {
@@ -138,7 +138,6 @@ description: jQuery 实现异步加载文章列表
 							return;
 						}
 						$(this).addClass("disabled");
-						clearTimeout();
 						$("#posts").remove();
 						$("#card_count").html(5);
 						$("#card_count").attr("class", "card5");
