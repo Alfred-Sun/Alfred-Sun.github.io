@@ -1,14 +1,26 @@
 ---
 layout: null
-title: 
-keywords: 
-description: 
+title: Prettify Themes Gallery
+keywords: google-code-prettify, themes
+description: 官方标准 google-code-prettify 主题
 ---
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html><head>
-<title>Prettify Themes Gallery</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="{{site.author.name}}" />
+	<meta name="keywords" content="{{ page.keywords }}" />
+	<meta name="description" content="{{ page.description }}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
+    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+    <link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
+	<title>{{ page.title }}</title>
+	{% include baidu_statistics.html %}
+	{% include google_analytics.html %}
+
 <style type="text/css">
 iframe { width: 100%; border-style: none; margin: 0; padding: 0 }
+span.attribution{font-size:14px;line-height:180%;}
+.theme-display{text-align:left;display:inline-block;}
 </style>
 <script>
 var allThemes = [
@@ -38,6 +50,7 @@ function adjustChildIframeSize(themeName, width, height) {
   var container = document.getElementById(themeName).parentNode;
   container.style.width = (+width + 16) + 'px';
   container.style.display = 'inline-block';
+  container.style["text-align"] = 'left';
   var iframe = container.getElementsByTagName('iframe')[0];
   iframe.style.height = (+height + 16) + 'px';
 }
@@ -47,48 +60,60 @@ function adjustChildIframeSize(themeName, width, height) {
 <body>
 <noscript>This page requires JavaScript</noscript>
 
-<h1>Gallery of themes for
-<a href="http://code.google.com/p/google-code-prettify/">code prettify</a></h1>
-<p>
-Click on a theme name for a link to the file in revision control.
-Print preview this page to see how the themes work on the printed page.
-</p>
-<script>(function () {
-  // Produce an iframe per theme.
-  // We pass the threme name to the iframe via its URI query, and
-  // it loads prettify and the theme CSS, and calls back to this page
-  // to resize the iframe.
-  for (var i = 0, n = allThemes.length; i < n; ++i) {
-    var theme = allThemes[i];
-    if (!theme) { continue; }
-    var iframe = document.createElement('iframe');
-    iframe.name = theme.name;
-    iframe.src = 'html_code.html?' + encodeURIComponent(theme.name);
-    var header = document.createElement('h2');
-    header.id = theme.name;
-    var linkToThemeSrc = document.createElement('a');
-    linkToThemeSrc.href = (
-        (theme.name === 'default'
-         ? '{{ site.root }}/{{ site.asset_dir.javascripts }}/google-code-prettify/prettify.css'
-         : '' + encodeURIComponent(theme.name) + '.css'));
-    linkToThemeSrc.appendChild(document.createTextNode(
-       theme.name.replace(/\b[a-z]/g,  // Capitalize first letter of each word
-       function (letter) { return letter.toUpperCase(); })));
-    header.appendChild(linkToThemeSrc);
+<div class="container">
+	<div class="top">
+		<a href="{{ site.root }}/">Skip to home</a>
+		<span style="float: right;">{{ site.subtitle }}</span>
+	</div>
+	<div id="main" class="main">
+		<h1>Gallery of themes for <a href="http://code.google.com/p/google-code-prettify/">code prettify</a></h1>
+		<p>
+		Click on a theme name for a link to the file in revision control.
+		Print preview this page to see how the themes work on the printed page.
+		</p>
+		<script>(function () {
+		  // Produce an iframe per theme.
+		  // We pass the threme name to the iframe via its URI query, and
+		  // it loads prettify and the theme CSS, and calls back to this page
+		  // to resize the iframe.
+		  for (var i = 0, n = allThemes.length; i < n; ++i) {
+			var theme = allThemes[i];
+			if (!theme) { continue; }
+			var iframe = document.createElement('iframe');
+			iframe.name = theme.name;
+			iframe.src = 'html_code.html?' + encodeURIComponent(theme.name);
+			var header = document.createElement('h2');
+			header.id = theme.name;
+			var linkToThemeSrc = document.createElement('a');
+			linkToThemeSrc.href = (
+				(theme.name === 'default'
+				 ? '{{ site.root }}/{{ site.asset_dir.javascripts }}/google-code-prettify/prettify.css'
+				 : '' + encodeURIComponent(theme.name) + '.css'));
+			linkToThemeSrc.appendChild(document.createTextNode(
+			   theme.name.replace(/\b[a-z]/g,  // Capitalize first letter of each word
+			   function (letter) { return letter.toUpperCase(); })));
+			header.appendChild(linkToThemeSrc);
 
-    var attribution;
-    if (theme.authorHtml) {
-      attribution = document.createElement('span');
-      attribution.className = 'attribution';
-      attribution.innerHTML = 'by ' + theme.authorHtml;
-    }
+			var attribution;
+			if (theme.authorHtml) {
+			  attribution = document.createElement('span');
+			  attribution.className = 'attribution';
+			  attribution.innerHTML = 'by ' + theme.authorHtml;
+			}
 
-    var div = document.createElement('div');
-    div.appendChild(header);
-    if (attribution) { div.appendChild(attribution); }
-    div.appendChild(iframe);
-    document.body.appendChild(div);
-  }
-})()</script>
+			var div = document.createElement('div');
+			div.className = 'theme-display';
+			div.appendChild(header);
+			if (attribution) { div.appendChild(attribution); }
+			div.appendChild(iframe);
+			//document.body.appendChild(div);
+			document.getElementById('main').appendChild(div);
+		  }
+		})()</script>
 
+	</div>
+</div>
+<div style="display:none">
+{% include cnzz_statistics.html %}
+</div>
 </body></html>

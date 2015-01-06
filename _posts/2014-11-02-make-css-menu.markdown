@@ -1,8 +1,10 @@
 ---
 layout: post
 title: html中的&lt;ul&gt;标签中&lt;li&gt;横向排列
-category: Html
-tags: [html, css]
+category: HTML
+tags: [HTML, CSS]
+keywords: CSS, ul, li
+description: 如何写出横向菜单的HTML页面
 ---
 
 2011-07-22 20:10  html css float class  文档浏览器
