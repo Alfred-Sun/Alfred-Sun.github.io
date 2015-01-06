@@ -68,6 +68,7 @@ body,.hover {
 }
 .top {
 	line-height: 24px;
+	width: 100%;
 	height: 24px;
 	font-size: 12px;
 	background: rgba(255,255,255,0.6);
@@ -75,7 +76,8 @@ body,.hover {
 	z-index: 9999;
 	opacity: 0.6;
 	filter: alpha(opacity=60);
-	position: relative;
+	top: 0.4px;
+	position: fixed;
 	background-color: #40aa52;
 	box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
@@ -91,7 +93,7 @@ body,.hover {
 }
 .main {
 	width: 800px;
-	margin: 10px auto 30px auto;
+	margin: 50px auto 30px auto;
 	clear: both;
 }
 .content {
