@@ -1,0 +1,86 @@
+---
+layout: null
+title: SyntaxHighlighter Brushes Test
+keywords: SyntaxHighlighter, autoloader
+description: SyntaxHighlighter 演示示例
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="{{site.author.name}}" />
+	<meta name="keywords" content="{{ page.keywords }}" />
+	<meta name="description" content="{{ page.description }}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
+    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+	<link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
+	<title>{{ page.title }}</title>
+	{% include baidu_statistics.html %}
+	{% include google_analytics.html %}
+
+    <script type="text/javascript" src="{{ site.root }}/{{ site.asset_dir.javascripts }}/jquery-1.10.2.js"></script>
+    <!-- SyntaxHighlighter -->
+    <script type="text/javascript" src="./shCore.js"></script>
+    <script type="text/javascript" src="./shAutoloader.js"></script>
+    <link type="text/css" rel="Stylesheet" href="./shCoreDefault.css" />
+	<style type="text/css">
+        .test-wrap{
+            width: 100%;
+            height: 800px;
+            overflow: auto;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+	<div class="top">
+		<a href="{{ site.root }}/">Skip to home</a>
+		<span style="float: right;">{{ site.subtitle }}</span>
+	</div>
+	<a href="https://github.com/syntaxhighlighter/syntaxhighlighter"><img style="position: fixed; top: 0.4px; right: 0; border: 0; z-index: 10000;" src="../forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+	<div class="main">
+		<h1>SyntaxHighlighter Brush - CSharp</h1>
+		<div class="content">
+		<div style="width:95%;margin:60px auto;">
+		<p>This is SyntaxHighlighter theme <b>Default</b> in action !</p>
+		<pre class="brush: csharp; highlight: [6, 10]">
+		public IEnumerator&lt;String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
+		{
+			/***********************************
+ 			** Multiline block comments
+			 **********************************/
+			for (int i = 0; i&lt;arr_Course.Length; i++)
+			{
+				Course course = arr_Course[i];
+				yield return "选修：" + course.Name;
+				yield return Environment.NewLine;// 两个 yield return
+			}
+		}
+		</pre></div>
+	</div>
+</div>
+<div style="display:none">
+	{% include cnzz_statistics.html %}
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		function path() {
+			var args = arguments, result = [];
+			for (var i = 0; i < args.length; i++)
+				result.push(args[i].replace('@', './'));
+			return result
+		};
+
+		SyntaxHighlighter.autoloader.apply(null, path(
+			'cpp c                  @shBrushCpp.js',
+			'c# c-sharp csharp      @shBrushCSharp.js',
+			'plain text             @shBrushPlain.js')
+		);
+
+		SyntaxHighlighter.all();
+	});
+</script>
+</body>
+</html>

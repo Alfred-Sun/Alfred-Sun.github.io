@@ -8,9 +8,21 @@ keywords: GitHub Pages, SyntaxHighlight
 description: 本文介绍如何使用SyntaxHighlight JS插件高亮代码，以及如何在GitHub Pages中引进这个插件。
 ---
 
-## SyntaxHighligher
+前几天把博客里的代码高亮改成[SyntaxHighligher][1]了，感觉好了很多，看着也舒服，复制代码方便许多。下面就来简短介绍下这个工具。
 
-前几天把博客里的代码高亮改成[SyntaxHighligher][1]了，感觉好了很多，看着也舒服，关键是复制代码的时候，行号连着代码在一行复制了。Jekyll的灵活性应该比Blogger更大，而且直接贴改代码，所以对于Jekyll这个方法是合适的。下面是具体的过程：
+> _SyntaxHighligher is an open source Java Script client side code syntax highlighter._
+
+将它安装在 "**home page, blog, CMS, documentation CD or any other web page**"，用来美化你的代码。
+
+
+## Installation
+
+1. 引入基本的文件： shore.js
+2. 添加需要的笔刷JS（如：Javascript代码使用 shBrushJScript.js；可用的笔刷列表见[这里][2]）
+3. 引入CSS样式：shCore.css、shThemeDefault.css
+4. 用`<pre />`或者`<script />`创建代码块
+5. 执行JS方法：`SyntaxHighlighter.all()`
+
 
 在Jekyll的模板页里的head里面，添加如下代码，选自己需要的语言的刷子。
 
@@ -23,18 +35,12 @@ description: 本文介绍如何使用SyntaxHighlight JS插件高亮代码，以�
 <script src='/static/js/syntaxhighlighter/shCore.js' type='text/javascript'></script>
 
 <!-- The Following is styles for different language  -->
-<script src='/static/js/syntaxhighlighter/shBrushBash.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushCpp.js' type='text/javascript'></script>
-<script src='/static/js/syntaxhighlighter/shBrushCSharp.js' type='text/javascript'></script>
-<script src='/static/js/syntaxhighlighter/shBrushCss.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushJava.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushJScript.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushPhp.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushPython.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushRuby.js' type='text/javascript'></script>
-<script src='/static/js/syntaxhighlighter/shBrushSql.js' type='text/javascript'></script>
-<script src='/static/js/syntaxhighlighter/shBrushVb.js' type='text/javascript'></script>
-<script src='/static/js/syntaxhighlighter/shBrushXml.js' type='text/javascript'></script>
 <script src='/static/js/syntaxhighlighter/shBrushPerl.js' type='text/javascript'></script>
 
 <script language='javascript'>
@@ -42,7 +48,7 @@ description: 本文介绍如何使用SyntaxHighlight JS插件高亮代码，以�
 </script>
 ```
 
-其中，src里面是文件的目录，把从官网上下载的对应的js文件和css文件放到对应的目录即可。其实也可以直接引用官网的js文件，比如这样（以下代码来自我参考的网址，去掉了一些不需要的代码）
+其中，src里面是文件的目录，把从官网上下载的对应的js文件和css文件放到对应的目录即可。其实也可以直接引用官网的js文件，比如这样（[参考网址][3]）
 
 ```html
 <link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
@@ -56,9 +62,12 @@ description: 本文介绍如何使用SyntaxHighlight JS插件高亮代码，以�
 </script>
 ```
 
-Jekyll Serve启动`localhost:4000`来写博客预览代码的高亮效果。
+做好以上准备后，就可以写代码了。SyntaxHighlighter搜索带有特殊CSS类属性的 `<pre />` 标签，然后对这段代码块着色。这个属性需要设定笔刷的参数，它的值是笔刷的别名。
 
-之后，写代码的时候，不要使用markdown的语法，直接用pre抱起来就好了。就比如这样
+另外，Markdown 写代码的时候，不要用其代码区块的语法，直接用pre标签包起来就好。   
+下面是个Sample（点这里看[Demo][]效果）：
+
+[Demo]: {{ site.demo_dir }}/codeHighlight/shAutoloader.html
 
 ```html
 <pre class="brush: csharp">
@@ -74,11 +83,18 @@ public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就�
 </pre>
 ```
 
-效果就和以上一样了。这个应该比pygments更好看吧。不过目前加载速度比较慢。
+Jekyll Serve启动`localhost:4000`来写博客预览代码语法的高亮效果。这个比pygments更好看, 不过加载渲染比较慢。
 
-## 动态加载javascripts
+注意：所有的右方括号必须是**html 转义字符**，例如代码块里面的 `<` 必须用 `&lt;` 来替换。
 
-需要每次都加载所有的js文件，加载速度比较慢。其实，可以利用动态加载js来实现对于不同的语言加载不同的语法分析文件，从而提高js文件的加载速度。废话不多说了，上代码
+
+## Configuration & CSS Themes
+
+
+
+## 动态加载 Javascript
+
+由于每次都需要加载所有的js文件，加载速度比较慢。可以利用动态加载js来实现针对不同的语言加载不同的语法分析文件，从而提高js文件的加载速度。废话不多说，上代码：
 
 ```html
 <script language='javascript'>
@@ -124,17 +140,17 @@ public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就�
 
 把以上这段代码放在Jekyll模板页的body的最后面即可。
 
-这段代码需要jQuery，我的是1.4.2。此外，shCore.css，shThemeDefault.css文件不是动态加载，所以，这两个文件仍然需要直接放在模板页的头部。
+这段代码需要jQuery，1.4.2测试没问题。此外，shCore.css，shThemeDefault.css文件不是动态加载，所以，这两个文件仍然需要直接放在模板页的头部。
+
 
 ## JS Autoloader
 
-SyntaxHighlighter着色过程中，针对不同的语言需要根据适合的脚本刷子来着色，这样造成你在页面上不得不预先加载所有可能的用到的 brush.js 。 [shAutoloader.js v3.0.83][2] 正是为解决此问题而生，它会根据待着色代码块所使用到的笔刷配置来动态创建`<script>`节点以加载适合的JavaScript文件，不会造成载入多余资源的浪费。
+SyntaxHighlighter着色过程中，针对不同的语言需要根据适合的脚本刷子来着色，这样造成你在页面上不得不预先加载所有可能用到的 brush.js 。 [shAutoloader.js][4](v3.0.83) 正是为解决此问题而生，它会根据待着色代码块所使用到的笔刷配置来动态创建`<script>`节点以加载适合的JavaScript文件，不会造成载入多余资源的浪费。
 
-### Dynamic Brush Loading
 
-SyntaxHighlighter comes with almost 30 brushes out of the box. One of the most requested feature has been the ability to dynamically load them without having to load them all on the same page.
+### a. Dynamic Brush Loading
 
-Version 3 addresses this problem with with the new autoloader script. Setting autoloader up is as simple as adding shAutoloader.js file to your page and telling autoloader where your brushes are. In fact, this site is using the autoloader. Have a look at the example below:
+Version 3 支持动态加载 brushes 文件，无需在同一页面加载所有 JS 。看下面的示例来说明如何使用 autoloader 脚本 - **"shAutoloader.js"**：
 
 ```html
 <script src="shCore.js" type="text/javascript"></script>
@@ -150,22 +166,24 @@ SyntaxHighlighter.all();
 </script>
 ```
 
-Now any code blocks which use js, jscript, javascript and applescript brushes will trigger dynamic loading of the appropriate JavaScript file.
+解释下上面的意思：任何使用 js, jscript, javascript 和 applescript 笔刷的代码块，都会触发这个脚本，动态加载相应的JS文件。
 
-### API
 
+### b. API 
+
+```
 SyntaxHighlighter.autoloader(brushes)
+```
 
-brushes
-	Array: [ 'alias1 alias2 /full/path/to/brush.js', ... ]
-Array of space separated strings where all values but the last one are brush aliases and the last value is a full path the JavaScript file.
+brushes 参数说明
 
-brushes
-	Array: [ [ 'alias1', 'alias2', '/full/path/to/brush.js' ], ... ]
-Array of strings where all values but the last one are brush aliases and the last value is a full path the JavaScript file.
-This site is using the autoloader which is set up like this:
++ Array: [ 'alias1 alias2 /full/path/to/brush.js', ... ]   
+以空白符为分隔符的字符串数组，字符串的最后一个值是笔刷JS文件的路径，其他值是brush别名
++ Array: [ [ 'alias1', 'alias2', '/full/path/to/brush.js' ], ... ]   
+字符串组成的二维数组，数组中最后一个字符串值是JS路径，其他字符串值是brush别名
 
-### Example
+
+### c. Example 示例
 
 ```javascript
 function path()
@@ -212,4 +230,6 @@ SyntaxHighlighter.all();
 
 
 [1]: http://alexgorbatchev.com/SyntaxHighlighter
-[2]: http://alexgorbatchev.com/SyntaxHighlighter/manual/api/autoloader.html
+[2]: http://alexgorbatchev.com/SyntaxHighlighter/manual/brushes/
+[3]: http://alexgorbatchev.com/SyntaxHighlighter/hosting.html
+[4]: http://alexgorbatchev.com/SyntaxHighlighter/manual/api/autoloader.html
