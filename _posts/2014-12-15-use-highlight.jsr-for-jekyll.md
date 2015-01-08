@@ -10,7 +10,9 @@ description:
 ---
 
 
-highlight.js
+[highlight.js][]
+
+[highlight.js]: {{ site.demo_dir }}/codeHighlight/highlight.js/live_demo.html
 
 
 <!--more-->

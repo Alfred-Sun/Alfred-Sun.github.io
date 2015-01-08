@@ -1,0 +1,160 @@
+---
+layout: null
+title: SyntaxHighlighter Themes
+keywords: SyntaxHighlighter, css themes
+description: SyntaxHighlighter CSS Themes
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="{{site.author.name}}" />
+	<meta name="keywords" content="{{ page.keywords }}" />
+	<meta name="description" content="{{ page.description }}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
+    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+	<link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
+	<title>{{ page.title }}</title>
+	{% include baidu_statistics.html %}
+	{% include google_analytics.html %}
+	
+	<script type="text/javascript" src="{{ site.root }}/{{ site.asset_dir.javascripts }}/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="top">
+		<a href="{{ site.root }}/">Skip to home</a>
+		<span style="float: right;">{{ site.subtitle }}</span>
+	</div>
+	<a href="https://github.com/syntaxhighlighter/syntaxhighlighter"><img style="position: fixed; top: 0.4px; right: 0; border: 0; z-index: 10000;" src="../../forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+	<div class="main">
+		<h1>{{ page.title }}</h1>
+		<div id="output"></div>
+	</div>
+</div>
+
+<div style="display:none">
+	{% include cnzz_statistics.html %}
+</div>
+
+<style>
+.test-wrap {
+	width: 100%;
+	height: 760px;
+	overflow: auto;
+	border: none;
+}
+</style>
+
+<script id="sample" type="text/plain">
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>SyntaxHighlighter Theme Test</title>
+	</head>
+	
+	<body>
+		&lt;script>
+		/**
+		 * Looks for a child or parent node which has specified classname.
+		 * Equivalent to jQuery's $(container).find(".className")
+		 * @param {Element} target Target element.
+		 * @param {String} search Class name or node name to look for.
+		 * @param {Boolean} reverse If set to true, will go up the node tree instead of down.
+		 * @return {Element} Returns found child or parent element on null.
+		 */
+		function findElement(target, search, reverse /* optional */)
+		{
+			if (target == null)
+				return null;
+		
+			var nodes			= reverse != true ? target.childNodes : [ target.parentNode ],
+				propertyToFind	= { '#' : 'id', '.' : 'className' }[search.substr(0, 1)] || 'nodeName',
+				expectedValue,
+				found
+				;
+				
+			// main return of the found node
+			if ((target[propertyToFind] || '').indexOf(expectedValue) != -1)
+				return target;
+		
+			return found;
+		};
+		&lt;/script>
+		
+	</body>
+	</html>
+</script>
+
+<script type="text/javascript">
+var themes = [
+		['#fff', 'Default'],
+		['#fff', 'Django'],
+		['#fff', 'Eclipse'],
+		['#000', 'Emacs'],
+		['#fff', 'FadeToGrey'],
+		['#fff', 'MDUltra'],
+		['#fff', 'Midnight'],
+		['#fff', 'RDark']
+	];
+	
+$(document).ready(function()
+{
+	var sample = $('#sample').text().replace(/</g, '&lt;');
+	
+	$.each(themes, function(index)
+	{
+		var $iframe = $('<iframe class="test-wrap" src="about:blank" />'),
+			background = this[0],
+			themeName = this[1]
+			;
+		
+		$('#output')
+			.append(''
+				+ '<h2>'
+					+ '<a href="#theme' + (index + 1) + '">next</a> '
+					+ '<a name="theme' + index + '" style="padding-top:40px;">'
+						+ themeName
+					+ '</a>'
+				+ '</h2>'
+			)
+			.append($iframe)
+			;
+			
+		$iframe.ready(function()
+		{
+			var doc = $iframe[0].contentDocument;
+			$iframe.css('background', background);
+
+			doc.write(''
+                + '<link type="text/css" rel="stylesheet" href="./shCore' + themeName + '.css"/>'
+
+				//+ '<scr' + 'ipt type="text/javascript" src="scripts/XRegExp.js"></scr' + 'ipt>'
+				+ '<scr' + 'ipt type="text/javascript" src="./shCore.js"></scr' + 'ipt>'
+				+ '<scr' + 'ipt type="text/javascript" src="./shBrushXml.js"></scr' + 'ipt>'
+				+ '<scr' + 'ipt type="text/javascript" src="./shBrushJScript.js"></scr' + 'ipt>'
+
+				+ '<pre type="syntaxhighlighter" class="brush: js; html-script: true; highlight: [5, 20]" title="This is SyntaxHighlighter theme ' + themeName + ' in action!">'
+					+ sample
+				+ '</pre>'
+				+ '<pre type="syntaxhighlighter" class="brush: js; html-script: true; collapse: true">'
+					+ sample
+				+ '</pre>'
+				+ '<scr' + 'ipt type="text/javascript">'
+					+ 'window.onload=function(){SyntaxHighlighter.highlight();};'
+					// 'setTimeout(function(){SyntaxHighlighter.highlight();}, 500);'
+				+ '</scr' + 'ipt>'
+				);
+			doc.close();
+		});
+	});
+	
+	$('#output a[name]:first').attr('name', 'top');
+	$('#output a[href]:last').attr('href', '#top').html('top');
+});
+</script>
+
+</body>
+</html>

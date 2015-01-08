@@ -67,7 +67,7 @@ description: 本文介绍如何使用SyntaxHighlight JS插件高亮代码，以�
 另外，Markdown 写代码的时候，不要用其代码区块的语法，直接用pre标签包起来就好。   
 下面是个Sample（点这里看[Demo][]效果）：
 
-[Demo]: {{ site.demo_dir }}/codeHighlight/shAutoloader.html
+[Demo]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/shAutoloader.html
 
 ```html
 <pre class="brush: csharp">
@@ -90,6 +90,91 @@ Jekyll Serve启动`localhost:4000`来写博客预览代码语法的高亮效果�
 
 ## Configuration & CSS Themes
 
+### CSS Themes
+
+新版 SyntaxHighligher 支持自定义主题并提供了8个可选的官方标准主题。   
+注意：在源码styles目录里面，还有另外的CSS文件，是把shCore.css和其他主题CSS合并在一起的CSS样式文件。如：`shCoreEclipse.css == shCore.css + shThemeEclipse.css`
+
+| Name | File |
+| ---- | ---- |
+|[Default][]	|shThemeDefault.css	|
+|[Django][]		|shThemeDjango.css	|
+|[Eclipse][]	|shThemeEclipse.css	|
+|[Emacs][]		|shThemeEmacs.css	|
+|[Fade To Grey][]|shThemeFadeToGrey.css|
+|[MDUltra][]	|shCoreMDUltra.css	|
+|[Midnight][]	|shThemeMidnight.css|
+|[RDark][]		|shThemeRDark.css	|
+
+[Default]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html
+[Django]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme1
+[Eclipse]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme2
+[Emacs]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme3
+[Fade To Grey]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme4
+[MDUltra]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme5
+[Midnight]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme6
+[RDark]: {{ site.demo_dir }}/codeHighlight/syntaxhighlighter/syntaxhighlighter_themes.html#theme7
+
+### Configured in 3 different ways
+
+#### 1. SyntaxHighlighter.config
+
+对语法高亮全局参数设置，主要包括：
+
+|Name		|Value	|Description	|
+|-----------|-------|---------------|
+|bloggerMode|false	|与blogger.com集成时，必须开启该选项|
+|[strings][]|Object	|设定默认的显示信息,可用的信息参数包含: expandSource / help / alert / noBrush / brushNotHtmlScript / viewSource / copyToClipboard / copyToClipboardConfirmation / print 等|
+|stripBrs	|false	|忽略代码块中的`<br />`|
+|tagName	|"pre"	|自定义需要高亮的代码块的标签tag|
+
+[strings]: http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration/strings.html
+
+Example: 
+
+```html
+<script type="text/javascript">
+	SyntaxHighlighter.config.strings.viewSource = "view my source!!!!";
+	SyntaxHighlighter.config.bloggerMode = true;
+	SyntaxHighlighter.all();
+</script>
+```
+
+#### 2. SyntaxHighlighter.defaults
+
+对单个代码块语法高亮参数进行设置，支持的选项有：
+
+|Name		|Value	|Description	|
+|-----------|-------|---------------|
+|auto-links	|true	|自动识别超链接，使得代码块中的URL可点击进入|
+|class-name	|''		|对代码块添加CSS类，自定义样式|
+|collapse	|false	|强制初始代码块收起|
+|first-line	|1		|定义代码块的起始行号|
+|gutter		|true	|显示行号|
+|highlight	|null	|高亮代码块中的某几行，传入的值可以是高亮多行的整型数组([1,3,7])，或仅高亮单行的数值|
+|html-script|false	|允许对HTML/XML和脚本混合代码着色，开启后必须加载`shBrushXml.js`脚本|
+|smart-tabs	|true	|灵活处理代码块中的Tab字符|
+|tab-size	|4		|设定显示Tab的长度|
+|toolbar	|true	|代码块上显示工具栏|
+
+Example: 
+
+```js
+SyntaxHighlighter.defaults['gutter'] = false;
+SyntaxHighlighter.defaults['smart-tabs'] = false;
+...
+SyntaxHighlighter.all();
+```
+
+#### 3. Parameters
+
+同 defaults 参数类似，可以针对单个代码块做高亮配置。相关的 Key/Value 对要跟 brush 参数一起放进 class 属性中，可以使用上面 defaults 表里面的任意属性进行配置。
+
+Example: 
+
+```html
+<pre class="brush: js; ruler: true; first-line: 10; highlight: [2, 4, 6]">...</pre>
+```
 
 
 ## 动态加载 Javascript
@@ -145,7 +230,7 @@ Jekyll Serve启动`localhost:4000`来写博客预览代码语法的高亮效果�
 
 ## JS Autoloader
 
-SyntaxHighlighter着色过程中，针对不同的语言需要根据适合的脚本刷子来着色，这样造成你在页面上不得不预先加载所有可能用到的 brush.js 。 [shAutoloader.js][4](v3.0.83) 正是为解决此问题而生，它会根据待着色代码块所使用到的笔刷配置来动态创建`<script>`节点以加载适合的JavaScript文件，不会造成载入多余资源的浪费。
+SyntaxHighlighter着色过程中，针对不同的语言需要根据适合的脚本刷子来着色，这样造成你在页面上不得不预先加载所有可能用到的brush.js。上述的动态加载方法是自己写的，同样SyntaxHighlighter官方也提供了相应的解决方案： [shAutoloader.js][4](v3.0.83) 正是为解决此问题而生，它会根据待着色代码块所使用到的笔刷配置来动态创建`<script>`节点以加载适合的JavaScript文件，不会造成载入多余资源的浪费。
 
 
 ### a. Dynamic Brush Loading
@@ -185,13 +270,12 @@ brushes 参数说明
 
 ### c. Example 示例
 
-```javascript
+{% highlight javascript linenos %}
 function path()
 {
 var args = arguments,
-	result = []
-	;
-	 
+	result = [];
+	
 for(var i = 0; i < args.length; i++)
 	result.push(args[i].replace('@', '/pub/sh/current/scripts/'));
 	 
@@ -225,7 +309,7 @@ SyntaxHighlighter.autoloader.apply(null, path(
 'xml xhtml xslt html    @shBrushXml.js'
 ));
 SyntaxHighlighter.all();
-```
+{% endhighlight %}
 
 
 
