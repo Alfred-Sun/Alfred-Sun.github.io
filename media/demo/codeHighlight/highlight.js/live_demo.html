@@ -79,6 +79,7 @@ description: highlight.js CSS Themes and test sets
     pre {
       margin: 0; font-size: medium;
 	  padding-right: 10px;
+	  /*white-space: pre-line;*/
     }
     #switch {
       overflow: auto; width: 67em;
@@ -1629,8 +1630,8 @@ heapExample
                   (if (if (clojure.lang.Util/equiv 'fn ifn)
                         (if (instance? clojure.lang.Symbol iname) false true))
                     ;; inserts the same fn name to the inline fn if it does not have one
-                    (assoc m :inline (cons ifn (cons (clojure.lang.Symbol/intern (.concat (.getName ^clojure.lang.Symbol name) "__inliner"))
-                                                     (next inline))))
+                    (assoc m :inline (cons ifn (cons (clojure.lang.Symbol/intern (.concat 
+						(.getName ^clojure.lang.Symbol name) "__inliner")) (next inline))))
                     m))
               m (conj (if (meta name) (meta name) {}) m)]
           (list 'def (with-meta name m)
@@ -1957,8 +1958,10 @@ EMPTY_HNDL = INTDCREATEHANDLE('05/03/2006 00:00:00', '05/03/2006 23:59:59', 3600
     <th>1С
     <td class="1c">
 <pre><code>#Если Клиент Тогда
-Перем СимвольныйКодКаталога = "ля-ля-ля"; //комментарий
-Функция Сообщить(Знач ТекстСообщения, ТекстСообщения2) Экспорт //комментарий к функции
+Перем СимвольныйКодКаталога = "ля-ля-ля";
+//комментарий
+Функция Сообщить(Знач ТекстСообщения, ТекстСообщения2) Экспорт
+//комментарий к функции
   x=ТекстСообщения+ТекстСообщения2+"
   |строка1
   |строка2

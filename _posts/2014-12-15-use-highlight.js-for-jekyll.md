@@ -173,6 +173,12 @@ pre .line::before {
 <pre>
 ```
 
+如果要阻止对某个代码块语法高亮，对`<code>`使用这个class:`language-none`；而如果要禁用JS自动高亮代码块，那么就在`<script>`上添加属性：`data-manual`：
+
+```html
+<script src="prism.js" data-manual></script>
+```
+
 详细的用法和Plugins介绍点[这里](http://prismjs.com/#basic-usage)。博主自己也测试了下([Demo][Prism_Demo])，发现代码片段非常多时，其渲染页面速度相比 highlight.js 要快些。另外，Prism 受制于浏览器版本，对最近的浏览器支持比较好。
 
 [Prism]: http://prismjs.com
