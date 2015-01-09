@@ -1,0 +1,129 @@
+---
+layout: null
+title: Examples Prism
+keywords: Prism, Syntax highlight
+description: prism.js and "Line Numbers" plugins demo
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<meta name="author" content="{{site.author.name}}" />
+<meta name="keywords" content="{{ page.keywords }}" />
+<meta name="description" content="{{ page.description }}" />
+<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
+<link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+<link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
+<title>{{ page.title }}</title>
+{% include baidu_statistics.html %}
+{% include google_analytics.html %}
+
+<link rel="stylesheet" href="prism_style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<script src="prism.js"></script>
+</head>
+<body style="text-align:left;">
+
+<div class="top">
+	<a href="{{ site.root }}/">Skip to home</a>
+	<span style="float: right;">{{ site.subtitle }}</span>
+</div>
+<a href="https://github.com/LeaVerou/prism"><img style="position: fixed; top: 0.4px; right: 0; border: 0; z-index: 10000;" src="../forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+
+<header>
+	<h2>Examples</h2>
+	<p>The examples in this page serve a dual purpose: They act as unit tests, making it easy to spot bugs, and at the same time demonstrate what Prism can do, on simple and on edge cases.</p>
+</header>
+
+<section class="language-markup">
+<h1>C++ Code Language</h1>
+<p>To use this language, use the class "language-cpp"</p>
+
+<pre><code>&lt;p>hi!&lt;/p></code></pre>
+
+<h2>Strings</h2>
+<pre class="line-numbers" data-start="40"><code>"foo \"bar\" baz"
+'foo \'bar\' baz'
+"Multi-line strings ending with a \
+are supported too."</code></pre>
+
+<h2>Macro statements</h2>
+<pre><code class="lang-c"># include &lt;stdio.h>
+#define PG_locked   0
+#define PG_error    1
+</code></pre>
+
+<h2>Booleans</h2>
+<pre><code>true;
+false;</code></pre>
+
+<h2>Operators</h2>
+<pre><code>a and b;
+c bitand d;</code></pre>
+
+<h2>Full example</h2>
+<pre class="line-numbers"><code class="language-cpp">/*
+David Cary 2010-09-14
+quick demo for wikibooks
+public domain
+*/
+#include &lt;iostream>
+#include &lt;vector>
+using namespace std;
+
+vector&lt;int> pick_vector_with_biggest_fifth_element(
+    vector&lt;int> left,
+    vector&lt;int> right
+){
+    if( (left[5]) &lt; (right[5]) ){
+        return( right );
+    };
+    // else
+    return( left );
+}
+
+int vector_demo(void){
+    cout &lt;&lt; "vector demo" &lt;&lt; endl;
+    vector&lt;int> left(7);
+    vector&lt;int> right(7);
+
+    left[5] = 7;
+    right[5] = 8;
+    cout &lt;&lt; left[5] &lt;&lt; endl;
+    cout &lt;&lt; right[5] &lt;&lt; endl;
+    vector&lt;int> biggest(
+        pick_vector_with_biggest_fifth_element( left, right )
+    );
+    cout &lt;&lt; biggest[5] &lt;&lt; endl;
+
+    return 0;
+}
+
+int main(void){
+    vector_demo();
+}</code></pre>
+
+<h2>C example</h2>
+<pre><code class="language-c">
+#include &lt;stdio.h>
+main(int argc, char *argv[])
+{
+   int c;
+   printf("Number of command line arguments passed: %d\n", argc);
+   for ( c = 0 ; c &lt; argc ; c++)
+      printf("%d. Command line argument passed is %s\n", c+1, argv[c]);
+   return 0;
+}
+</code></pre>
+
+</section>
+
+<br /><br />
+
+<div style="display:none">
+{% include cnzz_statistics.html %}
+</div>
+
+</body>
+</html>

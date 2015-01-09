@@ -12,7 +12,7 @@ description: highlight.js CSS Themes and test sets
 	<meta name="description" content="{{ page.description }}" />
 	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
     <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
-	<link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.scss" />
+	<link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
 	<title>{{ page.title }}</title>
 	{% include baidu_statistics.html %}
 	{% include google_analytics.html %}
@@ -55,6 +55,7 @@ description: highlight.js CSS Themes and test sets
   <style>
     body {
       font: small Arial, sans-serif;
+	  text-align: left;
     }
     h2 {
       font: bold 100% Arial, sans-serif;
@@ -77,6 +78,7 @@ description: highlight.js CSS Themes and test sets
     }
     pre {
       margin: 0; font-size: medium;
+	  padding-right: 10px;
     }
     #switch {
       overflow: auto; width: 67em;
@@ -86,7 +88,7 @@ description: highlight.js CSS Themes and test sets
     #switch li {
       float: left; width: 12em;
       padding: 0.1em; margin: 0.1em 1em 0.1em 0;
-      background: #EEE;
+      background: #F89B9B;
       cursor: pointer;
     }
     #switch li.current {
@@ -112,6 +114,7 @@ description: highlight.js CSS Themes and test sets
     .code .keyword {
       font-weight: bold;
     }
+	.main{width:95%;margin:30px;}
   </style>
 
   <script src="./highlight.pack.js"></script>
@@ -188,7 +191,15 @@ description: highlight.js CSS Themes and test sets
 </head>
 <body>
 
-<p>This is a demo/test page showing all languages supported by <a href="http://highlightjs.org/">highlight.js</a>.
+<div>
+	<div class="top">
+		<a href="{{ site.root }}/">Skip to home</a>
+		<span style="float: right;">{{ site.subtitle }}</span>
+	</div>
+	<a href="https://github.com/isagalaev/highlight.js"><img style="position: fixed; top: 0.4px; right: 0; border: 0; z-index: 10000;" src="../../forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+	<div class="main">
+
+<p style="margin-top:60px;">This is a demo/test page showing all languages supported by <a href="http://highlightjs.org/">highlight.js</a>.
 Most snippets do not contain working code :-).
 
 <div id="styleswitcher">
@@ -2715,6 +2726,9 @@ end;</code></pre>
 <pre><samp>Computer output</samp></pre></td></tr>
 
 </table>
+
+	</div>
+</div>
 
 <div style="display:none">
 	{% include cnzz_statistics.html %}
