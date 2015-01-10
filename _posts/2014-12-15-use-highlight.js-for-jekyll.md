@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jekyll 中用 highlight.js
+title: Jekyll 中用 Highlight.js
 category: GitHub Pages
 tags: [Jekyll, highlight.js]
 author: Alfred Sun
