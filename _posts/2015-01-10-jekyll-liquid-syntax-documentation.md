@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jekyll/Liquid 语法 API 文档
+title: Jekyll/Liquid API 语法文档
 categories:
  - Jekyll
  - Liquid
