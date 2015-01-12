@@ -4,7 +4,7 @@ title: Markdown 语法文档
 category: Markdown
 tags: [Markdown, Syntax]
 author: Alfred Sun
-updated: 2015-01-10 14:38
+updated: 2015-01-12 15:56
 keywords: Markdown, Syntax
 description: Markdown Syntax Documentation 刚开始接触markdown的时候，觉得好简单好方便，随着使用的深入，发现 Markdown 好像在很多地方有很多不同的实现，语法特性各不相同，顿时陷入迷茫
 ---
@@ -45,9 +45,51 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 [postach.io]: http://postach.io/
 [Evernote]: http://www.evernote.com/
 
+
+
+## Markdown 语法说明
+
 标准 Markdown 语法：http://daringfireball.net/projects/markdown/syntax   
 这边也有一份语法速查表：[Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
 另一份别人整理的 Markdown/GFM 语法：[MarkDown轻量级标记语言]({{ site.document_dir }}/MarkDown轻量级标记语言.pdf)
+
+
+
+## 一些 Markdown 参考
+
+Markdown是一种网络书写语言，其目标是实现易读易写，且兼容HTML语言。Markdown的流行得益于Github和Stackoverflow，Stackoverflow的代码块以及Github上的README.md文件格式都是通过Markdown表现的。从这里您可以很直观的看到Markdown的效果：https://github.com/adam-p/markdown-here
+
+使用Markdown可以书写自由书籍，关于此，您可以参看文章[用Markdown来写自由书籍-开源技术的方案][]，[开源书和开源技术-Markdown篇][]一文也介绍了一些Markdown与开源书和开源技术之间的渊源。已经有一些开源书籍使用Markdown书写了，亚嵌教育的开源书籍[源码开放学ARM][]、蒋鑫老师的[GotGithub][]一书，这些开源书籍都给学习者提供很大帮助。Markdown书写已经是一种开源精神体现。好了，既然Markdown与自由书写这么默契，我们怎么用Markdown来写自己的README.md，自己的博客甚至自己的开源书籍呢？
+
+这里有一份翻译的[Markdown的语法][]，从[这里](https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md)看可能更直观。Markdown语法是如此简单，以至于还不到1000行就描述完了。初学者您可以参考[献给写作者的Markdown新手指南][]。Github的Markdown语法大部分都与传统Markdown语法一样，这您可以看看[markdown-basics][]，但也有些扩展，扩展内容在文档[GitHub Flavored Markdown][]中。
+
+在使用Markdown过程中，您也许还需要一个实时显示Markdown文档预览的工具，这方面的工具有很多，这里推荐几个在线的Markdown文档编辑器：
+
+1. **Dillinger**:       http://dillinger.io/
+2. **StackEdit**:       https://stackedit.io/
+3. **印象笔记**:        http://maxiang.info/
+
+“[免费Markdown写作工具简评][]”一文提供了有关于Markdown文档编辑器的更多信息。
+谷歌浏览器貌似也有[Markdown的预览插件](https://github.com/volca/markdown-preview)，这样您就可以用记事本编辑，用浏览器预览了。
+印象笔记也有Chrome的扩展，可在商店搜素“马克飞象”。
+
+我们说Markdown是为了书写自由电子书，那么Markdown如何生成pdf或html格式的文档呢？我们可以借助Markdown文档编辑器的功能，StackEdit就能胜任，使用StackEdit左上角的菜单，save as..就可以做到。
+
+还有2款集编辑与Markdown预览于一身的不错工具 [Everedit][] 和 [Cmd Markdown][]，国产的哦..
+
+最后，你可以在Github上找到这样一篇文章: [MARKDOWN是什么](https://github.com/Alfred-Sun/Markdown/blob/master/README.md "彪悍的人生不需要解释")
+
+[用Markdown来写自由书籍-开源技术的方案]: http://www.ituring.com.cn/article/828
+[开源书和开源技术-Markdown篇]: http://www.larrycaiyu.com/2011/12/31/ebook-by-markdown.html
+[源码开放学ARM]: http://www.lumit.org/LASO/
+[GotGithub]: http://www.worldhello.net/gotgithub/
+[Markdown的语法]: http://wowubuntu.com/markdown/
+[献给写作者的Markdown新手指南]: http://jianshu.io/p/q81RER
+[markdown-basics]: https://help.github.com/articles/markdown-basics
+[GitHub Flavored Markdown]: https://help.github.com/articles/github-flavored-markdown
+[免费Markdown写作工具简评]: http://jianshu.io/p/pgN9Rb
+[Everedit]: http://www.everedit.net
+[Cmd Markdown]: https://www.zybuluo.com/mdeditor
 
 
 
