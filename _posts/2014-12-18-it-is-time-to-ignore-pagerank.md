@@ -9,11 +9,12 @@ tags: [Google]
 
 2014 年 11 月 24 日，Google 官方发言人 John Mueller 再 Video Hangouts 中表示，Google 已经决定放弃 PageRank，同时，也建议各位 SEO 不要再采用 PageRank 作为参考。其实 John Mueller 早在去年，就曾表示今后不太可能更新 PageRank。
 
-![John Mueller](http://havee.qiniudn.com/images/2014/12/John Mueller.png)
+![John Mueller](http://url.cn/bAGQGv "http://havee.qiniudn.com/images/2014/12/John Mueller.png")
 
 <!--more-->
 
-> I wouldn't use PageRank or links as a metric. We've last updated PageRank more than a year ago (as far as I recall) and have no plans to do further updates. Think about what you want users to do on your site, and consider an appropriate metric for that. http://googlewebmastercentral.blogspot.ch/2011/06/beyond-pagerank-graduating-to.html
+> I wouldn't use PageRank or links as a metric. We've last updated PageRank more than a year ago (as far as I recall) and have no plans to do further updates. Think about what you want users to do on your site, and consider an appropriate metric for that.		
+> http://googlewebmastercentral.blogspot.ch/2011/06/beyond-pagerank-graduating-to.html
 
 Forum discussion at [Google Webmaster Help](https://productforums.google.com/forum/#!msg/webmasters/dKPZID4N3v0/tKI43QpLUWsJ)
 

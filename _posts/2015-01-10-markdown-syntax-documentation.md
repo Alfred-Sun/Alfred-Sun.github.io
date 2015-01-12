@@ -94,7 +94,7 @@ Header 1               {#header1}
 
 <pre><code>That's some text with a footnote.[&#94;1]
 
-[&#94;1]: And that's the footnote.
+[&#94;1&#93;: And that's the footnote.
 </code></pre>
 
 - 支持专有名词`abbr`
@@ -150,7 +150,7 @@ Maruku的语法详见[这里](https://github.com/bhollis/maruku/blob/master/docs
 
 ### Github支持 ###
 
-Github Page对于上述的基于Ruby的markdown是支持的，从[这里](https://pages.github.com/versions/)可以看到。另外，Github对于Issue、comments等，还定义了GFM([GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown))，其中的语法一般基本来源于上面的提到的东西。除此之外，github还支持一些额外的特性：
+Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从[这里](https://pages.github.com/versions/)可以看到。另外，Github 对于 Issue、comments 等，还定义了 GFM([GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown))，其中的语法一般基本来源于上面的提到的东西。除此之外，github 还支持一些额外的特性：
 
 - 支持把列表变成带勾选框的任务列表
 

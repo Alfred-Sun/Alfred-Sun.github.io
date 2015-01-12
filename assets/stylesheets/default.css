@@ -160,7 +160,7 @@ body .hide{display:none;}
 
 
 /***********default settings**********/
-body {font-family: "微软雅黑","Arial","Helvetica","sans-serif";font-size:16px;}
+body {font-family: "Helvetica Neue", "Helvetica", "微软雅黑","Arial","Helvetica","sans-serif";font-size:16px;}
 a {color:#4A75B5;text-decoration:none;outline:none;}
 a:hover {text-decoration:underline}
 a.external {padding-right:13px;background:url('../images/icons.gif') no-repeat right 1px;}
@@ -175,7 +175,7 @@ h4,h5,h6 {font-weight:bold;margin-bottom:15px;}
 p {margin-bottom:25px;line-height:1.8em;text-align:justify;word-wrap:break-word;}
 
 
-code {background:#eee;color:#C7254E;border:1px solid #ccc;padding:0 5px;font-family:inherit;line-height:14px;font-size:14px;word-wrap:break-word; }
+code {background:#eee;color:#C7254E;border:1px solid #ccc;border-radius:.25em;padding:4px 5px;font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;line-height:14px;font-size:14px;word-wrap:break-word; }
 /*
 font-family: Monaco,Menlo,Consolas,Microsoft Yahei,"Courier New",monospace;
 font-family:"Consolas","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace
@@ -188,7 +188,7 @@ h4+pre, h3+pre { margin-top:20px; }
 pre ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }
 pre ::selection { background:#FF5E99; color:#fff; text-shadow: none; }
 
-pre code{color:#F8F8F2;background-color:transparent;border:none;padding:0;word-wrap:normal;white-space:pre-wrap;word-break:break-all;word-wrap: break-word;}
+pre code{color:#F8F8F2;background-color:transparent;border:none;padding:0;word-wrap:normal;white-space:pre-wrap;word-break:break-all;word-wrap: break-word;font-family:inherit;}
 pre ol{margin-left:35px;list-style-type:decimal;}
 
 pre code span.lineno {
@@ -375,12 +375,12 @@ h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
 /**************目录导航**************/
 #menuIndex {overflow:auto;}
 #menuIndex a {display:block; padding:2px 0; }
-#menuIndex a:hover {text-decoration:none;}
+#menuIndex a:hover {color:#ea6753;text-decoration:none;}
 #menuIndex ul {margin-bottom:0px;}
 #menuIndex ul li{font-size:12px;margin-bottom:5px;word-wrap:break-word;padding-left:10px;}
 #menuIndex ul li:last-child {margin-bottom:0px;}
 #menuIndex ul li.on{background-color:#eee;}
-#menuIndex li.h1{font-size:14px;font-weight:normal;padding-left:0;margin-bottom:10px;}
+#menuIndex li.h1{font-size:14px;font-weight:bold;padding-left:0;margin-bottom:10px;}
 #menuIndex li.h3{padding-left:25px;}
 
 .home-menu { position:fixed; top:15px; left:15px; z-index:5; font-size:0; }

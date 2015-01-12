@@ -3,7 +3,12 @@ layout: post
 title: "在 Windows7 下从头开始安装部署 Octopress"
 date: 2012-03-12 09:14
 categories: [octopress, github pages]
-#published: false 
+tags: [Octopress, GitHub Pages]
+author: sinosmond
+updated: 2015-01-09 16:25
+external-url: http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/
+keywords: Octopress, GitHub Pages, Win 7
+description: 在 Windows7 下从头开始安装部署 Octopress
 #toc: true
 ---
 
@@ -104,7 +109,7 @@ Using bundle exec may solve this.
 2. 调整 rake
   - 在 WINDOWS 的 CMD 窗口里：修改 rake.bat 文件
   - 在 GIT BASH 里：设置别名
-^
+
 ```bash
 $ echo "alias rake='bundle exec rake'" >> ~/.bash_profile
 $ . ~/.bash_profile
@@ -140,7 +145,7 @@ $ rake install
   
 - 编辑 _config.yml 文件 ，根据您自己的需要修改其值, [参考](http://octopress.org/docs/configuring/)
 - **若文件中包括中文，则存成 UTF-8 编码格式** 
-^
+
 ```yaml
 # ----------------------- #
 #      Main Configs       #
@@ -211,6 +216,7 @@ rake watch                     # Watch the site and regenerate when it changes
 
 
 |     类型       |     国外服务     |    国内服务     |
+|----------------|------------------|-----------------|
 |    Feed烧制    |   [FeedBurner](http://feedburner.google.com)          |  [FeedSky](http://www.feedsky.com/)              |
 |    分享到      |   [AddThis](http://www.addthis.com/)  | [JiaThis](http://www.jiathis.com/) |
 |    微博        |   Twitter | weibo.com  |
@@ -218,7 +224,6 @@ rake watch                     # Watch the site and regenerate when it changes
 |    网络图床    |   [Flickr](http://www.flickr.com/) | [yupoo](http://www.yupoo.com/) , [POCO](http://www.poco.cn/) |
 |    网络评论    |   [Disqus](http://disqus.com/) | [友言](http://uyan.cc/) |
 
-^
 
 
 ### 配置举例1：为每一篇BLOG结尾添加 “JiaThis”
@@ -253,7 +258,7 @@ jiathis: true
   * `blog_index_asides` 控制BLOG首页的边栏显示
   * `post_asides` 控制每一个单独的BLOG页面显示时的边栏（对应 `rake new_post[]`）
   * `page_asides` 控制静态页面显示时的边栏（对应 `rake new_page[]`）
-^
+
 ```yaml
 blog_index_asides:
 - custom/asides/feeds.html
