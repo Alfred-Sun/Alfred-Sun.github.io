@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Markdown 语法文档
+title: 讲解 Markdown
 category: Markdown
 tags: [Markdown, Syntax]
 author: Alfred Sun
@@ -49,8 +49,9 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 
 ## Markdown 语法说明
 
-标准 Markdown 语法：http://daringfireball.net/projects/markdown/syntax   
-这边也有一份语法速查表：[Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
+标准 Markdown 语法 [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
+官方 Markdown 语法：http://daringfireball.net/projects/markdown/syntax   
+一份语法速查表：[Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
 另一份别人整理的 Markdown/GFM 语法：[MarkDown轻量级标记语言]({{ site.document_dir }}/MarkDown轻量级标记语言.pdf)
 
 
@@ -61,7 +62,7 @@ Markdown是一种网络书写语言，其目标是实现易读易写，且兼容
 
 使用Markdown可以书写自由书籍，关于此，您可以参看文章[用Markdown来写自由书籍-开源技术的方案][]，[开源书和开源技术-Markdown篇][]一文也介绍了一些Markdown与开源书和开源技术之间的渊源。已经有一些开源书籍使用Markdown书写了，亚嵌教育的开源书籍[源码开放学ARM][]、蒋鑫老师的[GotGithub][]一书，这些开源书籍都给学习者提供很大帮助。Markdown书写已经是一种开源精神体现。好了，既然Markdown与自由书写这么默契，我们怎么用Markdown来写自己的README.md，自己的博客甚至自己的开源书籍呢？
 
-这里有一份翻译的[Markdown的语法][]，从[这里](https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md)看可能更直观。Markdown语法是如此简单，以至于还不到1000行就描述完了。初学者您可以参考[献给写作者的Markdown新手指南][]。Github的Markdown语法大部分都与传统Markdown语法一样，这您可以看看[markdown-basics][]，但也有些扩展，扩展内容在文档[GitHub Flavored Markdown][]中。
+这里有一份翻译的[Markdown的语法][]，从[这里](https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md)看可能更直观。Markdown语法是如此简单，以至于还不到1000行就描述完了。初学者您可以参考[献给写作者的Markdown新手指南][]。Github的Markdown语法大部分都与传统Markdown语法一样，可以看看[markdown-basics][]，但也有些扩展，扩展内容在文档[GitHub Flavored Markdown][]中。
 
 在使用Markdown过程中，您也许还需要一个实时显示Markdown文档预览的工具，这方面的工具有很多，这里推荐几个在线的Markdown文档编辑器：
 
@@ -208,5 +209,21 @@ Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从[这里](h
 - [表情](http://www.emoji-cheat-sheet.com/)
 
 
+### MultiMarkdown ###
+
+[MultiMarkdown](http://fletcherpenney.net/multimarkdown/)
+
+
+
+
+### Pandoc’s Markdown ###
+
+[Pandoc’s Markdown](http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown)
+
+[中文翻译](http://pages.tzengyuxio.me/pandoc/)
+
+[Pandoc Markdown写作规范](http://pandoc.herokuapp.com)
+
+[Markdown写作进阶：Pandoc入门浅谈](http://www.yangzhiping.com/tech/pandoc.html)
 
 
