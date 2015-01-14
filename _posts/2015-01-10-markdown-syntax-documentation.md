@@ -49,16 +49,139 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 
 ## Markdown 语法说明
 
+### 语法文档
+
 标准 Markdown 语法: [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
 官方 Markdown 语法: http://daringfireball.net/projects/markdown/syntax   
 一份语法速查表: [Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
 另一份别人整理的 Markdown/GFM 语法: [MarkDown轻量级标记语言]({{ site.document_dir }}/MarkDown轻量级标记语言.pdf)
 
 
+### Personal Notes
+
+1. 嵌套的列表：   
+	Create nested lists by indenting list items by two spaces.
+
+		1. Item 1
+		  1. A corollary to the above item.
+		  2. Yet another point to consider.
+		2. Item 2
+		  * A corollary that does not need to be ordered.
+			* This is indented four spaces, because it's two spaces further than the item above.
+			* You might want to consider making a new list.
+		3. Item 3
+
+2. 加强的代码块：   
+	行内代码用单个反引号`` ` ``包住，即可显示原有格式的文本。   
+	跨行代码块，可以不用缩进4个空格，使用3个反引号<code>```</code>包住文本区块(Fenced code blocks)：
+
+		Check out this neat program I wrote:
+		
+		```
+		x = 0
+		x = 2 + 2
+		what is x
+		```
+
+	这样Code blocks更容易语法高亮，直接在标记后接语言识别符。例如，高亮一段 Ruby 代码：
+
+		```ruby
+		require 'redcarpet'
+		markdown = Redcarpet.new("Hello World!")
+		puts markdown.to_html
+		```
+
+3. 表格支持：   
+	建表格使用连字符`-`和竖线`|`，区分开表头和单元格：
+
+	<pre>
+	First Header  | Second Header
+	------------- | -------------
+	Content Cell  | Content Cell
+	Content Cell  | Content Cell
+	</pre>
+
+	想好看一些的话，也可以在开头和结尾加竖线：
+
+		| First Header  | Second Header |
+		| ------------- | ------------- |
+		| Content Cell  | Content Cell  |
+		| Content Cell  | Content Cell  |
+
+	顶部的连字符无需一定匹配表头文本的长度；也可以添加行内的Markdown语法文本，如链接、加粗、删除线等：
+
+		| Name | Description          |
+		| ------------- | ----------- |
+		| Help      | ~~Display the~~ help window.|
+		| Close     | _Closes_ a window     |
+
+	表头行使用冒号`:`实现表格内列的文本对齐方式：
+
+		| Left-Aligned  | Center Aligned  | Right Aligned |
+		| :------------ |:---------------:| -----:|
+		| col 3 is      | some wordy text | $1600 |
+		| col 2 is      | centered        |   $12 |
+		| zebra stripes | are neat        |    $1 |
+
+	冒号在最左边表示该列文本左对齐，最右边表示文本右对齐，两边都加冒号表示居中对齐文本。
+
+4. LaTeX 公式   
+	访问 [MathJax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 参考更多使用方法。
+
+5. 流程图   
+	#### 示例:
+
+		```flow
+		st=>start: Start:>https://www.zybuluo.com
+		io=>inputoutput: verification
+		op=>operation: Your Operation
+		cond=>condition: Yes or No?
+		sub=>subroutine: Your Subroutine
+		e=>end
+
+		st->io->op->cond
+		cond(yes)->e
+		cond(no)->sub->io
+		```
+
+	#### 更多语法参考：[流程图语法参考](http://adrai.github.io/flowchart.js/)
+
+6. 序列图   
+	#### 示例 1:
+
+		```seq
+		Alice->Bob: Hello Bob, how are you?
+		Note right of Bob: Bob thinks
+		Bob-->Alice: I am good thanks!
+		```
+
+	#### 示例 2:
+
+		```seq
+		Title: Here is a title
+		A->B: Normal line
+		B-->C: Dashed line
+		C->>D: Open arrow
+		D-->>A: Dashed open arrow
+		```
+
+	#### 更多语法参考：[序列图语法参考](http://bramp.github.io/js-sequence-diagrams/)
+
+7. 注脚   
+	使用 `[^keyword]` 表示注脚。   
+	公式[^LaTeX]   
+	代码[^code]
+
+
+[^LaTeX]: 支持 **LaTeX** 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 [MathJax][] 参考更多使用方法。
+[^code]: 代码高亮功能支持包括 Java, Python, JavaScript 在内的，**四十一**种主流编程语言。
+
+[MathJax]: http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
+
 
 ## 一些 Markdown 参考
 
-Markdown是一种网络书写语言，其目标是实现易读易写，且兼容HTML语言。Markdown的流行得益于Github和Stackoverflow，Stackoverflow的代码块以及Github上的README.md文件格式都是通过Markdown表现的。从这里您可以很直观的看到Markdown的效果：https://github.com/adam-p/markdown-here
+Markdown是一种网络书写语言，其目标是实现易读易写，且兼容HTML语言。Markdown的流行得益于Github和Stackoverflow，Stackoverflow的代码块以及Github上的README.md文件格式都是通过Markdown表现的。另外还有支持各大浏览器的写邮件的Markdown插件：[Markdown Here](https://github.com/adam-p/markdown-here)
 
 使用Markdown可以书写自由书籍，关于此，您可以参看文章[用Markdown来写自由书籍-开源技术的方案][]，[开源书和开源技术-Markdown篇][]一文也介绍了一些Markdown与开源书和开源技术之间的渊源。已经有一些开源书籍使用Markdown书写了，亚嵌教育的开源书籍[源码开放学ARM][]、蒋鑫老师的[GotGithub][]一书，这些开源书籍都给学习者提供很大帮助。Markdown书写已经是一种开源精神体现。好了，既然Markdown与自由书写这么默契，我们怎么用Markdown来写自己的README.md，自己的博客甚至自己的开源书籍呢？
 
@@ -152,6 +275,7 @@ Header 1               {#header1}
 - 支持所有PHP Markdown Extra的特性
 - 支持新的元数据语法，实际上就是给元素添加属性的能力
 - 支持[公式格式](https://github.com/bhollis/maruku/blob/master/docs/math.md)输出
+- 支持自动生成 [Table of Contents](https://golem.ph.utexas.edu/~distler/maruku/#toc-generation)
 
 Maruku的语法详见[这里](https://github.com/bhollis/maruku/blob/master/docs/markdown_syntax.md)
 
@@ -191,9 +315,9 @@ Maruku的语法详见[这里](https://github.com/bhollis/maruku/blob/master/docs
 - 转化PHP-Markdown风格脚注
 - 一些二义性的约束支持
 
-### Github支持 ###
+### Github 支持 ###
 
-Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从[这里](https://pages.github.com/versions/)可以看到。另外，Github 对于 Issue、comments 等，还定义了 GFM([GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown))，其中的语法一般基本来源于上面的提到的东西。除此之外，github 还支持一些额外的特性：
+Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从[这里](https://pages.github.com/versions/)可以看到。另外，Github 对于 Issue、comments、pull request descriptions 等，还定义了 GFM([GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown))，其中的语法一般基本来源于上面的提到的东西。除此之外，GitHub 还支持一些额外的特性：
 
 - 支持把列表变成带勾选框的任务列表
 
@@ -206,7 +330,18 @@ Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从[这里](h
 
 
 - 站内对分支、问题、用户等对象的直接引用
-- [表情](http://www.emoji-cheat-sheet.com/)
+
+<pre><code>* SHA: <font color="red">a5c3785ed8d6a35868bc169f07e40e889087fd2e</font>
+* User@SHA: <font color="yellow">jlord@a5c3785ed8d6a35868bc169f07e40e889087fd2e</font>
+* User/Repository@SHA: <font color="red">jlord/sheetsee.js@a5c3785ed8d6a35868bc169f07e40e889087fd2e</font>
+* #Num: <font color="yellow">#26</font>
+* GH-Num: <font color="red">GH-26</font>
+* User#Num: <font color="yellow">jlord#26</font>
+* User/Repository#Num: <font color="red">jlord/sheetsee.js#26</font>
+</code></pre>
+
+- 表情 [Emoji](http://www.emoji-cheat-sheet.com/)
+- 支持部分 HTML 标签 ([GitHub Markup](https://github.com/github/markup/tree/master#html-sanitization))
 
 
 ### MultiMarkdown ###
