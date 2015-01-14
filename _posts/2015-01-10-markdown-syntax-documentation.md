@@ -49,10 +49,10 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 
 ## Markdown 语法说明
 
-标准 Markdown 语法 [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
-官方 Markdown 语法：http://daringfireball.net/projects/markdown/syntax   
-一份语法速查表：[Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
-另一份别人整理的 Markdown/GFM 语法：[MarkDown轻量级标记语言]({{ site.document_dir }}/MarkDown轻量级标记语言.pdf)
+标准 Markdown 语法: [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
+官方 Markdown 语法: http://daringfireball.net/projects/markdown/syntax   
+一份语法速查表: [Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
+另一份别人整理的 Markdown/GFM 语法: [MarkDown轻量级标记语言]({{ site.document_dir }}/MarkDown轻量级标记语言.pdf)
 
 
 
