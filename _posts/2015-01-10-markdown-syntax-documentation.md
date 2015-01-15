@@ -9,6 +9,10 @@ keywords: Markdown, Syntax
 description: Markdown Syntax Documentation 刚开始接触markdown的时候，觉得好简单好方便，随着使用的深入，发现 Markdown 好像在很多地方有很多不同的实现，语法特性各不相同，顿时陷入迷茫
 ---
 
+> _Markdown is a text-to-HTML conversion tool for web writers.   
+> Markdown allows you to write using an **easy-to-read, easy-to-write** plain text format, then convert it to structurally valid XHTML (or HTML)._
+> <div style="text-align:right;margin-top:5px;"> –  <a href="http://daringfireball.net/projects/markdown/"><b>John Gruber</b></a></div>
+
 ## 开始用 Markdown 写博客
 
 让博客程序写文章时支持 Markdown 语法：用过 GitHub 的同学对 Markdown 都不陌生，对比常见的富文本编辑器，它至少有以下优点：
@@ -26,9 +30,9 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 
 <!--more-->
 
-![markdown]({{ site.picture_dir }}/markdown.png)
+![markdown]({{ site.picture_dir }}/markdown-syntax-documentation/markdown.png)
 
-解析 Markdown 语法，我用过两个库：运行于浏览器和 Nodejs 的 JavaScript 库 [marked][]，和 Python 库 [Markdown][]。它们除了支持 Markdown 的[基本语法][]外，还支持表格、代码块、TOC 等扩展功能。
+解析 Markdown 语法，有两个库：运行于浏览器和 Nodejs 的 JavaScript 库 [marked][]，和 Python 库 [Markdown][]。它们除了支持 Markdown 的[基本语法][]外，还支持表格、代码块、TOC(Table Of Contents) 等扩展功能。
 
 最近，身边不少技术强爱折腾的朋友都把自己博客换成 Nodejs + Markdown 了。如果不想自己开发，也可以用 [Jekyll][] 或 [Octopress][] 等系统。它们都支持 Markdown，都能很好的跟 github 整合。
 
@@ -51,9 +55,10 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 
 ### 语法文档
 
-标准 Markdown 语法: [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
+**标准 Markdown 语法**: [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
 官方 Markdown 语法: http://daringfireball.net/projects/markdown/syntax   
 一份语法速查表: [Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   
+GFM Syntax Guide: an [overview of Markdown syntax]({{ site.picture_dir }}/markdown-syntax-documentation/Github Flavored MarkDown.jpg) used anywhere on GitHub.com   
 另一份别人整理的 Markdown/GFM 语法: [MarkDown轻量级标记语言]({{ site.document_dir }}/MarkDown轻量级标记语言.pdf)
 
 
@@ -126,55 +131,75 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 	冒号在最左边表示该列文本左对齐，最右边表示文本右对齐，两边都加冒号表示居中对齐文本。
 
 4. LaTeX 公式   
-	访问 [MathJax](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 参考更多使用方法。
+	#### 示例:
+	![MathJax LaTeX demo]({{ site.picture_dir }}/markdown-syntax-documentation/MathJax.png)
+
+		// $$ 表示整行公式：
+
+		$$\sum_{i=1}^n a_i=0$$
+
+		$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$
+
+	访问 [MathJax Tutorial](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) 参考更多使用方法。   
+	MathJax 文档：[_What is MathJax ?_](http://docs.mathjax.org/en/latest/mathjax.html)
+	
+	<blockquote style="margin-left:0px;"><p><a href="http://www.mathjax.org" title="Beautiful math in all browsers" target="_blank" class="external"><strong>MathJax</strong></a> is an open-source JavaScript display engine for mathematics(<a href="http://www.latex-project.org" title="LaTeX – A document preparation system" target="_blank" class="external">LaTeX</a>, <a href="http://www.w3.org/TR/MathML3" target="_blank" class="external">MathML</a>, and <a href="http://www1.chapman.edu/%7Ejipsen/mathml/asciimath.html" target="_blank" class="external">AsciiMath</a> notation) that works in all modern browsers.</p></blockquote>
+
+	<!--[**MathJax**][MathJax_] is an open-source JavaScript display engine for mathematics([LaTeX][], [MathML][], and [AsciiMath][] notation) that works in all modern browsers.-->
+
+[MathJax_]: http://www.mathjax.org "Beautiful math in all browsers"
+[LaTeX]: http://www.latex-project.org "LaTeX – A document preparation system"
+[MathML]: http://www.w3.org/TR/MathML3
+[AsciiMath]: http://www1.chapman.edu/~jipsen/mathml/asciimath.html
 
 5. 流程图   
 	#### 示例:
+	<p style="
+    margin-top: -25px;
+"><img src="{{ site.picture_dir }}/markdown-syntax-documentation/flowchart.svg" alt="flowchart.js demo"></p>
 
 		```flow
-		st=>start: Start:>https://www.zybuluo.com
+		st=>start: Start:>http://alfred-sun.github.io
 		io=>inputoutput: verification
 		op=>operation: Your Operation
 		cond=>condition: Yes or No?
 		sub=>subroutine: Your Subroutine
-		e=>end
+		e=>end:>https://github.com/adrai/flowchart.js
 
 		st->io->op->cond
 		cond(yes)->e
 		cond(no)->sub->io
 		```
 
-	#### 更多语法参考：[流程图语法参考](http://adrai.github.io/flowchart.js/)
+	#### 更多语法参考：[流程图语法参考](http://adrai.github.io/flowchart.js/) _(View on [**GitHub**](https://github.com/adrai/flowchart.js "flowchart.js"))_
 
 6. 序列图   
-	#### 示例 1:
+	#### 示例:
+	![js-sequence-diagrams demo]({{ site.picture_dir }}/markdown-syntax-documentation/diagram.svg)
 
 		```seq
-		Alice->Bob: Hello Bob, how are you?
-		Note right of Bob: Bob thinks
-		Bob-->Alice: I am good thanks!
+		Andrew->China: Says Hello
+		Note right of China: China thinks\nabout it
+		China-->Andrew: How are you?
+		Andrew->>China: I am good thanks!
 		```
 
-	#### 示例 2:
-
-		```seq
-		Title: Here is a title
-		A->B: Normal line
-		B-->C: Dashed line
-		C->>D: Open arrow
-		D-->>A: Dashed open arrow
-		```
-
-	#### 更多语法参考：[序列图语法参考](http://bramp.github.io/js-sequence-diagrams/)
+	#### 更多语法参考：[序列图语法参考](http://bramp.github.io/js-sequence-diagrams/) _(View on [**GitHub**](https://github.com/bramp/js-sequence-diagrams "js-sequence-diagrams"))_
 
 7. 注脚   
-	使用 `[^keyword]` 表示注脚。   
-	公式[^LaTeX]   
-	代码[^code]
+	使用 `[^keyword]` 表示注脚。例如：
+	
+	这是第一个注脚[^footnote1]的样例。   
+	这是第二个注脚[^footnote2]的样例。
 
+		这是第一个注脚[^footnote1]的样例。   
+		这是第二个注脚[^footnote2]的样例。
+		...
+		[^footnote1]: 这是一个 *注脚* 的 **文本**。
+		[^footnote2]: 这是另一个 *注脚* 的 **文本**。
 
-[^LaTeX]: 支持 **LaTeX** 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 [MathJax][] 参考更多使用方法。
-[^code]: 代码高亮功能支持包括 Java, Python, JavaScript 在内的，**四十一**种主流编程语言。
+[^footnote1]: 这是一个 *注脚* 的 **文本**。
+[^footnote2]: 这是另一个 *注脚* 的 **文本**。
 
 [MathJax]: http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
 
@@ -197,9 +222,9 @@ Markdown是一种网络书写语言，其目标是实现易读易写，且兼容
 谷歌浏览器貌似也有[Markdown的预览插件](https://github.com/volca/markdown-preview)，这样您就可以用记事本编辑，用浏览器预览了。
 印象笔记也有Chrome的扩展，可在商店搜素“马克飞象”。
 
-我们说Markdown是为了书写自由电子书，那么Markdown如何生成pdf或html格式的文档呢？我们可以借助Markdown文档编辑器的功能，StackEdit就能胜任，使用StackEdit左上角的菜单，save as..就可以做到。
+我们说Markdown是为了书写自由电子书，那么Markdown如何生成pdf或html格式的文档呢？我们可以借助Markdown文档编辑器的功能，StackEdit 就能胜任，使用StackEdit左上角的菜单，"Save As..."就可以做到。
 
-还有2款集编辑与Markdown预览于一身的不错工具 [Everedit][] 和 [Cmd Markdown][]，国产的哦..
+还有2款集编辑与Markdown预览于一身的不错工具 [Everedit][] 和 **[Cmd Markdown][]**，国产的哦..
 
 最后，你可以在Github上找到这样一篇文章: [MARKDOWN是什么](https://github.com/Alfred-Sun/Markdown/blob/master/README.md "彪悍的人生不需要解释")
 
@@ -275,7 +300,7 @@ Header 1               {#header1}
 - 支持所有PHP Markdown Extra的特性
 - 支持新的元数据语法，实际上就是给元素添加属性的能力
 - 支持[公式格式](https://github.com/bhollis/maruku/blob/master/docs/math.md)输出
-- 支持自动生成 [Table of Contents](https://golem.ph.utexas.edu/~distler/maruku/#toc-generation)
+- 支持自动生成 **[Table of Contents](https://golem.ph.utexas.edu/~distler/maruku/#toc-generation)**
 
 Maruku的语法详见[这里](https://github.com/bhollis/maruku/blob/master/docs/markdown_syntax.md)
 
@@ -289,9 +314,10 @@ Maruku的语法详见[这里](https://github.com/bhollis/maruku/blob/master/docs
 2. 引入EOB标记`^`作为块元素的分隔符
 3. 手写table的语法更加强大一些，支持table中的header和footer
 4. 同样支持ALD(Attribute List Definitions属性列表定义)
-5. 还支持注释，以及在转化时配置一些转化选项 
+5. 同样支持 **LaTeX** 编辑显示支持
+6. 还支持注释，以及在转化时配置一些转化选项
 
-[Github-Page推荐使用这个解释器](https://help.github.com/articles/migrating-your-pages-site-from-maruku)
+[Github-Page 推荐使用这个解释器](https://help.github.com/articles/migrating-your-pages-site-from-maruku)
 
 ### RDiscount ###
 
@@ -346,19 +372,118 @@ Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从[这里](h
 
 ### MultiMarkdown ###
 
-[MultiMarkdown](http://fletcherpenney.net/multimarkdown/)
+MMD([MultiMarkdown][]) 是 C 实现的 Markdown 解析器，支持几乎任何OS平台；   
+Markdown 语法的超集，不仅加强了 PHP Markdown Extra 一些功能，如对表格、注脚、引用、公式的支持，而且能转换输出更多类型的文档：HTML，LaTeX，PDF，ODF，RTF，甚至是 MS Word。
 
+The many output formats of MultiMarkdown：
+<img src="{{ site.picture_dir }}/markdown-syntax-documentation/OPML-MMD-Map.png" alt="multiple output formats" title="Example: MultiMarkdown output formats" style="background-color:#222;">
 
+> * 最初的 MMD(MultiMarkdown v2) 改自 Markdown.pl Perl脚本；   
+> * MultiMarkdown v3(aka **peg-multimarkdown**) 在 John MacFarlane 的 [peg-markdown][] 基础上构建的，其核心的 PEG(parsing expression grammar) 提高了 MMD 可靠性；   
+> * 最新的 [MultiMarkdown v4][] 性能上做了很多优化，完全重写 MMD v3，仅保留了PEG和部分重要的程序，是目前最出色的版本。
 
+[MultiMarkdown]: http://fletcherpenney.net/multimarkdown/
+[peg-markdown]: https://github.com/jgm/peg-markdown
+[MultiMarkdown v4]: https://github.com/fletcher/MultiMarkdown-4/
+
+其他的特性：
+
+- 支持自定义输出任何 [XSLT][] 格式的文档
+- 多文件批处理
+- 支持主要OS上的拖拽操作
+- 支持集成进 [TextMate][]
+- [OmniOutliner][] Plugin 使得本地 OmniOutliner 大纲输出为 MDD 文本文件
+- MMD QuickLook 生成器实现对 MMD 文本或 OS X Finder 找到的 [OPML][] 文件的预览
+
+[XSLT]: http://en.wikipedia.org/wiki/XSLT
+[TextMate]: http://macromates.com/
+[OmniOutliner]: http://www.omnigroup.com/omnioutliner/
+[OPML]: http://en.wikipedia.org/wiki/OPML
 
 ### Pandoc’s Markdown ###
 
-[Pandoc’s Markdown](http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown)
+以上扩展，某种意义上来讲，并不是针对写作的。开源界传说中的高富帅社区 - [Haskell][]社区，其作品 [Pandoc][Pandoc’s Markdown] 给了我们更好的选择，在多个方面完败 MMD，参考：[Pandoc vs Multimarkdown][]。
 
-[中文翻译](http://pages.tzengyuxio.me/pandoc/)
+Haskell是什么？一种编程语言。每位资深的开发者学习它，都会有些不知所措，因为，它的编程思路不同于通常意义上类似于C#、Python、Java这些流行的编程语言。它来自一群高智商的开发者的贡献，据说人人有PHD学位，是[函数式编程语言][]的典范。[Pandoc][] 作者[John MacFarlane][]也不例外。
 
-[Pandoc Markdown写作规范](http://pandoc.herokuapp.com)
+Pandoc 是一个 Haskell 库，一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc 以命令行形式实现与用户的交互，可支持多种操作系统，支持大量的文本类型的输入输出。
 
+[JG_markdown]: http://daringfireball.net/projects/markdown/
+[Haskell]: http://www.haskell.org/
+[Pandoc]: http://johnmacfarlane.net/pandoc/
+[Pandoc’s Markdown]: http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown
+[Pandoc’s Markdown Options]: http://johnmacfarlane.net/pandoc/README.html#options
+[Pandoc vs Multimarkdown]: https://github.com/jgm/pandoc/wiki/Pandoc-vs-Multimarkdown
+[函数式编程语言]: http://zh.wikipedia.org/wiki/函數式編程
+[John MacFarlane]: http://johnmacfarlane.net/
+
+#### Pandoc支持的标记语言格式
+
+<table>
+<tbody><tr>
+<th width="185px">Pandoc 可读取的源格式</th>
+<th>Pandoc 可生成的目标格式</th>
+</tr>
+
+<tr><td><ul style="margin-bottom:0px;">
+<li><a href="http://daringfireball.net/projects/markdown/" title="Markdown">Markdown</a></li>
+<li><a href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html" title="ReStructuredText">reStructuredText</a></li>
+<li><a href="http://redcloth.org/textile" title="Textile">textile</a></li>
+<li><a href="http://www.w3.org/TR/html40/" title="HTML">HTML</a></li>
+<li><a href="http://www.docbook.org/" title="DocBook">DocBook</a></li>
+<li><a href="http://www.latex-project.org/" title="LaTeX">LaTeX</a></li>
+<li><a href="http://www.mediawiki.org/wiki/Help:Formatting" title="MediaWiki">MediaWiki markup</a></li>
+<li><a href="http://twiki.org/cgi-bin/view/TWiki/TextFormattingRules" title="TWiki">TWiki markup</a></li>
+<li><a href="http://dev.opml.org/spec2.html" title="OPML">OPML</a></li>
+<li><a href="http://www.gnu.org/software/emacs/" title="Emacs">Emacs</a></li>
+<li><a href="http://orgmode.org/" title="Org-模式">Org-Mode</a></li>
+<li><a href="http://txt2tags.org/" title="Txt2Tags">Txt2Tags</a></li>
+<li><a href="http://www.microsoft.com/interop/openup/openxml/default.aspx" title="Microsoft Word docx">Microsoft Word docx</a></li>
+<li><a href="http://en.wikipedia.org/wiki/EPUB" title="EPUB">EPUB</a></li>
+<li><a href="http://www.haskell.org/haddock/doc/html/ch03s08.html" title="Haddock">Haddock markup</a></li>
+</ul></td>
+
+<td><ul style="margin-bottom:0px;">
+<li>HTML格式：包括<a href="http://www.w3.org/TR/xhtml1/">XHTML</a>，<a href="http://www.w3.org/TR/html5/">HTML5</a>及HTML slide shows(<a href="http://www.w3.org/Talks/Tools/Slidy">Slidy</a>, <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>, <a href="http://goessner.net/articles/slideous/">Slideous</a>, <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, or <a href="http://paulrouget.com/dzslides/">DZSlides</a>)</li>
+<li>文字处理软件格式：包括Microsoft Word docx、OpenOffice/LibreOffice<a href="http://en.wikipedia.org/wiki/OpenDocument" title="ODT">ODT</a>、<a href="http://opendocument.xml.org/" title="OpenDocument XML">OpenDocument XML</a></li>
+<li>电子书Ebooks格式：包括EPUB（第2版及第3版）、<a href="http://www.fictionbook.org/index.php/Eng:XML_Schema_Fictionbook_2.1" title="FictionBook">FictionBook2</a></li>
+<li>技术文档格式：包括<a href="http://www.docbook.org/" title="DocBook">DocBook</a>、<a href="http://www.gnu.org/software/texinfo/" title="GNU TexInfo">GNU TexInfo</a>、<a href="http://www.gnu.org/software/groff/groff.html" title="手册页">Groff man</a> pages、<a href="http://www.haskell.org/haddock/doc/html/ch03s08.html" title="Haddock">Haddock markup</a></li>
+<li>页面布局格式：<a href="https://www.adobe.com/content/dam/Adobe/en/devnet/indesign/cs55-docs/IDML/idml-specification.pdf" title="InDesign ICML">InDesign ICML</a></li>
+<li>大纲处理标记语言格式：<a href="http://dev.opml.org/spec2.html" title="OPML">OPML</a></li>
+<li>TeX格式：包括LaTeX、<a href="http://www.pragma-ade.nl/" title="ConTeXt">ConTeXt</a>、<a href="http://zh.wikipedia.org/wiki/Beamer_(LaTeX)" title="Beamer (LaTeX)">LaTeX Beamer slides</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Portable_Document_Format">PDF</a>格式：需要LaTeX支持</li>
+<li>轻量级标记语言格式：包括Markdown、reStructuredText、Textile、Org-Mode、MediaWiki markup、<a href="http://www.methods.co.nz/asciidoc/" title="AsciiDoc">AsciiDoc</a>、<a href="https://www.dokuwiki.org/wiki:syntax">DokuWiki markup</a>、Emacs</li>
+<li>自定义格式：可使用<a href="http://www.lua.org/" title="Lua">lua</a>自定义转换规则</li>
+</ul></td>
+</tr></tbody>
+</table>
+
+更详细的格式信息可参见项目主页上的[图示](http://johnmacfarlane.net/pandoc/diagram.png)
+
+#### Pandoc for markdown
+
+Pandoc Markdown是John Gruber markdown 语法的改进和加强版，包含对脚注、上标、下标、自动引用和参考书目、document metadata (title/author/date)、表格、定义型列表、加强的代码块、删除线、内容目录结构、LaTeX公式、HTML区块内的markdown文本等的支持。   
+这些强化功能可以通过`markdown_strict`输入输出格式选项来开启或关闭(单独控制某个功能的启用禁用可以使用`+EXTENSION`或`-EXTENSION`)，参看 [Pandoc’s markdown][Pandoc’s Markdown Options]。   
+这里有一份繁体中文翻译版的 [Pandoc 版本 Markdown 語法](http://pages.tzengyuxio.me/pandoc/)   
+另一篇简版说明文档：[Pandoc Markdown写作规范](http://alfred-sun.github.io/markx-pandoc/ "pandoc.herokuapp.com")
+
+与多数通过正则表达式实现markdown转HTML的工具不同，Pandoc是模块化设计，对于每个输入输出的格式都有单独的一个模块；它含有一组解析指定文本格式的readers和一组转换为目标文本格式的writers。这样，只需添加一个文本格式的reader或者writer模块，就能增加Pandoc对这个格式文本的输入输出支持。
+
+关于Pandoc的安装使用，不愿看英文Guide的可以看看下面这篇文章，通俗易懂。   
 [Markdown写作进阶：Pandoc入门浅谈](http://www.yangzhiping.com/tech/pandoc.html)
+
+
+## 结束语
+
+Markdown纯文本非常简洁，让笔者注重文字而非排版，值得学习使用。然而，目前Markdown文本的解析工具有很多，虽然都支持标准Markdown语法，但各个解析器间语法各有不同，提供的扩展功能也各有千秋。尽管标准语法已经满足大部分写作需求，但是有些时候确实急需某项高级功能实现，就像博主，目前还只用标准语法，特殊的功能只能通过嵌入HTML文本来实现，不仅麻烦，而且直接违背了Markdown读写趋简的宗旨。既然不想被这么多工具的语法搞晕，又想偶尔能使用高级功能，那么，选择一款扩展功能丰富又满足需求的工具，是一个很好的办法。Pandoc是个不错的选择，尤其适用于文献的写作排版，可以节省大量时间，这也作者的编写这个工具的初衷；而且，博主非常喜欢多种文档间转换这个功能。
+
+有了Pandoc，再找个Pandoc编辑器，比如 [Pandoc Vim][]、[Sublime Text][]或者[TextMate][TextMate OpenSource]，是不是看起来很有Geek范儿...
+
+更多Pandoc编辑器、插件请参考：**[Pandoc-Extras][]**
+
+[Pandoc Vim]: https://github.com/vim-pandoc/vim-pandoc
+[Sublime Text]: http://www.sublimetext.com/
+[TextMate OpenSource]: https://github.com/textmate/textmate
+[Pandoc-Extras]: https://github.com/jgm/pandoc/wiki/Pandoc-Extras
 
 

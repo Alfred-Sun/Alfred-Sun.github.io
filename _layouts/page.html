@@ -46,7 +46,9 @@ layout: default
 	{% endif %}
 </div>
 
-{% unless page.sidebar == false or site.page_asides == empty and site.default_asides == empty %}
+{% if page.sidebar == false or site.page_asides == empty and site.default_asides == empty %}
+  {% include asides/remove_asides.html %}
+{% else %}
 <aside id="sidebar">
   {% include asides/tags_info.html %}
   {% include asides/categories_info.html %}
@@ -57,4 +59,4 @@ layout: default
 	% include_array default_asides %}
     {% endif %}-->
 </aside>
-{% endunless %}
+{% endif %}

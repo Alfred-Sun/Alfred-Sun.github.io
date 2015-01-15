@@ -2,18 +2,16 @@
 layout: page
 navbar: about
 title: "About Me"
-date: 2013-10-03 23:49
-comments: true
-sharing: true
-footer: true
+footer: false
+sharing: false
 sidebar: false
 ---
 
 I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.			-- <b>Alfred Sun</b>
 
-## [Resume](http://resume.github.io/?alfred-sun)
+### [Resume](http://resume.github.io/?alfred-sun)
 
-## My Geek Code Explained
+### My Geek Code Explained
 
 The Geek Code is a perhaps a little silly in-joke among geeks; a way of introducing yourself to another geek by how you score on different geeky things, such as Star Trek or programming tools.
 
@@ -32,7 +30,7 @@ Here it is in expanded and explained form with some comments by me (marked with 
 	http://mj.ucw.cz/geek/
 	http://alip.github.io/en/
 
-## Email:
+### Email:
 
 ```sh
 echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
@@ -42,7 +40,7 @@ echo dk?5_#O37ZWjSd4kODmS | tr R?7jWkdDO4yZ0p#S3mB5f_ Efug@lac.iSnMIdmsoZr%e
 [on my blog](https://kaworu.ch) and all Octopress themes were based on
 Bootstrap 2.x.-->
 
-## Code & Contributing
+### Code & Contributing
 
 For blog issues, questions and pull requests check
 [the GitHub repository](https://github.com/Alfred-Sun/Alfred-Sun.github.io).
@@ -55,11 +53,11 @@ content on this blog is under a Creative Commons license
 </small>
 
 
-## License
+### License
 
 Just as Octopress **Vermillion Phoinix** is under the MIT License.
 
-## Kudos
+### Kudos
 
 - [Twitter Bootstrap](http://getbootstrap.com/) for the CSS & Javascript magic
   tricks.
@@ -68,3 +66,4 @@ Just as Octopress **Vermillion Phoinix** is under the MIT License.
 - [whitespace](https://github.com/lucaslew/whitespace) &
   [whiterspace](https://github.com/mjhea0/whiterspace) from which I borrowed a
   lot to make up this theme.
+

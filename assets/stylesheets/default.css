@@ -56,10 +56,13 @@ sup{
 }
 sup:before{content: "[";}
 sup:after{content: "]";}
+.footnotes{color:#888;font-size:14px;}
+.footnotes ol li{margin:auto !important;}
+.footnotes p{margin:auto;}
 table{
 	max-width:100%;
 	width:90%;
-	margin:0px auto 25px;
+	margin:25px auto;
 	background-color:transparent;
 	border-collapse:collapse;
 	border-spacing:0;
