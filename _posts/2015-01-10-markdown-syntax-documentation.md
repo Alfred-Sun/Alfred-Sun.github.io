@@ -2,7 +2,7 @@
 layout: post
 title: 讲解 Markdown
 category: Markdown
-tags: [Markdown, Syntax]
+tags: [Markdown, Syntax, Extensions]
 author: Alfred Sun
 updated: 2015-01-12 15:56
 keywords: Markdown, Syntax
