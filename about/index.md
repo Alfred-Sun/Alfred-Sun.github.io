@@ -7,7 +7,9 @@ sharing: false
 sidebar: false
 ---
 
-I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.			-- <b>Alfred Sun</b>
+I go by the blog name "Vermillion Phoinix", and usually have more to say than anyone ever cares to hear about.
+
+											-- <b>Alfred Sun</b>
 
 ### [Resume](http://resume.github.io/?alfred-sun)
 

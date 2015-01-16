@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Git Push 避免用户名和密码方法
-tags: [git,bash]
+category: Git
+tags: [Git, Bash]
 ---
 
 ## 前言
