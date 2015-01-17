@@ -736,8 +736,7 @@ form {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 8px;
-  color: #474747;
-  text-indent: 4px;
+  color: #474747;/*text-indent: 4px;*/
 }
 
 #home-page-content h2 {
@@ -1530,7 +1529,7 @@ word-wrap:break-word;*/
 	width:80px;
 	height:30px;
 	float:left;
-	margin:4px 10px 0 0;
+	margin:4px 15px 0 0;
 	padding:0 10px 0 0;
 	border-right:1px solid #ddd;
 }
