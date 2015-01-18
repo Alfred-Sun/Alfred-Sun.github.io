@@ -15,7 +15,7 @@ author:
   schoolmail: alfred_sun@hust.edu.cn
   school: http://www.hust.edu.cn
   site: http://alfred-sun.github.io
-simple_search: http://216.58.208.24/search # https://www.google.com/search
+simple_search: http://61.19.1.110/search # https://www.google.com/search
 description: Simple personal blog for GitHub Pages
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
