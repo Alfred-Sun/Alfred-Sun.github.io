@@ -314,7 +314,7 @@ Maruku的语法详见[这里](https://github.com/bhollis/maruku/blob/master/docs
 2. 引入EOB标记`^`作为块元素的分隔符
 3. 手写table的语法更加强大一些，支持table中的header和footer
 4. 同样支持ALD(Attribute List Definitions属性列表定义)
-5. 同样支持 **LaTeX** 编辑显示支持
+5. 同样支持 **[LaTeX](http://kramdown.gettalong.org/converter/html.html#math-support)** 编辑显示支持
 6. 还支持注释，以及在转化时配置一些转化选项
 
 [Github-Page 推荐使用这个解释器](https://help.github.com/articles/migrating-your-pages-site-from-maruku)
