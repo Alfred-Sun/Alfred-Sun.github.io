@@ -82,7 +82,7 @@ Jekyll 的全局配置文件。
 
 **_layouts**
 
-存放的一些模版文件，模版是用来包含并装饰page或post内容的。Jekyll的模版使用HTML语法来写，并包含YAML Front Matter。  
+存放的一些模版文件，模版是用来包含并装饰page或post内容的。Jekyll的模版使用HTML语法来写，并包含[YAML][] Front Matter。  
 所有的模版都可用Liquid来与网站进行交互，都可以使用全局变量site和page。
 
 site 变量: 包含该网站所有可以接触得到的内容和元数据(meta-data)  
@@ -194,7 +194,7 @@ source: DIR
 destination: DIR #配置语法
 ```
 
-### Safe开关
+### Safe 开关
 
 官方文档上就一句话.  
 
@@ -244,10 +244,9 @@ timezone: TIMEZONE
 encoding: ENCODING
 ```
 
-## 模板语法
+## Jekyll 模板、变量
 
-模板语法实际上分两部分, 一部分是头部定义,另一部分是语法.
-
+Jekyll 模板实际上分两部分: 一部分是头部定义,另一部分是[Liquid语法][].
 
 ### 头部定义
 
@@ -263,11 +262,7 @@ published: true # default true
 ---
 ```
 
-
-### 模板语法
-
-
-**使用变量**
+### 使用变量
 
 所有的变量是都一个树节点, 比如模板中定义的头部变量,需要使用下面的语法获得
 
@@ -284,7 +279,7 @@ page 是当前页面的根节点.
 - **content**： 用在模板文件中，该变量包含页面的子视图，用于引入子节点的内容；不能在post和page中使用
 - **paginator**： 分页信息，需要事先设定site中的`paginate`值，参考[Pagination](http://jekyllrb.com/docs/pagination/)
 
-### site 下的变量
+#### site 下的变量
 
 | 变量 				| 描述 |
 | ---- 				| ---- |
@@ -302,7 +297,7 @@ page 是当前页面的根节点.
 |site.[CONFIGURATION_DATA]|其他自定义的变量|
 
 
-### page 下的变量 
+#### page 下的变量 
 
 | 变量 			| 描述 |
 | ---- 			| ---- |
@@ -319,7 +314,7 @@ page 是当前页面的根节点.
 |page.previous	|按时间顺序排列的上一篇文章|
 
 
-### paginator 下的变量 
+#### paginator 下的变量 
 
 分页只在 index 页面中有效，index 页面可以在子目录，比如：主页在`/blog/index.html`，那么通过`paginate_path: "blog/page:num/"`，其他页面就可以设定在`blog/page2/index.html`。
 
@@ -336,6 +331,324 @@ page 是当前页面的根节点.
 |paginator.next\_page\_path|下一页的路径|
 
 
+
+## Liquid 语法
+
+[Liquid][] 是 Ruby 的一个模版引擎库，Jekyll中用到的Liquid标记有两种：**输出**和**标签**。
+
+- Output 标记：变成文本输出，被2层成对的花括号包住，如{%raw%}`{{ content }}`{%endraw%}
+- Tag 标记：执行命令，被成对的花括号和百分号包住，如{%raw%}`{% command %}`{%endraw%}
+
+
+### Jekyll 输出 Output
+
+示例：
+
+{%raw%}```
+Hello {{name}}
+Hello {{user.name}}
+Hello {{ 'tobi' }}
+```{%endraw%}
+
+Output 标记可以使用过滤器 Filters 对输出内容作简单处理。   
+多个 Filters 间用竖线隔开，从左到右依次执行，Filter 左边总是输入，返回值为下一个 Filter 的输入或最终结果。
+
+{%raw%}```liquid
+Hello {{ 'tobi' | upcase }}  # 转换大写输出
+Hello tobi has {{ 'tobi' | size }} letters!  # 字符串长度
+Hello {{ '*tobi*' | markdownify | upcase }}  # 将Markdown字符串转成HTML大写文本输出
+Hello {{ 'now' | date: "%Y %h" }}  # 按指定日期格式输出当前时间
+```{%endraw%}
+
+
+### 标准过滤器 Filters
+
+下面是常用的过滤器方法，更多的API需要查阅源代码（有注释）才能看到。  
+
+源码主要在两个 Ruby Plugin 文件中：`filters.rb`(Jekyll) 和 `standardfilters.rb`(Liquid)。  
+
+（这也是博主刚开始使用Jekyll的时候，比较头疼的问题。由于官方没有给出详细API的说明，只能去源代码那里看啦，好在代码的注释比较详细）
+
+- - - - - - -
+{%raw%}
+- `date` - 将时间戳转化为另一种格式 ([syntax reference][])
+- `capitalize` - 输入字符串首字母大写 e.g. `{{ 'capitalize me' | capitalize }} # => 'Capitalize me'`
+- `downcase` - 输入字符串转换为小写
+- `upcase` - 输入字符串转换为大写
+- `first` - 返回数组中第一个元素
+- `last` - 返回数组数组中最后一个元素
+- `join` - 用特定的字符将数组连接成字符串输出
+- `sort` - 对数组元素排序
+- `map` - 输入数组元素的一个属性作为参数，将每个元素的属性值映射为字符串
+- `size` - 返回数组或字符串的长度
+- `escape` - 将字符串转义输出 e.g. `{{ "<p>test</p>" | escape }} # => <p>test</p>`
+- `escape_once` - 返回转义后的HTML文本，不影响已经转义的HTML实体
+- `strip_html` - 删除 HTML 标签
+- `strip_newlines` - 删除字符串中的换行符(`\n`)
+- `newline_to_br` - 用HTML `<br/>` 替换换行符 `\n`
+- `replace` - 替换字符串中的指定内容 e.g. `{{ 'foofoo' | replace:'foo','bar' }} # => 'barbar'`
+- `replace_first` - 查找并替换字符串中第一处找到的目标子串 e.g. `{{ 'barbar' | replace_first:'bar','foo' }} # => 'foobar'`
+- `remove` - 删除字符串中的指定内容 e.g. `{{ 'foobarfoobar' | remove:'foo' }} # => 'barbar'`
+- `remove_first` - 查找并删除字符串中第一处找到的目标子串 e.g. `{{ 'barbar' | remove_first:'bar' }} # => 'bar'`
+- `truncate` - 截取指定长度的字符串，第2个参数追加到字符串的尾部 e.g. `{{ 'foobarfoobar' | truncate: 5, '.' }} # => 'foob.'`
+- `truncatewords` - 截取指定单词数量的字符串
+- `prepend` - 在字符串前面添加字符串 e.g. `{{ 'bar' | prepend:'foo' }} # => 'foobar'`
+- `append` - 在字符串后面追加字符串 e.g. `{{ 'foo' | append:'bar' }} # => 'foobar'`
+- `slice` - 返回字符子串指定位置开始、指定长度的子串 e.g. `{{ "hello" | slice: -4, 3 }} # => ell`
+- `minus` - 减法运算 e.g. `{{ 4 | minus:2 }} # => 2`
+- `plus` - 加法运算 e.g. `{{ '1' | plus:'1' }} #=> '11', {{ 1 | plus:1 }} # => 2`
+- `times` - 乘法运算 e.g `{{ 5 | times:4 }} # => 20`
+- `divided_by` - 除法运算 e.g. `{{ 10 | divided_by:2 }} # => 5`
+- `split` - 根据匹配的表达式将字符串切成数组 e.g. `{{ "a~b" | split:"~" }} # => ['a','b']`
+- `modulo` - 求模运算 e.g. `{{ 7 | modulo:4 }} # => 3`
+{%endraw%}
+
+
+### Jekyll 标签 Tag
+
+标签用于模板中的执行语句。目前 Jekyll/Liquid 支持的标准标签库有：
+
+| Tags 			| 说明 |
+| ---- 			| ---- |
+| **assign** 	| 为变量赋值 |
+| **capture** 	| 用捕获到的文本为变量赋值 |
+| **case** 		| 条件分支语句 case...when... |
+| **comment** 	| 注释语句 |
+| **cycle** 	| 通常用于在某些特定值间循环选择，如颜色、DOM类 |
+| **for** 		| 循环语句 |
+| **if** 		| if/else 语句 |
+| **include** 	| 将另一个模板包进来 |
+| **raw** 		| 禁用范围内的Tag命令 |
+| **unless** 	| if 语句的否定语句 |
+
+
+#### 1. Comments
+
+仅起到注释 Liquid 代码的作用。
+
+{%raw%}```liquid
+We made 1 million dollars {% comment %} in losses {% endcomment %} this year
+```{% endraw %}
+
+#### 2. Raw
+
+临时禁止执行 Jekyll Tag 命令，在生成的内容里存在冲突的语法片段的情况下很有用。
+
+```
+{% raw %}
+  In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
+{% endraw %}
+```
+
+{%raw%}
+#### 3. If / Else
+
+条件语句，可以使用关键字：`if`、`unless`、`elsif`、`else`
+
+```liquid
+{% if user %}
+  Hello {{ user.name }}
+{% endif %}
+
+# Same as above
+{% if user != null %}
+  Hello {{ user.name }}
+{% endif %}
+
+{% if user.name == 'tobi' %}
+  Hello tobi
+{% elsif user.name == 'bob' %}
+  Hello bob
+{% endif %}
+
+{% if user.name == 'tobi' or user.name == 'bob' %}
+  Hello tobi or bob
+{% endif %}
+
+{% if user.name == 'bob' and user.age > 45 %}
+  Hello old bob
+{% endif %}
+
+{% if user.name != 'tobi' %}
+  Hello non-tobi
+{% endif %}
+
+# Same as above
+{% unless user.name == 'tobi' %}
+  Hello non-tobi
+{% endunless %}
+
+# Check for the size of an array
+{% if user.payments == empty %}
+   you never paid !
+{% endif %}
+
+{% if user.payments.size > 0  %}
+   you paid !
+{% endif %}
+
+{% if user.age > 18 %}
+   Login here
+{% else %}
+   Sorry, you are too young
+{% endif %}
+
+# array = 1,2,3
+{% if array contains 2 %}
+   array includes 2
+{% endif %}
+
+# string = 'hello world'
+{% if string contains 'hello' %}
+   string includes 'hello'
+{% endif %}
+```
+
+#### 4. Case 语句
+
+适用于当条件实例很多的情况。
+
+```liquid
+{% case template %}
+{% when 'label' %}
+     // {{ label.title }}
+{% when 'product' %}
+     // {{ product.vendor | link_to_vendor }} / {{ product.title }}
+{% else %}
+     // {{page_title}}
+{% endcase %}
+```
+
+#### 5. Cycle
+
+经常需要在相似的任务间选择时，可以使用`cycle`标签。
+
+```liquid
+{% cycle 'one', 'two', 'three' %}
+{% cycle 'one', 'two', 'three' %}
+{% cycle 'one', 'two', 'three' %}
+{% cycle 'one', 'two', 'three' %}
+
+# =>
+
+one
+two
+three
+one
+```
+
+如果要对循环作分组处理，可以指定分组的名字：
+
+```liquid
+{% cycle 'group 1': 'one', 'two', 'three' %}
+{% cycle 'group 1': 'one', 'two', 'three' %}
+{% cycle 'group 2': 'one', 'two', 'three' %}
+{% cycle 'group 2': 'one', 'two', 'three' %}
+
+# =>
+one
+two
+one
+two
+```
+
+#### 6. For loops
+
+循环遍历数组：
+
+```liquid
+{% for item in array %}
+  {{ item }}
+{% endfor %}
+```
+
+循环迭代Hash散列，`item[0]`是键，`item[1]`是值：
+
+```liquid
+{% for item in hash %}
+  {{ item[0] }}: {{ item[1] }}
+{% endfor %}
+```
+
+每个循环周期，提供下面几个可用的变量：
+
+```
+forloop.length      # => length of the entire for loop
+forloop.index       # => index of the current iteration
+forloop.index0      # => index of the current iteration (zero based)
+forloop.rindex      # => how many items are still left ?
+forloop.rindex0     # => how many items are still left ? (zero based)
+forloop.first       # => is this the first iteration ?
+forloop.last        # => is this the last iteration ?
+```
+
+还有几个属性用来限定循环过程：
+
+`limit:int`：限制循环迭代次数  
+`offset:int`：从第n个item开始迭代  
+`reversed`：反转循环顺序
+
+```liquid
+# array = [1,2,3,4,5,6]
+{% for item in array limit:2 offset:2 %}
+  {{ item }}
+{% endfor %}
+# results in 3,4
+
+{% for item in collection reversed %}
+  {{item}}
+{% endfor %}
+```
+
+允许自定义循环迭代次数，迭代次数可以用常数或者变量说明：
+
+```liquid
+# if item.quantity is 4...
+{% for i in (1..item.quantity) %}
+  {{ i }}
+{% endfor %}
+# results in 1,2,3,4
+```
+
+#### 7. Variable Assignment
+
+为变量赋值，用于输出或者其他Tag：
+
+```liquid
+{% assign name = 'freestyle' %}
+
+{% for t in collections.tags %}{% if t == name %}
+  <p>Freestyle!</p>
+{% endif %}{% endfor %}
+
+# 变量是布尔类型
+{% assign freestyle = false %}
+
+{% for t in collections.tags %}{% if t == 'freestyle' %}
+  {% assign freestyle = true %}
+{% endif %}{% endfor %}
+
+{% if freestyle %}
+  <p>Freestyle!</p>
+{% endif %}
+```
+
+`capture`允许将大量字符串合并为单个字符串并赋值给变量，而不会输出显示。
+
+```liquid
+{% capture attribute_name %}{{ item.title | handleize }}-{{ i }}-color{% endcapture %}
+
+<label for="{{ attribute_name }}">Color:</label>
+<select name="attributes[{{ attribute_name }}]" id="{{ attribute_name }}">
+  <option value="red">Red</option>
+  <option value="green">Green</option>
+  <option value="blue">Blue</option>
+</select>
+```
+{%endraw%}
+
+- - - - - -
+
 ### 字符转义
 
 有时候想输出 \{ 了,怎么办,使用 \\ 转义即可.
@@ -344,6 +657,7 @@ page 是当前页面的根节点.
 \{ => {
 ```
 
+
 ### 输出变量
 
 输出变量直接使用两个大括号括起来即可.
@@ -351,6 +665,7 @@ page 是当前页面的根节点.
 ```
 { { page.title } }
 ```
+
 
 ### 循环
 
@@ -416,7 +731,7 @@ remove 可以删除变量中的指定内容
 { { site.time | date_to_long_string } } 07 November 2008
 ```
 
-### 搜索指定key
+### 搜索指定 key
 
 ```
 # Select all the objects in an array where the key has the given value.
@@ -474,7 +789,10 @@ remove 可以删除变量中的指定内容
 ```
 
 
-
+[YAML]: http://en.wikipedia.org/wiki/Yaml "一个几乎所有编程语言都支持的易读的数据序列化（ Serialization )标准"
+[Liquid]: http://www.liquidmarkup.org/
+[Liquid语法]: https://github.com/Shopify/liquid/wiki/Liquid-for-Designers
+[syntax reference]: http://docs.shopify.com/themes/liquid-documentation/filters/additional-filters#date "Liquid Documentation"
 [usage]: http://jekyllrb.com/docs/usage/
 [ruby]: http://www.ruby-lang.org/en/downloads/
 [installation]: http://jekyllrb.com/docs/installation/
@@ -491,7 +809,6 @@ remove 可以删除变量中的指定内容
 
 Reference:
 
-1. https://github.com/Shopify/liquid/wiki/Liquid-for-Designers   
 2. https://github.com/jekyll/jekyll/wiki/Liquid-Extensions   
 3. http://jekyllbootstrap.com/api/jekyll-liquid-api.html
 
