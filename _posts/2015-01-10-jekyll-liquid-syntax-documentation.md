@@ -833,7 +833,7 @@ forloop.last        # => is this the last iteration ?
 ### 链接同域内的 post
 
 使用 `post_url` Tag 可以自动生成网站内的某个 post 超链接。  
-这个命令语句在引入同域的 post 链接时，非常有用。
+这个命令语句以相关 post 的文件名为参数，在引入同域的 post 链接时，非常有用。
 
 {%raw%}
 ```liquid
