@@ -42,6 +42,9 @@ POST /user/repos
 }
 ```
 
+<!--more-->
+
+
 ### 1、CLI 新建 Repository
 
 ```sh
@@ -62,7 +65,6 @@ curl -u 'alfred' -d '{"name":"test", "description":"This project is a test"}' ht
 # git push origin master
 ```
 
-<!--more-->
 
 ### 2、初始化 Repository
 
