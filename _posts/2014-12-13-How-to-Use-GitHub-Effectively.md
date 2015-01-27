@@ -22,11 +22,11 @@ external-url: http://www.yangzhiping.com/tech/github.html
 ## Q1：GitHub是什么
 ## A1：一家公司
 
-![GitHub](http://www.yangzhiping.com/images/tech/Octocat.png)
-
 位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。
 
 <!--more-->
+
+![GitHub](http://www.yangzhiping.com/images/tech/Octocat.png)
 
 在此之前，它是由Tom与Chris 在本地程序员聚会中，开始的一个用于托管git的项目。正如每个伟大的传奇都开始于一场冒险，Tom在这篇文章[我如何辞掉微软30万年薪邀约，创办GitHub][1]中谈到：
 
