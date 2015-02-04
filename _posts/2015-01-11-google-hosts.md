@@ -26,7 +26,8 @@ hosts文件位置：
 
 - google hosts 2015 持续更新：http://www.360kb.com/kb/2_122.html   
 - 2014-11-07 更新的hosts：下载地址1就行。。   
-http://blog.sina.com.cn/s/blog_62fbf02e0102vcrf.html
+http://blog.sina.com.cn/s/blog_62fbf02e0102vcrf.html  
+http://blog.sina.com.cn/s/blog_62fbf02e0102vewg.html 
 - **权威hosts更新**：http://serve.netsh.org/pub/gethosts.php
 
 要判断一个hosts文件是否可用比较简单的办法是把文件里的IP放在浏览器里看看是否能打开谷歌即可。
