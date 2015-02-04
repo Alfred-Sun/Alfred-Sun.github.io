@@ -16,7 +16,7 @@ description:  CapsLock键对我们来说基本就是多余的，而且在键盘�
 
 作为一个 vimer，Caps Lock 键根本就是多余的，而且在键盘中的位置根本不合理，一不小心就按到了 Caps Lock，然后就出错了。Esc 又是 vim 下使用最为频繁的按键，将Caps Lock替换成Esc真是再好不过了，而且不用担心按ESC的时候按到了该死的F1。
 
-Linux 将Caps Lock转换成Esc非常简单，只要在`.profile`文件最后加入下面这条语句，让linux每次开机去帮我们执行它：
+Linux 将Caps Lock转换成Esc非常简单，只要在`.profile`文件最后加入下面这条语句，让linux每次开机去帮我们执行它（[参考文章][RemapCapsLock]）：
 
 ```sh
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -88,6 +88,7 @@ Windows Registry Editor Version 5.00
 
 还原按键时，只需要在注册表的路径(`[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]`)下，删除**Scancode Map**键即可。
 
+[RemapCapsLock]: http://c2.com/cgi/wiki?RemapCapsLock
 [Win7：CapsLock与Esc互换]: http://xyztony1985.blog.163.com/blog/static/3611782011752420104/
 
 

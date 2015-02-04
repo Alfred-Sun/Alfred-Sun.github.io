@@ -215,7 +215,7 @@ Vi 里面还有跟 emacs 作战的游戏：http://wordwarvi.sourceforge.net/
 Emacs 要用顺手比 Vim 要难，组合快捷键太难记，好在有便利的 Org-Mode，Emacs 是需要自己配置的，不配置当然不能发现它的强大之处。而 Vim 默认有一千四百多个命令，不过同样的功能，用更少的击键次数。
 
 
-Vim 觉得Esc键远，有个小技巧，可以用 `Ctrl+[` 来代替，还可以用CapsLock替换ESC或者Left Ctrl；左手小拇指可以用来回归Normal模式，真正做到双手不离键盘主行，缺点是转到用别人的电脑的时候一直写大写字母。   
+Vim 觉得Esc键远，有个小技巧，可以用 `Ctrl+[` 来代替，还可以用CapsLock替换ESC或者Left Ctrl（参考[此文]({% post_url 2015-02-04-remap-capslock-key %})）；左手小拇指可以用来回归Normal模式，真正做到双手不离键盘主行，缺点是转到用别人的电脑的时候一直写大写字母。   
 现在的键盘布局里CapsLock就是个废键，平常都用Shift就足够了，把CapsLock和Ctrl对换就好，无论对 Vim 还是 Emacs 来说都会好用很多。
 
 
