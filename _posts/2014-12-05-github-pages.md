@@ -445,3 +445,5 @@ $ gem install jekyll
 [17]: http://jekyllbootstrap.com/
 [18]: http://chxt6896.github.com/blog/2012/02/13/blog-jekyll-native.html
 [a-record]: https://help.github.com/articles/my-custom-domain-isn-t-working
+
+
