@@ -1,8 +1,8 @@
 ---
 layout: post
 title: VIM 中文编码问题
-category: VIM
-tags: [VIM]
+category: Vim
+tags: [Vim]
 author: Alfred Sun
 updated: 2015-01-26 20:34
 keywords: vim, encoding

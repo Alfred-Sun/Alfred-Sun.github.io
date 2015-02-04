@@ -1,7 +1,7 @@
 ---
 title: 一些 Vim 小技巧
-category: VIM
-tags: [VIM]
+category: Vim
+tags: [Vim]
 updated: 2015-01-28 00:09
 keywords: Vim tips and tricks
 description: 使用VIM的过程中，记录的一些常用的 VIM 小技巧
