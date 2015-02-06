@@ -130,7 +130,7 @@ Windows Registry Editor Version 5.00
 
 - http://c2.com/cgi/wiki?RemapCapsLock   
 - http://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim   
-- https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc   
+- https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc   
 - https://msdn.microsoft.com/en-us/library/windows/hardware/jj128267(v=vs.85).aspx   
 - http://www.doc88.com/p-10453230875.html
 
