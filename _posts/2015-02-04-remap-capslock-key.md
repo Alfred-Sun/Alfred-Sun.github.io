@@ -128,11 +128,11 @@ Windows Registry Editor Version 5.00
 
 ## 3. 参考资料
 
-1. http://c2.com/cgi/wiki?RemapCapsLock   
-2. http://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim   
-3. https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc   
-4. https://msdn.microsoft.com/en-us/library/windows/hardware/jj128267(v=vs.85).aspx   
-5. http://www.doc88.com/p-10453230875.html
+- http://c2.com/cgi/wiki?RemapCapsLock   
+- http://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim   
+- https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc   
+- https://msdn.microsoft.com/en-us/library/windows/hardware/jj128267(v=vs.85).aspx   
+- http://www.doc88.com/p-10453230875.html
 
 
 
