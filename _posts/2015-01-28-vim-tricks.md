@@ -112,7 +112,7 @@ Anything run from the `:` prompt starting with a bang `!` will be run as a unix 
     :diffthis
     ```
     
- 4. 改变窗口内容，Vim 确未自行更新 diff 检查
+ 4. 改变窗口内容，Vim 又没有自动更新 diff 检查
 
     ```vim
     :diffupdate
