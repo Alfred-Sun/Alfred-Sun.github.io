@@ -113,7 +113,7 @@ GFM Syntax Guide: an [overview of Markdown syntax]({{ site.picture_dir }}/markdo
 		| Content Cell  | Content Cell  |
 		| Content Cell  | Content Cell  |
 
-	顶部的连字符无需一定匹配表头文本的长度；也可以添加行内的Markdown语法文本，如链接、加粗、删除线等：
+	顶部的连字符无需一定匹配表头文本的长度（但必须保证**至少3个连字符**）；也可以添加行内的Markdown语法文本，如链接、加粗、删除线等：
 
 		| Name | Description          |
 		| ------------- | ----------- |
