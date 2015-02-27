@@ -54,6 +54,7 @@ vim -S vimbook.vim
 ```
 
 
+
 ## 最近打开的文件列表
 
 Vim 在 `~/.viminfo` 或 `~\_viminfo` 中保存了最近访问的10个文件信息，可以用 `'0`、`'1`、`'2`、`'3` …… `'9` 这些命令跳转到对应的文件。  
@@ -73,6 +74,7 @@ q 2
 ```
 
 
+
 ## 在 Vim 内运行外部命令
 
 切换到命令模式 `Esc`，执行 `:!unix_command`。  
@@ -84,6 +86,7 @@ Anything run from the `:` prompt starting with a bang `!` will be run as a unix 
 ```
 
 参看 [Vim tips: Working with external commands](http://www.linux.com/learn/tutorials/442419-vim-tips-working-with-external-commands)
+
 
 
 
@@ -182,6 +185,47 @@ if &sh =~ '\<cmd'
       let cmd = '"' . $VIMRUNTIME . '\diff"'
       let eq = '""'
 ```
+
+
+
+
+## Vim 换行符的查找与替换之迷
+
+在 shell 下生成一个 test 文件：
+
+```sh
+$ echo -e "i\rlove\rWQ." > test
+```
+
+然后，用 Vim 打开，内容是 “_**I^Mlove^MWQ.**_”，这时执行：`:%s/\r/\r/g` 发现文件正常了。
+
+但是这里面有一个不正常现象：`:%s/\r/\r/g` 这个命令是把 `\r` 替换成了 `\r`，应该什么都没变化啊。  
+于是仔细检查了一下，发现这个问题还要从各个系统不同的换行符开始，下面的这个表格大家比较熟悉了：
+
+|                 | windows/dos | unix | mac |
+| --------------- | ----------- | ---- | --- |
+| **换行符**      | CRLF     　 | LF   | CR  |
+|**SHELL中的表示**| \r\n     　 | \n   | \r  |
+| **16进制符**    | 0d0a     　 | 0a   | 0d  |
+
+`:%s/\r/\r/g` 这个命令中，第一个 `\r` 与第二个 `\r` 的意义是可能不相同的；  
+第一个 `\r` 代表 `0d`，也就是 `CR`；而第二个 `\r`，是Vim自行根据fileformat内置变量判断决定的，见下表：
+
+|                  | \n  | \r        |
+| ---------------- | --- | --------- |
+| **:set ff=dos**  | 00  | 0d0a(\n\r)|
+| **:set ff=unix** | 00  | 0a(\n)    |
+| **:set ff=mac**  | 00  | 0d(\r)    |
+
+OK，现在就可以解释上面的 `:%s/\r/\r/g` 为什么会把 `0d` 变成 `0a` 了。
+
+**另外还有两个小Tip：**
+
+1. 根据fileformat的不同，Vim会自动在文件的最未尾添加一个换行符，除非启动时 **vim -b xxx**
+2. 任何情形下，Vi 中的 `\n` 都是 `00`, 在 Vim 中会显示为 `^@`
+
+See：http://www.zhangabc.com/2011/08/08/vim-cr-lf-shell/  
+See：http://hi.baidu.com/valoias/blog/item/5f023930d9f7e080a8018e43.html
 
 
 

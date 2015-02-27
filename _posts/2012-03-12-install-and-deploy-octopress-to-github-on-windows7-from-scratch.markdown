@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "在 Windows7 下从头开始安装部署 Octopress"
-date: 2012-03-12 09:14
-categories: [octopress, github pages]
+date: 2014-11-23 09:14
+categories: [Octopress, GitHub Pages]
 tags: [Octopress, GitHub Pages]
 author: sinosmond
-updated: 2015-01-09 16:25
+updated: 2015-02-06 16:25
 external-url: http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/
 keywords: Octopress, GitHub Pages, Win 7
-description: 在 Windows7 下从头开始安装部署 Octopress
+description: 介绍如何在 Windows 7 下从头开始安装 Octopress，并部署到 GitHub
 #toc: true
 ---
 
@@ -16,52 +16,54 @@ description: 在 Windows7 下从头开始安装部署 Octopress
 
 ### Octopress 简介
 
-* [Octopress](http://octopress.org/) 是一款基于 [Jekyll](http://jekyllrb.com/) 的静态站点生成系统。
-  - 使用 Markdown 标记语言书写源文件， 通过 Markdown 解析器转换为 HTML 文件
+* [Octopress](http://octopress.org/) 是一款基于 [Jekyll](http://jekyllrb.com/) 的静态网站生成系统。
+  - 使用 Markdown 标记语言书写源文件，通过 Markdown 解析器转换为 HTML 文件
   - 通过 Octopress 提供的站点模板提供所需的 Web 资产文件 （Javascript、CSS、image 等）
   - 只包含静态网页，无需数据库支持，对系统要求低且迁移方便  
   - 以编写程序的方式编制网站，便于实现版本控制
-* [Octopress](http://octopress.org/) / [Jekyll](http://jekyllrb.com/) 使用简洁的Ruby框架实现。
+* [Octopress](http://octopress.org/) / [Jekyll](http://jekyllrb.com/) 使用简洁的 Ruby 框架实现。
   - Octopress 以 rake 任务的形式实现静态站点页面生成, 操作十分简单
   - Octopress 以 rake 任务的形式实现到普通网站和 [Github](http://github.com) 的发布 
   - Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，使非专业人士的使用成为可能
 
 <!--more-->
 
-### 在 Windows 7 下安装必要的软件
+### 在 Windows 7 下安装必要的工具
 
-* Octopress 在 git 中维护，需要安装 git
-  - 到 [msysgit](http://code.google.com/p/msysgit/downloads/list) 查找下载最新版本
-  - 当前的最新版本 Git-1.7.9-preview20120201.exe，下载后直接安装
-* Octopress/Jekyll 是 ruby 应用程序，需要安装 ruby 
-  - 到 [RailsInstaller](http://rubyforge.org/frs/?group_id=167) 查找下载最新版本
-  - Octopress 要求安装 [rubyinstaller-1.9.2-p290](http://rubyforge.org/frs/download.php/75127/rubyinstaller-1.9.2-p290.exe)
-    - Jekyll 要求安装 [rubyinstaller-1.9.1-p430](http://rubyforge.org/frs/download.php/72075/rubyinstaller-1.9.1-p430.exe) 
-  - 安装后，确保 `C:\Ruby192\bin` 在 Windows 当前用户的 `PATH` 环境变量中  
-* ruby 的模块工具 gem 在生成本地模块时可能需要用到编译环境
-  - 有两种选择 [MinGW and MSYS](http://www.mingw.org/) 或 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
+* Octopress 在 Git 中维护，需要安装 Git
+  - 到 [msysgit](http://git-scm.com/downloads) 查找下载最新版本（最好同时安装相应的基于Winows平台的 GUI 客户端工具，如：[**Git Extensions**](http://git-scm.com/downloads/guis)）
+  - 当前的最新版本 **Git-1.9.5-preview20141217.exe**，下载后直接安装
+* Octopress/Jekyll 是 Ruby 应用程序，需要安装 Ruby 
+  - 到 [Installing Ruby](https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller) 查看 **RubyInstaller** 安装说明
+  - 要求安装 [Ruby 1.9.3](http://rubyinstaller.org/downloads/) 或更高版本（实测 Win 7 下 **ruby 2.0.0p598 (2014-11-13) [i386-mingw32]** 和 Linux 下 **ruby 2.2.0p0 (2014-12-25 revision 49005) [i686-linux]** 可用）
+  - 安装后，确保 `C:\Ruby193\bin` 在 Windows 当前用户的 `PATH` 环境变量中  
+* Ruby 的模块工具 gem 在生成本地模块时可能需要用到编译环境
+  - 有两种选择：[MinGW and MSYS](http://www.mingw.org/) 或 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
   - 本文选择 RubyInstaller 推荐的 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
   - 下载 [RubyInstaller DevKit](https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe)
-  - 安装需执行如下步骤
-    + 将 DevKit 自解压包释放到 C:\DevKit 
-	+ 在 Windows CMD 窗口中执行  `ruby dk.rb init` 
-	+ 在 Windows CMD 窗口中执行  `ruby dk.rb install`
-* jekyll/Octopress 使用 Python 编写的代码加亮系统 pygments，需要安装 python（可选）
-  - 到 [ActiveState](http://www.activestate.com/activepython) 下载 最新的 ActivePython-2.7 版
-  - 执行安装程序
-  - 在 Windows CMD 窗口中执行  `easy_install pygments`
+  - 安装需执行如下步骤：
+      + 将 DevKit 自解压包释放到 C:\DevKit ，执行 `cd C:\DevKit`
+      + 在 Windows CMD 窗口中执行  `ruby dk.rb init` 
+      + 在 Windows CMD 窗口中执行  `ruby dk.rb install`
+* Jekyll/Octopress 使用 Python 编写的代码加亮系统 [Pygments](http://pygments.org/)，需要安装 Python（可选）
+  - 直接在 [Python.org](https://www.python.org/downloads/) 下载安装 Python 2.7.9
+  - 或者到 [ActiveState](http://www.activestate.com/activepython) 下载最新的 ActivePython-2.7 版，执行  `easy_install pygments`
+
+<!-- 到 [RailsInstaller](http://rubyforge.org/frs/?group_id=167) 查找下载最新版本 -->
+[msysgit_old]: http://code.google.com/p/msysgit/downloads/list
+
 
 ### 软件安装后的 Windows 7 环境说明和配置
 
 * 两种命令行环境
-  - Windows 7 自己的 CMD窗口，用于输入 DOS 类命令
-  - MINGW/Git Bash 窗口启动了 bash，可以输入 Linux 类命令
-* 环境变量
+  - Windows 7 自己的 CMD 窗口，用于输入 DOS 类命令
+  - MINGW/Git Bash 窗口启动了 Bash，可以输入类 Linux 命令
+* 环境变量 (**可选**，Git 本身自带 Bash，安装过程会自行设置，MINGW 非必要工具)
   - 在 Windows 的 “高级系统设置” 中设置的 环境变量 可以被 MINGW 窗口**继承**
     - 设置 `LANG` 和 `LC_ALL` 两个环境变量，其值均设置为 `zh_CN.UTF-8`
 	- 在 CMD 窗口中测试： `echo %LANG%   %LC_ALL%` 
 	- 在 MINGW 窗口中测试： `echo $LANG   $LC_ALL`
-  - MINGW/Git Bash 窗口启动了 bash，可以使用 `~/.bash_profile` 环境设置文件设置环境变量、命令别名等 
+  - MINGW/Git Bash 窗口启动了 Bash，可以使用 `~/.bash_profile` 环境设置文件设置环境变量、命令别名等 
     - `$ echo "export LANG LC_ALL" > ~/.bash_profile`
     - `$ echo "alias ll='ls -l --color=tty'"  >> ~/.bash_profile`
     - `$ echo "alias ls='ls --color=tty'"     >> ~/.bash_profile`
@@ -73,29 +75,29 @@ description: 在 Windows7 下从头开始安装部署 Octopress
   - `gem sources --remove http://rubygems.org/`
   - `gem sources -a http://ruby.taobao.org/`
   - `gem sources -l # 请确保只有 http://ruby.taobao.org 一行输出`
-* 安装 rdoc 和 bundler
-  - `gem install rdoc bundler`
+* 安装 bundler
+  - `gem install bundler`
 
 ### 安装 Octopress
 
 ```bash
-# 1. 克隆 Octopress
+# 1. 进入 Bash 环境，克隆 Octopress 到本地代码仓库
 $ mkdir ~/repos
 $ cd ~/repos
-$ git clone git://github.com/imathis/octopress.git sinosmond.github.com
-$ cd ~/repos/sinomsond.github.com
+$ git clone git://github.com/imathis/octopress.git octopress
+$ cd ~/repos/octopress
 # 2. 修改 Octopress 的 GEM 源
-$ vi Gemfile    # 或 notepad Gemfile
+$ vim Gemfile    # 或 notepad Gemfile
 将行 ： source "http://rubygems.org/"
 改为 ： source "http://ruby.taobao.org/"
-# 3. 安装 Octopress 所需的GEM组件
+# 3. 安装 Octopress 所需的 GEM 组件
 $ bundle install
 ```
 
-### 生成 Octopress 的模版文件
+### 生成 Octopress 默认模版文件
 
 ```bash
-$ rake install
+$ rake install  # 或者 "rake install[classic]"
 rake aborted!
 You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. 
 Using bundle exec may solve this.
@@ -107,8 +109,8 @@ Using bundle exec may solve this.
 
 1. `$ bundle update; rake install`
 2. 调整 rake
-  - 在 WINDOWS 的 CMD 窗口里：修改 rake.bat 文件
-  - 在 GIT BASH 里：设置别名
+  - 在 Windows 的 CMD 窗口里：修改 rake.bat 文件
+  - 在 Git Bash 里：设置别名
 
 ```bash
 $ echo "alias rake='bundle exec rake'" >> ~/.bash_profile
@@ -118,32 +120,36 @@ alias rake='bundle exec rake'
 $ rake install
 ```
 
-### git 和 github
+### Git 和 GitHub
 
-* 学习 git 参考
+* 学习 Git 参考
   - [为啥 Git 最棒](http://zh-cn.whygitisbetterthanx.com/)
   - [git - 简易指南](http://rogerdudler.github.com/git-guide/index.zh.html)
   - [git 魔法](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/) -- [git](https://github.com/blynn/gitmagic)
   - [10篇写给Git初学者的最佳教程](http://www.kuqin.com/managetool/20110705/92113.html)
-* 学习 Github 参考
+* 学习 GitHub 参考
   - [如何高效利用GitHub](http://www.yangzhiping.com/tech/github.html)
   - [GotGitHub](http://www.worldhello.net/gotgithub/)
   - [The GitHub Hep](http://help.github.com/)
 
 ### 设置本地仓库和远程仓库的关联
-  
-* 创建 github 账号和仓库  
-  - 下面的操作假定您注册了 `<USERNAME>` 的账号
-  - 下面的操作假定您创建了 `<USERNAME>.github.com` 的仓库
-  - 本例使用 sinosmond.github.com，请用 `<USERNAME>.github.com` 替换之 
-* 在本地版本库中设置远程版本库的别名  
-  - `$ git remote add myblog git@github.com:sinosmond/sinosmond.github.com.git`
+
+**创建 GitHub 账号和仓库**
+
+  - 假定您注册了 `<USERNAME>` 的账号
+  - 下面的操作假定您创建了 `octopress` 的仓库，部署为 **GitHub Project Pages**
+      - 在本地版本库中设置远程版本库的别名  
+        - `$ git remote add myblog git@github.com:alfred/octopress.git`
+  - 下面的操作假定您创建了 `<USERNAME>.github.io` 的仓库，部署为 **GitHub User Pages**
+      - 本例使用 alfred.github.io，请用 `<USERNAME>.github.io` 替换之 
+      - 在本地版本库中设置远程版本库的别名  
+        - `$ git remote add myblog git@github.com:alfred/alfred.github.io.git`
 
 ##  配置和使用 Octopress 
   
 ### Octopress 的基本配置
   
-- 编辑 _config.yml 文件 ，根据您自己的需要修改其值, [参考](http://octopress.org/docs/configuring/)
+- 编辑 _config.yml 文件 ，根据您自己的需要修改其值，[参考](http://octopress.org/docs/configuring/)
 - **若文件中包括中文，则存成 UTF-8 编码格式** 
 
 ```yaml
@@ -164,27 +170,29 @@ email:              # Email address for the RSS feed if you want it.
 
 ### 编辑新页面
 
-- 生成 BLOG/静态 页面  
-  * `rake new_post["article name"]` : 生成指定的 Blog 初始页面
+- 生成 Blog/静态 页面  
+  * `rake new_post["article name"]` : 生成指定的 Blog Post 初始页面
   * `rake new_page["page name"]` : 生成指定的静态初始页面
 - 使用你惯用的编辑器修改新生成的文件
   * 使用 YAML 语法设置本页面属性，用 Markdown 语法书写文章内容
-  * **若文件中包括中文，则存成 UTF-8 编码格式** 
-  * [Markdown 语法说明](http://wowubuntu.com/markdown/)
+  * **若文件中包括中文，则存成 UTF-8 编码格式**
+  * [**讲解 Markdown**]({% post_url 2015-01-10-markdown-syntax-documentation %})
+  * [Markdown 语法说明](http://alfred-sun.github.io/markdown-syntax-zhtw/)
   * [Markdown: Dingus](http://daringfireball.net/projects/markdown/dingus) 是一个在线转换工具
   * 若使用 kramdown 解析器，参考 [kramdown 语法](http://kramdown.rubyforge.org/syntax.html) 
   * [Markdown 和多种标记语言的在线转换](http://johnmacfarlane.net/pandoc/try)
   * [Markdown 多种实现的在线比较](http://babelmark.bobtfish.net/)
 
-### 首次提交到 Github
+### 首次提交到 GitHub
 
-1. `rake setup_github_pages` ： 配置 octopress 与 github 的连接
-2. `rake generate` ： 生成静态文件
-3. `rake preview` ： 在本机4000端口生成访问内容
-4. `rake deploy` ：  发布文件到 github
+1. `rake setup_github_pages` ：配置 Octopress 与 GitHub 的连接，[参考](http://octopress.org/docs/deploying/github/)
+2. `rake generate` ：生成静态文件
+3. `rake watch` ：监听 source 和 sass 目录中源文件的变动并重新生成
+4. `rake preview` ：监听并在本机 4000端口生成访问内容
+5. `rake deploy` ：发布文件到 GitHub（不建议该方式；由于 Octopress 只发布生成的文件，建议将生成静态文件操作和 Git 操作分离 ["Unix 哲学"](http://en.wikipedia.org/wiki/Unix_philosophy#Mike_Gancarz:_The_UNIX_Philosophy "Make each program do one thing well")）
 
 
-### 使用 rake 任务管理 BLOG 
+### 使用 rake 任务管理 Blog
 
 ```bash
 $ rake -T
@@ -293,7 +301,56 @@ git commit -m "add some changes"
 git push myblog source
 ```
 
-### 参考链接
+
+
+## 更新 Octopress
+
+### 如何更新
+
+```bash
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's source
+rake update_style             # update the template's style
+```
+
+更新 Octopress 的 插件、模板主题、gemfiles、rakefile 和 配置文件，保留用户的文件改动，[参考](http://octopress.org/docs/updating/)。
+
+`rake update` ： 更新模板的 `/source` 和 `/sass` 目录，等同于一起执行 `update_style` 和 `update_source`。
+
+
+### 更新模板的 Style 文件
+
+用 pull 的新代码，更新本地仓库的 `/sass` 目录：
+
+```bash
+rake update_style
+```
+
+1. 移动 `/sass` 到 `/sass.old`
+2. 复制 `.themes/classic/sass` 到 `/sass`
+3. 用 `/sass.old/custom` 替换 `/sass/custom`
+
+
+### 更新模板的 Source 目录
+
+用 pull 的新代码，更新本地仓库的 `/source` 目录：
+
+```bash
+rake update_source
+```
+
+1. 移动 `/source` 到 `/source.old`
+2. 复制 `.themes/classic/source` 到 `/source`
+3. Copy back everything in `/source.old` (`cp -rn` - without replacing)
+4. 用 `/source.old/_includes/custom/` 替换 `/source/_includes/custom/`
+
+这样，那些新加的文件（如：`_posts`、`about.html` 等），还有用户在 `source/_includes/custom` 定制的文件，都能保留下来。
+
+
+
+
+## 参考链接
 
 - http://chen.yanping.me/cn/blog/2011/12/26/octopress-on-windows/
 - http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/
