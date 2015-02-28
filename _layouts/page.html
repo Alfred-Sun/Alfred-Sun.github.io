@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="page-content">
-	<article role="article">
+	<article {% if page.navbar %}id="{{ page.navbar }}"{% endif %} role="article">
 	    {% unless page.no_header %}
 		<header>
 		    {% if page.date %}
