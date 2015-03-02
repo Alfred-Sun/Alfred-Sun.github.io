@@ -1013,12 +1013,12 @@ Menu
 #cse-search-field {
   width: 185px;
   float: right;
-  font-family: helvetica, sans-serif;
+  /*font-family: helvetica, sans-serif;*/
   padding: 0.4em 0.6em;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 60px;
   box-shadow: #fff 0 1px;
-  line-height: 1.1em;
+  line-height: 1.0em;
   background-clip: padding-box;
   background-color: white;
   margin: 0px;
