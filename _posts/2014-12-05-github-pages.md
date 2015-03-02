@@ -1,9 +1,10 @@
 ---
 layout: post
-title: 建立 GitHub Pages 静态博客网站
-author: BeiYuu
-updated: 2014-12-09 11:15
-description: Github本身就是不错的代码社区，他也提供了一些其他的服务，比如Github Pages，使用它可以很方便的建立自己的独立博客，并且免费。
+title: GitHub Pages 静态博客 - 个人建站实录
+author: Alfred Sun
+updated: 2014-12-09 21:18
+keywords: GitHub Pages, Jekyll, Ruby, Git
+description: 详述建立 GitHub Pages 静态博客网站过程，Github本身就是不错的代码社区，他也提供了一些其他的服务，比如Github Pages，使用它可以很方便的建立自己的独立博客，并且免费。
 category: github pages
 external-url: http://beiyuu.com/github-pages/
 ---

@@ -40,14 +40,15 @@ description: 介绍如何在 Windows 7 下从头开始安装 Octopress，并部�
 * Ruby 的模块工具 gem 在生成本地模块时可能需要用到编译环境
   - 有两种选择：[MinGW and MSYS](http://www.mingw.org/) 或 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
   - 本文选择 RubyInstaller 推荐的 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
-  - 下载 [RubyInstaller DevKit](https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe)
-  - 安装需执行如下步骤：
+  - 下载 [RubyInstaller DevKit](https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe) （之所以要 DevKit 是因為在安裝 Octopress 時，所需要用到的 ruby gems 會需要在本地編譯，如：rdiscount）
+  - 安装需执行如下步骤：（development kit 是一套基於 MSYS/MinGW 下的 C/C++ 編譯環境工具組，安裝時跟著官網上的指示即可）
       + 将 DevKit 自解压包释放到 C:\DevKit ，执行 `cd C:\DevKit`
-      + 在 Windows CMD 窗口中执行  `ruby dk.rb init` 
+      + 在 Windows CMD 窗口中执行  `ruby dk.rb init`  （產生 config.yaml，裡面有你的 ruby 路徑，一般會幫你設好）
       + 在 Windows CMD 窗口中执行  `ruby dk.rb install`
+  - 保险起见，安装之后先更新一下 gem 是个好习惯：`gem update --system`、 `gem update`
 * Jekyll/Octopress 使用 Python 编写的代码加亮系统 [Pygments](http://pygments.org/)，需要安装 Python（可选）
   - 直接在 [Python.org](https://www.python.org/downloads/) 下载安装 Python 2.7.9
-  - 或者到 [ActiveState](http://www.activestate.com/activepython) 下载最新的 ActivePython-2.7 版，执行  `easy_install pygments`
+  - 或者到 [ActiveState](http://www.activestate.com/activepython) 下载最新的 ActivePython-2.7 版 (_执行_  `easy_install pygments` **Obsoleted**)
 
 <!-- 到 [RailsInstaller](http://rubyforge.org/frs/?group_id=167) 查找下载最新版本 -->
 [msysgit_old]: http://code.google.com/p/msysgit/downloads/list
@@ -60,7 +61,7 @@ description: 介绍如何在 Windows 7 下从头开始安装 Octopress，并部�
   - MINGW/Git Bash 窗口启动了 Bash，可以输入类 Linux 命令
 * 环境变量 (**可选**，Git 本身自带 Bash，安装过程会自行设置，MINGW 非必要工具)
   - 在 Windows 的 “高级系统设置” 中设置的 环境变量 可以被 MINGW 窗口**继承**
-    - 设置 `LANG` 和 `LC_ALL` 两个环境变量，其值均设置为 `zh_CN.UTF-8`
+    - 为避免中文乱码，设置 `LANG` 和 `LC_ALL` 两个环境变量，其值均为 `zh_CN.UTF-8`
 	- 在 CMD 窗口中测试： `echo %LANG%   %LC_ALL%` 
 	- 在 MINGW 窗口中测试： `echo $LANG   $LC_ALL`
   - MINGW/Git Bash 窗口启动了 Bash，可以使用 `~/.bash_profile` 环境设置文件设置环境变量、命令别名等 
@@ -90,14 +91,14 @@ $ cd ~/repos/octopress
 $ vim Gemfile    # 或 notepad Gemfile
 将行 ： source "http://rubygems.org/"
 改为 ： source "http://ruby.taobao.org/"
-# 3. 安装 Octopress 所需的 GEM 组件
+# 3. 安装 Octopress 所需的 GEM 组件 (Gemfile)
 $ bundle install
 ```
 
 ### 生成 Octopress 默认模版文件
 
 ```bash
-$ rake install  # 或者 "rake install[classic]"
+$ rake install  # 或者 "rake install[classic]"  安裝預設的 Octopress 樣式
 rake aborted!
 You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. 
 Using bundle exec may solve this.
@@ -182,14 +183,29 @@ email:              # Email address for the RSS feed if you want it.
   * 若使用 kramdown 解析器，参考 [kramdown 语法](http://kramdown.rubyforge.org/syntax.html) 
   * [Markdown 和多种标记语言的在线转换](http://johnmacfarlane.net/pandoc/try)
   * [Markdown 多种实现的在线比较](http://babelmark.bobtfish.net/)
+- **不能在 ZSH 中输入命令的问题**  
+    Octopress 提供了许多 Rake 任务，可以方便地完成一些操作。  
+    常用的命令是 `rake new_post["title"]`，但是在 ZSH 下，输入这样的命令，会提示错误：
+    
+    ```
+    zsh: no matches found: new_post[...]
+    ```
+
+    原因是诸如 `[]` 之类的不是正确的命令字符。当然，我们也可以使用转义符来解决这一问题。但每次都需要敲入转义符，实在是太麻烦了。  
+    解决方案是命令改成 `rake 'new_post[title]'`，或者在 `~/.zshrc` 文件下，加这一行内容：
+    
+    ```bash
+    alias rake="noglob rake"    # 停止 wildcard 功能
+    ```
+
 
 ### 首次提交到 GitHub
 
 1. `rake setup_github_pages` ：配置 Octopress 与 GitHub 的连接，[参考](http://octopress.org/docs/deploying/github/)
 2. `rake generate` ：生成静态文件
 3. `rake watch` ：监听 source 和 sass 目录中源文件的变动并重新生成
-4. `rake preview` ：监听并在本机 4000端口生成访问内容
-5. `rake deploy` ：发布文件到 GitHub（不建议该方式；由于 Octopress 只发布生成的文件，建议将生成静态文件操作和 Git 操作分离 ["Unix 哲学"](http://en.wikipedia.org/wiki/Unix_philosophy#Mike_Gancarz:_The_UNIX_Philosophy "Make each program do one thing well")）
+4. `rake preview` ：监听并在本机 4000端口生成访问内容 http://localhost:4000
+5. `rake deploy` ：发布生成的网站文件到 GitHub（不建议该方式；由于 Octopress 只发布生成的文件，建议将生成静态文件操作和 Git 操作分离 ["Unix 哲学"](http://en.wikipedia.org/wiki/Unix_philosophy#Mike_Gancarz:_The_UNIX_Philosophy "Make each program do one thing well")）
 
 
 ### 使用 rake 任务管理 Blog
@@ -217,6 +233,16 @@ rake update_style[theme]       # Move sass to sass.old, install sass theme ...
 rake watch                     # Watch the site and regenerate when it changes
 ```
 
+
+### 更新远程管理源码的仓库分支 
+
+```bash
+git add .
+git commit -m "your message"
+git push myblog source
+```
+
+
 ### 进一步配置 Octopress 
 
 - 配置 社会化网络 应用
@@ -225,16 +251,17 @@ rake watch                     # Watch the site and regenerate when it changes
 
 |     类型       |     国外服务     |    国内服务     |
 |----------------|------------------|-----------------|
-|    Feed烧制    |   [FeedBurner](http://feedburner.google.com)          |  [FeedSky](http://www.feedsky.com/)              |
-|    分享到      |   [AddThis](http://www.addthis.com/)  | [JiaThis](http://www.jiathis.com/) |
+|    Feed 烧制    |   [FeedBurner](http://feedburner.google.com)          |  [FeedSky](http://www.feedsky.com/)              |
+|    分享到      |   [AddThis](http://www.addthis.com/)  | [JiaThis](http://www.jiathis.com/)， [百度分享](http://share.baidu.com/) |
 |    微博        |   Twitter | weibo.com  |
-|    网络书签    |   [Delicious](http://delicious.com/), [Google Bookmarks](http://www.google.com/bookmarks) | [QQ书签](http://shuqian.qq.com/), [百度搜藏](http://cang.baidu.com/) |
-|    网络图床    |   [Flickr](http://www.flickr.com/) | [yupoo](http://www.yupoo.com/) , [POCO](http://www.poco.cn/) |
-|    网络评论    |   [Disqus](http://disqus.com/) | [友言](http://uyan.cc/) |
+|    网络书签    |   [Delicious](http://delicious.com/)， [Google Bookmarks](http://www.google.com/bookmarks) | [QQ书签](http://shuqian.qq.com/)， [百度搜藏](http://cang.baidu.com/) |
+|    网络图床    |   [Flickr](http://www.flickr.com/) | [yupoo](http://www.yupoo.com/)， [POCO](http://www.poco.cn/) |
+|    网络评论    |   [Disqus](http://disqus.com/) | [友言](http://uyan.cc/)， [多说](http://duoshuo.com/) |
+|    数据统计    |   [Google Analytics](http://www.google.com/analytics/) | [百度统计](http://tongji.baidu.com/web/welcome/login)， [CNZZ](http://www.cnzz.com/) |
 
 
 
-### 配置举例1：为每一篇BLOG结尾添加 “JiaThis”
+### 配置举例1：为每一篇Blog结尾添加 “JiaThis”
 
 1、在 `_config.yml` 尾部添加如下行
 
@@ -243,7 +270,7 @@ rake watch                     # Watch the site and regenerate when it changes
 jiathis: true
 ```
 
-2、在 `source/_includes/post/sharing.html` 尾部的`</div>`之前添加如下行
+2、在 `source/_includes/post/sharing.html` 尾部的 `</div>` 之前添加如下行
 
 {% raw %}
 ```
@@ -253,7 +280,7 @@ jiathis: true
 ```
 {% endraw %}
 
-3、创建 `source/_includes/post/jiathis.html ` 文件，将从[JiaThis](http://www.jiathis.com/)获得的代码放入其中
+3、创建 `source/_includes/post/jiathis.html ` 文件，将从 [JiaThis](http://www.jiathis.com/) 获得的代码放入其中
 
 
 ### 配置举例2： 配置侧栏
@@ -263,8 +290,8 @@ jiathis: true
   * 系统默认的显示边栏的内容基于 source/_includes 目录保存为 `asides/*.html`
   * 用户自定义的边栏内容基于 source/_includes 目录保存为 `custom/asides/*.html`
 - 显示顺序
-  * `blog_index_asides` 控制BLOG首页的边栏显示
-  * `post_asides` 控制每一个单独的BLOG页面显示时的边栏（对应 `rake new_post[]`）
+  * `blog_index_asides` 控制Blog主页的边栏显示
+  * `post_asides` 控制每一个单独的Blog页面显示时的边栏（对应 `rake new_post[]`）
   * `page_asides` 控制静态页面显示时的边栏（对应 `rake new_page[]`）
 
 ```yaml
@@ -293,17 +320,10 @@ page_asides:
 - custom/asides/copyleft.html
 ```
 
-### 更新管理源码的仓库分支 
-
-```bash
-git add .
-git commit -m "add some changes"
-git push myblog source
-```
 
 
 
-## 更新 Octopress
+## 更新本地 Octopress 
 
 ### 如何更新
 
@@ -352,6 +372,8 @@ rake update_source
 
 ## 参考链接
 
+- http://agiledon.github.io/blog/2012/12/25/octopress-issues-solution-and-tips/
+- http://tonytonyjan.net/2012/03/01/install-octopress-on-windows/
 - http://chen.yanping.me/cn/blog/2011/12/26/octopress-on-windows/
 - http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/
 - http://www.yangzhiping.com/tech/octopress.html

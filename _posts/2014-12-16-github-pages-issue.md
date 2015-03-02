@@ -98,7 +98,7 @@ Make sure that have installed Python 2.x and set env path for pygments.rb call.
 - [jekyll/jekyll#2551](https://github.com/jekyll/jekyll/issues/2551)
 
 __Note:__   
-之所以要安裝 Python 是因為 代码高亮 plugin -- [pygments.rb][]，是基于 Python 的代码高亮工具 [Pygments][] 的一个 Ruby wrapper，雖然 Pygments 支援 Python 2 版和 3 版，不過由於 Ruby 和 Python 之間的橋接是用 RubyPython 完成，而 [rubypython][] 目前只支援 Python 2。所以還是乖乖安裝 2 版吧！（见pygments.rb的`README.md`）
+之所以要安裝 Python 是因為 代码高亮 plugin -- [pygments.rb][]，是基于 Python 的代码高亮工具 [Pygments][] 的一个 Ruby wrapper，内嵌 Python 解释器，兼容 Python 2.5、Python 2.6 和 Python 2.7。旧版的解释是，还需安装 RubyPython 调用 Python Pygments 包；雖然 Pygments 支援 Python 2 版和 3 版，不過由於 Ruby 和 Python 之間的橋接是用 RubyPython 完成，而 [rubypython][] 目前只支援 Python 2。所以還是乖乖安裝 2 版吧！（见pygments.rb的`README.md`）
 
 [pygments.rb]: https://github.com/tmm1/pygments.rb
 [Pygments]: http://pygments.org/
