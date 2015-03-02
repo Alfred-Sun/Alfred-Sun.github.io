@@ -42,6 +42,10 @@ $(function () {
 [jQuery Plugin]: https://github.com/addywaddy/jquery.tagcloud.js
 [demo_adam]: {{ site.demo_dir }}/tagCloud/js_tag_cloud.html
 
+
+<!--more-->
+
+
 * * * * * *
 
 首先要加载jquery，如果博客里还加载了其他的js库，在另外一个js库中也定义了符号的话，那么在使用符号时就发生了冲突。所以在加载jquery时还要解决`$`命名冲突。请看[这篇文章](http://www.cnblogs.com/RascallySnake/archive/2010/05/07/1729417.html)，我用的办法是定义jQuery的别名：
@@ -53,7 +57,6 @@ $(function () {
 </script>
 ```
 
-<!--more-->
 
 下面是标签云的代码：
 
