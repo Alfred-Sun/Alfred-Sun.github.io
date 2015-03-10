@@ -14,7 +14,7 @@ description:
 
 ## 3. GitHub Pages directory: _site
 
-It's missing, and don't know why ?
+It's missing, and don't know why...
 
 
 ## 4. should install bellows:
