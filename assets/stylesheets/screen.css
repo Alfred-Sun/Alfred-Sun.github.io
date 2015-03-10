@@ -1562,7 +1562,7 @@ word-wrap:break-word;*/
 }
 
 /* article footer */
-#main-content .post footer>a[rel=full-article] {
+#main-content .post footer>a[rel=nofollow] {
 	font-family: "PT Serif",Georgia,Times,"Times New Roman",serif;
 	font-size: 16px;
 	background: #ebebeb;
@@ -1576,7 +1576,7 @@ word-wrap:break-word;*/
 	-o-transition: background-color 0.5s;
 	transition: background-color 0.5s;
 }
-#main-content .post footer>a[rel=full-article]:hover {
+#main-content .post footer>a[rel=nofollow]:hover {
 	background: #0278ec;
 	text-shadow: none;
 	color: #f8f8f8;

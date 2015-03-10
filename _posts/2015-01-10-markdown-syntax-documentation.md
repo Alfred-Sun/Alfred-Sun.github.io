@@ -55,6 +55,8 @@ description: Markdown Syntax Documentation 刚开始接触markdown的时候，�
 
 ### 语法文档
 
+![Markdown Cheat Sheet]({{ site.picture_dir }}/markdown-syntax-documentation/markdownsheet.png "markdown cheat sheet")
+
 **标准 Markdown 语法**: [翻译版](http://alfred-sun.github.io/markdown-syntax-zhtw/)   
 官方 Markdown 语法: http://daringfireball.net/projects/markdown/syntax   
 一份语法速查表: [Markdown语法速查表]({{ site.document_dir }}/markdown-syntax-cheat-sheet.pdf)   

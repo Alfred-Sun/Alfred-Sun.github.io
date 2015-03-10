@@ -8,7 +8,7 @@ author: sinosmond
 updated: 2015-02-06 16:25
 external-url: http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/
 keywords: Octopress, GitHub Pages, Win 7
-description: 介绍如何在 Windows 7 下从头开始安装 Octopress，并部署到 GitHub
+description: 介绍如何在 Windows 7 下从头开始安装、配置、使用 Octopress，并说明如何部署到 GitHub
 #toc: true
 ---
 
@@ -46,8 +46,8 @@ description: 介绍如何在 Windows 7 下从头开始安装 Octopress，并部�
       + 在 Windows CMD 窗口中执行  `ruby dk.rb init`  （產生 config.yaml，裡面有你的 ruby 路徑，一般會幫你設好）
       + 在 Windows CMD 窗口中执行  `ruby dk.rb install`
   - 保险起见，安装之后先更新一下 gem 是个好习惯：`gem update --system`、 `gem update`
-* Jekyll/Octopress 使用 Python 编写的代码加亮系统 [Pygments](http://pygments.org/)，需要安装 Python（可选）
-  - 直接在 [Python.org](https://www.python.org/downloads/) 下载安装 Python 2.7.9
+* Jekyll/Octopress 使用 Python 编写的代码加亮系统 [Pygments](http://pygments.org/)，需要安装 Python 2.x
+  - 直接在 [Python.org](https://www.python.org/downloads/) 下载安装 Python 2.7.9，确保 **“Add python.exe to Path”**
   - 或者到 [ActiveState](http://www.activestate.com/activepython) 下载最新的 ActivePython-2.7 版 (_执行_  `easy_install pygments` **Obsoleted**)
 
 <!-- 到 [RailsInstaller](http://rubyforge.org/frs/?group_id=167) 查找下载最新版本 -->
@@ -251,13 +251,13 @@ git push myblog source
 
 |     类型       |     国外服务     |    国内服务     |
 |----------------|------------------|-----------------|
-|    Feed 烧制    |   [FeedBurner](http://feedburner.google.com)          |  [FeedSky](http://www.feedsky.com/)              |
-|    分享到      |   [AddThis](http://www.addthis.com/)  | [JiaThis](http://www.jiathis.com/)， [百度分享](http://share.baidu.com/) |
-|    微博        |   Twitter | weibo.com  |
-|    网络书签    |   [Delicious](http://delicious.com/)， [Google Bookmarks](http://www.google.com/bookmarks) | [QQ书签](http://shuqian.qq.com/)， [百度搜藏](http://cang.baidu.com/) |
-|    网络图床    |   [Flickr](http://www.flickr.com/) | [yupoo](http://www.yupoo.com/)， [POCO](http://www.poco.cn/) |
-|    网络评论    |   [Disqus](http://disqus.com/) | [友言](http://uyan.cc/)， [多说](http://duoshuo.com/) |
-|    数据统计    |   [Google Analytics](http://www.google.com/analytics/) | [百度统计](http://tongji.baidu.com/web/welcome/login)， [CNZZ](http://www.cnzz.com/) |
+|    Feed 烧制   | [FeedBurner](http://feedburner.google.com) | [FeedSky](http://www.feedsky.com/) |
+|    分享到      | [AddThis](http://www.addthis.com/) | [JiaThis](http://www.jiathis.com/)， [百度分享](http://share.baidu.com/) |
+|    微博        | Twitter | weibo.com |
+|    网络书签    | [Delicious](http://delicious.com/)， [Google Bookmarks](http://www.google.com/bookmarks) | [QQ书签](http://shuqian.qq.com/)， [百度搜藏](http://cang.baidu.com/) |
+|    网络图床    | [Flickr](http://www.flickr.com/)， [Imgur](http://imgur.com/) | [yupoo](http://www.yupoo.com/)， [POCO](http://www.poco.cn/) |
+|    网络评论    | [Disqus](http://disqus.com/) | [友言](http://uyan.cc/)， [多说](http://duoshuo.com/) |
+|    数据统计    | [Google Analytics](http://www.google.com/analytics/) | [百度统计](http://tongji.baidu.com/web/welcome/login)， [CNZZ](http://www.cnzz.com/) |
 
 
 
@@ -321,6 +321,13 @@ page_asides:
 ```
 
 
+
+### 一些 Octopress 资源
+
+- 使用 Octopress 的 Sites 示例  
+  https://github.com/imathis/octopress/wiki/Octopress-Sites
+- 第三方主题模板  
+  https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes
 
 
 ## 更新本地 Octopress 

@@ -107,20 +107,22 @@ __Note:__
 
 ## 7. Jekyll 强制 Categories 单词小写
 
-`post`可以定义categories和tags，但是Jekyll解析post时会自行将`categories`转成小写单词输出，而`tags`不会转换。   
+`post` 可以定义categories和tags，但是Jekyll解析post时会自行将 `categories` 转成小写单词输出，而 `tags` 不会转换。   
 比如，post的YAML front matter 是：
 
 ```yaml
+{% raw %}
 ---
 layout: post
 category: Mathematica//Math-Experiment
 Tags: Formula Periodic Sequence
 ---
+{% endraw %}
 ```
 
-而Jekyll会将category转换为`mathematica//math-experiment`输出。   
+而Jekyll会将category转换为 `mathematica//math-experiment`输出。   
 如果不想Jekyll输出小写category，可以变通下让单词首字母大写显示，但无法还原post定义的样式。   
-而如果GitHub上面deploy的是`_site`文件，那么可以local更改源码post.rb文件让其输出最初定义的格式，不过这样可能有潜在的问题(可以规避)。具体见下面的issue链接。
+而如果GitHub上面deploy的是 `_site` 文件，那么可以local更改源码post.rb文件让其输出最初定义的格式，不过这样可能有潜在的问题(可以规避)。具体见下面的issue链接。
 
 {% raw %}
 <pre><code>{% for tag in page.categories %}
@@ -178,7 +180,48 @@ b. 另一方法见[Fix Python hunting logic on Windows][commit#138]。(需要注
 - [jekyll/jekyll#2052](https://github.com/jekyll/jekyll/issues/2052)
 
 
-## 9. 关于代码高亮
+
+
+## 9. 在 Windows下使用 Jekyll 出现中文字符集错误
+
+在 windows 下使用 Jekyll 时经常会遇到字符集错误，比如：
+
+```
+Liquid error: incompatible character encodings: UTF-8 and GBK
+```
+
+这里介绍几种解决方案。
+
+- **修改 bash 的字符集**  
+  在 `C:\Documents and Settings\用户名`下，找到文件 `.bash_profile`，后面加两行：
+  
+    ```bash
+    set LC_ALL=en_US.UTF-8
+    set LANG=en_US.UTF-8
+    ```
+
+- **所有文档使用 utf-8 无 BOM 格式**  
+  在 Windows 下新建的文本文件默认是 **ANSI** 格式的，而 Jekyll 只认 utf-8。如果遇到 ANSI 格式编码的文件，可以在 Notepad++ 中转换
+  
+- **使用 Unix 换行符**  
+  可以在 Notepad++ 中转换，开启**“显示所有字符”**选项，这样就可以看出文档用的是 Windows 的换行符还是 Unix 的换行符。  
+  在这种模式下，Windows 的换行符显示的是 `CR`，Unix 的换行符显示的是 `LF`。
+  
+- **Notepad++ 新建文档配置首选项**  
+  在**设置-->首选项**里，如下设置：  
+  ![转换为utf-8编码]({{ site.picture_dir }}/github-pages-issue/utf-8_no_bom.png)
+  
+- **注意 YAML 头部的格式**  
+  模板文件的元数据以 YAML 的格式展现，YAML 头部经常会出现三个问题：  
+  (1) 三短线前面不能有空格；  
+  (2) “名: 值”对里冒号后面要有空格；  
+  (3) 回车后不要有 Tab 符；  
+  (4) 表示数组成员开始的 `-` 号后面要有空格  
+  在 Notepad++ 中开启“显示所有字符”选项后，就可以看清空格和 Tab 符了
+
+
+
+## 10. 关于代码高亮
 
 - 用js插件：[DlHightLight][1]或**[Google Code Prettify][2]**或<u>**[Highlight.js][3]**</u>或**[dp.SyntaxHighlighter][4]**
 - 用gist：推荐菜鸟使用，省心省事，支持语言多
@@ -190,7 +233,7 @@ b. 另一方法见[Fix Python hunting logic on Windows][commit#138]。(需要注
 [4]: http://alexgorbatchev.com/SyntaxHighlighter/
 
 
-## 10. markdown extension
+## 11. markdown extension
 
 There are two ways to strengthen the code style:   
 one is to indent 4 spaces or 1 tab;   

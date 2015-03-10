@@ -27,11 +27,11 @@
 <div id="menu">
 <div class="inner clearfix">
 	<ul class="top-nav">
-	  <li {% if page.navbar == 'home' %}class="current"{% endif %}><a href="{{ root_url }}/">Home</a></li>
-	  <li  {% if page.navbar == 'blog' %}class="current"{% endif %}><a href="{{ root_url }}/blog">Blog</a></li>
-	  <li  {% if page.navbar == 'archive' %}class="current"{% endif %}><a href="{{ root_url }}/{{ site.archive_dir }}">Archive</a></li>
-	  <li  {% if page.navbar == 'code' %}class="current"{% endif %}><a href="{{ root_url }}/{{ site.code_dir }}">Code</a></li>
-	  <li  {% if page.navbar == 'about' %}class="current"{% endif %}><a href="{{ root_url }}/about">About Me</a></li>
+	  <li {% if page.navbar == 'home' %}class="current"{% endif %}><a href="{{ root_url }}/" rel="nofollow">Home</a></li>
+	  <li  {% if page.navbar == 'blog' %}class="current"{% endif %}><a href="{{ root_url }}/blog" rel="bookmark">Blog</a></li>
+	  <li  {% if page.navbar == 'archive' %}class="current"{% endif %}><a href="{{ root_url }}/{{ site.archive_dir }}" rel="bookmark">Archive</a></li>
+	  <li  {% if page.navbar == 'code' %}class="current"{% endif %}><a href="{{ root_url }}/{{ site.code_dir }}" rel="bookmark">Code</a></li>
+	  <li  {% if page.navbar == 'about' %}class="current"{% endif %}><a href="{{ root_url }}/about" rel="bookmark">About Me</a></li>
 	</ul>
 	<div class="site-search repo-scope js-site-search" role="search">
 		<a class="icon-rss" href="{{ root_url }}/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"></a>

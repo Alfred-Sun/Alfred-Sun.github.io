@@ -224,7 +224,7 @@ pre code span.lineno {
 .entry ul{margin-bottom:25px;margin-left:25px;}
 .entry p+ul {margin-top:-20px;}
 .entry ul li{margin-bottom:5px;list-style:disc;line-height:1.8em;}
-.entry ol{margin-bottom:25px;margin-left:35px;}
+.entry ol{margin:20px auto 20px 35px;}
 .entry ol li{margin-bottom:5px;list-style-type:decimal;line-height:1.5em;}
 .entry blockquote{margin-left:25px;font-size:14px;font-style:normal;}
 .entry img{max-width:97%;/*690px;*/display:block;margin:10px auto;}

@@ -10,6 +10,65 @@ description: 使用VIM的过程中，记录的一些常用的 VIM 小技巧
 本文主要记录一下使用 Vim 过程中，学到的一些小技巧，以免以后忘记找不到。
 
 
+## 插入模式下，光标移动
+
+在插入模式下，用 **Ctrl-O** 进入 普通模式：
+
+```
+<C-o>h  move cursor left 
+<C-o>l  move cursor right
+<C-o>j  move cursor down
+<C-o>k  move cursor up
+```
+
+插入模式下有用的控制键：
+
+```
+<C-w>   delete word to the left of cursor
+<C-o>D  delete everything to the right of cursor
+<C-u>   delete everything to the left of cursor
+<C-h>   backspace/delete
+<C-j>   insert newline (easier than reaching for the return key)
+<C-t>   indent current line
+<C-d>   un-indent current line
+```
+
+<!--more-->
+
+
+## 命令模式下移动、编辑
+
+Vim 内置的热键，更多参见 `:help ex-edit-index`
+
+```
+CTRL-B       cursor to beginning of command-line
+CTRL-E       cursor to end       of command-line
+
+CTRL-F       opens the command-line window (unless a different key is specified in 'cedit')
+
+CTRL-H       delete the character  in front of the cursor (same as <Backspace>)
+CTRL-W       delete the word       in front of the cursor
+CTRL-U       delete all characters in front of the cursor
+
+CTRL-P       recall previous command-line from history (that matches pattern in front of the cursor)
+CTRL-N       recall next     command-line from history (that matches pattern in front of the cursor)
+<Up>         recall previous command-line from history (that matches pattern in front of the cursor)
+<Down>       recall next     command-line from history (that matches pattern in front of the cursor)
+<S-Up>       recall previous command-line from history
+<S-Down>     recall next     command-line from history
+<PageUp>     recall previous command-line from history
+<PageDown>   recall next     command-line from history
+
+<S-Left>     cursor one word left
+<C-Left>     cursor one word left
+<S-Right>    cursor one word right
+<C-Right>    cursor one word right
+
+<LeftMouse>  cursor at mouse click
+```
+
+
+
 ## 复制 Vim 命令输出结果
 
 比如，运行 `:pwd`，要复制它的执行结果到剪切板的话，可以：
@@ -26,7 +85,6 @@ description: 使用VIM的过程中，记录的一些常用的 VIM 小技巧
 :help :redir
 ```
 
-<!--more-->
 
 
 ## 恢复上次退出前的会话状态

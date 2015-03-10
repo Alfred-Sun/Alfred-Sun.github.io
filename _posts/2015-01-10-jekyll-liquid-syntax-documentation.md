@@ -17,7 +17,7 @@ description: Basic Jekyll/Liquid Usage for Designers on GitHub Pages; Jekyll 的
 
 当然，阅读一下之前我记录的一些笔记也可以增长一些知识：
 
-* __[建立 GitHub Pages 静态博客网站][make-github-website]__ 介绍了使用Jekyll搭建的 GitHub Pages 操作
+* __[建立 GitHub Pages 静态博客网站][make-github-website]__ 介绍了使用 Jekyll 搭建的 GitHub Pages 操作
 * __[GitHub Pages Issue][]__ 介绍博主在使用 GitHub Pages 的过程中遇到的问题及解决方法
 * __[讲解 Markdown][Markdown Talk]__ 介绍了标准的 Markdown 语法及相关的扩展语法
 
@@ -113,9 +113,11 @@ page 变量: 包含的是当前渲染的page或post的所有可以接触得到�
 > 注意，必须在子节点的顶部。
 
 ```
+{%raw%}
 ---
 layout: post
 ---
+{%endraw%}
 ```
 
 **_posts**
@@ -175,7 +177,7 @@ Jekyll 生成的网页默认输出的地方，一般需要在 `.gitignore` 中�
 对于其他静态资源，可以直接放在根目录或任何其他目录，然后路径和平常的网站一样，按路径来找链接中的文件。
 
 
-## 配置全局变量 ##
+## 配置全局变量
 
 虽然全局变量都有自己的[默认配置](http://jekyllrb.com/docs/configuration/)，但是我们往往会手动配置为自己心中最好的效果。  
 另外，一些全局变量既可以在配置文件中设置，也可以在命令行选项参数里指定。
@@ -310,8 +312,9 @@ paginate_path: "blog/page:num/"
 根据上面的配置，Jekyll 会读取 `blog/index.html` 文件，把每页赋值给全局变量 `paginator`，并输出 HTML 分页文件，如：第2页为 `blog/page2/index.html`。  
 通过 `paginator` 的[相关属性](#pagination)我们可以实现在不同页间切换。
 
-{%raw%}
+
 ```html
+{%raw%}
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
   <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
@@ -335,7 +338,8 @@ paginate_path: "blog/page:num/"
     <span class="next ">Next</span>
   {% endif %}
 </div>
-```{%endraw%}
+{%endraw%}
+```
 
 
 ### 默认值设定
@@ -376,6 +380,7 @@ Jekyll 模板实际上分两部分：一部分是头部定义，另一部分是 
 主要用于指定模板(layout)和定义一些变量，比如：标题(title)、描述(description)、标签(tags)、分类(category/categories)、是否发布(published)，以及其他自定义的变量。
 
 ```yaml
+{%raw%}
 ---
 layout:     post   # 指定使用的模板文件，“_layout” 目录下的模板文件名决定变量名
 title:      title  # 文章的标题
@@ -385,6 +390,7 @@ description: description
 published:  true   # default true 设置 “false” 后，文章不会显示
 permalink:  /:categories/:year/:month/:day/:title.html  # 覆盖全局变量设定的文章发布格式
 ---
+{%endraw%}
 ```
 
 注意：如果文本文件使用的是 `utf-8` 编码，那么必须确保文件中不存在 `BOM` 头部字符，尤其是当 Jekyll 运行在 Windows 平台上。
@@ -393,13 +399,29 @@ permalink:  /:categories/:year/:month/:day/:title.html  # 覆盖全局变量设�
 ### 使用变量
 
 关于 Jekyll 的变量，可以参考[官方说明](http://jekyllrb.com/docs/variables/)  
-所有的变量是都一个树节点，比如模板中定义的头部变量，需要使用下面的语法获得：
+上面文章页面中定义的头部变量，需要使用下面的语法获得：
 
 ```
 page.title
 ```
 
-page 是当前页面的根节点。
+这些自定义的变量将会被传递给 Liquid 模板引擎用于转换文本文件，例如，你可以用上面定义的 "title" 变量在 layout 中设置页面的标题：
+
+```html
+{%raw%}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+  </head>
+  <body>
+   ...
+  </body>
+</html>
+{%endraw%}
+```
+
+所有的变量都是一个树节点，比如：page 就是当前页面的根节点。
 
 其中全局根结点有：
 
@@ -418,8 +440,8 @@ page 是当前页面的根节点。
 |site.time			|当前的时间(运行 Jekyll 时的时间)|
 |site.pages			|所有页面列表|
 |site.posts			|按时间逆序排列的所有文章列表|
-|site.related_posts	|如果当前被处理的页面是一个 post 文件，那这个变量是一个包含了最多10篇相关的文章列表。|
-|site.static_files	|所有静态文件的列表(如：没有被 Jekyll 处理的文件)，每个文件有3个属性：`path`、`modified_time` 和 `extname`|
+|site.related_posts	|如果当前被处理的页面是一个 post 文件，那这个变量是一个包含了最多10篇相关的文章列表|
+|site.static\_files  |所有静态文件的列表(如：没有被 Jekyll 处理的文件)，每个文件有3个属性：`path`、`modified_time` 和 `extname`|
 |site.html_pages	|所有 HTML 页面列表|
 |site.collections	|自定义的对象集合列表，参考 [Collections](http://jekyllrb.com/docs/collections/)|
 |site.data			|_data 目录下 YAML 文件的数据列表|
@@ -477,21 +499,25 @@ page 是当前页面的根节点。
 
 示例：
 
-{%raw%}```
+{%raw%}
+```
 Hello {{name}}
 Hello {{user.name}}
 Hello {{ 'tobi' }}
-```{%endraw%}
+```
+{%endraw%}
 
 Output 标记可以使用过滤器 Filters 对输出内容作简单处理。   
 多个 Filters 间用竖线隔开，从左到右依次执行，Filter 左边总是输入，返回值为下一个 Filter 的输入或最终结果。
 
-{%raw%}```liquid
+{%raw%}
+```liquid
 Hello {{ 'tobi' | upcase }}  # 转换大写输出
 Hello tobi has {{ 'tobi' | size }} letters!  # 字符串长度
 Hello {{ '*tobi*' | markdownify | upcase }}  # 将Markdown字符串转成HTML大写文本输出
 Hello {{ 'now' | date: "%Y %h" }}  # 按指定日期格式输出当前时间
-```{%endraw%}
+```
+{%endraw%}
 
 
 ### 标准过滤器 Filters
@@ -549,9 +575,9 @@ Hello {{ 'now' | date: "%Y %h" }}  # 按指定日期格式输出当前时间
 | **comment** 	| 注释语句 |
 | **cycle** 	| 通常用于在某些特定值间循环选择，如颜色、DOM类 |
 | **for** 		| 循环语句 |
-| **if** 		| if / else 语句 |
+| **if** 		| if/else 语句 |
 | **include** 	| 将另一个模板包进来，模板文件在 `_includes` 目录中 |
-| **raw** 		| 禁用范围内的 Tag 命令 |
+| **raw** 		| 禁用范围内的 Tag 命令，避免语法冲突 |
 | **unless** 	| if 语句的否定语句 |
 
 
@@ -559,19 +585,23 @@ Hello {{ 'now' | date: "%Y %h" }}  # 按指定日期格式输出当前时间
 
 仅起到注释 Liquid 代码的作用。
 
-{%raw%}```liquid
-We made 1 million dollars {% comment %} in losses {% endcomment %} this year
-```{% endraw %}
+{%raw%}
+```liquid
+We made 1 million dollars {% comment %} in losses {% endcomment %} this year.
+```
+{% endraw %}
 
 #### 2. Raw
 
 临时禁止执行 Jekyll Tag 命令，在生成的内容里存在冲突的语法片段的情况下很有用。
 
-```
 {% raw %}
+```liquid
+{% raw % }
   In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
-{% endraw %}
+{% endraw % }
 ```
+{% endraw %}
 
 #### 3. If / Else
 
@@ -796,7 +826,7 @@ forloop.last        # => is this the last iteration ?
 
 ### 字符转义
 
-有时候想输出 `{` 了，怎么办？ 使用反斜线 `\` 转义即可：
+有时候想输出 `{` 了，怎么办？ 使用反斜线 <code>\\</code> 转义即可
 
 ```
 \{ => {
@@ -810,24 +840,35 @@ forloop.last        # => is this the last iteration ?
 {{ site.time | date_to_rfc822 }}		# => Mon, 07 Nov 2008 13:07:54 -0800
 {{ site.time | date_to_string }}		# => 07 Nov 2008
 {{ site.time | date_to_long_string }}	# => 07 November 2008
-```{%endraw%}
+```
+{%endraw%}
+
 
 ### 代码语法高亮
 
-安装 Pygments 和 Python 2.x 后，配置文件添加：`highlighter: pygments`，可以使用语法高亮命令，支持语言多达100种以上。
+安装好 **pygments.rb** 的 gem 组件和 Python 2.x 后，配置文件添加：`highlighter: pygments`，就可以使用语法高亮命令了，支持语言多达 100 种以上。
 
 {%raw%}
 ```liquid
 {% highlight ruby linenos %}
 # some ruby code
 {% endhighlight %}
-```{%endraw%}
+```
+{%endraw%}
 
-上面的示例中，使用 `highlight` Tag 来处理代码块；并设定第一个参数 `ruby` 来指定高亮的语言 Ruby，第二个参数 `linenos` 来开启显示代码行号的功能。  
-可用的语言识别符缩写，从 [Pygments’ Lexers page](http://pygments.org/docs/lexers/) 查阅。
+上面的示例中，使用 `highlight` 语句来处理代码块；并设定第一个参数 `ruby` 来指定高亮的语言 Ruby，第二个参数 `linenos` 来开启显示代码行号的功能。
 
-另外，为了给代码着色，需要配置相应的样式文件，参考 [syntax.css](https://github.com/mojombo/tpw/tree/master/css/syntax.css)；  
+为了给代码着色，需要配置相应的样式文件，参考 [syntax.css][]；  
 为了更好的显示行号，可以在上面的 CSS 文件添加 `.lineno` 样式类。
+
+可用的语言识别符缩写，从 [**Pygments’ Lexers Page**][Available Lexers] 查阅。  
+如果从 Pygments 的 [Supported Languages][] 清單，能發現明明有列出該語言名稱，而 pygments.rb 确无法识别该语言，這時候必須到 [Available Lexers][] 查詢；如果在程序語言的說明中有一行“ **New in version 1.5.** ”，那就表示只要將 **Pygments** 更新到 1.5 版， 即可支持该程序语言。
+
+[syntax.css]: https://github.com/mojombo/tpw/tree/master/css/syntax.css
+[Pygments’ Lexers page]: http://pygments.org/docs/lexers/
+[Supported Languages]: http://pygments.org/languages/
+[Available lexers]: http://pygments.org/docs/lexers/
+
 
 
 ### 链接同域内的 post
@@ -842,7 +883,8 @@ forloop.last        # => is this the last iteration ?
 
 # 引入该文章的链接
 [Name of Link]({% post_url 2010-07-21-name-of-post %})
-```{%endraw%}
+```
+{%endraw%}
 
 
 ### Gist 命令
@@ -853,7 +895,8 @@ forloop.last        # => is this the last iteration ?
 ```liquid
 {% gist parkr/931c1c8d465a04042403 %}
 {% gist parkr/931c1c8d465a04042403 jekyll-private-gist.markdown %}
-```{%endraw%}
+```
+{%endraw%}
 
 ### 生成摘要
 
@@ -870,7 +913,7 @@ forloop.last        # => is this the last iteration ?
 
 ### 删除 HTML 标签
 
-这个在摘要中很有用
+这个在摘要中很有用。
 
 ```
 { { post.excerpt | strip_html } }
@@ -891,6 +934,7 @@ forloop.last        # => is this the last iteration ?
 ```
 { { "foo,bar;baz?" | cgi_escape } }  # => foo%2Cbar%3Bbaz%3F
 ```
+
 
 ### 排序
 

@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Blog Excerpt
 navbar: blog
 ---
 
@@ -19,7 +20,7 @@ navbar: blog
 		  <!--{{ post.content | split: site.excerpt_separator | first | strip_html }}-->
 		  <!--a class="more" href="{{ root_url }}{{ post.url }}">[继续阅读]</a-->
 		  <footer>
-			<a rel="full-article" href="{{ root_url }}{{ post.url }}" target="_blank">{{ site.excerpt_link }}</a>
+			<a rel="nofollow" href="{{ root_url }}{{ post.url }}" target="_blank">{{ site.excerpt_link }}</a>
 		  </footer>
 		</div>
 	</article>
@@ -31,7 +32,7 @@ navbar: blog
       {% else %}
         <li class="previous disabled"><a href="#">&laquo; Prev</a></li>
       {% endif %}
-      <li><a href="{{ root_url }}/{{ site.archive_dir }}">Blog Archives</a></li>
+      <li><a rel="nofollow" href="{{ root_url }}/{{ site.archive_dir }}">Blog Archives</a></li>
       {% if paginator.next_page %}
         <li class="next"><a href="{{paginator.next_page_path}}">Next &raquo;</a></li>
       {% else %}
