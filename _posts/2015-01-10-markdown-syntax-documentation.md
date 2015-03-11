@@ -238,7 +238,8 @@ Markdown是一种网络书写语言，其目标是实现易读易写，且兼容
 [献给写作者的Markdown新手指南]: http://jianshu.io/p/q81RER
 [markdown-basics]: https://help.github.com/articles/markdown-basics
 [GitHub Flavored Markdown]: https://help.github.com/articles/github-flavored-markdown
-[免费Markdown写作工具简评]: http://www.jianshu.com/p/51474fb08d04     <!--http://jianshu.io/p/pgN9Rb-->
+[免费Markdown写作工具简评]: http://www.jianshu.com/p/51474fb08d04
+<!--http://jianshu.io/p/pgN9Rb-->
 [Everedit]: http://www.everedit.net
 [Cmd Markdown]: https://www.zybuluo.com/mdeditor
 
