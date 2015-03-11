@@ -28,7 +28,9 @@ hosts文件位置：
 - 2014-11-07 更新的hosts：下载地址1就行。。   
 http://blog.sina.com.cn/s/blog_62fbf02e0102vcrf.html  
 http://blog.sina.com.cn/s/blog_62fbf02e0102vewg.html 
-- **权威hosts更新**：http://serve.netsh.org/pub/gethosts.php
+- **权威hosts更新**：(~~http://serve.netsh.org/pub/gethosts.php~~ 已失效)  
+  http://serve.netsh.org/pub/ipv4-hosts/
+
 
 要判断一个hosts文件是否可用比较简单的办法是把文件里的IP放在浏览器里看看是否能打开谷歌即可。
 
