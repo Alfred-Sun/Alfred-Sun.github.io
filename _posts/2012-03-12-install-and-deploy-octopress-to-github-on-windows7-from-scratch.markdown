@@ -48,7 +48,7 @@ description: 介绍如何在 Windows 7 下从头开始安装、配置、使用 O
   - 保险起见，安装之后先更新一下 gem 是个好习惯：`gem update --system`、 `gem update`
 * Jekyll/Octopress 使用 Python 编写的代码加亮系统 [Pygments](http://pygments.org/)，需要安装 Python 2.x
   - 直接在 [Python.org](https://www.python.org/downloads/) 下载安装 Python 2.7.9，确保 **“Add python.exe to Path”**
-  - 或者到 [ActiveState](http://www.activestate.com/activepython) 下载最新的 ActivePython-2.7 版 (~~_执行_  `easy_install pygments`~~  **Obsoleted**)
+  - 或者到 [ActiveState](http://www.activestate.com/activepython) 下载最新的 ActivePython-2.7 版 (~~_执行_     `easy_install pygments`~~  **Obsoleted**)
 
 <!-- 到 [RailsInstaller](http://rubyforge.org/frs/?group_id=167) 查找下载最新版本 -->
 [msysgit_old]: http://code.google.com/p/msysgit/downloads/list
