@@ -359,8 +359,12 @@ $ jekyll serve --no-watch
 
 ### Windows 环境下运行 Jekyll
 
-在 Windows 下安装 Ruby 时，记得要 **“Add Ruby executables to your PATH”**，并且要安装相应的 [Development Kit](http://rubyinstaller.org/downloads/)。  
-参考 Julian Thilo 写过一份说明文档，内容很详细：[**Jekyll running on Windows**](http://jekyll-windows.juthilo.com/)。
+在 Windows 下安装 [Ruby][RubyInstaller] 时，记得要 **“Add Ruby executables to your PATH”**，并且要安装相应的 [Development Kit][DevKit]。  
+参考 Julian Thilo 写过一份说明文档，内容很详细：[**Jekyll running on Windows**][JulianThilo]。
+
+[rubyinstaller]: http://rubyinstaller.org/ "RubyInstaller for Windows"
+[DevKit]: https://github.com/oneclick/rubyinstaller/wiki/Development-Kit#user-content-installation-instructions
+[JulianThilo]: http://jekyll-windows.juthilo.com/ "Run Jekyll on Windows"
 
 #### 编码
 
@@ -1014,8 +1018,47 @@ $('#disqus_container .comment').on('click',function(){
 
 
 
+## 定制 404 页面
+
+GitHub allows you to have a custom 404 error page. When you test your website locally with `bundle exec jekyll serve`, this error page also works: you can try by providing an incorrect URL. Just tell Jekyll to create a `404.html` on the root:
+
+{% raw %}
+```
+---
+title: Page Not Found
+permalink: /404.html
+---
+
+This page must have been removed or had its name changed.
+```
+{% endraw %}
+
+
+
+
 ## 集成 Travis CI 编译测试功能
 
+[**Travis**](https://travis-ci.org/) allows your to generate the website each time you push something, in order to check nothing is wrong. It is also possible to add some other tests like `htmlproofer` which checks if the HTML code is valid and there are no rotten links. You will get a warning email if something is wrong.
+
+To do so, use your GitHub login informations on Travis, then enable the `username.github.io` repository. Then, add `htmlproofer` in your Gemfile file, which now looks like:
+
+```ruby
+source 'https://rubygems.org'
+gem 'github-pages'
+gem 'html-proofer'
+```
+
+Finally, create a `.travis.yml` file in order to tell Travis how to build and test the website:
+
+```
+language: ruby
+rvm:
+- 2.1.1
+script:
+- bundle exec jekyll build && bundle exec htmlproof ./_site
+```
+
+Now, each time you push something, **Travis** will send you an email if Jekyll can’t generate your website, if the HTML code is not valid or if a link rot remains.
 
 
 
