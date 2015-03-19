@@ -108,7 +108,7 @@ http://blog.csdn.net/sicofield/article/details/8901989
    （对于一个包含 N 个非负整数的数组 A[1...n]，如果有 i < j，且 A[i] > A[j]，则称 (A[i] ,A[j]) 为数组 A 中的一个逆序对。）
 
 
-**示例代码**
+**示例代码**（Java 实现便于书写）
 
 A. 2-路归并 Merge 算法（优化）
 
@@ -285,6 +285,70 @@ public void mergeSortNoRecur(int[] array, int[] temp) {
                 }
             }
         }
+    }
+}
+```
+
+E. 另一非递归归并算法（堆栈）
+
+```java
+// 非递归实现(感觉跟二叉树后序遍历的非递归实现很像)
+void NonRecursiveMergeSort(int[] array, int[] temp, int len) {
+    Stack<Region> region_stack = new Stack<Region>();
+    Region beginRegion = new Region(0, len - 1, Type.PARTITION);
+    region_stack.push(beginRegion);
+    while (!region_stack.empty()) {
+        Region region = region_stack.pop(); // 从栈中删除
+        if (Type.MERGE.equals(region.getFlag())) {// 应该归并
+            this.merge(array, temp, region.getFirst(),
+               (region.getFirst() + region.getEnd()) / 2, region.getEnd());// 归并之
+        } else {// 应该划分
+            if (region.first + 1 >= region.getEnd()) {// 如果区域是两个相邻的数
+                this.merge(array, temp, region.getFirst(),
+                  (region.getFirst() + region.getEnd()) / 2, region.end);// 直接合并之
+            } else { // 否则应该划分
+                region.setFlag(Type.MERGE); // 下次应该归并
+                region_stack.push(region);
+                int mid = (region.getFirst() + region.getEnd()) / 2;
+
+                Region region_low = new Region(region.getFirst(), mid, Type.PARTITION);
+                region_stack.push(region_low);
+
+                Region region_up = new Region(mid + 1, region.getEnd(), Type.PARTITION);
+                region_stack.push(region_up);
+            }
+        }
+    }
+}
+
+public enum Type {
+    MERGE, // Need to merge
+    PARTITION // Need to divide
+}
+
+public class Region {
+    private final int first; // 起始位置
+    private final int end; // 结束位置
+    private Type flag; // 标记该区域是应该划分还是应该归并
+
+    private Region(int first, int end, Type flag) {
+        super();
+        this.first = first;
+        this.end = end;
+        this.flag = flag;
+    }
+
+    public int getFirst() {
+        return first;
+    }
+    public int getEnd() {
+        return end;
+    }
+    public Type getFlag() {
+        return flag;
+    }
+    public void setFlag(Type flag) {
+        this.flag = flag;
     }
 }
 ```
