@@ -227,7 +227,7 @@ public void mergeSort2(int[] array, int[] temp, int n) {
 
 D. 非递归归并算法（堆栈）
 
-```java
+{% highlight java linenos %}
 public void mergeSortNoRecur(int[] array, int[] temp) {
     int start = 0;
     int end = array.length - 1;
@@ -287,11 +287,11 @@ public void mergeSortNoRecur(int[] array, int[] temp) {
         }
     }
 }
-```
+{% endhighlight %}
 
 E. 另一非递归归并算法（堆栈）
 
-```java
+{% highlight java linenos %}
 // 非递归实现(感觉跟二叉树后序遍历的非递归实现很像)
 void NonRecursiveMergeSort(int[] array, int[] temp, int len) {
     Stack<Region> region_stack = new Stack<Region>();
@@ -301,20 +301,22 @@ void NonRecursiveMergeSort(int[] array, int[] temp, int len) {
         Region region = region_stack.pop(); // 从栈中删除
         if (Type.MERGE.equals(region.getFlag())) {// 应该归并
             this.merge(array, temp, region.getFirst(),
-               (region.getFirst() + region.getEnd()) / 2, region.getEnd());// 归并之
+                    (region.getFirst() + region.getEnd()) / 2, region.getEnd());// 归并之
         } else {// 应该划分
             if (region.first + 1 >= region.getEnd()) {// 如果区域是两个相邻的数
                 this.merge(array, temp, region.getFirst(),
-                  (region.getFirst() + region.getEnd()) / 2, region.end);// 直接合并之
+                        (region.getFirst() + region.getEnd()) / 2, region.end);// 直接合并之
             } else { // 否则应该划分
                 region.setFlag(Type.MERGE); // 下次应该归并
                 region_stack.push(region);
                 int mid = (region.getFirst() + region.getEnd()) / 2;
 
-                Region region_low = new Region(region.getFirst(), mid, Type.PARTITION);
+                Region region_low = new Region(region.getFirst(), mid,
+                        Type.PARTITION);
                 region_stack.push(region_low);
 
-                Region region_up = new Region(mid + 1, region.getEnd(), Type.PARTITION);
+                Region region_up = new Region(mid + 1, region.getEnd(),
+                        Type.PARTITION);
                 region_stack.push(region_up);
             }
         }
@@ -351,7 +353,7 @@ public class Region {
         this.flag = flag;
     }
 }
-```
+{% endhighlight %}
 
 
 
