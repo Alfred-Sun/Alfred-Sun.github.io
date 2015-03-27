@@ -452,17 +452,151 @@ E. Partition 要保证一个值从原数据序列中隔离出来，不参与下�
 5. If **i == k**, then return **x**. Otherwise, use **SELECT** recursively to find the **i**th smallest element on the low side if **i < k**, or the **(i - k)**th smallest element on the high side if **i > k**.
 
 
+性能分析：
+
+BFPRT 算法最出色的地方在于，精心设计的 pivot 选取方法，使得最坏情形理论上达到了线性时间复杂度。  
+然而实际应用中，寻找中位数的中位数的时间开销很大，即便是 O(n) 平均查找时间，相比固定的选取 pivot 的 Quick-Select 算法，效率不但不高，反而很差。  
+博主亲测，双核 2.27 GHz CPU、x86架构、VS2010，随机产生 256MB 整型数据，选出第 14 小元素，BFPRT 算法花费CPU时间 1293756ms，而固定选择最低位作为 pivot 的 Quick-Select 算法仅需要 1043ms，而以三元素取中值作为 pivot 的 Quick-Select 时间为 4085ms。  
+由此可见，BFPRT 还不适合应用于实践，一般而言最坏情形发生的可能性还是比较低的，选择高效适宜的算法才是关键。
+
+同样地，我们都知道快排和归并的平均时间复杂度都是 O(nlogn)，但是实际应用中相比归并排序，快排耗费的时间更少；然而，对于链式存储结构的，我们还是倾向选择归并排序，原因就是快排在一趟划分过程中需要花费更多时间去定位元素，而归并排序需要额外的辅存空间，适用于链表结构。那么，对于顺序存储结构，快速排序就是优先选择了。
+
+
+**示例代码**
+
+```c
+void insertsort(int *array_t, int start, int end)
+{
+    for (int i = start; i <= end; i++) {
+        int inserted_data = array_t[i];
+        int j = i;
+        for (; j > start; j--) {
+            if (inserted_data < array_t[j - 1]) {
+                array_t[j] = array_t[j - 1];
+            } else {
+                break;
+            }
+        }
+        if (j != i) {
+            array_t[j] = inserted_data;        
+        }
+    }
+}
+
+int partition(int *array_t, int low, int high, int pivot_index)
+{
+    int pivot_value = array_t[pivot_index];
+    swap(array_t, low, pivot_index);
+
+    while (low < high) {
+        while (low < high && array_t[high] >= pivot_value) {
+            high--;
+        }
+        if (low < high) {
+            array_t[low++] = array_t[high];
+        }
+
+        while (low < high && array_t[low] <= pivot_value) {
+            low++;
+        }
+        if (low < high) {
+            array_t[high--] = array_t[low];
+        }
+    }
+
+    array_t[low] = pivot_value;
+    return low;
+}
+
+// 五划分中项：中位数的中位数（the median of medians algorithm）
+// Return the kth value
+int select(int *array_t, int left, int right, int k)
+{
+    const int k_group_size = 5;
+    int size = right - left + 1;
+
+    if (size <= k_group_size) {
+        insertsort(array_t, left, right);
+        return array_t[k + left - 1];
+    }
+    // (right - left) / 2 + left
+    const int num_group = (size % k_group_size) > 0 ? (size / k_group_size) + 1 : (size / k_group_size);
+    //int *medians_arr = new int[num_group];
+    for (int i = 0; i < num_group; i++) {
+        int sub_left = left + i * k_group_size;
+        int sub_right = sub_left + k_group_size - 1;
+        if (sub_right > right) {
+            sub_right = right;
+        }
+        insertsort(array_t, sub_left, sub_right);
+        // IMPORTANT !!
+        // Place these median in front of array_t, so as to recurse to find the median of median
+        int median = sub_left + ((sub_right - sub_left) >> 1);
+        swap(array_t, left + i, median);
+        //medians_arr[i] = array_t[sub_left + (sub_right - sub_left) >> 1];
+        // Better not to use new array to store the medians, otherwise have to traverse the array_t to find the pivot index due to select function returning pivot value.
+    }
+    // IMPORTANT !!
+    // Get the index of median
+    int pivot_index = left + ((num_group - 1) >> 1);
+
+    //int pivotValue = select(medians_arr, 0, num_group - 1, pivot_index);
+
+    // IMPORTANT !!
+    // Recurse to call and place the median on the pivot_index, without care about the median value
+    // Because the value of pivot_index must be the median after select function recursive call.
+    select(array_t, left, left + num_group - 1, (num_group + 1) >> 1);
+
+    int mid_index = partition(array_t, left, right, pivot_index);
+    int _ith = mid_index - left + 1;
+    // _ith_element == array_t[_ith]
+    if (k == _ith) {
+        return array_t[mid_index];
+    } else if (k < _ith) {
+        return select(array_t, left, mid_index - 1, k);
+    } else {
+        return select(array_t, mid_index + 1, right, k - _ith);
+    }
+}
+```
+
 
 
 
 ## 算法六：DFS(深度优先搜索)
 
+**深度优先搜索**算法（Depth-First-Search），是搜索算法的一种。  
+它沿着树的深度遍历树的节点，尽可能深的搜索树的分支。当节点v的所有边都己被探寻过，搜索将回溯到发现节点v的那条边的起始节点。这一过程一直进行到已发现从源节点可达的所有节点为止。如果还存在未被发现的节点，则选择其中一个作为源节点并重复以上过程，整个进程反复进行直到所有节点都被访问为止。DFS属于盲目搜索。
 
+深度优先搜索是图论中的经典算法，利用深度优先搜索算法可以产生目标图的相应拓扑排序表，利用拓扑排序表可以方便的解决很多相关的图论问题，如最大路径问题等等。一般用堆数据结构来辅助实现DFS算法。
+
+深度优先遍历图算法步骤：
+
+1. 访问顶点v；
+2. 依次从v的未被访问的邻接点出发，对图进行深度优先遍历；直至图中和v有路径相通的顶点都被访问；
+3. 若此时图中尚有顶点未被访问，则从一个未被访问的顶点出发，重新进行深度优先遍历，直到图中所有顶点均被访问过为止。
+
+上述描述可能比较抽象，举个实例：
+
+DFS 在访问图中某一起始顶点 v 后，由 v 出发，访问它的任一邻接顶点 w1；再从 w1 出发，访问与 w1邻 接但还没有访问过的顶点 w2；然后再从 w2 出发，进行类似的访问，… 如此进行下去，直至到达所有的邻接顶点都被访问过的顶点 u 为止。
+
+接着，退回一步，退到前一次刚访问过的顶点，看是否还有其它没有被访问的邻接顶点。如果有，则访问此顶点，之后再从此顶点出发，进行与前述类似的访问；如果没有，就再退回一步进行搜索。重复上述过程，直到连通图中所有顶点都被访问过为止。
 
 
 
 ## 算法七：BFS(广度优先搜索)
 
+**广度优先搜索**算法（Breadth-First-Search），是一种图形搜索算法。  
+简单的说，BFS是从根节点开始，沿着树(图)的宽度遍历树(图)的节点。如果所有节点均被访问，则算法中止。BFS同样属于盲目搜索。一般用队列数据结构来辅助实现BFS算法。
+
+算法步骤：
+
+1. 首先将根节点放入队列中。
+2. 从队列中取出第一个节点，并检验它是否为目标。
+   如果找到目标，则结束搜寻并回传结果；
+   否则将它所有尚未检验过的直接子节点加入队列中。
+3. 若队列为空，表示整张图都检查过了——亦即图中没有欲搜寻的目标。结束搜寻并回传“找不到目标”。
+4. 重复步骤2。
 
 ![BFS]({{ site.picture_dir }}/ten-basic-algorithms-for-programmers/bfs.gif)
 
