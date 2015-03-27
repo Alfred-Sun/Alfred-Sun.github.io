@@ -8,6 +8,9 @@ keywords: Algorithms, 算法
 description: 做为程序员，以下着十大10大基础实用算法及其讲解是必须知道的。
 ---
 
+![Algorithms]({{ site.picture_dir }}/ten-basic-algorithms-for-programmers/suanfa.jpg)
+
+
 ## 算法一：快速排序算法
 
 快速排序是由东尼·霍尔所发展的一种排序算法。  
@@ -47,6 +50,18 @@ http://www.cnblogs.com/zhangchaoyang/articles/2234815.html
 
 http://blog.csdn.net/sicofield/article/details/8901989
 
+
+没仔细研究 **[QuickSort][]** 前，一直以为 `Partition` 的实现大约存在两个版本：一个是 **CLRS** （算法导论）的实现（单方向一趟遍历，数据交换频繁），另一个是严蔚敏数据结构的实现（双方向进行，变换方向和数据）。  
+后来，看了不少资料（与后文所述的 **BFPRT** 相关）后，才知道原来严蔚敏书中所讲的 `Partition` 的实现来自 **QuickSort** 原作者，即 **[HOARE-PARTITION][]**。  
+经过简单的测试发现，两种方法存在一倍的时间差距，也即双方向对数据序列遍历更高效。
+
+http://www.austinrochford.com/posts/2013-10-28-median-of-medians.html
+
+
+
+[CLRS]: http://mitpress.mit.edu/books/introduction-algorithms
+[QuickSort]: http://dx.doi.org/10.1145%2F366622.366644 "Hoare, C. A. R. (1961). "Algorithm 64: Quicksort". Comm. ACM 4 (7): 321"
+[HOARE-PARTITION]: http://dx.doi.org/10.1145%2F366622.366642 "Hoare, C. A. R. (1961). "Algorithm 63: Partition". Comm. ACM 4 (7): 321"
 
 []({ % post_url 2010-07-21-name-of-post % })
 
@@ -303,9 +318,9 @@ void NonRecursiveMergeSort(int[] array, int[] temp, int len) {
             this.merge(array, temp, region.getFirst(),
                     (region.getFirst() + region.getEnd()) / 2, region.getEnd());// 归并之
         } else {// 应该划分
-            if (region.first + 1 >= region.getEnd()) {// 如果区域是两个相邻的数
+            if (region.getFirst() + 1 >= region.getEnd()) {// 如果区域是两个相邻的数
                 this.merge(array, temp, region.getFirst(),
-                        (region.getFirst() + region.getEnd()) / 2, region.end);// 直接合并之
+                        (region.getFirst() + region.getEnd()) / 2, region.getEnd());// 直接合并之
             } else { // 否则应该划分
                 region.setFlag(Type.MERGE); // 下次应该归并
                 region_stack.push(region);
@@ -315,9 +330,9 @@ void NonRecursiveMergeSort(int[] array, int[] temp, int len) {
                         Type.PARTITION);
                 region_stack.push(region_low);
 
-                Region region_up = new Region(mid + 1, region.getEnd(),
+                Region region_high = new Region(mid + 1, region.getEnd(),
                         Type.PARTITION);
-                region_stack.push(region_up);
+                region_stack.push(region_high);
             }
         }
     }
@@ -366,6 +381,32 @@ public class Region {
 
 
 ## 算法五：BFPRT(线性查找算法)
+
+
+阅读这篇文章：http://www.johndcook.com/blog/2009/06/23/tukey-median-ninther/
+
+递归调用单独寻找中位数的算法，得到的并不是中位数的中位数。
+
+这个算法看起来简单，似乎可以直接认为是快排改进快速选择。  
+然则要理解这个算法，有一定的难度，其中有几个点要特别注意：
+
+A. 划分方法的基准选取，即算法所讲的中位数的中位数，如何计算它更加高效 ？
+B. 递归调用 Select 计算中位数的中位数（看起来复杂，实际可行），并非递归寻找中位数的方法
+C. 将第一次找到的中位数集合交换到数组最左边，更方便递归寻找它们的中位数；花费额外空间存储中位数，递归返回是元素值，还需要额外 O(N) 的时间定位其下标；虽然与前者 Swap 的时间相抵消，但是空间的开销需要考虑
+D. Select 返回值是元素值，而不是下标索引，Partition 基准参数也是下标；计算中位数的中位数过程，一定会将中位数放置到计算前设定的下标上
+E. Partition 要保证一个值从原数据序列中隔离出来，不参与下次划分，这个值就是边界，同时也是第 i 小元素
+
+----------
+
+Like **RANDOMIZED-SELECT**, the algorithm **SELECT** finds the desired element by recursively partitioning the input array. Here, however, we guarantee a good split upon partitioning the array. **SELECT** uses the deterministic partitioning algorithm **PARTITION** from quicksort (see Section 7.1), but modified to take the element to partition around as an input parameter.
+
+The **SELECT** algorithm determines the **i**th smallest of an input array of **n > 1** distinct elements by executing the following steps. (If **n == 1**, then **SELECT** merely returns its only input value as the **i**th smallest.)
+
+1. Divide the **n** elements of the input array into **&lceil;n/5&rceil;** groups of 5 elements each and at most one group made up of the remaining **n mod 5** elements.
+2. Find the median of each of the **&lceil;n/5&rceil;** groups by first insertion-sorting the elements of each group (of which there are at most 5) and then picking the median from the sorted list of group elements.
+3. Use **SELECT** recursively to find the median **x** of the **&lceil;n/5&rceil;** medians found in step 2. (If there are an even number of medians, then by our convention, **x** isthe lower median.)
+4. Partition the input array around the median-of-medians **x** using the modified version of **PARTITION**. Let **k** be one more than the number of elements on the low side of the partition, so that **x** is the kth smallest element and there are **n - k** elements on the high side of the partition.
+5. If **i == k**, then return **x**. Otherwise, use **SELECT** recursively to find the **i**th smallest element on the low side if **i < k**, or the **(i - k)**th smallest element on the high side if **i > k**.
 
 
 
