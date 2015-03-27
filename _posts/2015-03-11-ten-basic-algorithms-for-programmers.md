@@ -390,21 +390,20 @@ public class Region {
 这个算法看起来简单，似乎可以直接认为是快排改进快速选择。  
 然则要理解这个算法，有一定的难度，其中有几个点要特别注意：
 
-A. 划分方法的基准选取，即算法所讲的中位数的中位数，如何计算它更加高效 ？
+A. 划分方法的基准选取，即算法所讲的中位数的中位数，如何计算它更加高效 ？  
 B. 递归调用 Select 计算中位数的中位数（看起来复杂，实际可行），并非递归寻找中位数的方法
-C. 将第一次找到的中位数集合交换到数组最左边，更方便递归寻找它们的中位数；花费额外空间存储中位数，递归返回是元素值，还需要额外 O(N) 的时间定位其下标；虽然与前者 Swap 的时间相抵消，但是空间的开销需要考虑
-D. Select 返回值是元素值，而不是下标索引，Partition 基准参数也是下标；计算中位数的中位数过程，一定会将中位数放置到计算前设定的下标上
+C. 将第一次找到的中位数集合交换到数组最左边，更方便递归寻找它们的中位数；花费额外空间存储中位数，递归返回是元素值，还需要额外 O(N) 的时间定位其下标；虽然与前者 Swap 的时间相抵消，但是空间的开销需要考虑  
+D. Select 返回值是元素值，而不是下标索引，Partition 基准参数也是下标；计算中位数的中位数过程，一定会将中位数放置到计算前设定的下标上  
 E. Partition 要保证一个值从原数据序列中隔离出来，不参与下次划分，这个值就是边界，同时也是第 i 小元素
 
 ----------
 
-Like **RANDOMIZED-SELECT**, the algorithm **SELECT** finds the desired element by recursively partitioning the input array. Here, however, we guarantee a good split upon partitioning the array. **SELECT** uses the deterministic partitioning algorithm **PARTITION** from quicksort (see Section 7.1), but modified to take the element to partition around as an input parameter.
+> Like **RANDOMIZED-SELECT**, the algorithm **SELECT** finds the desired element by recursively partitioning the input array. Here, however, we guarantee a good split upon partitioning the array. **SELECT** uses the deterministic partitioning algorithm **PARTITION** from quicksort (see Section 7.1), but modified to take the element to partition around as an input parameter.  
+> The **SELECT** algorithm determines the **i**th smallest of an input array of **n > 1** distinct elements by executing the following steps. (If **n == 1**, then **SELECT** merely returns its only input value as the **i**th smallest.)
 
-The **SELECT** algorithm determines the **i**th smallest of an input array of **n > 1** distinct elements by executing the following steps. (If **n == 1**, then **SELECT** merely returns its only input value as the **i**th smallest.)
-
-1. Divide the **n** elements of the input array into **&lceil;n/5&rceil;** groups of 5 elements each and at most one group made up of the remaining **n mod 5** elements.
-2. Find the median of each of the **&lceil;n/5&rceil;** groups by first insertion-sorting the elements of each group (of which there are at most 5) and then picking the median from the sorted list of group elements.
-3. Use **SELECT** recursively to find the median **x** of the **&lceil;n/5&rceil;** medians found in step 2. (If there are an even number of medians, then by our convention, **x** isthe lower median.)
+1. Divide the **n** elements of the input array into **&lceil;n / 5&rceil;** groups of 5 elements each and at most one group made up of the remaining **n mod 5** elements.
+2. Find the median of each of the **&lceil;n / 5&rceil;** groups by first insertion-sorting the elements of each group (of which there are at most 5) and then picking the median from the sorted list of group elements.
+3. Use **SELECT** recursively to find the median **x** of the **&lceil;n / 5&rceil;** medians found in step 2. (If there are an even number of medians, then by our convention, **x** isthe lower median.)
 4. Partition the input array around the median-of-medians **x** using the modified version of **PARTITION**. Let **k** be one more than the number of elements on the low side of the partition, so that **x** is the kth smallest element and there are **n - k** elements on the high side of the partition.
 5. If **i == k**, then return **x**. Otherwise, use **SELECT** recursively to find the **i**th smallest element on the low side if **i < k**, or the **(i - k)**th smallest element on the high side if **i > k**.
 
