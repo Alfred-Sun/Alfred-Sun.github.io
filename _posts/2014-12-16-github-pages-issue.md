@@ -12,9 +12,18 @@ description:
 ## 2. if not, had better open the blog link from GitHub sites, rather than direct link.
 
 
-## 3. GitHub Pages directory: _site
+## 3. Not found GitHub Pages directory: _site
 
-It's missing, and don't know why...
+“It's missing, and don't know why...”
+
+根据 Jekyll 的工作机制，本地运行 Jekyll build，默认将生成的静态网站文件放在根目录下的 `_site` 目录。而 GitHub Pages 后端以 Jekyll 作为渲染引擎，解析处理网站源文件，那么也要缓存静态文件到某个地方。  
+现在情况是，博主没有在网站 Repo 里面找到这样的结果目录，那么 GitHub 把生成的静态文件放到哪里了呢？  
+
+以前，一直以为一定会放在 Repo 下面，所以当注意到没有这个 `_site` 目录时，就认为 GitHub 丢失了它；亦或是隐藏起来。  
+因为想不通原因，所以干脆发 Email 问 GitHub 的员工，这才明白，原来所有的 GitHub Pages 生成的静态文件都被统一起来集中管理，并非在每个 Repo 单设一个 destination。  
+按照 GitHub Pages 的 URL 说明，同一用户下面所有的项目页面应该位于用户页面的根目录下（路径名即为各个项目页的目录），我想这也是以用户名作为网页域名的原因了。
+
+> You should not include the _site directory in your repository. We run a Jekyll build on the contents of your repository and publish the result (usually generated to the _site directory when running locally) to our **GitHub Pages infrastructure**.       [From: James Dennes _(GitHub Staff)_]
 
 
 ## 4. should install bellows:
