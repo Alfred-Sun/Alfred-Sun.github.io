@@ -24,7 +24,7 @@ description:
 因为想不通原因，所以干脆发 Email 问 GitHub 的员工，这才明白，原来所有的 GitHub Pages 生成的静态文件都被统一起来集中管理，并非在每个 Repo 单设一个 destination。  
 按照 GitHub Pages 的 URL 说明，同一用户下面所有的项目页面应该位于用户页面的根目录下（路径名即为各个项目页的目录），我想这也是以用户名作为网页域名的原因了。
 
-> “_You should not include the **&#95;site** directory in your repository. We run a Jekyll build on the contents of your repository and publish the result (usually generated to the **&#95;site** directory when running locally) to our **GitHub Pages infrastructure**._”        -- From: James Dennes _(GitHub Staff)_
+> “_You should not include the **&#95;site** directory in your repository. We run a Jekyll build on the contents of your repository and publish the result (usually generated to the **&#95;site** directory when running locally) to our **GitHub Pages infrastructure**._” &emsp;&emsp;&emsp;&emsp;	-- From: James Dennes _(GitHub Staff)_
 
 
 ## 4. should install bellows:
