@@ -415,7 +415,12 @@ int binary_search(const int *array, const int n, int key)
 
 ## 算法五：BFPRT(线性查找算法)
 
-**BFPRT 算法**解决的问题十分经典，即从某n个元素的序列中选出第 k 小（第 k 大）的元素，通过巧妙的分析，**BFPRT** 可以保证在最坏情况下仍为线性时间复杂度。该算法的思想与快速排序思想相似，当然，为使得算法在最坏情况下，依然能达到 O(n) 的时间复杂度，五位算法作者做了精妙的处理。
+**BFPRT 算法**解决的问题十分经典，即从某n个元素的序列中选出第 k 小（第 k 大）的元素，通过巧妙的分析，**BFPRT** 可以保证在最坏情况下仍为线性时间复杂度。该算法的思想与快速排序思想相似，当然，为使得算法在最坏情况下，依然能达到 O(n) 的时间复杂度，五位算法作者做了精妙的处理。   
+算法刊登在[Blum et al. (Tarjan)][Blum]，以论文作者名字首字母组合来命名。
+
+[Blum]: http://people.csail.mit.edu/rivest/pubs/BFPRT73.pdf
+
+http://en.wikipedia.org/wiki/Median_of_medians
 
 算法步骤：
 
@@ -431,8 +436,8 @@ int binary_search(const int *array, const int n, int key)
 
 递归调用单独寻找中位数的算法，得到的并不是中位数的中位数。
 
-这个算法看起来简单，似乎可以直接认为是快排改进快速选择。  
-然则要理解这个算法，有一定的难度，其中有几个点要特别注意：
+这个算法看起来简单，似乎可以直接认为是快排改进快速选择。但真正理解这个算法后，才能通晓其高明之处，其思想绝对精华，不愧为[“来自圣经的算法”](http://www.matrix67.com/blog/archives/3748)。  
+然则要理解这个算法，也有一定的难度，其中有几个点要特别注意：
 
 A. 划分方法的基准选取，即算法所讲的中位数的中位数，如何计算它更加高效 ？  
 B. 递归调用 Select 计算中位数的中位数（看起来复杂，实际可行），并非递归寻找中位数的方法  
@@ -455,6 +460,8 @@ E. Partition 要保证一个值从原数据序列中隔离出来，不参与下�
 性能分析：
 
 BFPRT 算法最出色的地方在于，精心设计的 pivot 选取方法，使得最坏情形理论上达到了线性时间复杂度。  
+这样找到的 pivot 能保证在这个 pivot 之前一定有至少 0.3N 的数，在这个 pivot 之后的也至少有 0.3N 的数，从而，每次 partition 不会出现数据倾斜(基本上整个数组都在 pivot 之后或者之前)，理论分析这个算法的时间复杂度是 O(N) 。具体证明细节请参考算法导论。（由于常数比较大，实际效果并不一定好。）
+
 然而实际应用中，寻找中位数的中位数的时间开销很大，即便是 O(n) 平均查找时间，相比固定的选取 pivot 的 Quick-Select 算法，效率不但不高，反而很差。  
 博主亲测，双核 2.27 GHz CPU、x86架构、VS2010，随机产生 256MB 整型数据，选出第 14 小元素，BFPRT 算法花费CPU时间 1293756ms，而固定选择最低位作为 pivot 的 Quick-Select 算法仅需要 2603ms，而以三元素取中值作为 pivot 的 Quick-Select 时间为 12825ms。  
 由此可见，BFPRT 还不适合应用于实践，一般而言最坏情形发生的可能性还是比较低的，选择高效适宜的算法才是关键。
@@ -464,7 +471,11 @@ BFPRT 算法最出色的地方在于，精心设计的 pivot 选取方法，使�
 
 **示例代码**
 
-```c
+在研究 BFPRT时， 看过不少人写的代码实现，有的忽略不足5个元素的那组；有的将分组后每组中位数前置，有的另为它们另分配内存；有的求中位数的中位数仅递归了Select方法的一部分，有的Partition写的让人很无语，……等等，千奇百怪，没见几个能完整的实现出来的（伪代码写的大有人在）。   
+偶尔发现一位对BFPRT分析的很不错，在这里：[BFPRT算法](http://noalgo.info/466.html)   
+鉴于代码的鱼龙混杂，没有统一的思路，于是乎博主决定自己写一个标准的实现。
+
+{% highlight c linenos %}
 void insertsort(int *array_t, int start, int end)
 {
     for (int i = start; i <= end; i++) {
@@ -478,7 +489,7 @@ void insertsort(int *array_t, int start, int end)
             }
         }
         if (j != i) {
-            array_t[j] = inserted_data;        
+            array_t[j] = inserted_data;
         }
     }
 }
@@ -509,6 +520,7 @@ int partition(int *array_t, int low, int high, int pivot_index)
 }
 
 // 五划分中项：中位数的中位数（the median of medians algorithm）
+// 严格依照 CLRS 算法描述实现，计算中位数的中位数时，没有忽略不足 5 个元素的那组数据
 // Return the kth value
 int select(int *array_t, int left, int right, int k)
 {
@@ -558,7 +570,7 @@ int select(int *array_t, int left, int right, int k)
         return select(array_t, mid_index + 1, right, k - _ith);
     }
 }
-```
+{% endhighlight %}
 
 
 
