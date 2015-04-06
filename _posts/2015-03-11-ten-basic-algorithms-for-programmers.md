@@ -415,7 +415,7 @@ int binary_search(const int *array, const int n, int key)
 
 ## 算法五：BFPRT(线性查找算法)
 
-**BFPRT 算法**解决的问题十分经典，即从某n个元素的序列中选出第 k 小（第 k 大）的元素，通过巧妙的分析，**BFPRT** 可以保证在最坏情况下仍为线性时间复杂度。该算法的思想与快速排序思想相似，当然，为使得算法在最坏情况下，依然能达到 O(n) 的时间复杂度，五位算法作者做了精妙的处理。   
+**BFPRT 算法**解决的问题十分经典，即从某n个元素的序列中选出第 k 小（第 k 大）的元素，通过巧妙的分析，**BFPRT** 可以保证在最坏情况下仍为线性时间复杂度。该算法的思想与快速排序思想相似，当然，为使得算法在最坏情况下，依然能达到 O(n) 的时间复杂度，五位算法作者（Blum、Floyd、Pratt、Rivest、Tarjan）做了精妙的处理，该算法的简单和巧妙颇有我们需要借鉴学习之处。   
 算法刊登在[Blum et al. (Tarjan)][Blum]，以论文作者名字首字母组合来命名。
 
 [Blum]: http://people.csail.mit.edu/rivest/pubs/BFPRT73.pdf
@@ -432,9 +432,9 @@ http://en.wikipedia.org/wiki/Median_of_medians
 
 终止条件：n=1 时，返回的即是 k 小元素。
 
-阅读这篇文章：http://www.johndcook.com/blog/2009/06/23/tukey-median-ninther/
 
-递归调用单独寻找中位数的算法，得到的并不是中位数的中位数。
+递归调用单独寻找中位数的算法，得到的并不是中位数的中位数。   
+阅读这篇文章：http://www.johndcook.com/blog/2009/06/23/tukey-median-ninther/
 
 这个算法看起来简单，似乎可以直接认为是快排改进快速选择。但真正理解这个算法后，才能通晓其高明之处，其思想绝对精华，不愧为[“来自圣经的算法”](http://www.matrix67.com/blog/archives/3748)。  
 然则要理解这个算法，也有一定的难度，其中有几个点要特别注意：
@@ -445,12 +445,13 @@ C. 将第一次找到的中位数集合交换到数组最左边，更方便递�
 D. Select 返回值是元素值，而不是下标索引，Partition 基准参数也是下标；计算中位数的中位数过程，一定会将中位数放置到计算前设定的下标上  
 E. Partition 要保证一个值从原数据序列中隔离出来，不参与下次划分，这个值就是边界，同时也是第 i 小元素
 
+
 ----------
 
 > Like **RANDOMIZED-SELECT**, the algorithm **SELECT** finds the desired element by recursively partitioning the input array. Here, however, we guarantee a good split upon partitioning the array. **SELECT** uses the deterministic partitioning algorithm **PARTITION** from quicksort (see Section 7.1), but modified to take the element to partition around as an input parameter.  
 > The **SELECT** algorithm determines the **i**th smallest of an input array of **n > 1** distinct elements by executing the following steps. (If **n == 1**, then **SELECT** merely returns its only input value as the **i**th smallest.)
 
-1. Divide the **n** elements of the input array into **&lceil;n / 5&rceil;** groups of 5 elements each and at most one group made up of the remaining **n mod 5** elements.
+1. Divide the **n** elements of the input array into **&lfloor;n / 5&rfloor;** groups of 5 elements each and at most one group made up of the remaining **n mod 5** elements.
 2. Find the median of each of the **&lceil;n / 5&rceil;** groups by first insertion-sorting the elements of each group (of which there are at most 5) and then picking the median from the sorted list of group elements.
 3. Use **SELECT** recursively to find the median **x** of the **&lceil;n / 5&rceil;** medians found in step 2. (If there are an even number of medians, then by our convention, **x** isthe lower median.)
 4. Partition the input array around the median-of-medians **x** using the modified version of **PARTITION**. Let **k** be one more than the number of elements on the low side of the partition, so that **x** is the kth smallest element and there are **n - k** elements on the high side of the partition.
@@ -459,8 +460,10 @@ E. Partition 要保证一个值从原数据序列中隔离出来，不参与下�
 
 性能分析：
 
-BFPRT 算法最出色的地方在于，精心设计的 pivot 选取方法，使得最坏情形理论上达到了线性时间复杂度。  
-这样找到的 pivot 能保证在这个 pivot 之前一定有至少 0.3N 的数，在这个 pivot 之后的也至少有 0.3N 的数，从而，每次 partition 不会出现数据倾斜(基本上整个数组都在 pivot 之后或者之前)，理论分析这个算法的时间复杂度是 O(N) 。具体证明细节请参考算法导论。（由于常数比较大，实际效果并不一定好。）
+BFPRT 算法最出色的地方在于，精心设计的 pivot 选取方法，使得最坏情形理论上达到了线性时间复杂度。
+这样找到的 pivot 能保证在这个 pivot 之前一定有至少 0.3N 的数，在这个 pivot 之后的也至少有 0.3N 的数，从而，每次 partition 不会出现数据倾斜(基本上整个数组都在 pivot 之后或者之前)，由此保证了 pivot 的有效性（如下图）。理论分析这个算法的时间复杂度是 O(N) ，具体证明细节请参考算法导论。（由于常数比较大，实际效果并不一定好。）
+
+![Medians]({{ site.picture_dir }}/ten-basic-algorithms-for-programmers/medians.png)
 
 然而实际应用中，寻找中位数的中位数的时间开销很大，即便是 O(n) 平均查找时间，相比固定的选取 pivot 的 Quick-Select 算法，效率不但不高，反而很差。  
 博主亲测，双核 2.27 GHz CPU、x86架构、VS2010，随机产生 256MB 整型数据，选出第 14 小元素，BFPRT 算法花费CPU时间 1293756ms，而固定选择最低位作为 pivot 的 Quick-Select 算法仅需要 2603ms，而以三元素取中值作为 pivot 的 Quick-Select 时间为 12825ms。  
@@ -468,12 +471,14 @@ BFPRT 算法最出色的地方在于，精心设计的 pivot 选取方法，使�
 
 同样地，我们都知道快排和归并的平均时间复杂度都是 O(nlogn)，但是实际应用中相比归并排序，快排耗费的时间更少；然而，对于链式存储结构的，我们还是倾向选择归并排序，原因就是快排在一趟划分过程中需要花费更多时间去定位元素，而归并排序需要额外的辅存空间，适用于链表结构。那么，对于顺序存储结构，快速排序就是优先选择了。
 
+至于，为何利用 5 个元素作为元组大小，根据计算以 3 个元素分组有更好的数据平衡，有人认为与寄存器的数量和运算有关。
+
 
 **示例代码**
 
-在研究 BFPRT时， 看过不少人写的代码实现，有的忽略不足5个元素的那组；有的将分组后每组中位数前置，有的另为它们另分配内存；有的求中位数的中位数仅递归了Select方法的一部分，有的Partition写的让人很无语，……等等，千奇百怪，没见几个能完整的实现出来的（伪代码写的大有人在）。   
+在研究 BFPRT时， 看过不少人写的代码实现，有的忽略不足5个元素的那组；有的将分组后每组中位数前置，有的另为它们另分配内存；有的求中位数的中位数仅递归了Select方法的一部分，有的Partition写的让人很无语，有的写完了都没有测试过，……等等，千奇百怪，没见几个能完整的实现出来的（伪代码写的大有人在）。   
 偶尔发现一位对BFPRT分析的很不错，在这里：[BFPRT算法](http://noalgo.info/466.html)   
-鉴于代码的鱼龙混杂，没有统一的思路，于是乎博主决定自己写一个标准的实现。
+鉴于代码的鱼龙混杂，没有统一的思路，于是乎博主决定亲自写一个标准的实现。
 
 {% highlight c linenos %}
 void insertsort(int *array_t, int start, int end)
@@ -596,6 +601,7 @@ DFS 在访问图中某一起始顶点 v 后，由 v 出发，访问它的任一�
 
 
 
+
 ## 算法七：BFS(广度优先搜索)
 
 **广度优先搜索**算法（Breadth-First-Search），是一种图形搜索算法。  
@@ -611,6 +617,188 @@ DFS 在访问图中某一起始顶点 v 后，由 v 出发，访问它的任一�
 4. 重复步骤2。
 
 ![BFS]({{ site.picture_dir }}/ten-basic-algorithms-for-programmers/bfs.gif)
+
+
+**DFS & BFS 示例代码**
+
+以二叉树为例，分别进行深度优先遍历和广度优先遍历；最后实现一个栈空间 O(1) 的非递归算法 —— Morris 遍历，它的本质就是线索二叉树。
+
+A. 递归建立、销毁二叉树
+
+```c
+// define tree, stack and queue structure
+typedef struct tree_node {
+    int data;
+    struct tree_node *left, *right;
+} tree_node;
+typedef struct nodestack {
+    tree_node *node;
+    struct nodestack *below;
+} nodestack;
+typedef struct nodequeue {
+    tree_node *node;
+    struct nodequeue *rear;
+} nodequeue;
+
+// Set up and destroy binary tree
+void create_binary_tree(tree_node **tree_root)
+{
+    int data;
+    char ch;
+    // eg. {1024 37 2 0$ 0$ 936 80 0$ 0$ 768 0$ 0$ 9 131 0$ 0$ 0$}
+    scanf("%d%c", &data, &ch);
+    if ('$' == ch) {
+        (*tree_root) = NULL;
+    } else {
+        (*tree_root) = (tree_node *) malloc(sizeof(tree_node));
+        (*tree_root)->data = data;
+        create_binary_tree(&((*tree_root)->left));
+        create_binary_tree(&((*tree_root)->right));
+    }
+}
+void destroy_binary_tree(tree_node *tree_root) {
+    if (NULL != tree_root) {
+        destroy_binary_tree(tree_root->left);
+        destroy_binary_tree(tree_root->right);
+        free(tree_root);
+    }
+}
+```
+
+B. 深度优先遍历（递归、非递归；前序、中序、后序）
+
+```c
+// Depth_First Search
+// traverse binary tree recursively
+void traverse(tree_node *root)
+{
+    if (NULL != root) {
+        printf("%d ", root->data); // preorder_traverse
+        traverse(root->left);
+        // printf  ==> inorder_traverse
+        traverse(root->right);
+        // printf  ==> postorder_traverse
+    }
+}
+
+// traverse non-recursively using stack
+void traverse_nr(tree_node *root)
+{
+    nodestack *st = NULL;
+    while (NULL != root || NULL != st) {
+        if (NULL != root) {
+            // Push into stack
+            printf("%d ", root->data); // preorder_traverse
+            nodestack *el = (nodestack *) malloc(sizeof(nodestack));
+            el->node = root;
+            el->below = st;
+            st = el;
+            root = root->left;
+        } else {
+            // Pop from the stack
+            nodestack *top = st;
+            // printf  ==> inorder_traverse
+            root = top->node->right;
+            st = st->below;
+            free(top);
+        }
+    }
+}
+void postorder_traverse_nr(tree_node *root)
+{
+    nodestack *st = NULL;
+    tree_node *cur = root;
+    tree_node *prev = NULL;
+    while (NULL != cur || NULL != st) {
+        if (NULL != cur) {
+            nodestack *el = (nodestack *) malloc(sizeof(nodestack));
+            el->node = cur;
+            el->below = st;
+            st = el;
+            cur = cur->left;
+        } else {
+            cur = st->node;
+            if (cur->right ==  prev || cur->right == NULL) {
+                printf("%d ", cur->data); // postorder_traverse
+                prev = cur;
+                cur = NULL;
+                nodestack *top = st;
+                st = st->below;
+                free(top);
+            } else {
+                cur = cur->right;
+            }
+        }
+    }
+}
+```
+
+C. Morris 遍历算法（中序遍历）
+
+```c
+// Morris Algorithms for inorder-traverse
+void inorder_traverse_mo(tree_node *root)
+{
+    while (NULL != root) {
+        if (NULL == root->left) {
+            printf("%d ", root->data);
+            root = root->right;
+        } else {
+            tree_node *cur = root->left;
+            while (NULL != cur->right && root != cur->right) {
+                cur = cur->right;
+            }
+            if (NULL == cur->right) {   // the 1st visit, change the right pointer to successor
+                cur->right = root;
+                root = root->left;
+            } else {                    // the 2nd visit, restore the right pointer to NULL
+                cur->right = NULL;
+                printf("%d ", root->data);
+                root = root->right;
+            }
+        }
+    }
+}
+```
+
+D. 广度优先遍历
+
+```c
+// Breadth_First Search
+// traverse binary tree by level layer
+void level_traverse(tree_node *root)
+{
+    if (NULL != root) {
+        nodequeue *head = (nodequeue *) malloc(sizeof(nodequeue));
+        head->node = root;
+        head->rear = NULL;
+        nodequeue *tail = head;
+        nodequeue *el = NULL;
+        while (NULL != head) {
+            printf("%d ", head->node->data);
+            if (NULL != head->node->left) {
+                el = (nodequeue *) malloc(sizeof(nodequeue));
+                el->node = head->node->left;
+                el->rear = NULL;
+                tail->rear = el;
+                tail = el;
+            }
+            if (NULL != head->node->right) {
+                el = (nodequeue *) malloc(sizeof(nodequeue));
+                el->node = head->node->right;
+                el->rear = NULL;
+                tail->rear = el;
+                tail = el;
+            }
+            nodequeue *ob_el = head;
+            head = head->rear;
+            free(ob_el);
+        }
+    }
+}
+```
+
+
 
 
 ## 算法八：Dijkstra 算法
