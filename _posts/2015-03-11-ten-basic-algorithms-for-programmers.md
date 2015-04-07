@@ -3,7 +3,7 @@
 title: 十个基础算法及其讲解
 category: Algorithms
 tags: [Algorithms]
-updated: 2015-03-19 02:28
+updated: 2015-04-08 02:28
 keywords: Algorithms, 算法
 description: 做为程序员，以下着十大10大基础实用算法及其讲解是必须知道的。
 ---
@@ -803,8 +803,98 @@ void level_traverse(tree_node *root)
 
 ## 算法八：Dijkstra 算法
 
+**戴克斯特拉算法**（Dijkstra’s algorithm）是由荷兰计算机科学家艾兹赫尔·戴克斯特拉提出。迪科斯彻算法使用了**广度优先搜索**解决非负权有向图的**单源最短路径**问题，算法最终得到一个最短路径树。该算法常用于路由算法或者作为其他图算法的一个子模块。
+
+该算法的输入包含了一个有权重的有向图 G，以及G中的一个来源顶点 S。我们以 V 表示 G 中所有顶点的集合。每一个图中的边，都是两个顶点所形成的有序元素对。(u, v) 表示从顶点 u 到 v 有路径相连。我们以 E 表示G中所有边的集合，而边的权重则由权重函数 w: E → [0, ∞] 定义。因此，w(u, v) 就是从顶点 u 到顶点 v 的非负权重（weight）。边的权重可以想像成两个顶点之间的距离。任两点间路径的权重，就是该路径上所有边的权重总和。已知有 V 中有顶点 s 及 t，Dijkstra 算法可以找到 s 到 t的最低权重路径(例如，最短路径)。这个算法也可以在一个图中，找到从一个顶点 s 到任何其他顶点的最短路径。对于不含负权的有向图，Dijkstra算法是目前已知的最快的单源最短路径算法。
+
+算法步骤：
+
+1. 初始时令 S={V0}，T={其余顶点}，T中顶点对应的距离值
+   若存在 <V0,Vi>，d(V0,Vi) 为 <V0,Vi> 弧上的权值；
+   若不存在 <V0,Vi>，d(V0,Vi) 为 ∞
+
+2. 从 T 中选取一个其距离值为最小的顶点 W 且不在 S 中，加入 S
+
+3. 对其余 T 中顶点的距离值进行修改：若加进 W 作中间顶点，从 V0 到 Vi 的距离值缩短，则修改此距离值
+
+重复上述步骤 2、3，直到 S 中包含所有顶点，即 W==Vi 为止
 
 ![Dijkstra]({{ site.picture_dir }}/ten-basic-algorithms-for-programmers/dijkstra.gif)
+
+
+**示例代码**
+
+```c
+#define INFINITE        (~(0x1<<31))    // 最大值(即0X7FFFFFFF)
+#define MAX_VERTEX_NUM  100             // 最大顶点个数
+
+typedef enum BOOLEAN {
+    TRUE, FALSE
+};
+
+typedef struct MGraph {
+    int vexs[MAX_VERTEX_NUM];                   // 顶点向量
+    int arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM];   // 邻接矩阵
+    int vexnum, arcnum;                         // 顶点数和弧数
+} MGraph;
+
+/************************************************************************/
+/* Dijkstra 算法
+* 统计图(G)中"顶点vs"到其它各个顶点的最短路径。
+* 
+* Param:
+*      G       -- 图
+*      v0      -- 起点
+*      path    -- 每个终点的前一个顶点
+*      dist    -- 起点到终点的最短路径
+*/
+/************************************************************************/
+void shortest_path_dij(MGraph G, int v0, int path[], int dist[])
+{
+    int vlen = G.vexnum;
+    int v = 0;
+    int i = 0;
+    int w = 0;
+    int min = INFINITE;
+    BOOLEAN *flag = (BOOLEAN *) malloc(vlen * sizeof(BOOLEAN));
+
+    for (; v < vlen; ++v) {
+        flag[v] = FALSE;
+        if (INFINITE == G.arcs[v0][v]) {
+            dist[v] = INFINITE;
+            path[v] = -1;
+        } else {
+            dist[v] = G.arcs[v0][v];
+            path[v] = v0;
+        }
+    }
+    flag[v0] = TRUE;
+    dist[v0] = 0;
+
+    for (i = 1; i < vlen; ++i) {
+        min = INFINITE;
+        for (v = 0; v < vlen; ++v) {
+            if (FALSE == flag[v] && min > dist[v]) {
+                min = dist[v];
+                w = v;
+            }
+        }
+        if (INFINITE == min) {
+            break;
+        }
+        flag[w] = TRUE;
+        for (v = 0; v < vlen; ++v) {
+            if (FALSE == flag[v] && INFINITE != G.arcs[w][v] && min + G.arcs[w][v] < dist[v]) {
+                dist[v] = min + G.arcs[w][v];
+                path[v] = w;
+            }
+        }
+    }
+
+    free(flag);
+}
+```
+
 
 
 
