@@ -71,7 +71,7 @@ pre .il { color: #40a070 } /* Literal.Number.Integer.Long */
 .highlight pre .o { color: #f92672 } /* Operator */
 .highlight pre .p { color: #f8f8f2 } /* Punctuation */
 .highlight pre .cm { color: #75715e } /* Comment.Multiline */
-.highlight pre .cp { color: #75715e } /* Comment.Preproc */
+.highlight pre .cp { color: #BDA944 } /* Comment.Preproc #75715e*/
 .highlight pre .c1 { color: #75715e } /* Comment.Single */
 .highlight pre .cs { color: #75715e } /* Comment.Special */
 .highlight pre .gd { color: #f92672 } /* Generic.Deleted */

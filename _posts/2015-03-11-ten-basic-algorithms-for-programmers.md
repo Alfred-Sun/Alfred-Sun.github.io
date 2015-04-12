@@ -833,7 +833,7 @@ typedef enum BOOLEAN {
 };
 
 typedef struct MGraph {
-    int vexs[MAX_VERTEX_NUM];                   // 顶点向量
+    char vexs[MAX_VERTEX_NUM];                  // 顶点向量
     int arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM];   // 邻接矩阵
     int vexnum, arcnum;                         // 顶点数和弧数
 } MGraph;
@@ -856,15 +856,15 @@ void shortest_path_dij(MGraph G, int v0, int path[], int dist[])
     int i = 0;
     int w = 0;
     int min = INFINITE;
+    // flag[i] = TRUE 表示"顶点v0"到"顶点i"
     BOOLEAN *flag = (BOOLEAN *) malloc(vlen * sizeof(BOOLEAN));
 
     for (; v < vlen; ++v) {
         flag[v] = FALSE;
+        dist[v] = G.arcs[v0][v];
         if (INFINITE == G.arcs[v0][v]) {
-            dist[v] = INFINITE;
             path[v] = -1;
         } else {
-            dist[v] = G.arcs[v0][v];
             path[v] = v0;
         }
     }
@@ -884,6 +884,7 @@ void shortest_path_dij(MGraph G, int v0, int path[], int dist[])
         }
         flag[w] = TRUE;
         for (v = 0; v < vlen; ++v) {
+            // 防止溢出
             if (FALSE == flag[v] && INFINITE != G.arcs[w][v] && min + G.arcs[w][v] < dist[v]) {
                 dist[v] = min + G.arcs[w][v];
                 path[v] = w;
@@ -892,8 +893,36 @@ void shortest_path_dij(MGraph G, int v0, int path[], int dist[])
     }
 
     free(flag);
+
+    // 打印dijkstra最短路径的结果
+    /* printf("dijkstra(%c): \n", G.vexs[v0]);
+    for (i = 0; i < G.vexnum; i++) {
+        printf("  shortest(%c, %c) =", G.vexs[v0], G.vexs[i]);
+        if (INFINITE == dist[i]) {
+            printf(" ∞");
+        } else {
+            printf(" %d", dist[i]);
+        }
+
+        w = path[i];
+        if (w != -1) {
+            printf("  \tpath(%c, %c): ", G.vexs[i], G.vexs[v0]);
+            printf("%c <- ", G.vexs[i]);
+            while (w != -1 && w != v0) {
+                printf("%c <- ", G.vexs[w]);
+                w = path[w];
+            }
+            printf("%c", G.vexs[v0]);
+        }
+        printf("\n");
+    } */
 }
 ```
+
+备注：**Dijkstra 算法**用于求解单源、无负权图的最短路径，不能用于有负权图；  
+设想图中存在一个回路（从 v 出发，经过若干个节点后又回到 v）且这个回路中的所有边的权值之和为负；那么这个回路中任意两点的最短路径便可以无穷小下去，如果不处理负权回路的话，程序就会永远执行下去。  
+另一种算法，**Bellman-Ford 算法**具有识别这种负权回路的能力，可以判断有无负权回路（若有，则不存在最短路径）。它允许图中存在负权边，只要不存在从源点可达的负权回路即可；简单的说，图中可以存在负权边，但此条负权边，构不成负权回路，不影响回路的形成。  
+此外，**SPFA 算法**（Bellman-Ford 的队列优化）同样可以用于存在负数边权的图。
 
 
 
