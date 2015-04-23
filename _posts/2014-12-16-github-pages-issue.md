@@ -6,15 +6,19 @@ keywords: github pages, issue
 description: 
 ---
 
-## 1. if the blog is forked from other, then must update and commit at least one time before it works with GitHub.
+## 1. Fork 别人的 Pages 代码库不工作
+
+在 GitHub 上面 Fork 别人的网站代码库后，通过自己账户下的 URL 路径无法访问网站。  
+这时，必须手动更新一下从人家那里 Fork 来的代码，然后提交一次；之后，一般自己账户下的网站就能正常工作了。
+
+如果还是不行，试试点击 GitHub 仓库的 **“Settings”** 中的 **“GitHub Pages”** 条目下的 URL 看，而先不要直接在浏览器地址栏输入网站 URL。
 
 
-## 2. if not, had better open the blog link from GitHub sites, rather than direct link.
 
 
-## 3. Not found “\_site” directory destination
+## 2. Not found “\_site” directory destination
 
-“It's missing, and don't know why...”
+<font color="red"><b>“It's missing, and don't know why...”</b></font>
 
 根据 Jekyll 的工作机制，本地运行 Jekyll build，默认将生成的静态网站文件放在根目录下的 `_site` 目录。而 GitHub Pages 后端以 Jekyll 作为渲染引擎，解析处理网站源文件，那么也要缓存静态文件到某个地方。  
 现在情况是，博主没有在网站 Repo 里面找到这样的结果目录，那么 GitHub 把生成的静态文件放到哪里了呢？  
@@ -26,16 +30,39 @@ description:
 
 > “_You should not include the **&#95;site** directory in your repository. We run a Jekyll build on the contents of your repository and publish the result (usually generated to the **&#95;site** directory when running locally) to our **GitHub Pages infrastructure**._” &emsp;&emsp;&emsp;&emsp;	-- From: James Dennes _(GitHub Staff)_
 
+- - - - - - -
 
-## 4. should install bellows:
+#### 后记
+
+后来自己琢磨了一会儿，貌似懂了，就没再去多想，但好想遗漏了点东西。  
+直到某天，偶然看 Git 的教程时，看到 Git hook 这个东西，顿时想起 Jekyll 文档也有这方面的介绍。然后又是好奇地回头看了看 Jekyll，此时联想到了这个问题。
+
+大胆猜测下，GitHub 的后端服务器用到了 **“Git post-receive hook”** 这样一个 Git 功能，它能够监听来自客户端 Git 操作触发的事件，在服务端执行一些脚本。也就是说，我们每次 Push 代码后，GitHub 服务端监听到了这个事件，然后运行脚本进行 Jekyll 后台编译更新代码库的输出内容，出现问题就发送 Email。  
+至于，Jekyll 输出到哪里了，正如那位兄弟所说，集中到某个地方统一管理了。
+
+这就是之前“遗漏”的点了，终于想通了。  
+同时这就是解释了上面第一个问题，Fork 他人代码后，并没有触发事件，GitHub 后台也就不会执行 Jekyll 编译网站，所有这个网站无法访问。
+
+Jekyll 里面关于 Git hook 的说明参考 [**Automated methods**](http://jekyllrb.com/docs/deployment-methods/#automated-methods)。
+
+
+
+
+
+## 3. Windows 平台安装 Ruby
 
 <!--more-->
+
+不要忘记安装下面这个东西，Jekyll 依赖的某些组件可能需要 DevKit 本地进行编译。  
+另外，安装 Ruby 过程中一定要将 Ruby 的执行目录添加到 Windows 当前用户的 `PATH` 环境变量中：**“Add Ruby executables to your PATH”**。
 
 \- [RubyInstaller Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)   
 \- [DevKit Overview](http://rubyinstaller.org/add-ons/devkit)
 
 
-## 5. Liquid Exception: cannot load such file -- yajl/2.0/yajl
+
+
+## 4. Liquid Exception: cannot load such file -- yajl/2.0/yajl
 
 windows下如果以pygments.rb为高亮plugin，并使用Ruby 2.0及以上版本，会出现如下错误：
 
@@ -99,7 +126,9 @@ gem install yajl-ruby-1.1.0.gem
 [yajl]: http://rubygems.org/gems/yajl-ruby/versions/1.1.0
 
 
-## 6. Liquid Exception: No such file or directory - python C:/Ruby193/lib/ruby/gems/1.9.1/gems/pygments.rb-0.5.0/lib/pygments/mentos.py
+
+
+## 5. Liquid Exception: No such file or directory - python C:/Ruby193/lib/ruby/gems/1.9.1/gems/pygments.rb-0.5.0/lib/pygments/mentos.py
 
 Check your `PATH` environment variable, like `;C:\python27`;   
 Make sure that have installed Python 2.x and set env path for pygments.rb call.
@@ -108,16 +137,18 @@ Make sure that have installed Python 2.x and set env path for pygments.rb call.
 - [jekyll/jekyll#2551](https://github.com/jekyll/jekyll/issues/2551)
 
 __Note:__   
-之所以要安裝 Python 是因為 代码高亮 plugin -- [pygments.rb][]，是基于 Python 的代码高亮工具 [Pygments][] 的一个 Ruby wrapper，内嵌 Python 解释器，兼容 Python 2.5、Python 2.6 和 Python 2.7。旧版的解释是，还需安装 RubyPython 调用 Python Pygments 包；雖然 Pygments 支援 Python 2 版和 3 版，不過由於 Ruby 和 Python 之間的橋接是用 RubyPython 完成，而 [rubypython][] 目前只支援 Python 2。所以還是乖乖安裝 2 版吧！（见pygments.rb的`README.md`）
+之所以要安裝 Python 是因為 代码高亮 plugin -- [pygments.rb][]，是基于 Python 的代码高亮工具 [Pygments][] 的一个 Ruby wrapper，内嵌 Python 解释器，兼容 Python 2.5、Python 2.6 和 Python 2.7。旧版的解释是，还需安装 RubyPython 调用 Python Pygments 包；雖然 Pygments 支援 Python 2 版和 3 版，不過由於 Ruby 和 Python 之間的橋接是用 RubyPython 完成，而 [rubypython][] 目前只支援 Python 2。所以還是乖乖安裝 2 版吧！（[见pygments.rb](https://github.com/tmm1/pygments.rb/blob/master/README.md)的`README.md`）
 
 [pygments.rb]: https://github.com/tmm1/pygments.rb
 [Pygments]: http://pygments.org/
 [rubypython]: http://www.rubydoc.info/gems/rubypython/0.6.3/frames#Requirements
 
 
-## 7. Jekyll 强制 Categories 单词小写
 
-`post` 可以定义categories和tags，但是Jekyll解析post时会自行将 `categories` 转成小写单词输出，而 `tags` 不会转换。   
+
+## 6. Jekyll 强制 Categories 单词小写
+
+`post` 可以定义 categories 和 tags，但是 Jekyll 解析 post 时会自行将 `categories` 转成小写单词输出，而 `tags` 不会转换。   
 比如，post的YAML front matter 是：
 
 ```yaml
@@ -130,9 +161,9 @@ Tags: Formula Periodic Sequence
 {% endraw %}
 ```
 
-而Jekyll会将category转换为 `mathematica//math-experiment`输出。   
-如果不想Jekyll输出小写category，可以变通下让单词首字母大写显示，但无法还原post定义的样式。   
-而如果GitHub上面deploy的是 `_site` 文件，那么可以local更改源码post.rb文件让其输出最初定义的格式，不过这样可能有潜在的问题(可以规避)。具体见下面的issue链接。
+而 Jekyll 会将 category 转换为 `mathematica//math-experiment` 输出。   
+如果不想 Jekyll 输出小写 category，可以变通下让单词首字母大写显示，但无法还原 post 定义的样式。   
+而如果 GitHub 上面 deploy 的是 `_site` 文件，那么可以 local 更改源码 post.rb 文件让其输出最初定义的格式，不过这样可能有潜在的问题(可以规避)。具体见下面的 issue 链接。
 
 {% raw %}
 <pre><code>{% for tag in page.categories %}
@@ -148,7 +179,9 @@ Tags: Formula Periodic Sequence
 - [jekyll/jekyll#842](https://github.com/jekyll/jekyll/issues/842)
 
 
-## 8. warning: cannot close fd before spawn; 'which' is not recognized as an internal or external command, operable program or batch file
+
+
+## 7. warning: cannot close fd before spawn; 'which' is not recognized as an internal or external command, operable program or batch file
 
 Windows环境下使用`pygments.rb`高亮code，即使plugin正常运行，但目前还存在这个麻烦的问题。因为是warning，所以本地运行Jekyll，一般可以忽略。   
 然而博主由于强迫症猝发，本着追求完美的心态，就仔细追查了这个问题的根源。   
@@ -192,7 +225,7 @@ b. 另一方法见[Fix Python hunting logic on Windows][commit#138]。(需要注
 
 
 
-## 9. 在 Windows下使用 Jekyll 出现中文字符集错误
+## 8. 在 Windows下使用 Jekyll 出现中文字符集错误
 
 在 windows 下使用 Jekyll 时经常会遇到字符集错误，比如：
 
@@ -224,32 +257,51 @@ Liquid error: incompatible character encodings: UTF-8 and GBK
 - **注意 YAML 头部的格式**  
   模板文件的元数据以 YAML 的格式展现，YAML 头部经常会出现三个问题：  
   (1) 三短线前面不能有空格；  
-  (2) “名: 值”对里冒号后面要有空格；  
+  (2) **“名: 值”对**里冒号后面要有空格；  
   (3) 回车后不要有 Tab 符；  
-  (4) 表示数组成员开始的 `-` 号后面要有空格  
-  在 Notepad++ 中开启“显示所有字符”选项后，就可以看清空格和 Tab 符了
+  (4) 表示**数组成员**开始的 `-` 号后面要有空格  
+  在 Notepad++ 中开启**“显示所有字符”**选项后，就可以看清空格和 Tab 符了
 
 
 
-## 10. 关于代码高亮
 
-- 用js插件：[DlHightLight][1]或**[Google Code Prettify][2]**或<u>**[Highlight.js][3]**</u>或**[dp.SyntaxHighlighter][4]**
-- 用gist：推荐菜鸟使用，省心省事，支持语言多
-- 用pygment：要安装python以及python的包管理软件，定制code style CSS文件，又是个大坑，不建议菜鸟使用，尤其是使用windows的
+## 9. Markdown 中的代码块高亮
 
-[1]: http://mihai.bazon.net/projects/javascript-syntax-highlighting-engine
-[2]: https://code.google.com/p/google-code-prettify/
-[3]: https://github.com/isagalaev/highlight.js
-[4]: http://alexgorbatchev.com/SyntaxHighlighter/
+Jekyll 原生提供 {% raw %}`{% highlight language %}`{% endraw %} 命令来格式代码块，进行语法高亮。除此之外，基本主流 Markdown 解析器（包含 GitHub Flavored Markdown）还支持用一对3个反引号 <code>```</code> 的符号来标记代码块，简化上面的命令代码。
+
+博主在使用 Markdown 语法的过程中发现，对于第二种方式，只有 `redcarpet` 和 `kramdown` 这两个解析器能够识别并格式代码块为 Html 文本格式；而常用的 `rdiscount` 解析器不能识别这种标记，无法添加 Html 标签和 CSS 类来转换代码块。
+
+3 个解析器及相关 gem 组件的版本为：
+
+```ruby
+def self.gems
+    {
+      # Jekyll
+      "jekyll"                => "2.4.0",
+      "jekyll-coffeescript"   => "1.0.0",
+      "jekyll-sass-converter" => "1.2.0",
+
+      # Converters
+      "kramdown"              => "1.3.1",
+      "maruku"                => "0.7.0",
+      "rdiscount"             => "2.1.7",
+      "redcarpet"             => "3.1.2",
+      "RedCloth"              => "4.2.9",
+
+      # Liquid
+      "liquid"                => "2.6.1",
+
+      # Highlighters
+      "pygments.rb"           => "0.6.0",
+
+      # Plugins
+      "jemoji"                => "0.3.0",
+      "jekyll-mentions"       => "0.1.3",
+      "jekyll-redirect-from"  => "0.6.2",
+      "jekyll-sitemap"        => "0.6.0",
+    }
+end
+```
 
 
-## 11. markdown extension
-
-There are two ways to strengthen the code style:   
-one is to indent 4 spaces or 1 tab;   
-the other is to use {% raw %}`{% highlight %}`{% endraw %} tag to parse the code block.
-
-Now GitHub provides another approach to do it: use triple backticks(`` ` ` ` ``) to format text as its own distinct block.
-
-Yes, it's OK to use like that and the result is similar to highlight block. But I found that by the second way only `redcarpet` and `kramdown` can identify the code language and render it with html; `rdiscount` won't add specific html and css to improve the code style.
 

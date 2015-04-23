@@ -13,6 +13,7 @@ footer: false
 <!--
 // Alfred: If doesn't sort the categories, then can use below to traverse the posts. So does the tags.
 
+{% raw %}
 {% for category in site.categories %}
 	<h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
 	<ul>
@@ -24,4 +25,5 @@ footer: false
 		{% endfor %}
 	</ul>
 {% endfor %}
+{% endraw %}
 -->

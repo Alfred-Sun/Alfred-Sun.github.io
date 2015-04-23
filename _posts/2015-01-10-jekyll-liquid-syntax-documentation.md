@@ -309,8 +309,8 @@ paginate: 5
 paginate_path: "blog/page:num/"
 ```
 
-根据上面的配置，Jekyll 会读取 `blog/index.html` 文件，把每页赋值给全局变量 `paginator`，并输出 HTML 分页文件，如：第2页为 `blog/page2/index.html`。  
-通过 `paginator` 的[相关属性](#pagination)我们可以实现在不同页间切换。
+根据上面的配置，Jekyll 会读取 `blog/index.html` 文件，把每页赋值给全局变量 `paginator`，并输出 HTML 分页文件，如：第2页为 `blog/page2/index.html`。其中，“page” 是字符常量，变量 `:num` 是分页的页码，自动**从 2 开始编码**，因此在罗列所有页面页码及它们的超链接时要注意一下，首页链接没有中间的 “page1” 路径。  
+通过 `paginator` 的[**相关属性**](#pagination)我们可以实现在不同页间切换。
 
 
 ```html
@@ -471,7 +471,7 @@ page.title
 
 #### paginator 下的变量 
 
-分页只在 index 页面中有效，index 页面可以在子目录里，比如：主页在 `/blog/index.html`，那么通过 `paginate_path: "blog/page:num/"`，其他页面就可以设定在 `blog/page2/index.html`。
+分页只在 index 页面中有效，index 页面可以在子目录里，比如：主页在 `/blog/index.html`，那么通过配置 `paginate_path: "blog/page:num/"`，主页里面放不下的其他内容就可以设定在第 2 页 `blog/page2/index.html` 以及后面的页面中。
 
 | 变量 				| 描述 |
 | ---- 				| ---- |
@@ -900,9 +900,8 @@ forloop.last        # => is this the last iteration ?
 
 ### 生成摘要
 
-配置文件中设定 `excerpt_separator` 取值，每篇 post 都会自动截取从开始到这个值间的内容作为这篇文章的摘要 `post.excerpt` 使用。
-
-如果要禁用某篇文章的摘要，可以在该篇文章的 YAML 头部设定 `excerpt_separator: ""`。
+配置文件中设定 `excerpt_separator` 取值，每篇 post 都会自动截取从开始到这个值间的内容作为这篇文章的摘要 `post.excerpt` 使用。  
+如果要禁用某篇文章的摘要，可以在该篇文章的 YAML 头部设定 `excerpt_separator: ""` 。
 
 ```liquid
 { % for post in site.posts % }
@@ -913,7 +912,7 @@ forloop.last        # => is this the last iteration ?
 
 ### 删除 HTML 标签
 
-这个在摘要中很有用。
+这个在摘要作为 `head` 标签里的 `meta="description"` 内容输出时很有用
 
 ```
 { { post.excerpt | strip_html } }
@@ -929,7 +928,7 @@ forloop.last        # => is this the last iteration ?
 
 ### CGI Escape
 
-通常用于将 URL 中的特殊字符转义为 `%xx` 形式。
+通常用于将 URL 中的特殊字符转义为 `%xx` 形式
 
 ```
 { { "foo,bar;baz?" | cgi_escape } }  # => foo%2Cbar%3Bbaz%3F

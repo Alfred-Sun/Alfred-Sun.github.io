@@ -4,7 +4,7 @@ title: GitHub Pages 静态博客 - 个人建站实录
 category: GitHub Pages
 tags: [Jekyll, Git, GitHub Pages]
 author: Alfred Sun
-updated: 2015-03-09 23:18
+updated: 2015-04-24 01:48
 external-url: http://beiyuu.com/github-pages/
 keywords: GitHub Pages, Jekyll, Ruby, Git
 description: 详述建立 GitHub Pages 静态博客网站过程，Github本身就是不错的代码社区，他也提供了一些其他的服务，比如Github Pages，使用它可以很方便的建立自己的独立博客，并且免费。
@@ -66,9 +66,10 @@ Git 是版本管理的未来，他的优点我不再赘述，相关资料很多�
 
 要使用 [Git](http://git-scm.com/downloads)，需要安装它的客户端，推荐在Linux下使用 Git，会比较方便。Windows版的下载地址在这里：[http://code.google.com/p/msysgit/downloads/list](http://code.google.com/p/msysgit/downloads/list "Windows版Git客户端")，或者直接安装 [**GitHub for Windows**](https://windows.github.com/)（过程可能有些慢，但就不需要做下面配置了，图形界面，简单易用）客户端。其他系统的安装也可以参考官方的[安装教程][5]。
 
-下载安装客户端之后，各个系统的配置就类似了，我们使用windows作为例子，Linux和Mac与此类似。
+下载安装客户端之后，各个系统的配置就类似了，我们使用windows作为例子，Linux和Mac类似。
 
-在Windows下，打开Git Bash，其他系统下面则打开终端（Terminal）：
+在Windows下，打开Git Bash，其他系统下则打开终端（Terminal）：
+
 ![Git Bash]({{ site.picture_dir }}/github-pages/bootcamp_1_win_gitbash.jpg)
 
 
@@ -316,7 +317,7 @@ bundle exec jekyll serve
 
 成功启动后，就可以通过访问 `http://localhost:4000` 预览网站。
 
-为确保本地与 GitHub Pages 服务器相同 Jekyll 运行环境，保持 gem 版本一致，执行：
+为确保本地与 GitHub Pages 服务器的 Jekyll 运行环境相同，保持 gem 版本一致，执行：
 
 ```bash
 bundle update
@@ -388,7 +389,7 @@ gem 'wdm', '~> 0.1.0' if Gem.win_platform?
 
 ## Jekyll 模板系统
 
-GitHub Pages 为了提供对HTML内容的支持，选择了 [Jekyll][] 作为模板系统，Jekyll 是一个强大的静态模板系统，作为个人博客使用，基本上可以满足要求，也能保持管理的方便；参考博主的另一篇文章[《Jekyll/Liquid API 语法文档》]({% post_url 2015-01-10-jekyll-liquid-syntax-documentation %}) 详细介绍 Jekyll 的相关内容，你也可以查看 [Jekyll官方文档][8]。
+GitHub Pages 为了提供对HTML内容的支持，选择了 [Jekyll][] 作为模板系统，Jekyll 是一个强大的静态模板系统，作为个人博客使用，基本上可以满足要求，也能保持管理的方便；参考博主的另一篇文章[《Jekyll/Liquid API 语法文档》][liquid-api-post] 详细介绍 Jekyll 的相关内容，你也可以查看 [Jekyll官方文档][8]。
 
 你可以直接 fork [BeiYuu的项目][11]，然后改名，就有了你自己的基于 Jekyll 的博客了，当然你也可以按照下面的介绍自己创建。
 
@@ -459,8 +460,8 @@ Jekyll 的配置写在 `_config.yml` 文件中，可配置项有很多，我们�
 * `title` ：文件名中的文章标题
 * `categories` ：YAML 头部定义的文章的分类，如果文章没有分类，会忽略
 * `short_year` ：文件名中的除去前缀世纪数的年份
-* `i-month` ：文件名中的除去前缀0的月份
-* `i-day` ：文件名中的除去前缀0的日期
+* `i_month` ：文件名中的除去前缀0的月份
+* `i_day` ：文件名中的除去前缀0的日期
 
 看看最终的配置效果：
 
@@ -505,19 +506,37 @@ Jekyll 只处理含有 **YAML Front Matter** 的文件（不以下划线开头�
 
 
 
-### 4、Jekyll 中的 Content
+### 4、为 Jekyll 设计模板系统
 
-Posts and Pages
+首页要明确一点，Jekyll 是解析引擎，不是模板系统，它用来解析特点符号标记的文本内容，根据模板样式转出相应布局的 HTML 文件，这个模板就是要我们自己来设计的。
 
+然后，使用 Jekyll 中的模板要理解两个概念：**Templates** 和 **Content**。Templates 就是我们设计的模板，而 Content 则是要放进前面设计的模板中的东西，**两者的结合就是输出的整个静态网站**。
 
+- **Jekyll 中的 Content**  
+    
+    对 Jekyll 而言，就是 **page** 或者 **post** 对象，它们会被插进 Templates 中生成最终的静态文件。  
+    我们可以用 Markdown 这样的标记语言来写，也可以用 HTML 语言来写，可以包含 Liquid 模板语法命令来修饰特定内容。通过前面介绍的 **YAML 头部**指定它要引用的模板布局，这样 Jekyll 运行时就可以准确识别它们，并用相应的模板来格式化处理。
+    
+    注意，page 和 post 有个很大的区别，了解 Jekyll 的变量后会发现，只有 **page** 才是默认的全局变量，可以直接拿来用。而 post 其实可以看做一个继承自 page 的对象，只不过 “post” 这个标记符没有定义而已，**访问 post 中的定义的变量时，实际上还是要通过 “page” 标记符进行访问**。
 
+- **Jekyll 中的 Templates**
 
-### 5、Jekyll 中的 Templates
+    正如前面所讲，Templates 用来包含 post 或 page 中的内容，那么如何设计模板呢？
 
+    当然是用 Liquid 代码和 HTML/CSS 来设计啦。Templates 文件都被放置在 `_layouts` 目录中，它可以访问 Jekyll 的全局变量 `site` 和 当前页 `page` 对象。Jekyll 解析时，会把 post 或者 page 的内容都被放在 Templates 使用 `content` 变量的地方，例如：
 
-Using Liquid for Templating
+    {% raw %}
+    ```html
+    <body>
+      <div id="sidebar"> ... </div>
+      <div id="main">
+        {{ content }}
+      </div>
+    </body>
+    ```
+    {% endraw %}
 
-
+后面的建站实例中会简单的描述上述这两种结构是如何使用并一起工作的。
 
 
 
@@ -587,7 +606,7 @@ baseurl: /jekyll_demo
 ```
 {% endraw %}
 
-Jekyll 使用 [Liquid 模板语言](https://github.com/shopify/liquid/wiki/liquid-for-designers)，它有两种标记：输出和标签，前者用来输出文本，后者是命令语句。如上述代码中对两个变量用到的输出标记：{% raw %}`{{ page.title }}`{% endraw %} 表示输出文章标题，{% raw %}`{{ content }}`{% endraw %} 表示输出文章内容，更多模板变量请参考本文“ Liquid 语法和 API ”。  
+Jekyll 使用 [Liquid 模板语言](https://github.com/shopify/liquid/wiki/liquid-for-designers)，它有两种标记：**输出**和**标签**，前者用来输出文本，后者是命令语句。如上述代码中对两个变量用到的输出标记：{% raw %}`{{ page.title }}`{% endraw %} 表示输出文章标题，{% raw %}`{{ content }}`{% endraw %} 表示输出文章内容，更多模板变量请参考本文“ Liquid 语法和 API ”一节。  
 
 目录结构变成：
 
@@ -650,7 +669,9 @@ title: My Blog
 
 <ul>
     {% for post in site.posts %}
-      <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+      <li>{{ post.date | date_to_string }}
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      </li>
     {% endfor %}
 </ul>
 ```
@@ -688,6 +709,20 @@ $ git push origin gh-pages
 
 至此，一个简单的 Blog 就算搭建完成了。
 
+有一点说明一下，Jekyll 自身可以生成前面所说那个完整目录结构的一个样板，命令行执行：
+
+```rb
+~ $ gem install jekyll
+~ $ jekyll new myblog
+~ $ cd myblog
+~/myblog $ jekyll serve
+# => Now browse to http://localhost:4000
+```
+
+如果想在当前目录下安装 Jekyll 网站，可以简单执行 `jekyll new .` 。  
+这样，运行 Jekyll 就可以预览一个简单的网站实例，作为学习之用可以节省不少时间。
+
+
 
 ### GitHub Pages 配置
 
@@ -711,6 +746,7 @@ source: your top-level directory
 另外，通过在网站代码仓库的根目录下创建名为 `.nojekyll` 的文件，可以阻止 Jekyll 处理当前代码仓库。
 
 
+
 ### Front Matter 是强制的
 
 Jekyll 要求每个 Markdown 文件必须在顶部定义 **Front Matter**，它是一组元数据，写在一对 `---` 之间：
@@ -729,6 +765,7 @@ Here is my page.
 元数据可以省略，但是必须保留这一对 `---`。只有当文件在 `_posts` 目录下时，才可以完全省略破折号。
 
 
+
 ### Jekyll 插件
 
 考虑到安全问题，GitHub Pages 后台通过 `--safe` 参数禁用了用户自定义的插件，只启用了几个必要的 [Jekyll 插件][Dependency versions]。这样一来，用户定义的插件不会在 GitHub Pages 上工作，但可以将本地生成的静态网站文件（`_site` 目录下）直接提交到 GitHub 来保留那些插件的效果。
@@ -738,18 +775,31 @@ Here is my page.
 此外，Jekyll 提供了很多 Liquid 扩展和文档说明，参见 [Liquid Extensions](https://github.com/jekyll/jekyll/wiki/Liquid-Extensions)。
 
 
+
 ### Liquid 语法和 API
+
+使用 Jekyll 能够快速搭建静态网站的一个重要原因是其基于模板引擎的特点，所有的纯文本经过模板渲染生成各个 HTML 文件。而模板代码的编写才是除开网站样式外另一个“有点棘手”的地方，主要是因为目前没有详细介绍 Liquid API 语法的文档，Jekyll 正是用的 Liquid 这一模板引擎库。
+
+很多时候，想实现某个特定的功能，而又不想用 Jekyll Plugin 方式，只能去 Jekyll 的源码里查找是否有相关的代码。为以后方便查阅，在写本网站代码的过程中，博主总结了一些常用的 API 命令，在[**《Jekyll/Liquid API 语法文档》**][liquid-api-post]这篇文章中说的很详细（貌似多写了一些 Jekyll 变量及配置参数）。本文后面的高级功能部分，也会讲一点用 Liquid 的 API 来实现的功能。
+
+文章大致上分为：Jekyll 变量、Liquid Tag 语句、Liquid 过滤器函数等 3 部分内容。
 
 
 
 ### 使用 Markdown 写博客
 
+静态网站搭建完成后，基本没有什么困难的地方了，剩下的就是用纯文本写博客了。那问题又来了，Markdown 文本的解析器非常多，不同解析器有各自特定的语法标记符号，如何去选择呢？
+
+幸好 Markdown 官方提供了该类语言的一个标准，而解析器都是在标准的基础进行的功能扩展。  
+参考[**《讲解 Markdown》**][markdown-post]该文学习如何用 Markdown 写博客。
+
+强调一下这句话：**“专注于文字而不是排版”**，这是 Markdown 写文章最棒的地方；至于排版的问题，就交给 Jekyll 的模板去处理吧。
 
 
 
 ### 遗留的问题
 
-我在这个过程中还遇到两个诡异的没有解决的问题，一个是我放在根目录下面的blog.md等文件，在GitHub的pages服务上一切正常，可以通过`beiyuu.com/blog`访问的到，但是在本地环境下，总是`not found`，很是让人郁闷，看生成的`_site`目录下面的文件，也是正常的`blog.html`，但就是找不到，只有当我把URL改为`localhost:4000/blog.html`的时候，才能访问的到，环境不同真糟糕。
+我在这个过程中还遇到两个诡异的问题，一个是我放在根目录下面的blog.md等文件，在GitHub的pages服务上一切正常，可以通过`username.github.io/blog`访问的到，但是在本地环境下，总是`not found`，很是让人郁闷，看生成的`_site`目录下面的文件，也是正常的`blog.html`，但就是找不到，只有当我把URL改为`localhost:4000/blog.html`的时候，才能访问的到，环境不同真糟糕。
 
 还有一个是关于 `category` 的问题，根据 `YAML` 的语法，我们在文章头部可以定义文章所属的类别，也可以定义为 `category:[blog,rss]` 这样子的多类别，我在本地试一切正常，但是 push 到 GitHub 之后，就无法读取了，真让人着急，没有办法。  
 原因是发现同一 GitHub 账户下面存在名为 **“blog”** 的 repo，两者之间存在 [URL 路径冲突](https://help.github.com/articles/using-jekyll-with-pages/#troubleshooting)，应该尽量避免这种情况发生。
@@ -765,7 +815,6 @@ Here is my page.
 
 ## 配置 Jekyll 高级功能模块
 
-
 ### 现成的模板
 
 - 使用 Jekyll 的网站：[**Jekyll-powered blogs**](http://jekyllrb.com/docs/sites/)、 [**"Sites" page in the Jekyll wiki**](https://github.com/jekyll/jekyll/wiki/Sites)
@@ -775,40 +824,92 @@ Here is my page.
 
 ### 分类和标签
 
+从功能的角度 blog 除了文章以外，对文章的分类、标签、归档都是主流的功能。对 Jekyll 而言，归档实现很简单，就不说了，这一部分主要介绍对文章进行分类、加标签并显示的功能代码。
+
+分类和标签功能是 Jekyll 的 **yaml-format** 的内置功能，正如前面 **YAML 文件头部**解释的那样，在每篇文章上方设置：这里需要注意的是如果多个 category 或者 tag 的话，用逗号分隔，并且要紧跟一个空格。分类可以任意添加，Jekyll在解析网站的时候会统计所有的分类，并放到 `site.categories` 中，换句话说，不能脱离文章而设置分类；标签的处理方式也是类似的。
+
+{% raw %}
+```yaml
+---
+layout: default
+title: Title
+description: 这里的 Description 是自定义属性
+categories: [web-build]
+tags: [github-page, jekyll, liquid]
+---
+```
+
+在 Jekyll 里面，Tag 和 Category 的实现原理基本是相同的，因此这里就以 Category 为例进行说明。  
+下面代码列举了所有 post 的分类及每个类别的 post 数量，然后针对每个类别，分别列出属于该类的 post 名字和路径。
+
+```html
+<div class="category">
+	<ul>
+		{% for category in site.categories %}
+			<li><a href="{{ site.BASE_PATH }}/category.html#{{ category[0] }}-ref">
+            {{ category[0] }}  <!-- 类别名 -->
+            <span>{{ category[1].size }}</span>  <!-- 该类下 post 数量 -->
+            <!-- <=> {{ site.categories[category].size }} -->
+            </a></li>
+		{% endfor %}
+	</ul>
+</div>
+
+<div class="post-category">
+    {% for category in site.categories %}
+      <h2 id="{{ category[0] }}-ref">{{ category[0] }}</h2>
+      <ul class="post-list">
+        {% for post in category[1] %}  <!-- 遍历类别下所有 post -->
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+</div>
+```
+{% endraw %}
+
+
+分析代码，会注意到分类的名字和其包含的文章的数据结构，用到了 **Hash** 来实现（其中 Hash 的值是一个 post 的数组）：**item\[0\] 是键，item\[1\] 是值**。Tag 的处理方式类似，这里就省略了。
+
+如果想了解如何让网页实现标签云，请移步[**《用js在jekyll博客中实现标签云和标签页》**]({% post_url 2014-12-11-generate-tags-with-js-in-jekyll %})。
 
 
 
+### 分页显示示例
 
+由于 `_config.yml` 配置文件中只能指定一个 `paginate_path` 页面变量来实现该 Web 页面的分页效果，所以整个网站也只能对某一个 **post 列表页面**进行分页处理。  
+有关 Jekyll 分页的内容，博主在[《Jekyll/Liquid API 语法文档》][liquid-api-post]这篇文章中详细解释，这里仅仅列出3种常见用法。另外请参考官方文档 [**Pagination**][pagination] 的说明作进一步了解。
 
-### 分页
+[pagination]: http://jekyllrb.com/docs/pagination/
 
 #### 1、分页输出 
 
-{%raw%}
+{% raw %}
 ```liquid
 {% for post in paginator.posts %}
-  {{ content }}
+  {% comment %} 输出当前分页的所有文章 {% endcomment %}
+  {{ post.content }}
 {% endfor %}
 ```
 
-#### 2、分页 
+#### 2、显示所有分页页码的列表 
 
 ```liquid
 {% if paginator.previous_page %}
   {% comment %} 判断输出前一个分页 {% endcomment %}
-  {% comment %} "page" + paginator.previous_page {% endcomment %}
+  {% comment %} "page" + paginator.previous_page_path {% endcomment %}
 {% endif %}
 {% if paginator.next_page %}
   {% comment %} 判断输出后一个分页 {% endcomment %}
-  {% comment %} "page" + paginator.next_page {% endcomment %}
+  {% comment %} "page" + paginator.next_page_path {% endcomment %}
 {% endif %}
 {% for page in (1..paginator.total_pages) %}
   {% if page == paginator.page %}
     {% comment %} 如果是当前分页 {% endcomment %}
     {% comment %} page {% endcomment %}
   {% else %}
-    {% comment %} 不是的话输出其他分页链接号码 {% endcomment %}
-    {% comment %} "page" + page {% endcomment %}
+    {% comment %} 不是的话输出其他分页号码及链接路径 {% endcomment %}
+    {% comment %} "page" + page.url {% endcomment %}
   {% endif %}
 {% endfor %}
 ```
@@ -825,26 +926,109 @@ Here is my page.
   {% comment %} title:  page.next.url | truncatewords:5 {% endcomment %}
 {% endif %}
 ```
-{%endraw%}
+{% endraw %}
+
 
 
 
 ### 代码高亮插件
 
-- [GitHub Gist][]：简单易用，省心省事，支持语言足够多
-- JS 插件：[DlHightLight][] 或 [Google Code Prettify][]
-- [pygments.rb][]：Gem 最新版已包含 Python 的 Pygments 包，但仍要安装 Python，又是个大坑，不建议菜鸟使用，尤其是在 Windows 平台
+如果写技术博客，代码高亮少不了，这里博主列出了 3 种方案可供选择：
 
+- [GitHub Gist][]：简单易用，省心省事，支持语言足够多（见文档 [Templates][Gist]）
+- JS 插件：**[Google Code Prettify][]** 或 <u>**[Highlight.js][]**</u> 或 **[dp.SyntaxHighlighter][]** 或 **[Prism][]** 或 [DlHightLight][]  
+- [pygments.rb][]：Ruby 代码高亮组件，需要安装 Python 以及 Python 的包管理软件（Gem 最新版**已包含 Python 的 Pygments 包**，但仍要安装 Python），定制 code style CSS样式，配置有些复杂，尤其是在 Windows 平台
 
 [GitHub Gist]: https://gist.github.com/
+[Gist]: http://jekyllrb.com/docs/templates/#gist
 [DlHightLight]: http://mihai.bazon.net/projects/javascript-syntax-highlighting-engine
 [Google Code Prettify]: http://code.google.com/p/google-code-prettify/
+[Highlight.js]: https://github.com/isagalaev/highlight.js
+[dp.SyntaxHighlighter]: http://alexgorbatchev.com/SyntaxHighlighter/
+[Prism]: http://prismjs.com/
 [pygments.rb]: https://github.com/tmm1/pygments.rb
 
 
-如果写技术博客，代码高亮少不了，有两个可选插件[DlHightLight代码高亮组件][13]和[Google Code Prettify][14]。DLHightLight 支持的语言相对较少一些，有js、css、xml和html，Google 的高亮插件基本上任何语言都支持，也可以自定义语言，也支持自动识别，也有行号的特别支持。
+#### 1、嵌入 GitHub Gist
 
-Google 的高亮插件使用也比较方便，只需要在`<pre>`的标签上加入`prettyprint`即可。所以我选择了Google Code Prettify。
+Gist 代码通过使用 GitHub 提供的 `gist` 标签命令引用，如：  
+{%raw%}
+```liquid
+{% gist corbanbrook/218883 spell_correct.py %}
+```
+{%endraw%}
+
+
+#### 2、引入 JS 插件
+
+相比其他插件，DLHightLight 支持的语言相对较少一些，有js、css、xml和html，而其他高亮插件基本上任何语言都支持，也可以自定义语言，也支持自动识别，也有行号的特别支持；  
+此外，各个插件在渲染速度、效果方面各有不同，具体请看博主这 3 篇使用体验：
+
+- [Jekyll 中用 Google Code Prettify]({% post_url 2014-12-15-Use-google-code-prettify-for-jekyll %})
+- [Jekyll 中用 SyntaxHighlighter]({% post_url 2014-12-15-Use-Syntaxhighlighter-for-Jekyll %})
+- [Jekyll 中用 Highlight.js]({% post_url 2014-12-15-use-highlight.js-for-jekyll %})
+
+
+#### 3、使用 pygments.rb 组件
+
+pygments.rb 是高亮代码工具 [Pygments][] 的 Ruby 实现，Jekyll 原生支持 pygments.rb ，Pygments 支持[多种语言语法高亮][lexers]。下面简单介绍如何配置使用，更多内容见[Jekyll文档][code-snippet-highlighting]说明。
+
+- (1) 安装 Python 2.x  
+    Python 版本一定要选择 2.x；默认安装即可，无需添加其他包。  
+    在 Windows 平台下面的一定要确保 **“Add python.exe to Path”**，可以看看[这里][jekyll-windows]。
+
+- (2) 安装 Pygments.rb
+    
+    ```rb
+    gem install pygments.rb
+    ```
+    一般而言，按照上面安装 Jekyll 的步骤，Bundler 会自动安装这个 gem 组件，这步可以忽略（因为它已经被绑定在 `github-pages` gem 组件里了）。
+
+- (3) 配置 _config.yml 文件  
+    在网站根目录的配置文件中，指定 Jekyll 语法高亮工具：
+
+    ```yaml
+    highlighter: pygments
+    mardown: redcarpet
+    ```
+
+    然后，需要定义用于语法高亮的 Pygments 样式，并在网页Head标签中将其引入。这里有个CSS示例文件 **[syntax.css][]** 供参考。  
+    Pygments 工具本身提供了很多语法高亮样式文件，安装这个 Python 包，并执行下面的命令可以查看、生成所有的样式CSS文件：
+
+    ```py
+    # 列出当前 Pygments 支持的样式
+    >>> from pygments.styles import STYLE_MAP
+    >>> STYLE_MAP.keys()
+    ['manni', 'igor', 'xcode', 'vim', 'autumn', 'vs', 'rrt', 'native', 'perldoc', 'borland', 'tango', 'emacs', 'friendly', 'monokai', 'paraiso-dark', 'colorful', 'murphy', 'bw', 'pastie', 'paraiso-light', 'trac', 'default', 'fruity']
+
+    # 通过 -S 来选择要生成的样式，比如：monokai 样式
+    $ pygmentize -S monokai -f html > your/path/pygments.css
+    ```
+
+    更多说明见：http://pygments.org/docs/quickstart/
+
+- (4) 高亮代码片段  
+    语法高亮的代码片段要放在标签对 {% raw %}`{% highlight language %}`{% endraw %} 和 {% raw %}`{% endhighlight %}`{% endraw %} 之间，其中的 language 为[多种语言高亮](http://pygments.org/docs/lexers/)页面中的 **Short names**。  
+    {% raw %}
+    ```liquid
+    {% highlight python %}
+    def add(a,b):
+        return a+b
+    print add(1,2)
+    {% endhighlight %}
+    ```{% endraw %}
+    
+    这是 Jekyll 提供的高亮代码块的原生命令，而有些 Markdown 解析器支持 `` ` ` ` `` 这样的简易标记符，可以将代码块包在一对连续3个反引号之间。  
+    Jekyll 高亮语法命令还支持行号显示，只需在 `highlight` 的语言识别符 `language` 后面加选项 `linenos`。为了更好的显示行号，最好为 `<pre>` 添加 `.linenos` class样式。
+
+另外，[**《GitHub Pages Issue》**]({% post_url 2014-12-16-github-pages-issue %})这篇文章里面，博主记录了在配置使用 pygments.rb 过程中遇到的一些问题，以及解决方法，有兴趣可参考一下下。
+
+[Pygments]: http://pygments.org/
+[lexers]: http://pygments.org/docs/lexers/
+[code-snippet-highlighting]: http://jekyllrb.com/docs/templates/#code-snippet-highlighting
+[Jekyll-windows]: http://jekyll-windows.juthilo.com/3-syntax-highlighting/
+[syntax.css]: https://github.com/mojombo/tpw/blob/master/css/syntax.css
+
 
 
 
@@ -878,13 +1062,13 @@ JS 动态加载，解析速度有些慢。GitHub Pages 支持的 [Kramdown][Kram
 
 按照下面的步骤，可以在 Markdown 文本中书写数学公式：
 
-安装 kramdown 包
+(1) 安装 kramdown 包
 
 ```ruby
 gem install kramdown
 ```
 
-在 `_config.yml` 中指定 Markdown 解析器
+(2) 在 `_config.yml` 中指定 Markdown 解析器
 
 ```yaml
 # Conversion
@@ -895,7 +1079,7 @@ kramdown:    # Better to turn on recognition of Github Flavored Markdown
   input: GFM
 ```
 
-再把下面的代码插入到 `<head>` 标签里  
+(3) 再把下面的代码插入到 `<head>` 标签里  
 （如果你使用 Octopress，那就是添加到 `/source/_includes/custom/head.html` 文件里）
 
 ```html
@@ -932,7 +1116,7 @@ kramdown:    # Better to turn on recognition of Github Flavored Markdown
 </script>
 ```
 
-最后在 Markdown 文件里写公式代码   
+(4) 最后在 Markdown 文件里写公式代码   
 例如，下面的 [**Cauchy-Schwarz Inequality**](http://en.wikipedia.org/wiki/Cauchy–Schwarz_inequality "柯西-施瓦茨不等式")：
 
 ```latex
@@ -975,14 +1159,15 @@ $$
 
 ### 使用 Disqus 管理评论
 
-模板部分到此就算是配置完毕了，但是Jekyll只是个静态页面的发布系统，想做到关爽场倒是很容易，如果想要评论呢？也很简单。
+Jekyll 只是个静态页面的发布系统，想做到关爽场倒是很容易，如果想要评论呢？也很简单。
 
-现在专做评论模块的产品有很多，比如[Disqus][]，还有国产的[多说][]，Disqus对现在各种系统的支持都比较全面，到写博客为止，多说现在仅是WordPress的一个插件，所以我这里暂时也使用不了，多说与国内的社交网络紧密结合，还是有很多亮点的，值得期待一下。我先选择了Disqus。
+现在专做评论模块的产品有很多，比如 [Disqus][]，还有国产的[多说][]，Disqus 对现在各种系统的支持都比较全面，只不过有时可能被墙；多说与国内的社交网络紧密结合，还是有很多亮点的。这里以 Disqus 为例说明。
 
-注册账号什么的就不提了，Disqus支持很多的博客平台，参见下图：
-![Disqus sites]({{ site.picture_dir }}/github-pages/disqus-site.jpg)
+注册账号什么的就不提了，Disqus 支持很多的博客平台，参见下图：
 
-我们选择最下面的`Universal Code`就好，然后会看到一个介绍页面，把下面这段代码复制到你的模板里面，可以只复制到显示文章的模板中：
+![Disqus sites]({{ site.picture_dir }}/github-pages/disqus-site.png)
+
+我们选择 `Universal Code` 就好，然后会看到一个介绍页面，把下面这段代码复制到你的模板里面，可以只复制到显示文章的模板中：
 
 <!--?prettify lang=html linenums=true?-->
 ```html
@@ -1002,7 +1187,7 @@ $$
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 ```
 
-配置完之后，你也可以做一些异步加载的处理，提高性能，比如我就在最开始页面打开的时候不显示评论，当你想看评论的时候，点击“显示评论”再加载Disqus的模块。代码很简单，你可以参考我的写法。
+配置完之后，你也可以做一些异步加载的处理，提高性能，比如我就在最开始页面打开的时候不显示评论，当你想看评论的时候，点击“显示评论”再加载 Disqus。代码很简单，你可以参考我的写法。
 
 ```javascript
 $('#disqus_container .comment').on('click',function(){
@@ -1013,14 +1198,14 @@ $('#disqus_container .comment').on('click',function(){
 });
 ```
 
-如果你不喜欢 Disqus 的样式，你也可以根据他生成的HTML结构，自己改写样式覆盖它的，Disqus 现在也提供每个页面的评论数接口，[帮助文档][12]在这里可以看到。
+如果你不喜欢 Disqus 的样式，你也可以根据他生成的 HTML 结构，自己改写样式覆盖它的，Disqus 现在也提供每个页面的评论数接口，[帮助文档][12]在这里可以看到。
 
 
 
 
 ## 定制 404 页面
 
-GitHub allows you to have a custom 404 error page. When you test your website locally with `bundle exec jekyll serve`, this error page also works: you can try by providing an incorrect URL. Just tell Jekyll to create a `404.html` on the root:
+GitHub 允许我们自定义 **404** 页面，而且在本地执行 Jekyll 编译测试网站时，定制的 404 错误页面同样能工作（你可以打开一个无效 URL 试试）。只需要简单的在网站根目录下创建一个 `404.html` 即可，例如：
 
 {% raw %}
 ```
@@ -1033,14 +1218,18 @@ This page must have been removed or had its name changed.
 ```
 {% endraw %}
 
+此外，要注意项目页绑定域名对[自定义 404 页面][404 Pages]的影响（404 页面仅对**绑定顶级域名**的项目才起作用，GitHub 默认分配的二级域名是不起作用的）。
+
+[404 Pages]: https://help.github.com/articles/custom-404-pages/
 
 
 
 ## 集成 Travis CI 编译测试功能
 
-[**Travis**](https://travis-ci.org/) allows your to generate the website each time you push something, in order to check nothing is wrong. It is also possible to add some other tests like `htmlproofer` which checks if the HTML code is valid and there are no rotten links. You will get a warning email if something is wrong.
+[**Travis**](https://travis-ci.org/) 用来跟踪检查网站生成过程中是否存在错误，尤其是在我们提交代码的时候很有用。也可以添加其他测试功能，如 `htmlproofer`，来检测 HTML 代码是否有效以及超链接是否有效。如果存在错误，就会向你注册的邮箱发送错误通知邮件。
 
-To do so, use your GitHub login informations on Travis, then enable the `username.github.io` repository. Then, add `htmlproofer` in your Gemfile file, which now looks like:
+首先，用 GitHub 账户信息登录 Travis，对 `username.github.io` 代码库启用 Travis 编译功能；  
+再将 `htmlproofer` 添加到你的 GitHub 代码库的 Gemfile 文件中：
 
 ```ruby
 source 'https://rubygems.org'
@@ -1048,7 +1237,7 @@ gem 'github-pages'
 gem 'html-proofer'
 ```
 
-Finally, create a `.travis.yml` file in order to tell Travis how to build and test the website:
+最后，在代码库根目录创建 `.travis.yml` 测试脚本文件，用来编译测试网站：
 
 ```
 language: ruby
@@ -1058,7 +1247,8 @@ script:
 - bundle exec jekyll build && bundle exec htmlproof ./_site
 ```
 
-Now, each time you push something, **Travis** will send you an email if Jekyll can’t generate your website, if the HTML code is not valid or if a link rot remains.
+现在，每次提交代码，**Travis** 就会对代码项目进行脚本测试，如果 Jekyll 编译有问题，或者 HTML 存在无效代码或无效链接，就给你发送邮件。更多详细介绍参考 [**Continuous Integration**](http://jekyllrb.com/docs/continuous-integration/)。
+
 
 
 
@@ -1080,20 +1270,21 @@ Github Pages 博客编辑器：[Prose](http://prose.io/) | [源码](https://gith
 
 - [《优化 Jekyll 站点的 SEO 技巧》](http://www.zhanxin.info/jekyll/2012-12-09-jekyll-seo.html)
 - [《搭建 Jekyll 博客的一些小技巧》](http://pizn.github.io/2012/03/01/some-tips-for-jekyll-blog.html)
-- [为 Jekyll 博客添加静态搜索](http://www.zhanxin.info/jekyll/2012-05-26-jekyll-static-search.html)
+- [《为 Jekyll 博客添加静态搜索》](http://www.zhanxin.info/jekyll/2012-05-26-jekyll-static-search.html)
 
 
 
 
 ## 结束语
-如果你跟着这篇不那么详尽的教程，成功搭建了自己的博客，恭喜你！剩下的就是保持热情的去写自己的文章吧。
+如果你跟着这篇“不那么详尽”的教程走，成功搭建了自己的博客，恭喜你！剩下的就是保持热情的去写自己的文章吧。
 
 
 
 ## Further Reading
 
-1. [Jekyll Liquid API](http://jekyllbootstrap.com/api/jekyll-liquid-api.html)
-2. [GitHub Pages](http://jekyllrb.com/docs/github-pages/)
+1. [**How Jekyll Works**](http://jekyllbootstrap.com/lessons/jekyll-introduction.html)  介绍 Jekyll 作为**解析引擎**的工作机制，尤其是解析文件、生成整个网站过程
+2. [Jekyll Liquid API](http://jekyllbootstrap.com/api/jekyll-liquid-api.html)  介绍了 Liquid 的一些常用 API 及支持**命令语句**
+3. [GitHub Pages](http://jekyllrb.com/docs/github-pages/)  介绍了如何在 **GitHub Pages** 部署静态网站
 
 
 **(I)** 了解 Jekyll 静态网站生成器的起源：Jekyll 作者（也是 GitHub 的共同创始人） Tom Preston-Werner 的博文 [**Blogging like a hacker**](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html)（中文翻译[《 像黑客一样写博客 》](http://kyle.xlau.org/posts/blogging-like-a-hacker.html) by Kylexlau）。
@@ -1158,6 +1349,8 @@ Github Pages 博客编辑器：[Prose](http://prose.io/) | [源码](https://gith
 
 
 
+[liquid-api-post]: {% post_url 2015-01-10-jekyll-liquid-syntax-documentation %}
+[markdown-post]: {% post_url 2015-01-10-markdown-syntax-documentation %}
 [BeiYuu]:    http://beiyuu.com  "BeiYuu"
 [GitHub]:   http://github.com "GitHub"
 [jQuery]:   https://github.com/jquery/jquery "jQuery@github"
@@ -1181,8 +1374,6 @@ Github Pages 博客编辑器：[Prose](http://prose.io/) | [源码](https://gith
 [10]: http://jekyllrb.com/docs/configuration/
 [11]: https://github.com/beiyuu/Github-Pages-Example
 [12]: http://docs.disqus.com/developers/universal/
-[13]: http://mihai.bazon.net/projects/javascript-syntax-highlighting-engine
-[14]: http://code.google.com/p/google-code-prettify/
 [15]: https://github.com/mojombo/jekyll/wiki/Install
 [16]: https://rvm.io/rvm/install/
 [17]: http://jekyllbootstrap.com/

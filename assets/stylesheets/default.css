@@ -185,7 +185,7 @@ font-family:"Consolas","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace
 font-family:"Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace !important
 font-family:Menlo,Consolas,"Courier New",Courier,"Liberation Mono",monospace
 */
-pre {background:#474949;padding:15px;overflow:auto;margin-bottom:20px;font-family:Monaco,Menlo,Consolas,"Courier New",monospace;font-size:14px;border: 1px solid #eee;-webkit-border-radius: 4px 4px 4px 4px;-moz-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;color:#D1D9E1;margin-top:-10px; max-height: 600px;}
+pre {background:#474949;padding:15px;overflow:auto;margin-bottom:20px;margin-top:-10px;color:#D1D9E1;max-height: 600px;line-height: normal;font-family:Monaco,Menlo,Consolas,"Courier New",monospace;font-size:14px;border: 1px solid #eee;-webkit-border-radius: 4px 4px 4px 4px;-moz-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;}
 h4+pre, h3+pre { margin-top:20px; }
 
 pre ::-moz-selection{ background: #FF5E99; color:#fff; text-shadow: none; }

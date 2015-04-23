@@ -227,7 +227,8 @@ $(function() {
 });
 ```
 
-现在，就可以使用`<pre></pre>`标签进行高亮了。
+现在，就可以使用`<pre></pre>`标签进行高亮了。  
+Google 的高亮插件使用比较方便，只需要在`<pre>`的标签上加入`prettyprint`即可。
 
 ```html
 <pre class="prettyPrint">
