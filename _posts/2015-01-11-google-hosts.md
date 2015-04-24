@@ -26,8 +26,8 @@ hosts文件位置：
 
 - google hosts 2015 持续更新：http://www.360kb.com/kb/2_122.html   
 - 2014-11-07 更新的hosts：下载地址1就行。。   
-http://blog.sina.com.cn/s/blog_62fbf02e0102vcrf.html  
-http://blog.sina.com.cn/s/blog_62fbf02e0102vewg.html 
+http://blog.sina.com.cn/s/blog_62fbf02e0102vewg.html   
+http://blog.sina.com.cn/s/blog_6fa5aa4a01010wel.html  
 - **权威hosts更新**：(~~http://serve.netsh.org/pub/gethosts.php~~ 已失效)  
   http://serve.netsh.org/pub/ipv4-hosts/
 
