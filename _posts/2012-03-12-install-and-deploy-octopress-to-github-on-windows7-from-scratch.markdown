@@ -40,7 +40,7 @@ description: 介绍如何在 Windows 7 下从头开始安装、配置、使用 O
 * Ruby 的模块工具 gem 在生成本地模块时可能需要用到编译环境
   - 有两种选择：[MinGW and MSYS](http://www.mingw.org/) 或 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
   - 本文选择 RubyInstaller 推荐的 [RubyInstaller DevKit](https://github.com/oneclick/rubyinstaller/wiki/development-kit)
-  - 下载 [RubyInstaller DevKit](https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe) （之所以要 DevKit 是因為在安裝 Octopress 時，所需要用到的 ruby gems 會需要在本地編譯，如：rdiscount）
+  - 下载 [RubyInstaller DevKit](https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe) （之所以要 DevKit 是因為在安裝 Octopress 時，所需要用到的 ruby gems 會需要在本地編譯，如：rdiscount）DevKit 的版本要对应 Ruby 的版本
   - 安装需执行如下步骤：（development kit 是一套基於 MSYS/MinGW 下的 C/C++ 編譯環境工具組，安裝時跟著官網上的指示即可）
       + 将 DevKit 自解压包释放到 C:\DevKit ，执行 `cd C:\DevKit`
       + 在 Windows CMD 窗口中执行  `ruby dk.rb init`  （產生 config.yaml，裡面有你的 ruby 路徑，一般會幫你設好）

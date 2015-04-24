@@ -360,7 +360,7 @@ $ jekyll serve --no-watch
 
 ### Windows 环境下运行 Jekyll
 
-在 Windows 下安装 [Ruby][RubyInstaller] 时，记得要 **“Add Ruby executables to your PATH”**，并且要安装相应的 [Development Kit][DevKit]。  
+在 Windows 下安装 [Ruby][RubyInstaller] 时，记得要 **“Add Ruby executables to your PATH”**，并且要安装相应的 [Development Kit][DevKit]，DevKit 要对应 Ruby 的版本，这点不要忘了。  
 参考 Julian Thilo 写过一份说明文档，内容很详细：[**Jekyll running on Windows**][JulianThilo]。
 
 [rubyinstaller]: http://rubyinstaller.org/ "RubyInstaller for Windows"

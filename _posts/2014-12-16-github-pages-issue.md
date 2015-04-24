@@ -263,6 +263,13 @@ Liquid error: incompatible character encodings: UTF-8 and GBK
   在 Notepad++ 中开启**“显示所有字符”**选项后，就可以看清空格和 Tab 符了
 
 
+除此之外，假如 post 文件名中含有中文，或者任何**非 ASCII 编码的字符**，那么 Jekyll 新版本依然能正常编译，只是本地预览时无法正常显示；不用担心，推送到 GitHub 上后是可以访问的。
+
+![URL Encodeing Error]({{ site.picture_dir }}/github-pages-issue/encode_error.jpg)
+
+这是 Jekyll 本身问题，如果将生成的静态文件放到其他 **Web 容器**，比如 **Apache**、**Nginx**等，此时也是可以访问的。这类问题也可以扩展到 **URL 路径中存在中文字符**的情形。由于 Jekyll 对 utf-8 编码的处理的比较好，所以我们新建 page 或 post 时尽量使用英文命名。
+
+
 
 
 ## 9. Markdown 中的代码块高亮
