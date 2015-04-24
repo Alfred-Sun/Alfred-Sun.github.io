@@ -6,7 +6,7 @@ tags: [gem]
 keywords: ruby, gem
 ---
 
-## 1.显示gem的帮助和版本
+## 1.显示 gem 的帮助和版本
 
 ```sh
 gem –h/--help
@@ -117,7 +117,7 @@ gem: --gen-rdoc --run-tests
 
 如果你想安装软件后总是生成它们的文档和运行单元测试，你可以在配制文件里写上相关的命令，配置文件名是.gemrc，在主目录里。
 
-## 10. 构建gem包
+## 10. 构建 gem 包
 
 ```sh
 gem build package.gemspec
@@ -126,7 +126,7 @@ gem build package.gemspec
 
 * * * * * *
 
-在window下安装RoR真的是场噩梦...
+在 window 下安装 RoR（Ruby on Rails）真的是场噩梦...
 
 前天准备在一台win server 2003上安装RoR环境。  
 安装ruby 1.86不会有什么问题。直接下载安装windows onclick install 的exe完成安装。  

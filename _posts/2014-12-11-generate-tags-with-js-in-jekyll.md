@@ -249,5 +249,6 @@ Displays tags as a 3D rotating tag cloud using an HTML5 canvas
 jQuery Tag Cloud looking like a 3d sphere. 3d animated tag cloud generated from an array. You can easily customize it by tweaking the params.   
 这是[Nurul Ferdous](http://dynamicguy.github.io/)写的一个3D标签云插件，相比上面的要简单些，看下[Demo]({{ site.demo_dir }}/tagCloud/js_tag_cloud2.html)就明白了。
 
-此外，看到这样[**一篇文章**](http://alfred-sun.github.io/blog/2014/12/03/creating-tag-cloud-using-r-and-flash-javascript-swfobject/)，告诉我们如何用Flash Movie和 R 来实现Tag Cloud；文章中提出了一个比较好的思路，统计Post的查阅频率或者tag的使用频率(ofen used or rarely used)，然后据此来设定tag字体的大小。
+此外，看到这样[**一篇文章**](http://yihui.name/en/2009/06/creating-tag-cloud-using-r-and-flash-javascript-swfobject/)，告诉我们如何用Flash Movie和 R 来实现Tag Cloud；文章中提出了一个比较好的思路，统计Post的查阅频率或者tag的使用频率(ofen used or rarely used)，然后据此来设定tag字体的大小。
+
 

@@ -1,35 +1,35 @@
 ---
 layout: post
-title: jQuery取得iframe中元素的几种方法（转载）
+title: jQuery 取得 iframe 中元素的几种方法（转载）
 categories:
   - Javascript
 author: GavinMiao
 external-url: http://www.blogjava.net/GavinMiao/archive/2011/08/30/357580.html
 ---
 
-iframe在复合文档中经常用到，利用jquery操作iframe可以大幅提高效率，这里收集一些基本操作
+iframe 在复合文档中经常用到，利用 jquery 操作 iframe 可以大幅提高效率，这里收集一些基本操作
 
 ## 基本操作
 
-DOM方法：
+DOM 方法：
 
 > * 父窗口操作IFRAME: `window.frames["iframeSon"].document`
 > * IFRAME操作父窗口: `window.parent.document`
 
 <!--more-->
 
-jquery方法:
-在父窗口中操作 选中IFRAME中的所有输入框：
+jquery 方法:
+在父窗口中操作 选中 IFRAME 中的所有输入框：
 
 ```js
 $(window.frames["iframeSon"].document).find(":text");
 ```
-在IFRAME中操作 选中父窗口中的所有输入框：
+在 IFRAME 中操作 选中父窗口中的所有输入框：
 
 ```js
 $(window.parent.document).find(":text");
 ```
-iframe框架的HTML:
+iframe 框架的 HTML:
 
 ```html
 <iframe src="test.html" id="iframeSon" width="700" height="300" frameborder="0" scrolling="auto"></iframe>
@@ -41,13 +41,13 @@ iframe框架的HTML:
 $(window.frames["iframe1"].document).find("input[@type='radio']").attr("checked","true");
 ```
 
-2.在IFRAME中操作 选中父窗口中的所有单选钮
+2.在 IFRAME 中操作 选中父窗口中的所有单选钮
 
 ```js
 $(window.parent.document).find("input[@type='radio']").attr("checked","true");
 ```
 
-iframe框架的：
+iframe 框架的：
 
 ```html
 <iframe src="test.html" id="iframe1" width="700" height="300" frameborder="0" scrolling="auto"></iframe>
@@ -80,14 +80,14 @@ iframe框架的：
 
 ## 收集利用Jquery取得iframe中元素的几种方法
 
-显示iframe中body元素的内容:
+显示 iframe 中 body 元素的内容:
 
 ```js
 $(document.getElementById('iframeId').contentWindow.document.body).htm()  
 $(document.getElementById('iframeId').contentWindow.document.body).htm()
 ```
 
-根据iframename取得其中ID为"testId"元素
+根据 iframename 取得其中 ID 为 "testId" 元素
 
 ```js
 $("#testId", document.frames("iframename").document).html();  
@@ -100,58 +100,60 @@ $(window.frames["iframeName"].document).find("#testId").html()
 
 ## 收集网上的一些示例：
 
-### 用jQuery在IFRAME里取得父窗口的某个元素的值
+### 用 jQuery 在 IFRAME 里取得父窗口的某个元素的值
 
-只好用DOM方法与jquery方法结合的方式实现了
+只好用 DOM 方法与 jquery 方法结合的方式实现了
 
-1.在父窗口中操作 选中IFRAME中的所有单选钮
+1.在父窗口中操作 选中 IFRAME 中的所有单选钮
 
 ```js
 $(window.frames["iframe1"].document).find("input[@type='radio']").attr("checked","true");
 ```
 
-2.在IFRAME中操作 选中父窗口中的所有单选钮
+2.在 IFRAME 中操作 选中父窗口中的所有单选钮
 
 ```js
 $(window.parent.document).find("input[@type='radio']").attr("checked","true");
 ```
 
-iframe框架的：
+iframe 框架的：
 
 ```html
 <iframe src="test.html" id="iframe1" width="700" height="300" frameborder="0" scrolling="auto"></iframe>
 ```
 
-IE7中测试通过
- 
-### 使用jquery操作iframe
+IE7 中测试通过
 
-1、 内容里有两个iframe
+
+
+### 使用 jquery 操作 iframe
+
+1、 内容里有两个 iframe
 
 ```html
 <iframe id="leftiframe"...></iframe> 
 <iframe id="mainiframe"..></iframe>
 ```
 
-leftiframe中jQuery改变mainiframe的src代码： 
+leftiframe 中 jQuery 改变 mainiframe 的 src 代码：
 
 ```js
 $("#mainframe",parent.document.body).attr("src","http://www.radys.cn")
 ```
 
-2、 如果内容里面有一个ID为mainiframe的iframe
+2、 如果内容里面有一个ID为 mainiframe 的 iframe
 
 ```html
 <iframe id="mainiframe"...></iframe>
 ```
 
-iframe包含一个someID
+iframe 包含一个 someID
 
 ```html
 <div id="someID">you want to get this content</div>
 ```
 
-得到someID的内容
+得到 someID 的内容
 
 ```js
 $("#mainiframe").contents().find("someID").html() html
@@ -159,20 +161,19 @@ $("#mainiframe").contents().find("someID").html() html
 $("#mainiframe").contains().find("someID").text()
 ```
 
-3、在父窗口中操作 选中IFRAME中的所有单选钮
+3、在父窗口中操作 选中 IFRAME 中的所有单选钮
 
 ```js
 $(window.frames["iframe1"].document).find("input[@type='radio']").attr("checked","true");
 ```
 
-那选择id自然就是依然使用find方法
+那选择 id 自然就是依然使用 find 方法
 
 ```js
 $(window.frames["iframe1"].document).find("#id")
 ```
 
-4、 如上面所示 
-leftiframe中的jQuery操作mainiframe的内容someID的内容 
+4、 如上面所示，leftiframe 中的 jQuery 操作 mainiframe 的内容 someID 的内容 
 
 ```js
 $("#mainframe",parent.document.body).contents().find("someID").html()
@@ -180,11 +181,12 @@ $("#mainframe",parent.document.body).contents().find("someID").html()
 $("#mainframe",parent.document.body).contents().find("someID").val()
 ```
 
-### 使用JavaScript操纵iframe
 
-框架间的互相引用
+### 使用 JavaScript 操纵 iframe
 
-一个页面中的所有框架以集合的形式作为window 对象的属性提供，例如：window.frames就表示该页面内所有框架的集合，这和表单对象、链接对象、图片对象等是类似的，不同的是，这些集合是 document的属性。因此，要引用一个子框架，可以使用如下语法：
+#### 框架间的互相引用
+
+一个页面中的所有框架以集合的形式作为 window 对象的属性提供，例如：window.frames 就表示该页面内所有框架的集合，这和表单对象、链接对象、图片对象等是类似的，不同的是，这些集合是 document 的属性。因此，要引用一个子框架，可以使用如下语法：
 
 ```js
 window.frames["frameName"];
@@ -192,7 +194,7 @@ window.frames.frameName
 window.frames[index]
 ```
 
-其中，window字样也可以用self代替或省略，假设frameName为页面中第一个框架，则以下的写法是等价的：
+其中，window 字样也可以用 self 代替或省略，假设 frameName 为页面中第一个框架，则以下的写法是等价的：
 
 ```js
 self.frames["frameName"]
@@ -200,11 +202,14 @@ self.frames[0]
 frames[0]
 ```
 
-frameName
+#### frameName
 
-每个框架都对应一个HTML页面，所以这个框架也是 一个独立的浏览器窗口，它具有窗口的所有性质，所谓对框架的引用也就是对window对象的引用。有了这个window对象，就可以很方便地对其中的页面 进行操作，例如使用window.document对象向页面写入数据、使用window.location属性来改变框架内的页面等。
+每个框架都对应一个 HTML 页面，所以这个框架也是 一个独立的浏览器窗口，它具有窗口的所有性质，所谓对框架的引用也就是对 window 对象的引用。有了这个 window 对象，就可以很方便地对其中的页面 进行操作，例如使用 window.document 对象向页面写入数据、使用 window.location 属性来改变框架内的页面等。
 
-下面分别介绍不同层次框架间的互相引用：
+
+
+
+### 下面分别介绍不同层次框架间的互相引用
 
 1．父框架到子框架的引用
 
@@ -261,3 +266,5 @@ if(self==top){
 //dosomething
 }
 ```
+
+
