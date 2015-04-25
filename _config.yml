@@ -116,6 +116,12 @@ music_dir: /media/music
 document_dir: /media/documents
 demo_dir: /media/demo
 
+# Enable automatic sitemap generation
+# GitHub Pages will not override a sitemap.xml file that exists in the root of your repository.
+# https://help.github.com/articles/sitemaps-for-github-pages/
+gems:
+  - jekyll-sitemap
+
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #

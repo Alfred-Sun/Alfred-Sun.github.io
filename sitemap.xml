@@ -24,7 +24,7 @@ title : Sitemap
 
     <url>
       <loc>{{ site.url }}</loc>
-      <changefreq>daily</changefreq>
+      <changefreq>weekly</changefreq>
       <priority>0.6</priority>
     </url>
 </urlset>
