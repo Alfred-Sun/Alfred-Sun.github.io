@@ -82,7 +82,7 @@ sidebar: false
 
 ## **我是谁**
 
-- [**Curricula Vitae**]()   
+- [**Curricula Vitae**]({{ root_url }}/cv.html)   
 - [**GitHub Resume**](http://resume.github.io/?alfred-sun)
 
 

@@ -84,6 +84,18 @@
   content: "\f09b";
 }
 
+.icon-bitbucket:before {
+  content: "\f171";
+}
+
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+
+.icon-dribbble:before {
+  content: "\f17d";
+}
+
 .icon-weibo:before {
   content: "\f18a";
 }

@@ -29,7 +29,7 @@ date_format: "%a %e %b %Y, %l:%M %p"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: sym_dfbb@163.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
