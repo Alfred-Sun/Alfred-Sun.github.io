@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python IDE 开发工具
+title: Python IDE 开发工具 doubanclaimf100c5fc3606ea7f
 category: Python
 tags: [Python, Editor]
 author: 鲁塔弗
