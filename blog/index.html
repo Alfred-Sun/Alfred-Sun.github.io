@@ -28,15 +28,15 @@ navbar: blog
 	
 	<ul class="pager">
       {% if paginator.previous_page %}
-        <li class="previous"><a href="{{paginator.previous_page_path}}">&laquo; Prev</a></li>
+      <li class="previous"><a href="{{paginator.previous_page_path}}"><b>&laquo; Prev</b></a></li>
       {% else %}
-        <li class="previous disabled"><a href="#">&laquo; Prev</a></li>
+      <li class="previous disabled"><a href="#"><b>&laquo; Prev</b></a></li>
       {% endif %}
-      <li><a rel="nofollow" href="{{ root_url }}/{{ site.archive_dir }}">Blog Archives</a></li>
+      <li><a rel="nofollow" href="{{ root_url }}/{{ site.archive_dir }}"><b>Blog Archives</b></a></li>
       {% if paginator.next_page %}
-        <li class="next"><a href="{{paginator.next_page_path}}">Next &raquo;</a></li>
+      <li class="next"><a href="{{paginator.next_page_path}}"><b>Next &raquo;</b></a></li>
       {% else %}
-        <li class="next disabled"><a href="#">Next &raquo;</a></li>
+      <li class="next disabled"><a href="#"><b>Next &raquo;</b></a></li>
       {% endif %}
     </ul>
 	
