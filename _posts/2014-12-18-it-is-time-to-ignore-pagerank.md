@@ -9,8 +9,7 @@ tags: [Google]
 
 2014 年 11 月 24 日，Google 官方发言人 John Mueller 再 Video Hangouts 中表示，Google 已经决定放弃 PageRank，同时，也建议各位 SEO 不要再采用 PageRank 作为参考。其实 John Mueller 早在去年，就曾表示今后不太可能更新 PageRank。
 
-![John Mueller](http://img.hb.aicdn.com/501d7052242ed0f8e4b2a13e67d215c207af08eb47b0b-FOiZhN_fw658)  
-<!--img src="ttp://i2.tietuku.com/68a8223dd79de1c0.png" /-->
+![John Mueller](http://i2.tietuku.com/68a8223dd79de1c0.png)
 
 <!--more-->
 
