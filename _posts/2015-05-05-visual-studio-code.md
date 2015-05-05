@@ -6,7 +6,7 @@ tags: [Open Source, editor]
 #author: Alfred Sun
 updated: 2015-05-05 10:10
 keywords: visual studio, code
-description: 正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆……
+description: 突然发现微软发布开源、跨平台 VS 工具，试用后感觉不错；这难道是 Windows 迈向开源的信号么
 ---
 
 M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首个跨平台的代码编辑器。
@@ -36,7 +36,9 @@ M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首�
 
 ![code](https://code.visualstudio.com/Content/images/hero-osx.png)
 
-有木有发现官网那个 demo 的兄弟用的 MacBook Air [...](https://az754404.vo.msecnd.net/public/vscode_preview.mp4 "出门左转，微软项目")
+- - - - - - - 
+
+有木有发现官网那个 demo 的兄弟用的 **MacBook Air** [...](https://az754404.vo.msecnd.net/public/vscode_preview.mp4 "出门左转，微软项目") 要吐槽，两个标志性的 Brand 很显眼，有木有呀……
 
 
 
