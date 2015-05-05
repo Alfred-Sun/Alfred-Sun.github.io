@@ -36,7 +36,7 @@ M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首�
 
 ![code](https://code.visualstudio.com/Content/images/hero-osx.png)
 
-有木有发现官网那个 demo 的兄弟用的 MacBook Air [...](https://az754404.vo.msecnd.net/public/vscode_preview.mp4)
+有木有发现官网那个 demo 的兄弟用的 MacBook Air [...](https://az754404.vo.msecnd.net/public/vscode_preview.mp4 "出门左转，微软项目")
 
 
 
