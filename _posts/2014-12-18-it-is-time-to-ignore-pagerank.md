@@ -11,7 +11,9 @@ tags: [Google]
 
 ![John Mueller](http://i2.tietuku.com/68a8223dd79de1c0.png)
 
+
 <!--more-->
+
 
 > I wouldn't use PageRank or links as a metric. We've last updated PageRank more than a year ago (as far as I recall) and have no plans to do further updates. Think about what you want users to do on your site, and consider an appropriate metric for that.		
 > http://googlewebmastercentral.blogspot.ch/2011/06/beyond-pagerank-graduating-to.html

@@ -1,17 +1,17 @@
 ---
 #layout: post
-title: Visual Studio Code
+title: 开源编辑器：Visual Studio Code
 category: [Editor, IDE]
 tags: [Open Source, editor]
 #author: Alfred Sun
 updated: 2015-05-05 10:10
 keywords: visual studio, code
-description: 突然发现微软发布开源、跨平台 VS 工具，试用后感觉不错；这难道是 Windows 迈向开源的信号么
+description: 突然发现微软发布开源、跨平台的 VS 工具，试用后感觉不错；这难道是 Windows 迈向开源的信号么
 ---
 
 M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首个跨平台的代码编辑器。
 
-**Visual Studio Code** 是一款面向云端应用开发的代码编辑器（轻量级 IDE？），现阶段具备的功能有：
+**Visual Studio Code** 是一款面向云端应用开发的代码编辑器（轻量级 IDE ？），现阶段具备的功能有：
 
 - 具备家族标志性的代码补全功能
 - 突出文件导航定位的特点
@@ -32,13 +32,14 @@ M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首�
 
 支持语法高亮的语言有很多，主要还是偏前端语言开发。
 
-使用了一下下后，发表下感慨，虽然目前的版本存在的问题也比较多，但是用起来感觉蛮爽。。
+使用了一下下后，发表下感慨，虽然目前的版本存在的问题也比较多（尤其是非 ASCII 字符输入的问题），但是用起来感觉蛮爽。。
 
 ![code](https://code.visualstudio.com/Content/images/hero-osx.png)
 
 - - - - - - - 
 
-有木有发现官网那个 demo 的兄弟用的 **MacBook Air** [...](https://az754404.vo.msecnd.net/public/vscode_preview.mp4 "出门左转，微软项目") 要吐槽，两个标志性的 Brand 很显眼，有木有呀……
+有木有发现官网那个 demo 的兄弟用的 **MacBook Air** [...](https://az754404.vo.msecnd.net/public/vscode_preview.mp4 "出门左转，微软项目")   
+要吐槽，两个标志性的 Brand，违和感很强烈，有木有呀……
 
 
 
