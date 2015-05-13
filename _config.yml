@@ -81,7 +81,7 @@ highlighter: pygments # Jekyll's default python pygments have been replaced by p
 # pygments: true
 
 lsi: false				# Produce an index for related posts or not
-paginate:  7			# Posts per page on the blog index
+paginate: 6			  # Posts per page on the blog index
 paginate_path: "blog/page/:num"  # Directory base for pagination URLs eg. /posts/2/
 recent_posts: 10       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
@@ -108,7 +108,7 @@ blog_index_asides: [
 # page_asides:
 
 # ----------------------- #
-#   Blog Media Directory   #
+#   Blog Media Directory  #
 # ----------------------- #
 picture_dir: /media/pictures
 video_dir: /media/videos
