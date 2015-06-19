@@ -6,7 +6,7 @@ tags: [Bash, Linux]
 #author: Alfred Sun
 updated: 2015-05-13 22:37
 keywords: bash, linux
-description: 记录在学习 Bash Shell 的过程中见到的奇葩技巧
+description: 记录在学习 Bash Shell 的过程中见到的奇葩有趣的技巧
 ---
 
 ## bash 多行注释
