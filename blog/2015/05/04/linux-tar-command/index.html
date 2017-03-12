@@ -133,169 +133,143 @@
 </div>
 
 
-			<p>linux解压 tar命令</p>
+			<h2>linux解压 tar命令</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">tar [-cxtzjvfpPN] 文件与目录 ....
+</code></pre></div>
+<h2>参数：</h2>
 
-<p>tar [-cxtzjvfpPN] 文件与目录 &hellip;.</p>
-
-<p>参数：</p>
-
-<p>-c ：建立一个压缩文件的参数指令(create 的意思)； 
--x ：解开一个压缩文件的参数指令！ 
--t ：查看 tarfile 里面的文件！ 
-特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！ 
-因为不可能同时压缩与解压缩。 
--z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？ 
--j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？ 
--v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！ 
--f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数！ 
-　　　例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 
-　　　『 tar -zcvPf tfile sfile』才对喔！ 
--p ：使用原文件的原来属性（属性不会依据使用者而变） 
--P ：可以使用绝对路径来压缩！ 
--N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！ 
-&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！ 
-范例： 
-范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar 
-[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;<mark>仅打包，不压缩！ 
-[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;</mark>打包后，以 gzip 压缩 
-[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 </p>
-
-<h1>特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。</h1>
-
-<h1>如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～</h1>
-
-<h1>如果加 j 参数，则以 .tar.bz2 来作为附档名啊～</h1>
-
-<h1>上述指令在执行的时候，会显示一个警告讯息：</h1>
-
-<h1>『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。</h1>
-
-<p>范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ 
-[root@linux ~]# tar -ztvf /tmp/etc.tar.gz </p>
-
-<h1>由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时，</h1>
-
-<h1>就得要加上 z 这个参数了！这很重要的！</h1>
-
-<p>范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 
-[root@linux ~]# cd /usr/local/src 
-[root@linux src]# tar -zxvf /tmp/etc.tar.gz </p>
-
-<h1>在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说，</h1>
-
-<h1>我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ，</h1>
-
-<h1>则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc</h1>
-
-<h1>则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！</h1>
-
-<p>范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 
-[root@linux ~]# cd /tmp 
-[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd </p>
-
-<h1>我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件，</h1>
-
-<h1>就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！</h1>
-
-<p>范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ 
-[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc </p>
-
-<h1>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！</h1>
-
-<p>范例六：在 /home 当中，比 2005/06/01 新的文件才备份 
-[root@linux ~]# tar -N &quot;2005/06/01&rdquo; -zcvf home.tar.gz /home
-范例七：我要备份 /home, /etc ，但不要 /home/dmtsai 
-[root@linux ~]# tar &ndash;exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
-范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！ 
-[root@linux ~]# cd /tmp 
-[root@linux tmp]# tar -cvf - /etc | tar -xvf - </p>
-
-<h1>这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！</h1>
-
-<h1>要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～</h1>
-
-<h1>这分别代表 standard output, standard input 与管线命令啦！</h1>
+<p>-c ：建立一个压缩文件的参数指令(create 的意思)；<br>
+-x ：解开一个压缩文件的参数指令！<br>
+-t ：查看 tarfile 里面的文件！<br>
+<strong>特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！因为不可能同时压缩与解压缩。</strong><br>
+-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？<br>
+-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？<br>
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！<br>
+-f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数，例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 『 tar -zcvPf tfile sfile』才对喔！<br>
+-p ：使用原文件的原来属性（属性不会依据使用者而变）<br>
+-P ：可以使用绝对路径来压缩！<br>
+-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！<br>
+&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！  </p>
 
 <!--more-->
 
-<p>tar命令详解</p>
+<h2>范例：</h2>
 
-<p>-c: 建立压缩档案</p>
+<p>范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar  </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;==仅打包，不压缩！ 
+[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;==打包后，以 gzip 压缩 
+[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 
+</code></pre></div>
+<ul>
+<li>特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。 </li>
+<li>如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～ </li>
+<li>如果加 j 参数，则以 .tar.bz2 来作为附档名啊～ </li>
+<li>上述指令在执行的时候，会显示一个警告讯息：『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。</li>
+</ul>
 
-<p>-x：解压</p>
+<p>范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# tar -ztvf /tmp/etc.tar.gz 
+</code></pre></div>
+<ul>
+<li>由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时， </li>
+<li>就得要加上 z 这个参数了！这很重要的！</li>
+</ul>
 
-<p>-t：查看内容</p>
+<p>范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# cd /usr/local/src 
+[root@linux src]# tar -zxvf /tmp/etc.tar.gz 
+</code></pre></div>
+<ul>
+<li>在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说， </li>
+<li>我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ， </li>
+<li>则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc </li>
+<li>则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！</li>
+</ul>
 
-<p>-r：向压缩归档文件末尾追加文件</p>
+<p>范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd 
+</code></pre></div>
+<ul>
+<li>我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件， </li>
+<li>就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！</li>
+</ul>
 
-<p>-u：更新原压缩包中的文件</p>
+<p>范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc 
+</code></pre></div>
+<ul>
+<li>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！</li>
+</ul>
 
-<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。</p>
+<p>范例六：在 /home 当中，比 2005/06/01 新的文件才备份 </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# tar -N &quot;2005/06/01&quot; -zcvf home.tar.gz /home
+</code></pre></div>
+<p>范例七：我要备份 /home, /etc ，但不要 /home/dmtsai </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# tar --exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
+</code></pre></div>
+<p>范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -cvf - /etc | tar -xvf - 
+</code></pre></div>
+<ul>
+<li>这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！ </li>
+<li>要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～ </li>
+<li>这分别代表 standard output, standard input 与管线命令啦！ </li>
+</ul>
 
-<p>下面的参数是根据需要在压缩或解压档案时可选的。</p>
+<!--more-->
 
-<p>-z：有gzip属性的</p>
+<h2>tar命令详解</h2>
 
-<p>-j：有bz2属性的</p>
+<p>-c: 建立压缩档案<br>
+-x：解压<br>
+-t：查看内容<br>
+-r：向压缩归档文件末尾追加文件<br>
+-u：更新原压缩包中的文件  </p>
 
-<p>-Z：有compress属性的</p>
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。<br>
+下面的参数是根据需要在压缩或解压档案时可选的。</p>
 
-<p>-v：显示所有过程</p>
+<p>-z：有gzip属性的<br>
+-j：有bz2属性的<br>
+-Z：有compress属性的<br>
+-v：显示所有过程<br>
+-O：将文件解开到标准输出  </p>
 
-<p>-O：将文件解开到标准输出</p>
+<p><strong>参数-f是必须的</strong><br>
+-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。  </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># tar -cf all.tar *.jpg 这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。  
+# tar -rf all.tar *.gif 这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。  
+# tar -uf all.tar logo.gif 这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。  
+# tar -tf all.tar 这条命令是列出all.tar包中所有文件，-t是列出文件的意思  
+# tar -xf all.tar 这条命令是解出all.tar包中所有文件，-x是解开的意思  
+</code></pre></div>
+<h3>查看</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">tar -tf aaa.tar.gz   在不解压的情况下查看压缩包的内容
+</code></pre></div>
+<h3>压缩</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg
+tar –czf jpg.tar.gz *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz
+tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2
+tar –cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z
+</code></pre></div>
+<h3>解压</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">tar –xvf file.tar //解压 tar包
+tar -xzvf file.tar.gz //解压tar.gz
+tar -xjvf file.tar.bz2   //解压 tar.bz2tar –xZvf file.tar.Z //解压tar.Z
+</code></pre></div>
+<h2>总结</h2>
 
-<p>参数-f是必须的</p>
-
-<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
-
-<h1>tar -cf all.tar *.jpg 这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</h1>
-
-<h1>tar -rf all.tar *.gif 这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</h1>
-
-<h1>tar -uf all.tar logo.gif 这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</h1>
-
-<h1>tar -tf all.tar 这条命令是列出all.tar包中所有文件，-t是列出文件的意思</h1>
-
-<h1>tar -xf all.tar 这条命令是解出all.tar包中所有文件，-x是解开的意思</h1>
-
-<p>查看
-tar -tf aaa.tar.gz   在不解压的情况下查看压缩包的内容</p>
-
-<p>压缩</p>
-
-<p>tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg</p>
-
-<p>tar –czf jpg.tar.gz *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
-
-<p>tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
-
-<p>tar –cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
-
-<p>解压</p>
-
-<p>tar –xvf file.tar //解压 tar包</p>
-
-<p>tar -xzvf file.tar.gz //解压tar.gz</p>
-
-<p>tar -xjvf file.tar.bz2   //解压 tar.bz2tar –xZvf file.tar.Z //解压tar.Z</p>
-
-<p>总结</p>
-
-<p>1、*.tar 用 tar –xvf 解压</p>
-
-<p>2、*.gz 用 gzip -d或者gunzip 解压</p>
-
-<p>3、<em>.tar.gz和</em>.tgz 用 tar –xzf 解压</p>
-
-<p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p>
-
-<p>5、*.tar.bz2用tar –xjf 解压</p>
-
-<p>6、*.Z 用 uncompress 解压</p>
-
-<p>7、*.tar.Z 用tar –xZf 解压</p>
-
-<p><img src="/media/pictures/test.png" alt="image"></p>
+<ol>
+<li>*.tar 用 <code>tar –xvf</code> 解压<br></li>
+<li>*.gz 用 <code>gzip -d</code> 或者 gunzip 解压<br></li>
+<li>*.tar.gz 和 *.tgz 用 <code>tar –xzf</code> 解压<br></li>
+<li>*.bz2 用 <code>bzip2 -d</code> 或者用 bunzip2 解压<br></li>
+<li>*.tar.bz2 用 <code>tar –xjf</code> 解压<br></li>
+<li>*.Z 用 uncompress 解压<br></li>
+<li>*.tar.Z 用 <code>tar –xZf</code> 解压<br></li>
+</ol>
 
 
 			

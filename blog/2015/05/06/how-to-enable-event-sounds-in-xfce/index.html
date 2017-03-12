@@ -136,29 +136,28 @@
 
 
 			<ol>
-<li>Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings</li>
-<li>Set &ldquo;xsettings/Net/SoundThemeName&rdquo; in the Settings Manager (to a sound theme located in /usr/share/sounds).</li>
-<li>Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done automatically by install the libcanberra package, in Xubuntu and Fedora I had to manually create the file: see <a href="http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205">http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205</a>)</li>
-<li>Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)</li>
-<li>Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).</li>
+<li>Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings<br></li>
+<li>Set &ldquo;xsettings/Net/SoundThemeName&rdquo; in the Settings Manager (to a sound theme located in /usr/share/sounds).<br></li>
+<li>Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done automatically by install the libcanberra package, in Xubuntu and Fedora I had to manually create the file: see <a href="http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205">http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205</a>)<br></li>
+<li>Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)<br></li>
+<li>Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).<br></li>
 </ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># /etc/X11/xinit/xinitrc.d/50-xinput.sh</span>
 
-<p>// /etc/X11/xinit/xinitrc.d/50-xinput.sh</p>
-
-<p>if [ -z &ldquo;$GTK<em>MODULES&rdquo; ] ; then
-    GTK</em>MODULES=&ldquo;canberra-gtk-module&rdquo;
-else
-    GTK<em>MODULES=&ldquo;$GTK</em>MODULES:canberra-gtk-module&rdquo;
-fi
-export GTK_MODULES</p>
-
+<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;$GTK_MODULES&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">GTK_MODULES</span><span class="o">=</span><span class="s2">&quot;canberra-gtk-module&quot;</span>
+<span class="k">else</span>
+    <span class="nv">GTK_MODULES</span><span class="o">=</span><span class="s2">&quot;$GTK_MODULES:canberra-gtk-module&quot;</span>
+<span class="k">fi</span>
+<span class="nb">export </span>GTK_MODULES
+</code></pre></div>
 <p>注销重新登录，声音就出现了。</p>
+
+<!--more-->
 
 <p>默认情况下，桌面环境安装的声音主题是 “freedesktop”，如果要更改，需要到 “xsettings/Net/SoundThemeName” 中设定。</p>
 
 <p>另外，可能你会发现并没有听见声音特效，这时你要确认下声音主题里面是否包含你所触发的事件的声音文件。</p>
-
-<!--more-->
 
 
 			
