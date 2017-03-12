@@ -122,196 +122,6 @@
 	
 	<article class="post">
 		<div class="date">
-		  <span class="day">01</span>
-		  <span class="month">May</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/05/01/install-openbox-wm/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
-		  </header>
-		<div class="con">
-		  <p>在终端输入</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-</code></pre></div>
-<p>注释掉这段及前面加上#号  如下</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
-</code></pre></div>
-<p>保存之后注销再用root和密码登陆就好了。</p>
-
-<p>修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  </p>
-
-<p>一般修改方法:<br>
-在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改<br>
-gdit /etc/pam.d/gdm<br>
-在这段&quot;auth required pam<em>succeed</em>if.so user != root quiet&quot;加上#号注释掉就可以了  </p>
-
-<p>同样的gdit /etc/pam.d/gdm-password<br>
-也是在auth required pam<em>succeed</em>if.so user != root quiet前面加上#号注释<br>
-保存之后我们重启或者注销一次计算机就能以root进行登录系统了  </p>
- <!--post.excerpt | strip_html-->
-		  <!--在终端输入
-[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-
-注释掉这段及前面加上#号  如下
-#auth        required      pam_succeed_if.so user != root quiet  
-
-保存之后注销再用root和密码登陆就好了。
-
-修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  
-
-一般修改方法:
-在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
-gdit /etc/pam.d/gdm
-在这段&quot;auth required pamsucceedif.so user != root quiet&quot;加上#号注释掉就可以了  
-
-同样的gdit /etc/pam.d/gdm-password
-也是在auth required pamsucceedif.so user != root quiet前面加上#号注释
-保存之后我们重启或者注销一次计算机就能以root进行登录系统了  
-
--->
-		  <!--a class="more" href="/blog/2015/05/01/install-openbox-wm/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/05/01/install-openbox-wm/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
-		  <span class="day">29</span>
-		  <span class="month">Apr</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/04/29/login-fedora-with-root/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
-		  </header>
-		<div class="con">
-		  <p>以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。</p>
-
-<p>在终端输入：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-</code></pre></div>
-<p>注释掉这段及前面加上#号，如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
-</code></pre></div>
-<p>保存之后注销再用 root 和密码登陆就好了。</p>
-
-<p>修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  </p>
-
-<p>一般修改方法:  </p>
-
-<p>在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">vim /etc/pam.d/gdm  
-</code></pre></div>
-<p>在这段 &ldquo;auth required pam<em>succeed</em>if.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  </p>
-
-<p>同样的 vim /etc/pam.d/gdm-password<br>
-也是在 auth required pam<em>succeed</em>if.so user != root quiet 前面加上 # 号注释</p>
-
-<p>保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  </p>
- <!--post.excerpt | strip_html-->
-		  <!--以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。
-
-在终端输入：
-[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-
-注释掉这段及前面加上#号，如下：
-#auth        required      pam_succeed_if.so user != root quiet  
-
-保存之后注销再用 root 和密码登陆就好了。
-
-修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  
-
-一般修改方法:  
-
-在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
-vim /etc/pam.d/gdm  
-
-在这段 &ldquo;auth required pamsucceedif.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  
-
-同样的 vim /etc/pam.d/gdm-password
-也是在 auth required pamsucceedif.so user != root quiet 前面加上 # 号注释
-
-保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  
-
--->
-		  <!--a class="more" href="/blog/2015/04/29/login-fedora-with-root/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/04/29/login-fedora-with-root/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
-		  <span class="day">11</span>
-		  <span class="month">Mar</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" title="十个基础算法及其讲解" target="_blank">十个基础算法及其讲解</a></h2>
-		  </header>
-		<div class="con">
-		  <p><img src="/media/pictures/ten-basic-algorithms-for-programmers/suanfa.jpg" alt="Algorithms"></p>
-
-<h2>算法一：快速排序算法</h2>
-
-<p><strong>快速排序</strong>是由东尼·霍尔所发展的一种排序算法。<br>
-在平均状况下，排序 n 个项目要 <strong>Ο(nlogn)</strong> 次比较。在最坏状况下则需要 Ο(n^2) 次比较，但这种状况并不常见。事实上，快速排序通常明显比其他 Ο(nlogn) 算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地被实现出来。</p>
-
-<p>快速排序使用<strong>分治法</strong>（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。</p>
-
-<p><img src="/media/pictures/ten-basic-algorithms-for-programmers/quicksort.gif" alt="QuickSort"></p>
-
-<h3>算法步骤</h3>
-
-<ol>
-<li>从数列中挑出一个元素，称为 “基准”（pivot）。</li>
-<li>重新排序数列，所有元素比<strong>基准值</strong>小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。</li>
-<li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
-</ol>
-
-<p>递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会退出，因为在每次的<strong>迭代</strong>（iteration）中，它至少会把一个元素摆到它最后的位置去。</p>
- <!--post.excerpt | strip_html-->
-		  <!--
-
-算法一：快速排序算法
-
-快速排序是由东尼·霍尔所发展的一种排序算法。
-在平均状况下，排序 n 个项目要 Ο(nlogn) 次比较。在最坏状况下则需要 Ο(n^2) 次比较，但这种状况并不常见。事实上，快速排序通常明显比其他 Ο(nlogn) 算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地被实现出来。
-
-快速排序使用分治法（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。
-
-
-
-算法步骤
-
-
-从数列中挑出一个元素，称为 “基准”（pivot）。
-重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
-递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。
-
-
-递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会退出，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。
-
--->
-		  <!--a class="more" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
 		  <span class="day">08</span>
 		  <span class="month">Mar</span>
 		  <span class="year">2015</span>
@@ -534,6 +344,158 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 		</div>
 	</article>
 	
+	<article class="post">
+		<div class="date">
+		  <span class="day">28</span>
+		  <span class="month">Jan</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/01/28/vim-tricks/" title="一些 Vim 小技巧" target="_blank">一些 Vim 小技巧</a></h2>
+		  </header>
+		<div class="con">
+		  <p>本文主要记录一下使用 Vim 过程中，学到的一些小技巧，以免以后忘记找不到。</p>
+
+<h2>插入模式下，光标移动</h2>
+
+<p>在插入模式下，用 <strong>Ctrl-O</strong> 进入 普通模式：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;C-o&gt;h  move cursor left 
+&lt;C-o&gt;l  move cursor right
+&lt;C-o&gt;j  move cursor down
+&lt;C-o&gt;k  move cursor up
+</code></pre></div>
+<p>插入模式下有用的控制键：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;C-w&gt;   delete word to the left of cursor
+&lt;C-o&gt;D  delete everything to the right of cursor
+&lt;C-u&gt;   delete everything to the left of cursor
+&lt;C-h&gt;   backspace/delete
+&lt;C-j&gt;   insert newline (easier than reaching for the return key)
+&lt;C-t&gt;   indent current line
+&lt;C-d&gt;   un-indent current line
+</code></pre></div> <!--post.excerpt | strip_html-->
+		  <!--本文主要记录一下使用 Vim 过程中，学到的一些小技巧，以免以后忘记找不到。
+
+插入模式下，光标移动
+
+在插入模式下，用 Ctrl-O 进入 普通模式：
+&lt;C-o&gt;h  move cursor left 
+&lt;C-o&gt;l  move cursor right
+&lt;C-o&gt;j  move cursor down
+&lt;C-o&gt;k  move cursor up
+
+插入模式下有用的控制键：
+&lt;C-w&gt;   delete word to the left of cursor
+&lt;C-o&gt;D  delete everything to the right of cursor
+&lt;C-u&gt;   delete everything to the left of cursor
+&lt;C-h&gt;   backspace/delete
+&lt;C-j&gt;   insert newline (easier than reaching for the return key)
+&lt;C-t&gt;   indent current line
+&lt;C-d&gt;   un-indent current line
+
+-->
+		  <!--a class="more" href="/blog/2015/01/28/vim-tricks/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/01/28/vim-tricks/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">21</span>
+		  <span class="month">Jan</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/01/21/vim-configure-file/" title="VIM 中文编码问题" target="_blank">VIM 中文编码问题</a></h2>
+		  </header>
+		<div class="con">
+		  <p>VIM 在 Linux 中的配置文件是 <code>.vimrc</code>，而在 Windows 中是 <code>_vimrc</code>。通过设置这个文件可以定制自己的 VIM 编辑器。</p>
+
+<h2>VIM 运行环境</h2>
+
+<p>VIM 运行环境设定了5个地方，其路径都列在 <code>runtimepath</code> 选项中，使用 <code>set</code> 命令查看：</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> <span class="nb">runtimepath</span>?
+</code></pre></div>
+<p>显示结果如下：</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="nb">runtimepath</span><span class="p">=~</span><span class="sr">/.vim,/</span>usr<span class="sr">/local/</span>share<span class="sr">/vim/</span>vimfiles<span class="p">,</span><span class="sr">/usr/</span>local<span class="sr">/share/</span><span class="k">vim</span><span class="sr">/vim63,/</span>usr<span class="sr">/local/</span>share<span class="sr">/vim/</span>vimfiles<span class="sr">/after,~/</span>.<span class="k">vim</span>/after
+</code></pre></div> <!--post.excerpt | strip_html-->
+		  <!--VIM 在 Linux 中的配置文件是 .vimrc，而在 Windows 中是 _vimrc。通过设置这个文件可以定制自己的 VIM 编辑器。
+
+VIM 运行环境
+
+VIM 运行环境设定了5个地方，其路径都列在 runtimepath 选项中，使用 set 命令查看：
+:set runtimepath?
+
+显示结果如下：
+runtimepath=~/.vim,/usr/local/share/vim/vimfiles,/usr/local/share/vim/vim63,/usr/local/share/vim/vimfiles/after,~/.vim/after
+
+-->
+		  <!--a class="more" href="/blog/2015/01/21/vim-configure-file/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/01/21/vim-configure-file/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">18</span>
+		  <span class="month">Jan</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/01/18/web-sites-list/" title="2014-09-22 记录一些网站列表(ZZ)" target="_blank">2014-09-22 记录一些网站列表(ZZ)&nbsp;&rarr;</a></h2>
+		  </header>
+		<div class="con">
+		  <h2>CSS</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/">MDN</a> <a href="http://lesscss.org/">Less</a> <a href="http://sass-lang.com/">Sass</a></p>
+
+<h2>前端框架</h2>
+
+<p><a href="http://foundation.zurb.com/index.html">Foundation</a> <a href="http://getbootstrap.com/">Bootstrap</a> <a href="http://purecss.io/">Pure</a> <a href="http://www.polymer-project.org/">Polymer</a></p></p>
+
+<h2>图标</h2>
+
+<p><a href="http://themify.me/themify-icons">Themify Icons</a> <a href="http://icomoon.io/">IcoMoon</a> <a href="http://www.flaticon.com/authors/freepik">Freepik</a> <a href="http://glyphicons.com/">Glyphicons</a></p>
+
+<h2>排版</h2>
+
+<p><a href="http://typo.sofi.sh/">typo.css</a> <a href="http://lab.lepture.com/yue.css/">yue.css</a></p>
+
+<h2>图库</h2>
+
+<p><a href="http://www.imcreator.com/free">Im Creator</a> <a href="http://picjumbo.com/">Pic Jumbo</a> <a href="http://www.gratisography.com/">Gratisography</a> <a href="http://superfamous.com/">Super Famous</a> <a href="http://unsplash.com/">Unsplash</a></p>
+ <!--post.excerpt | strip_html-->
+		  <!--CSS
+
+MDN Less Sass
+
+前端框架
+
+Foundation Bootstrap Pure Polymer
+
+图标
+
+Themify Icons IcoMoon Freepik Glyphicons
+
+排版
+
+typo.css yue.css
+
+图库
+
+Im Creator Pic Jumbo Gratisography Super Famous Unsplash
+
+-->
+		  <!--a class="more" href="/blog/2015/01/18/web-sites-list/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/01/18/web-sites-list/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
 	
 	<ul class="pager">
       
@@ -576,27 +538,9 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 		</li>
 	</a>
 	
-	<a href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
 	<a href="/blog/2015/05/04/linux-tar-command/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		学习 tar 压缩命令
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/01/install-openbox-wm/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
 		</li>
 	</a>
 	
@@ -609,6 +553,24 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	<a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		十个基础算法及其讲解
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/08/bash-special-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Bash 快捷键
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/04/vim-commands-frequently-used/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim 常用命令小结
+		</li>
+	</a>
+	
+	<a href="/blog/2015/02/04/remap-capslock-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim技巧——将 CapsLock 键映射成 Esc键
 		</li>
 	</a>
 	
@@ -646,7 +608,25 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 	
 		
+		<a href="/blog/category/#career-ref" rel="nofollow"><li><i class="icon-link"></i>career (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#computer science-ref" rel="nofollow"><li><i class="icon-link"></i>computer science (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#css-ref" rel="nofollow"><li><i class="icon-link"></i>css (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#database-ref" rel="nofollow"><li><i class="icon-link"></i>database (1)
 		</li></a>
     
 	
@@ -665,6 +645,12 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 		
 		<a href="/blog/category/#emacs-ref" rel="nofollow"><li><i class="icon-link"></i>emacs (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#featured-ref" rel="nofollow"><li><i class="icon-link"></i>featured (1)
 		</li></a>
     
 	
@@ -712,7 +698,7 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 	
 		
-		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (3)
+		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (4)
 		</li></a>
     
 	
@@ -724,13 +710,19 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 	
 		
-		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (7)
+		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (4)
 		</li></a>
     
 	
 	
 		
 		<a href="/blog/category/#markdown-ref" rel="nofollow"><li><i class="icon-link"></i>markdown (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#nginx-ref" rel="nofollow"><li><i class="icon-link"></i>nginx (1)
 		</li></a>
     
 	
@@ -748,7 +740,19 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 	
 		
+		<a href="/blog/category/#r language-ref" rel="nofollow"><li><i class="icon-link"></i>r language (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#ruby-ref" rel="nofollow"><li><i class="icon-link"></i>ruby (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ruby on rails-ref" rel="nofollow"><li><i class="icon-link"></i>ruby on rails (1)
 		</li></a>
     
 	
@@ -767,6 +771,12 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 		
 		<a href="/blog/category/#technique-ref" rel="nofollow"><li><i class="icon-link"></i>technique (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#test-ref" rel="nofollow"><li><i class="icon-link"></i>test (1)
 		</li></a>
     
 	
@@ -866,6 +876,34 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
     
 		
 		<li>
+		<!--a href="/blog/tag/#facebook-ref" rel="nofollow">facebook</a-->
+		<a href="/blog/tag/#facebook-ref" rel="nofollow">facebook
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox</a-->
+		<a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#resume-ref" rel="nofollow">resume</a-->
+		<a href="/blog/tag/#resume-ref" rel="nofollow">resume
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#cv-ref" rel="nofollow">cv</a-->
+		<a href="/blog/tag/#cv-ref" rel="nofollow">cv
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth</a-->
 		<a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth
 		</a>
@@ -936,8 +974,92 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 	
 		
 		<li>
+		<!--a href="/blog/tag/#Flash-ref" rel="nofollow">Flash</a-->
+		<a href="/blog/tag/#Flash-ref" rel="nofollow">Flash
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Gorjanc+Gregor-ref" rel="nofollow">Gorjanc Gregor</a-->
+		<a href="/blog/tag/#Gorjanc Gregor-ref" rel="nofollow">Gorjanc Gregor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript</a-->
+		<a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#maptools-ref" rel="nofollow">maptools</a-->
+		<a href="/blog/tag/#maptools-ref" rel="nofollow">maptools
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#pointLabel%28%29-ref" rel="nofollow">pointLabel()</a-->
+		<a href="/blog/tag/#pointLabel()-ref" rel="nofollow">pointLabel()
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#R4X-ref" rel="nofollow">R4X</a-->
+		<a href="/blog/tag/#R4X-ref" rel="nofollow">R4X
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Romain+Francois-ref" rel="nofollow">Romain Francois</a-->
+		<a href="/blog/tag/#Romain Francois-ref" rel="nofollow">Romain Francois
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Simon+Urbanek-ref" rel="nofollow">Simon Urbanek</a-->
+		<a href="/blog/tag/#Simon Urbanek-ref" rel="nofollow">Simon Urbanek
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#snippets-ref" rel="nofollow">snippets</a-->
+		<a href="/blog/tag/#snippets-ref" rel="nofollow">snippets
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject</a-->
+		<a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#Tag+Cloud-ref" rel="nofollow">Tag Cloud</a-->
 		<a href="/blog/tag/#Tag Cloud-ref" rel="nofollow">Tag Cloud
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress</a-->
+		<a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus</a-->
+		<a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus
 		</a>
 		</li>
 	
@@ -966,6 +1088,13 @@ Windows 下用 UltraEdit 和 Editplus 的人质问：它们到底比 UltraEdit �
 		<li>
 		<!--a href="/blog/tag/#javascript-ref" rel="nofollow">javascript</a-->
 		<a href="/blog/tag/#javascript-ref" rel="nofollow">javascript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB</a-->
+		<a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB
 		</a>
 		</li>
 	

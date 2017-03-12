@@ -122,66 +122,6 @@
 	
 	<article class="post">
 		<div class="date">
-		  <span class="day">28</span>
-		  <span class="month">Nov</span>
-		  <span class="year">2014</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2014/11/28/gem-command/" title="gem相关命令使用" target="_blank">gem相关命令使用</a></h2>
-		  </header>
-		<div class="con">
-		  <h2>1.显示 gem 的帮助和版本</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem –h/--help
-<span class="c">#显示gem的帮助</span>
-gem –v /--version
-<span class="c">#显示gem的版本号</span>
-</code></pre></div>
-<h2>2. 列出远程库的所有可用软件</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --remote
-<span class="c"># 短命令: gem q -r</span>
-</code></pre></div>
-<p>你可以看到一个关于远程主机上所有软件的详细列表。</p>
-
-<h2>3. 查找远程主机上的特定软件</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --remote --name-matches doom
-<span class="c"># 短命令: gem q -rn doom</span>
-<span class="c"># 你将看到一个匹配doom的详细列表。</span>
-</code></pre></div>
-<h2>4. List remote gems</h2>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem list –remote --d
-<span class="c">#用子命令list列出远程安装的gems</span>
-</code></pre></div> <!--post.excerpt | strip_html-->
-		  <!--1.显示 gem 的帮助和版本
-gem –h/--help
-#显示gem的帮助
-gem –v /--version
-#显示gem的版本号
-
-2. 列出远程库的所有可用软件
-gem query --remote
-# 短命令: gem q -r
-
-你可以看到一个关于远程主机上所有软件的详细列表。
-
-3. 查找远程主机上的特定软件
-gem query --remote --name-matches doom
-# 短命令: gem q -rn doom
-# 你将看到一个匹配doom的详细列表。
-
-4. List remote gems
-gem list –remote --d
-#用子命令list列出远程安装的gems
-
--->
-		  <!--a class="more" href="/blog/2014/11/28/gem-command/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2014/11/28/gem-command/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
 		  <span class="day">27</span>
 		  <span class="month">Nov</span>
 		  <span class="year">2014</span>
@@ -426,6 +366,48 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 		</div>
 	</article>
 	
+	<article class="post">
+		<div class="date">
+		  <span class="day">29</span>
+		  <span class="month">Sep</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/09/29/Jekyll-Missing-dependency-RedCloth/" title="Jekyll missing dependency&#58; RedCloth" target="_blank">Jekyll missing dependency&#58; RedCloth</a></h2>
+		  </header>
+		<div class="con">
+		  <p>What happened to my Jekyll ?</p>
+
+<p>OK, I Surrender.</p>
+
+<p>After establishing local environment of GitHub Pages, I forked the repository of <a href="https://github.com/mojombo/mojombo.github.io">Tom Preston-Werner</a> and built the project with Jekyll; but encountered one problem under the Windows 7 environment.</p>
+
+<p>The current ruby platform versions:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ruby        2.0.0p598 [i386-mingw32]
+gem         2.0.14
+bundler     1.7.9
+RedCloth    4.2.9
+</code></pre></div> <!--post.excerpt | strip_html-->
+		  <!--What happened to my Jekyll ?
+
+OK, I Surrender.
+
+After establishing local environment of GitHub Pages, I forked the repository of Tom Preston-Werner and built the project with Jekyll; but encountered one problem under the Windows 7 environment.
+
+The current ruby platform versions:
+ruby        2.0.0p598 [i386-mingw32]
+gem         2.0.14
+bundler     1.7.9
+RedCloth    4.2.9
+
+-->
+		  <!--a class="more" href="/blog/2014/09/29/Jekyll-Missing-dependency-RedCloth/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/09/29/Jekyll-Missing-dependency-RedCloth/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
 	
 	<ul class="pager">
       
@@ -468,27 +450,9 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 		</li>
 	</a>
 	
-	<a href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
 	<a href="/blog/2015/05/04/linux-tar-command/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		学习 tar 压缩命令
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/01/install-openbox-wm/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
 		</li>
 	</a>
 	
@@ -501,6 +465,24 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	<a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		十个基础算法及其讲解
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/08/bash-special-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Bash 快捷键
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/04/vim-commands-frequently-used/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim 常用命令小结
+		</li>
+	</a>
+	
+	<a href="/blog/2015/02/04/remap-capslock-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim技巧——将 CapsLock 键映射成 Esc键
 		</li>
 	</a>
 	
@@ -538,7 +520,25 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 	
 		
+		<a href="/blog/category/#career-ref" rel="nofollow"><li><i class="icon-link"></i>career (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#computer science-ref" rel="nofollow"><li><i class="icon-link"></i>computer science (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#css-ref" rel="nofollow"><li><i class="icon-link"></i>css (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#database-ref" rel="nofollow"><li><i class="icon-link"></i>database (1)
 		</li></a>
     
 	
@@ -557,6 +557,12 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 		
 		<a href="/blog/category/#emacs-ref" rel="nofollow"><li><i class="icon-link"></i>emacs (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#featured-ref" rel="nofollow"><li><i class="icon-link"></i>featured (1)
 		</li></a>
     
 	
@@ -604,7 +610,7 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 	
 		
-		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (3)
+		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (4)
 		</li></a>
     
 	
@@ -616,13 +622,19 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 	
 		
-		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (7)
+		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (4)
 		</li></a>
     
 	
 	
 		
 		<a href="/blog/category/#markdown-ref" rel="nofollow"><li><i class="icon-link"></i>markdown (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#nginx-ref" rel="nofollow"><li><i class="icon-link"></i>nginx (1)
 		</li></a>
     
 	
@@ -640,7 +652,19 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 	
 		
+		<a href="/blog/category/#r language-ref" rel="nofollow"><li><i class="icon-link"></i>r language (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#ruby-ref" rel="nofollow"><li><i class="icon-link"></i>ruby (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ruby on rails-ref" rel="nofollow"><li><i class="icon-link"></i>ruby on rails (1)
 		</li></a>
     
 	
@@ -659,6 +683,12 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 		
 		<a href="/blog/category/#technique-ref" rel="nofollow"><li><i class="icon-link"></i>technique (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#test-ref" rel="nofollow"><li><i class="icon-link"></i>test (1)
 		</li></a>
     
 	
@@ -758,6 +788,34 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
     
 		
 		<li>
+		<!--a href="/blog/tag/#facebook-ref" rel="nofollow">facebook</a-->
+		<a href="/blog/tag/#facebook-ref" rel="nofollow">facebook
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox</a-->
+		<a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#resume-ref" rel="nofollow">resume</a-->
+		<a href="/blog/tag/#resume-ref" rel="nofollow">resume
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#cv-ref" rel="nofollow">cv</a-->
+		<a href="/blog/tag/#cv-ref" rel="nofollow">cv
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth</a-->
 		<a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth
 		</a>
@@ -828,8 +886,92 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 	
 		
 		<li>
+		<!--a href="/blog/tag/#Flash-ref" rel="nofollow">Flash</a-->
+		<a href="/blog/tag/#Flash-ref" rel="nofollow">Flash
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Gorjanc+Gregor-ref" rel="nofollow">Gorjanc Gregor</a-->
+		<a href="/blog/tag/#Gorjanc Gregor-ref" rel="nofollow">Gorjanc Gregor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript</a-->
+		<a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#maptools-ref" rel="nofollow">maptools</a-->
+		<a href="/blog/tag/#maptools-ref" rel="nofollow">maptools
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#pointLabel%28%29-ref" rel="nofollow">pointLabel()</a-->
+		<a href="/blog/tag/#pointLabel()-ref" rel="nofollow">pointLabel()
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#R4X-ref" rel="nofollow">R4X</a-->
+		<a href="/blog/tag/#R4X-ref" rel="nofollow">R4X
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Romain+Francois-ref" rel="nofollow">Romain Francois</a-->
+		<a href="/blog/tag/#Romain Francois-ref" rel="nofollow">Romain Francois
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Simon+Urbanek-ref" rel="nofollow">Simon Urbanek</a-->
+		<a href="/blog/tag/#Simon Urbanek-ref" rel="nofollow">Simon Urbanek
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#snippets-ref" rel="nofollow">snippets</a-->
+		<a href="/blog/tag/#snippets-ref" rel="nofollow">snippets
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject</a-->
+		<a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#Tag+Cloud-ref" rel="nofollow">Tag Cloud</a-->
 		<a href="/blog/tag/#Tag Cloud-ref" rel="nofollow">Tag Cloud
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress</a-->
+		<a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus</a-->
+		<a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus
 		</a>
 		</li>
 	
@@ -858,6 +1000,13 @@ Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，
 		<li>
 		<!--a href="/blog/tag/#javascript-ref" rel="nofollow">javascript</a-->
 		<a href="/blog/tag/#javascript-ref" rel="nofollow">javascript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB</a-->
+		<a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB
 		</a>
 		</li>
 	

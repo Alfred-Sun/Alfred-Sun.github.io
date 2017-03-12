@@ -122,158 +122,6 @@
 	
 	<article class="post">
 		<div class="date">
-		  <span class="day">28</span>
-		  <span class="month">Jan</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/01/28/vim-tricks/" title="一些 Vim 小技巧" target="_blank">一些 Vim 小技巧</a></h2>
-		  </header>
-		<div class="con">
-		  <p>本文主要记录一下使用 Vim 过程中，学到的一些小技巧，以免以后忘记找不到。</p>
-
-<h2>插入模式下，光标移动</h2>
-
-<p>在插入模式下，用 <strong>Ctrl-O</strong> 进入 普通模式：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;C-o&gt;h  move cursor left 
-&lt;C-o&gt;l  move cursor right
-&lt;C-o&gt;j  move cursor down
-&lt;C-o&gt;k  move cursor up
-</code></pre></div>
-<p>插入模式下有用的控制键：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;C-w&gt;   delete word to the left of cursor
-&lt;C-o&gt;D  delete everything to the right of cursor
-&lt;C-u&gt;   delete everything to the left of cursor
-&lt;C-h&gt;   backspace/delete
-&lt;C-j&gt;   insert newline (easier than reaching for the return key)
-&lt;C-t&gt;   indent current line
-&lt;C-d&gt;   un-indent current line
-</code></pre></div> <!--post.excerpt | strip_html-->
-		  <!--本文主要记录一下使用 Vim 过程中，学到的一些小技巧，以免以后忘记找不到。
-
-插入模式下，光标移动
-
-在插入模式下，用 Ctrl-O 进入 普通模式：
-&lt;C-o&gt;h  move cursor left 
-&lt;C-o&gt;l  move cursor right
-&lt;C-o&gt;j  move cursor down
-&lt;C-o&gt;k  move cursor up
-
-插入模式下有用的控制键：
-&lt;C-w&gt;   delete word to the left of cursor
-&lt;C-o&gt;D  delete everything to the right of cursor
-&lt;C-u&gt;   delete everything to the left of cursor
-&lt;C-h&gt;   backspace/delete
-&lt;C-j&gt;   insert newline (easier than reaching for the return key)
-&lt;C-t&gt;   indent current line
-&lt;C-d&gt;   un-indent current line
-
--->
-		  <!--a class="more" href="/blog/2015/01/28/vim-tricks/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/01/28/vim-tricks/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
-		  <span class="day">21</span>
-		  <span class="month">Jan</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/01/21/vim-configure-file/" title="VIM 中文编码问题" target="_blank">VIM 中文编码问题</a></h2>
-		  </header>
-		<div class="con">
-		  <p>VIM 在 Linux 中的配置文件是 <code>.vimrc</code>，而在 Windows 中是 <code>_vimrc</code>。通过设置这个文件可以定制自己的 VIM 编辑器。</p>
-
-<h2>VIM 运行环境</h2>
-
-<p>VIM 运行环境设定了5个地方，其路径都列在 <code>runtimepath</code> 选项中，使用 <code>set</code> 命令查看：</p>
-<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> <span class="nb">runtimepath</span>?
-</code></pre></div>
-<p>显示结果如下：</p>
-<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="nb">runtimepath</span><span class="p">=~</span><span class="sr">/.vim,/</span>usr<span class="sr">/local/</span>share<span class="sr">/vim/</span>vimfiles<span class="p">,</span><span class="sr">/usr/</span>local<span class="sr">/share/</span><span class="k">vim</span><span class="sr">/vim63,/</span>usr<span class="sr">/local/</span>share<span class="sr">/vim/</span>vimfiles<span class="sr">/after,~/</span>.<span class="k">vim</span>/after
-</code></pre></div> <!--post.excerpt | strip_html-->
-		  <!--VIM 在 Linux 中的配置文件是 .vimrc，而在 Windows 中是 _vimrc。通过设置这个文件可以定制自己的 VIM 编辑器。
-
-VIM 运行环境
-
-VIM 运行环境设定了5个地方，其路径都列在 runtimepath 选项中，使用 set 命令查看：
-:set runtimepath?
-
-显示结果如下：
-runtimepath=~/.vim,/usr/local/share/vim/vimfiles,/usr/local/share/vim/vim63,/usr/local/share/vim/vimfiles/after,~/.vim/after
-
--->
-		  <!--a class="more" href="/blog/2015/01/21/vim-configure-file/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/01/21/vim-configure-file/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
-		  <span class="day">18</span>
-		  <span class="month">Jan</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/01/18/web-sites-list/" title="2014-09-22 记录一些网站列表(ZZ)" target="_blank">2014-09-22 记录一些网站列表(ZZ)&nbsp;&rarr;</a></h2>
-		  </header>
-		<div class="con">
-		  <h2>CSS</h2>
-
-<p><a href="https://developer.mozilla.org/en-US/">MDN</a> <a href="http://lesscss.org/">Less</a> <a href="http://sass-lang.com/">Sass</a></p>
-
-<h2>前端框架</h2>
-
-<p><a href="http://foundation.zurb.com/index.html">Foundation</a> <a href="http://getbootstrap.com/">Bootstrap</a> <a href="http://purecss.io/">Pure</a> <a href="http://www.polymer-project.org/">Polymer</a></p></p>
-
-<h2>图标</h2>
-
-<p><a href="http://themify.me/themify-icons">Themify Icons</a> <a href="http://icomoon.io/">IcoMoon</a> <a href="http://www.flaticon.com/authors/freepik">Freepik</a> <a href="http://glyphicons.com/">Glyphicons</a></p>
-
-<h2>排版</h2>
-
-<p><a href="http://typo.sofi.sh/">typo.css</a> <a href="http://lab.lepture.com/yue.css/">yue.css</a></p>
-
-<h2>图库</h2>
-
-<p><a href="http://www.imcreator.com/free">Im Creator</a> <a href="http://picjumbo.com/">Pic Jumbo</a> <a href="http://www.gratisography.com/">Gratisography</a> <a href="http://superfamous.com/">Super Famous</a> <a href="http://unsplash.com/">Unsplash</a></p>
- <!--post.excerpt | strip_html-->
-		  <!--CSS
-
-MDN Less Sass
-
-前端框架
-
-Foundation Bootstrap Pure Polymer
-
-图标
-
-Themify Icons IcoMoon Freepik Glyphicons
-
-排版
-
-typo.css yue.css
-
-图库
-
-Im Creator Pic Jumbo Gratisography Super Famous Unsplash
-
--->
-		  <!--a class="more" href="/blog/2015/01/18/web-sites-list/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/01/18/web-sites-list/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
 		  <span class="day">16</span>
 		  <span class="month">Jan</span>
 		  <span class="year">2015</span>
@@ -516,6 +364,194 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 		</div>
 	</article>
 	
+	<article class="post">
+		<div class="date">
+		  <span class="day">24</span>
+		  <span class="month">Dec</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/12/24/scrollbar-customized-with-css-style/" title="CSS自定义浏览器滚动条样式" target="_blank">CSS自定义浏览器滚动条样式</a></h2>
+		  </header>
+		<div class="con">
+		  <h2>前言</h2>
+
+<p>浏览器默认的滚动条看久了，不免有些审美疲劳，想得自己动手整整。网上查阅一番后，总结一下。<br>
+IE浏览器有几个设置滚条的样式，不过只能设置颜色之类的，而且webkit下面也不支持。无意间看到网易邮箱的滚动条样子很好看，一开始以为是用div模拟的，结果一看，利用的CSS来设置的，而且是webkit浏览器。</p>
+
+<p><img src="/media/pictures/scrollbar-customized-with-css-style/webkit_css.jpg" alt="webkit scrollbar"></p>
+
+<p>得好好研究这几个属性下。</p>
+ <!--post.excerpt | strip_html-->
+		  <!--前言
+
+浏览器默认的滚动条看久了，不免有些审美疲劳，想得自己动手整整。网上查阅一番后，总结一下。
+IE浏览器有几个设置滚条的样式，不过只能设置颜色之类的，而且webkit下面也不支持。无意间看到网易邮箱的滚动条样子很好看，一开始以为是用div模拟的，结果一看，利用的CSS来设置的，而且是webkit浏览器。
+
+
+
+得好好研究这几个属性下。
+
+-->
+		  <!--a class="more" href="/blog/2014/12/24/scrollbar-customized-with-css-style/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/12/24/scrollbar-customized-with-css-style/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">21</span>
+		  <span class="month">Dec</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/12/21/window-location/" title="window.location 属性" target="_blank">window.location 属性</a></h2>
+		  </header>
+		<div class="con">
+		  <p>window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。<br>
+<strong>Note</strong>: window.location 对象在编写时可不使用 window 这个前缀。</p>
+
+<h2>Window Location 对象</h2>
+
+<p>原生 JavaScript window.location 对象所包含的属性:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">hash</td>
+<td style="text-align: center">从井号 (#) 开始的 URL（锚）</td>
+</tr>
+<tr>
+<td style="text-align: left">host</td>
+<td style="text-align: center">主机名和当前 URL 的端口号</td>
+</tr>
+<tr>
+<td style="text-align: left">hostname</td>
+<td style="text-align: center">当前 URL 的主机名</td>
+</tr>
+<tr>
+<td style="text-align: left">href</td>
+<td style="text-align: center">完整的 URL</td>
+</tr>
+<tr>
+<td style="text-align: left">pathname</td>
+<td style="text-align: center">当前 URL 的路径部分</td>
+</tr>
+<tr>
+<td style="text-align: left">port</td>
+<td style="text-align: center">当前 URL 的端口号</td>
+</tr>
+<tr>
+<td style="text-align: left">protocol</td>
+<td style="text-align: center">当前 URL 的协议</td>
+</tr>
+<tr>
+<td style="text-align: left">search</td>
+<td style="text-align: center">从问号 (?) 开始的 URL(查询部分)</td>
+</tr>
+</tbody></table>
+ <!--post.excerpt | strip_html-->
+		  <!--window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。
+Note: window.location 对象在编写时可不使用 window 这个前缀。
+
+Window Location 对象
+
+原生 JavaScript window.location 对象所包含的属性:
+
+
+
+属性
+描述
+
+
+
+hash
+从井号 (#) 开始的 URL（锚）
+
+
+host
+主机名和当前 URL 的端口号
+
+
+hostname
+当前 URL 的主机名
+
+
+href
+完整的 URL
+
+
+pathname
+当前 URL 的路径部分
+
+
+port
+当前 URL 的端口号
+
+
+protocol
+当前 URL 的协议
+
+
+search
+从问号 (?) 开始的 URL(查询部分)
+
+
+
+-->
+		  <!--a class="more" href="/blog/2014/12/21/window-location/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/12/21/window-location/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">21</span>
+		  <span class="month">Dec</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/12/21/python-ide/" title="Python IDE 开发工具" target="_blank">Python IDE 开发工具&nbsp;&rarr;</a></h2>
+		  </header>
+		<div class="con">
+		  <h2>Python IDE</h2>
+
+<ul>
+<li><strong>Eclipse</strong>，用 Python 做大项目的时候一直用它，装上 <strong>Pydev</strong> 即可用，优点是很稳定，缩进不出错</li>
+<li><strong>IDLE</strong>，Windows 下安装 Python 自带的，偶尔用它的 ctrl+M-打开模块，出现 IndentationErrorr 的时候，用它来救命</li>
+<li><strong>Emeditor</strong>，速度很快的编辑器，写小段代码的时候用，而且可以方便的打开命令行窗口，同时 cd 到当前文件所在目录，方便执行代码</li>
+<li><strong>Sublime Text2</strong>，新锐作品，插件很多</li>
+<li><strong>Pycharm</strong>，收费软件，网上评价很高，安装之后发现，慢，丑，挫，10 秒钟删除</li>
+<li><strong>Ulipad</strong>，使用过一次，没有特别好感，删除</li>
+</ul>
+ <!--post.excerpt | strip_html-->
+		  <!--Python IDE
+
+
+Eclipse，用 Python 做大项目的时候一直用它，装上 Pydev 即可用，优点是很稳定，缩进不出错
+IDLE，Windows 下安装 Python 自带的，偶尔用它的 ctrl+M-打开模块，出现 IndentationErrorr 的时候，用它来救命
+Emeditor，速度很快的编辑器，写小段代码的时候用，而且可以方便的打开命令行窗口，同时 cd 到当前文件所在目录，方便执行代码
+Sublime Text2，新锐作品，插件很多
+Pycharm，收费软件，网上评价很高，安装之后发现，慢，丑，挫，10 秒钟删除
+Ulipad，使用过一次，没有特别好感，删除
+
+
+-->
+		  <!--a class="more" href="/blog/2014/12/21/python-ide/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/12/21/python-ide/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
 	
 	<ul class="pager">
       
@@ -558,27 +594,9 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 		</li>
 	</a>
 	
-	<a href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
 	<a href="/blog/2015/05/04/linux-tar-command/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		学习 tar 压缩命令
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/01/install-openbox-wm/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
 		</li>
 	</a>
 	
@@ -591,6 +609,24 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	<a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		十个基础算法及其讲解
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/08/bash-special-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Bash 快捷键
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/04/vim-commands-frequently-used/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim 常用命令小结
+		</li>
+	</a>
+	
+	<a href="/blog/2015/02/04/remap-capslock-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim技巧——将 CapsLock 键映射成 Esc键
 		</li>
 	</a>
 	
@@ -628,7 +664,25 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 	
 		
+		<a href="/blog/category/#career-ref" rel="nofollow"><li><i class="icon-link"></i>career (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#computer science-ref" rel="nofollow"><li><i class="icon-link"></i>computer science (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#css-ref" rel="nofollow"><li><i class="icon-link"></i>css (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#database-ref" rel="nofollow"><li><i class="icon-link"></i>database (1)
 		</li></a>
     
 	
@@ -647,6 +701,12 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 		
 		<a href="/blog/category/#emacs-ref" rel="nofollow"><li><i class="icon-link"></i>emacs (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#featured-ref" rel="nofollow"><li><i class="icon-link"></i>featured (1)
 		</li></a>
     
 	
@@ -694,7 +754,7 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 	
 		
-		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (3)
+		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (4)
 		</li></a>
     
 	
@@ -706,13 +766,19 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 	
 		
-		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (7)
+		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (4)
 		</li></a>
     
 	
 	
 		
 		<a href="/blog/category/#markdown-ref" rel="nofollow"><li><i class="icon-link"></i>markdown (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#nginx-ref" rel="nofollow"><li><i class="icon-link"></i>nginx (1)
 		</li></a>
     
 	
@@ -730,7 +796,19 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 	
 		
+		<a href="/blog/category/#r language-ref" rel="nofollow"><li><i class="icon-link"></i>r language (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#ruby-ref" rel="nofollow"><li><i class="icon-link"></i>ruby (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ruby on rails-ref" rel="nofollow"><li><i class="icon-link"></i>ruby on rails (1)
 		</li></a>
     
 	
@@ -749,6 +827,12 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 		
 		<a href="/blog/category/#technique-ref" rel="nofollow"><li><i class="icon-link"></i>technique (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#test-ref" rel="nofollow"><li><i class="icon-link"></i>test (1)
 		</li></a>
     
 	
@@ -848,6 +932,34 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
     
 		
 		<li>
+		<!--a href="/blog/tag/#facebook-ref" rel="nofollow">facebook</a-->
+		<a href="/blog/tag/#facebook-ref" rel="nofollow">facebook
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox</a-->
+		<a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#resume-ref" rel="nofollow">resume</a-->
+		<a href="/blog/tag/#resume-ref" rel="nofollow">resume
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#cv-ref" rel="nofollow">cv</a-->
+		<a href="/blog/tag/#cv-ref" rel="nofollow">cv
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth</a-->
 		<a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth
 		</a>
@@ -918,8 +1030,92 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 	
 		
 		<li>
+		<!--a href="/blog/tag/#Flash-ref" rel="nofollow">Flash</a-->
+		<a href="/blog/tag/#Flash-ref" rel="nofollow">Flash
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Gorjanc+Gregor-ref" rel="nofollow">Gorjanc Gregor</a-->
+		<a href="/blog/tag/#Gorjanc Gregor-ref" rel="nofollow">Gorjanc Gregor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript</a-->
+		<a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#maptools-ref" rel="nofollow">maptools</a-->
+		<a href="/blog/tag/#maptools-ref" rel="nofollow">maptools
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#pointLabel%28%29-ref" rel="nofollow">pointLabel()</a-->
+		<a href="/blog/tag/#pointLabel()-ref" rel="nofollow">pointLabel()
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#R4X-ref" rel="nofollow">R4X</a-->
+		<a href="/blog/tag/#R4X-ref" rel="nofollow">R4X
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Romain+Francois-ref" rel="nofollow">Romain Francois</a-->
+		<a href="/blog/tag/#Romain Francois-ref" rel="nofollow">Romain Francois
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Simon+Urbanek-ref" rel="nofollow">Simon Urbanek</a-->
+		<a href="/blog/tag/#Simon Urbanek-ref" rel="nofollow">Simon Urbanek
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#snippets-ref" rel="nofollow">snippets</a-->
+		<a href="/blog/tag/#snippets-ref" rel="nofollow">snippets
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject</a-->
+		<a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#Tag+Cloud-ref" rel="nofollow">Tag Cloud</a-->
 		<a href="/blog/tag/#Tag Cloud-ref" rel="nofollow">Tag Cloud
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress</a-->
+		<a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus</a-->
+		<a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus
 		</a>
 		</li>
 	
@@ -948,6 +1144,13 @@ GitHub Pages 后台运行 Jekyll，为我们提供了一个地方贮存管理博
 		<li>
 		<!--a href="/blog/tag/#javascript-ref" rel="nofollow">javascript</a-->
 		<a href="/blog/tag/#javascript-ref" rel="nofollow">javascript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB</a-->
+		<a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB
 		</a>
 		</li>
 	

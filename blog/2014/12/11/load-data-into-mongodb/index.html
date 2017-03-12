@@ -5,11 +5,11 @@
     * Author: Alfred Sun
     -->
     <meta charset="utf-8" />
-    <title>如何启用 root 用户登录 Fedora ？</title>
+    <title>MongoDB导入数据性能优化</title>
     <meta name="author" content="Alfred Sun" />
     <meta name="renderer" content="webkit">
-    <meta name="description" content="正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… | ]Alfred's Blog" />
-    <meta name="keywords" content="fedora, root, linux, login">
+    <meta name="description" content="需要通过Excel导入10W+的数据，我从之前的同事交接此工作。刚开始数据量比较小导入时间还能勉强接受，随着业务数据量的增大，导入时间已经增长到24个小时左右了 | ]Alfred's Blog" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
     <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
@@ -64,8 +64,8 @@
 
 	<div id="content">
 		<div class="entry">
-			<h1 class="entry-title"><a href="/blog/2015/04/29/login-fedora-with-root/" title="如何启用 root 用户登录 Fedora ？">如何启用 root 用户登录 Fedora ？</a></h1>
-			<!--p class="entry-date">2015-04-29</p-->
+			<h1 class="entry-title"><a href="/blog/2014/12/11/load-data-into-mongodb/" title="MongoDB导入数据性能优化">MongoDB导入数据性能优化</a></h1>
+			<!--p class="entry-date">2014-12-11</p-->
 			<div class="pageInfo">
 
   
@@ -92,7 +92,7 @@
 
   
 
-<span><time datetime="2015-04-29T00:00:00+08:00" pubdate data-updated="true">2015-04-29</time></span>
+<span><time datetime="2014-12-11T00:00:00+08:00" pubdate data-updated="true">2014-12-11</time></span>
 
 
 
@@ -103,7 +103,7 @@
   
   
     
-		<a href="/blog/category/#linux-ref" title="Category: linux" rel="category">linux</a>
+		<a href="/blog/category/#database-ref" title="Category: database" rel="category">database</a>
     
   
 
@@ -122,56 +122,84 @@
   
   
     
-		<!--a href="/blog/tag/#Fedora-ref" title="Tag: Fedora" rel="tag">Fedora</a-->
-		<a href="/blog/tag/#Fedora-ref" title="Tag: Fedora" rel="tag">Fedora</a>&nbsp;
-    
-		<!--a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a-->
-		<a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a>
+		<!--a href="/blog/tag/#MongoDB-ref" title="Tag: MongoDB" rel="tag">MongoDB</a-->
+		<a href="/blog/tag/#MongoDB-ref" title="Tag: MongoDB" rel="tag">MongoDB</a>
     
   
 
 </div>
 
 
-			<p>以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。</p>
+			<h2>背景</h2>
 
-<p>在终端输入：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-</code></pre></div>
-<p>注释掉这段及前面加上#号，如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
-</code></pre></div>
-<p>保存之后注销再用 root 和密码登陆就好了。</p>
-
-<p>修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  </p>
-
-<p>一般修改方法:  </p>
-
-<p>在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">vim /etc/pam.d/gdm  
-</code></pre></div>
-<p>在这段 &ldquo;auth required pam<em>succeed</em>if.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  </p>
-
-<p>同样的 vim /etc/pam.d/gdm-password<br>
-也是在 auth required pam<em>succeed</em>if.so user != root quiet 前面加上 # 号注释</p>
-
-<p>保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  </p>
+<p>公司的一个项目每个月都需要通过Excel导入10W+的数据，我从之前的同事交接此工作。刚开始数据量比较小导入时间还能勉强接受，随着业务数据量的增大，导入时间已经增长到24个小时左右了。最后自己实在受不了这个速度，决定优化代码。</p>
 
 <!--more-->
 
-<p>从博主目前的使用来看，Fedora 20 和 Fedora 21 都去除了这种权限设置，允许 root 登录系统。</p>
+<h2>方案</h2>
+
+<h3>评估代码的效率</h3>
+
+<p>使用1000测试数据导入得到导入数据时间，计算每条数据平均导入时间为</p>
+
+<p>每条数据导入时间=导入时间/1000=0.7s</p>
+
+<h3>分析代码逻辑</h3>
+
+<p>代码逻辑分为了以下几个步骤</p>
+
+<ol>
+<li>读取数据到内存<br></li>
+<li>初始化校验规则<br></li>
+<li>循环每条数据写入数据库<br></li>
+</ol>
+
+<p>由于 1 和 2 步骤只执行一次，时间忽略不计。接着对3步骤进行分析。</p>
+
+<p>3.1. 截取数据<br>
+3.2. 校验数据有效性<br>
+3.3. 查询目前数据库中是否已经存在主键相同的数据（联合主键）<br>
+3.4. 如果3查询存在则更新，不存在则插入  </p>
+
+<h3>调试性能</h3>
+
+<p>在3的子步骤分别设置时间点，最后打印每个步骤所耗费的时间（个人认为应该有成熟的工具对代码性能进行分析，如果有人知道麻烦告诉我一声，^_^）。最后发现在3.3和3.4两个步骤所花费的时间占整体时间的90%左右，目标已经确定是IO产生的瓶颈。</p>
+
+<h3>优化代码</h3>
+
+<p>3.3和3.4的逻辑伪代码为如下所示。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">result = db.collection.find_one(xxxx)
+if result:
+    update
+else:
+    insert
+</code></pre></div>
+<p>这样的弊端就是需要与数据库进行两次交互，一次读，一次写。而MongoDB中引入了一种叫做upsert的特殊更新，如果没有文档符合更新条件，就会以这个条件和更新文档为基础创建一个新的文档；如果找到了匹配文档，则正常更新。</p>
+
+<p>另外，调试的时候发现在70W+的数据中查询一条数据的时间约为0.3s，当时第一想法就是组合索引。果然建立完索引以后，查询速度缩减到0.03s左右。MongoDB操作索引的方式也很简单，点击MongoDB/bin/mongo.exe进行管理工具，下面举例对user建立索引。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#建立单条件索引,1代表按照name进行升序，-1代表降序。
+db.user.ensureIndex({&quot;name:1&quot;})
+#建立联合索引
+db.user.ensureIndex({&quot;name&quot;:1,&quot;age&quot;:-1})
+#查询索引，可以看到user下面所有Index的具体信息
+db.user.getIndexes()
+#删除索引，这里的参数是index的name
+db.user.dropIndexes({&quot;name_1&quot;})
+</code></pre></div>
+<h2>总结</h2>
+
+<p>框架带来写代码便利的同时，会造成性能一定程度的降低。<br>
+对于频繁查询字段应建立索引提高效率。当然索引带来弊端是需要额外的空间来存储索引，不过所占用的额外空间对于性能的提升来说不足一提。</p>
 
 
 			
 			<footer>
 			<p class="meta">
 			
-            <a class="basic-alignment left" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" title="Previous Post: 十个基础算法及其讲解">&laquo; 十个基础算法及其讲解</a>
+            <a class="basic-alignment left" href="/blog/2014/12/11/javascript-closure/" title="Previous Post: Javascript 闭包(Closure)">&laquo; Javascript 闭包(Closure)</a>
             
             
-            <a class="basic-alignment right" href="/blog/2015/05/04/linux-tar-command/" title="Next Post: 学习 tar 压缩命令">学习 tar 压缩命令 &raquo;</a>
+            <a class="basic-alignment right" href="/blog/2014/12/11/jekykll-jquery-asyn-load/" title="Next Post: 用Jekyll和jQuery实现异步加载文章列表">用Jekyll和jQuery实现异步加载文章列表 &raquo;</a>
             
 			</p>
 			</footer>
@@ -203,7 +231,7 @@ Password:
 					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
                     <script>
 var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
-window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"如何启用 root 用户登录 Fedora ？ | Vermillion Phoinix by Alfred Sun //正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"MongoDB导入数据性能优化 | Vermillion Phoinix by Alfred Sun //需要通过Excel导入10W+的数据，我从之前的同事交接此工作。刚开始数据量比较小导入时间还能勉强接受，随着业务数据量的增大，导入时间已经增长到24个小时左右了 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                     </script>
 				</div>
 				<div style="margin-bottom: 52px;">
@@ -213,7 +241,7 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
 				</div>
 				<div id="disqus_thread"></div>
-				<div class="ds-thread" data-thread-key="/blog/2015/04/29/login-fedora-with-root" data-title="如何启用 root 用户登录 Fedora ？ | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/04/29/login-fedora-with-root/"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/11/load-data-into-mongodb" data-title="MongoDB导入数据性能优化 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/11/load-data-into-mongodb/"></div>
 			</div>
 
 			<div id="footer">
@@ -247,7 +275,7 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 
 		<div class="sidenav">
 			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
-			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/04/29/login-fedora-with-root/" target="_blank">
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/11/load-data-into-mongodb/" target="_blank">
 				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
             <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
 		</div>
@@ -256,18 +284,6 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 			<h2>Related Blog</h2>
 			<ul class="artical-list">
 			
-				
-				
-					<li><a href="/blog/2015/06/18/daemon-implementation/">Linux 守护进程的实现</a></li>
-				
-				
-				
-					<li><a href="/blog/2015/05/13/bash-notes/">Bash 学习笔记</a></li>
-				
-				
-				
-					<li><a href="/blog/2015/05/04/linux-tar-command/">学习 tar 压缩命令</a></li>
-				
 				
 				
 				

@@ -5,11 +5,11 @@
     * Author: Alfred Sun
     -->
     <meta charset="utf-8" />
-    <title>如何启用 root 用户登录 Fedora ？</title>
+    <title>Archiving a (Rails) site as static files on Nginx</title>
     <meta name="author" content="Alfred Sun" />
     <meta name="renderer" content="webkit">
-    <meta name="description" content="正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… | ]Alfred's Blog" />
-    <meta name="keywords" content="fedora, root, linux, login">
+    <meta name="description" content="Alfred's Blog" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
     <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
@@ -64,8 +64,8 @@
 
 	<div id="content">
 		<div class="entry">
-			<h1 class="entry-title"><a href="/blog/2015/04/29/login-fedora-with-root/" title="如何启用 root 用户登录 Fedora ？">如何启用 root 用户登录 Fedora ？</a></h1>
-			<!--p class="entry-date">2015-04-29</p-->
+			<h1 class="entry-title"><a href="/blog/2014/08/07/archiving-rails/" title="Archiving a (Rails) site as static files on Nginx">Archiving a (Rails) site as static files on Nginx</a></h1>
+			<!--p class="entry-date">2014-08-07</p-->
 			<div class="pageInfo">
 
   
@@ -90,9 +90,7 @@
 
 
 
-  
-
-<span><time datetime="2015-04-29T00:00:00+08:00" pubdate data-updated="true">2015-04-29</time></span>
+<span><time datetime="2014-08-07T11:15:00+08:00" pubdate data-updated="true">2014-08-07</time></span>
 
 
 
@@ -103,7 +101,9 @@
   
   
     
-		<a href="/blog/category/#linux-ref" title="Category: linux" rel="category">linux</a>
+		<a href="/blog/category/#ruby on rails-ref" title="Category: ruby on rails" rel="category">ruby on rails</a>,
+    
+		<a href="/blog/category/#nginx-ref" title="Category: nginx" rel="category">nginx</a>
     
   
 
@@ -122,56 +122,87 @@
   
   
     
-		<!--a href="/blog/tag/#Fedora-ref" title="Tag: Fedora" rel="tag">Fedora</a-->
-		<a href="/blog/tag/#Fedora-ref" title="Tag: Fedora" rel="tag">Fedora</a>&nbsp;
-    
-		<!--a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a-->
-		<a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a>
-    
   
 
 </div>
 
 
-			<p>以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。</p>
+			<p>I had an old Rails 2 app (a blog) that still got visits, but no updates. It&rsquo;s effectively been read-only for years.</p>
 
-<p>在终端输入：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-</code></pre></div>
-<p>注释掉这段及前面加上#号，如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
-</code></pre></div>
-<p>保存之后注销再用 root 和密码登陆就好了。</p>
+<p>Since I&rsquo;m consolidating servers, I wanted to get rid of the machine it was hosted on, and moving the Rails app elsewhere wouldn&rsquo;t be trivial.</p>
 
-<p>修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  </p>
+<p>So I replaced it with a static copy of the site. Just flat files.</p>
 
-<p>一般修改方法:  </p>
+<p>(I also made a database dump just in case I want to make it dynamic again in the future.)</p>
 
-<p>在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">vim /etc/pam.d/gdm  
-</code></pre></div>
-<p>在这段 &ldquo;auth required pam<em>succeed</em>if.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  </p>
-
-<p>同样的 vim /etc/pam.d/gdm-password<br>
-也是在 auth required pam<em>succeed</em>if.so user != root quiet 前面加上 # 号注释</p>
-
-<p>保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  </p>
+<p>This is how I did it.</p>
 
 <!--more-->
 
-<p>从博主目前的使用来看，Fedora 20 和 Fedora 21 都去除了这种权限设置，允许 root 登录系统。</p>
+<h2>Archive the site</h2>
+
+<p>I installed <a href="https://www.gnu.org/software/wget/">wget</a> via <a href="http://brew.sh/">Homebrew</a> since I didn&rsquo;t have it on my Mac:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">brew install wget
+</code></pre></div>
+<p>If you don&rsquo;t have it already on e.g. Ubuntu, try</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sudo apt-get install wget
+</code></pre></div>
+<p>Then I told wget to archive the site:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">wget --convert-links --mirror mysite.com
+</code></pre></div>
+<p>It will end up in a <code>./mysite.com</code> directory.</p>
+
+<h2>Upload the site</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">rsync -azv mysite.com myserver:apps
+</code></pre></div>
+<p>Substituting whatever server and path you prefer. I keep sites in subdirectories of <code>~/apps</code>.</p>
+
+<p>You could also call <code>wget</code> on the server, of course, and skip the upload step. I wanted a local copy and to verify the download with my local tools.</p>
+
+<h2>Configure Nginx</h2>
+
+<p>In the Nginx configuration for the site, I had to do some special things:</p>
+<div class="highlight"><pre><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+  <span class="c1"># …</span>
+
+  <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+    <span class="kn">try_files</span> <span class="nv">$request_uri</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+    <span class="kn">default_type</span> <span class="s">text/html</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kn">location</span> <span class="s">/stylesheets</span> <span class="p">{</span>
+    <span class="kn">try_files</span> <span class="nv">$request_uri</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+    <span class="kn">default_type</span> <span class="s">text/css</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kn">location</span> <span class="s">/javascripts</span> <span class="p">{</span>
+    <span class="kn">try_files</span> <span class="nv">$request_uri</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+    <span class="kn">default_type</span> <span class="s">text/javascript</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kn">location</span> <span class="s">/images/uploads</span> <span class="p">{</span>
+    <span class="kn">try_files</span> <span class="nv">$request_uri</span> <span class="nv">$uri</span> <span class="nv">$uri/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+    <span class="kn">default_type</span> <span class="s">image/jpg</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>I needed <code>try_files $request_uri</code> so that requesting e.g. <code>index.html?page=2</code> or <code>stylesheets/all.css?1393152599</code> would look for a file by that exact name, query string and all.</p>
+
+<p>And I needed the <code>default_type</code> declarations to handle HTML files archived without an extension, as well as e.g. stylesheets ending with a query string.</p>
+
+<p>I only had JPG uploads, but you could <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location">use a regexp</a> for more complex needs.</p>
+
+<p>Hope this helps!</p>
 
 
 			
 			<footer>
 			<p class="meta">
 			
-            <a class="basic-alignment left" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" title="Previous Post: 十个基础算法及其讲解">&laquo; 十个基础算法及其讲解</a>
+            <a class="basic-alignment left" href="/blog/2013/08/25/helloWorld/" title="Previous Post: Hello World">&laquo; Hello World</a>
             
             
-            <a class="basic-alignment right" href="/blog/2015/05/04/linux-tar-command/" title="Next Post: 学习 tar 压缩命令">学习 tar 压缩命令 &raquo;</a>
+            <a class="basic-alignment right" href="/blog/2014/09/29/Jekyll-Missing-dependency-RedCloth/" title="Next Post: Jekyll missing dependency&#58; RedCloth">Jekyll missing dependency&#58; RedCloth &raquo;</a>
             
 			</p>
 			</footer>
@@ -203,7 +234,7 @@ Password:
 					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
                     <script>
 var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
-window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"如何启用 root 用户登录 Fedora ？ | Vermillion Phoinix by Alfred Sun //正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"Archiving a (Rails) site as static files on Nginx | Vermillion Phoinix by Alfred Sun ","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                     </script>
 				</div>
 				<div style="margin-bottom: 52px;">
@@ -213,7 +244,7 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
 				</div>
 				<div id="disqus_thread"></div>
-				<div class="ds-thread" data-thread-key="/blog/2015/04/29/login-fedora-with-root" data-title="如何启用 root 用户登录 Fedora ？ | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/04/29/login-fedora-with-root/"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/08/07/archiving-rails" data-title="Archiving a (Rails) site as static files on Nginx | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/08/07/archiving-rails/"></div>
 			</div>
 
 			<div id="footer">
@@ -247,7 +278,7 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 
 		<div class="sidenav">
 			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
-			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/04/29/login-fedora-with-root/" target="_blank">
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/08/07/archiving-rails/" target="_blank">
 				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
             <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
 		</div>
@@ -258,16 +289,8 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 			
 				
 				
-					<li><a href="/blog/2015/06/18/daemon-implementation/">Linux 守护进程的实现</a></li>
 				
-				
-				
-					<li><a href="/blog/2015/05/13/bash-notes/">Bash 学习笔记</a></li>
-				
-				
-				
-					<li><a href="/blog/2015/05/04/linux-tar-command/">学习 tar 压缩命令</a></li>
-				
+			
 				
 				
 				

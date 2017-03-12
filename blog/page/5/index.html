@@ -122,152 +122,6 @@
 	
 	<article class="post">
 		<div class="date">
-		  <span class="day">15</span>
-		  <span class="month">Dec</span>
-		  <span class="year">2014</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2014/12/15/Use-google-code-prettify-for-jekyll/" title="Jekyll 中用 Google Code Prettify" target="_blank">Jekyll 中用 Google Code Prettify</a></h2>
-		  </header>
-		<div class="con">
-		  <h2>前言</h2>
-
-<p>本站博客在搭建过程中，试用过多个JS代码高亮工具，之前讲过的<a href="http://alfred-sun.github.io/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/">SyntaxHighlighter</a>虽然漂亮，但是加载渲染太慢，果断放弃。<br>
-本文中介绍的这个<a href="https://code.google.com/p/google-code-prettify/">google-code-prettify</a>就不同了，支持的语言数量比较多、比较全，支持自动识别代码语言，不需要手动指定，渲染效果也不错。最重要的是，非常轻巧，加载速度远比SyntaxHighlighter快得多，而且，可以直接使用 Markdown 的语法写代码。<br>
-只有一点在Jekyll解析时不方便，就是当需要指定语言时，Markdown 解析出来的HTML代码class样式名称跟google-code-prettify要求的不同。不过博主目前还没有发现，指定语言的参数的有用之处。因为google-code-prettify自动识别语言和指定语言高亮代码的效果基本一样。</p>
-
-<p>在本文中简称 google-code-prettify 的渲染引擎为：<strong>Prettyprinter</strong></p>
- <!--post.excerpt | strip_html-->
-		  <!--前言
-
-本站博客在搭建过程中，试用过多个JS代码高亮工具，之前讲过的SyntaxHighlighter虽然漂亮，但是加载渲染太慢，果断放弃。
-本文中介绍的这个google-code-prettify就不同了，支持的语言数量比较多、比较全，支持自动识别代码语言，不需要手动指定，渲染效果也不错。最重要的是，非常轻巧，加载速度远比SyntaxHighlighter快得多，而且，可以直接使用 Markdown 的语法写代码。
-只有一点在Jekyll解析时不方便，就是当需要指定语言时，Markdown 解析出来的HTML代码class样式名称跟google-code-prettify要求的不同。不过博主目前还没有发现，指定语言的参数的有用之处。因为google-code-prettify自动识别语言和指定语言高亮代码的效果基本一样。
-
-在本文中简称 google-code-prettify 的渲染引擎为：Prettyprinter
-
--->
-		  <!--a class="more" href="/blog/2014/12/15/Use-google-code-prettify-for-jekyll/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2014/12/15/Use-google-code-prettify-for-jekyll/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
-		  <span class="day">15</span>
-		  <span class="month">Dec</span>
-		  <span class="year">2014</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/" title="Jekyll 中用 SyntaxHighlighter" target="_blank">Jekyll 中用 SyntaxHighlighter</a></h2>
-		  </header>
-		<div class="con">
-		  <p>前几天把博客里的代码高亮改成<a href="http://alexgorbatchev.com/SyntaxHighlighter">SyntaxHighligher</a>了，感觉好了很多，看着也舒服，复制代码方便许多。下面就来简短介绍下这个工具。</p>
-
-<blockquote>
-<p><em>SyntaxHighligher is an open source Java Script client side code syntax highlighter.</em></p>
-</blockquote>
-
-<p>将它安装在 &ldquo;<strong>home page, blog, CMS, documentation CD or any other web page</strong>&quot;，用来美化你的代码。</p>
-
-<h2>Installation</h2>
-
-<ol>
-<li>引入基本的文件： shore.js</li>
-<li>添加需要的笔刷JS（如：Javascript代码使用 shBrushJScript.js；可用的笔刷列表见<a href="http://alexgorbatchev.com/SyntaxHighlighter/manual/brushes/">这里</a>）</li>
-<li>引入CSS样式：shCore.css、shThemeDefault.css</li>
-<li>用<code>&lt;pre /&gt;</code>或者<code>&lt;script /&gt;</code>创建代码块</li>
-<li>执行JS方法：<code>SyntaxHighlighter.all()</code></li>
-</ol>
-
-<p>在Jekyll的模板页里的head里面，添加如下代码，选自己需要的语言的刷子。</p>
- <!--post.excerpt | strip_html-->
-		  <!--前几天把博客里的代码高亮改成SyntaxHighligher了，感觉好了很多，看着也舒服，复制代码方便许多。下面就来简短介绍下这个工具。
-
-
-SyntaxHighligher is an open source Java Script client side code syntax highlighter.
-
-
-将它安装在 &ldquo;home page, blog, CMS, documentation CD or any other web page&quot;，用来美化你的代码。
-
-Installation
-
-
-引入基本的文件： shore.js
-添加需要的笔刷JS（如：Javascript代码使用 shBrushJScript.js；可用的笔刷列表见这里）
-引入CSS样式：shCore.css、shThemeDefault.css
-用&lt;pre /&gt;或者&lt;script /&gt;创建代码块
-执行JS方法：SyntaxHighlighter.all()
-
-
-在Jekyll的模板页里的head里面，添加如下代码，选自己需要的语言的刷子。
-
--->
-		  <!--a class="more" href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
-		  <span class="day">13</span>
-		  <span class="month">Dec</span>
-		  <span class="year">2014</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2014/12/13/How-to-Use-GitHub-Effectively/" title="如何高效利用GitHub" target="_blank">如何高效利用GitHub&nbsp;&rarr;</a></h2>
-		  </header>
-		<div class="con">
-		  <p>正是Github，让社会化编程成为现实。本文尝试谈谈GitHub的文化、技巧与影响。</p>
-
-<ul>
-<li>Q1：GitHub是什么</li>
-<li>Q2：GitHub风格</li>
-<li>Q3: 在GitHub，如何跟牛人学习</li>
-<li>Q4: 享受纯粹的写作与演讲</li>
-<li>Q5: 代码帮你找工作</li>
-<li>Q6: GitHub还在影响一些什么</li>
-<li>Q7: 除了GitHub，还可以选择什么？</li>
-</ul>
-
-<h2>Q1：GitHub是什么</h2>
-
-<h2>A1：一家公司</h2>
-
-<p>位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。</p>
- <!--post.excerpt | strip_html-->
-		  <!--正是Github，让社会化编程成为现实。本文尝试谈谈GitHub的文化、技巧与影响。
-
-
-Q1：GitHub是什么
-Q2：GitHub风格
-Q3: 在GitHub，如何跟牛人学习
-Q4: 享受纯粹的写作与演讲
-Q5: 代码帮你找工作
-Q6: GitHub还在影响一些什么
-Q7: 除了GitHub，还可以选择什么？
-
-
-Q1：GitHub是什么
-
-A1：一家公司
-
-位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。
-
--->
-		  <!--a class="more" href="/blog/2014/12/13/How-to-Use-GitHub-Effectively/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2014/12/13/How-to-Use-GitHub-Effectively/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
 		  <span class="day">11</span>
 		  <span class="month">Dec</span>
 		  <span class="year">2014</span>
@@ -296,6 +150,32 @@ A1：一家公司
 		  <!--a class="more" href="/blog/2014/12/11/jekykll-jquery-asyn-load/">[继续阅读]</a-->
 		  <footer>
 			<a rel="nofollow" href="/blog/2014/12/11/jekykll-jquery-asyn-load/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">11</span>
+		  <span class="month">Dec</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/12/11/load-data-into-mongodb/" title="MongoDB导入数据性能优化" target="_blank">MongoDB导入数据性能优化</a></h2>
+		  </header>
+		<div class="con">
+		  <h2>背景</h2>
+
+<p>公司的一个项目每个月都需要通过Excel导入10W+的数据，我从之前的同事交接此工作。刚开始数据量比较小导入时间还能勉强接受，随着业务数据量的增大，导入时间已经增长到24个小时左右了。最后自己实在受不了这个速度，决定优化代码。</p>
+ <!--post.excerpt | strip_html-->
+		  <!--背景
+
+公司的一个项目每个月都需要通过Excel导入10W+的数据，我从之前的同事交接此工作。刚开始数据量比较小导入时间还能勉强接受，随着业务数据量的增大，导入时间已经增长到24个小时左右了。最后自己实在受不了这个速度，决定优化代码。
+
+-->
+		  <!--a class="more" href="/blog/2014/12/11/load-data-into-mongodb/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/12/11/load-data-into-mongodb/" target="_blank">Read on &rarr;</a>
 		  </footer>
 		</div>
 	</article>
@@ -472,6 +352,96 @@ GitHub Pages 有以下几个优点：
 		</div>
 	</article>
 	
+	<article class="post">
+		<div class="date">
+		  <span class="day">03</span>
+		  <span class="month">Dec</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/12/03/creating-tag-cloud-using-r-and-flash-javascript-swfobject/" title="Creating Tag Cloud Using R and Flash / JavaScript (SWFObject)" target="_blank">Creating Tag Cloud Using R and Flash / JavaScript (SWFObject)&nbsp;&rarr;</a></h2>
+		  </header>
+		<div class="con">
+		  <p>Tag cloud is a bunch of words drawn in a graph with their sizes proportional to their frequency; it&rsquo;s widely used in blogs to visualize tags. We can observe important words quickly from a tag cloud, as they often appear in large fontsize. Tony N. Brown asked how to <a href="https://stat.ethz.ch/pipermail/r-help/2009-June/200645.html">graphically represent frequency of words in a speech</a> the other day in R-help list, which is actually a problem about the tag cloud:</p>
+
+<blockquote>
+<p>I recently saw a graph on television that displayed selected words/phrases in a speech scaled in size according to their frequency. So words/phrases that were often used appeared large and words that were rarely used appeared small. [&hellip;]</p>
+</blockquote>
+ <!--post.excerpt | strip_html-->
+		  <!--Tag cloud is a bunch of words drawn in a graph with their sizes proportional to their frequency; it&rsquo;s widely used in blogs to visualize tags. We can observe important words quickly from a tag cloud, as they often appear in large fontsize. Tony N. Brown asked how to graphically represent frequency of words in a speech the other day in R-help list, which is actually a problem about the tag cloud:
+
+
+I recently saw a graph on television that displayed selected words/phrases in a speech scaled in size according to their frequency. So words/phrases that were often used appeared large and words that were rarely used appeared small. [&hellip;]
+
+
+-->
+		  <!--a class="more" href="/blog/2014/12/03/creating-tag-cloud-using-r-and-flash-javascript-swfobject/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/12/03/creating-tag-cloud-using-r-and-flash-javascript-swfobject/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">28</span>
+		  <span class="month">Nov</span>
+		  <span class="year">2014</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2014/11/28/gem-command/" title="gem相关命令使用" target="_blank">gem相关命令使用</a></h2>
+		  </header>
+		<div class="con">
+		  <h2>1.显示 gem 的帮助和版本</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem –h/--help
+<span class="c">#显示gem的帮助</span>
+gem –v /--version
+<span class="c">#显示gem的版本号</span>
+</code></pre></div>
+<h2>2. 列出远程库的所有可用软件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --remote
+<span class="c"># 短命令: gem q -r</span>
+</code></pre></div>
+<p>你可以看到一个关于远程主机上所有软件的详细列表。</p>
+
+<h2>3. 查找远程主机上的特定软件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --remote --name-matches doom
+<span class="c"># 短命令: gem q -rn doom</span>
+<span class="c"># 你将看到一个匹配doom的详细列表。</span>
+</code></pre></div>
+<h2>4. List remote gems</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem list –remote --d
+<span class="c">#用子命令list列出远程安装的gems</span>
+</code></pre></div> <!--post.excerpt | strip_html-->
+		  <!--1.显示 gem 的帮助和版本
+gem –h/--help
+#显示gem的帮助
+gem –v /--version
+#显示gem的版本号
+
+2. 列出远程库的所有可用软件
+gem query --remote
+# 短命令: gem q -r
+
+你可以看到一个关于远程主机上所有软件的详细列表。
+
+3. 查找远程主机上的特定软件
+gem query --remote --name-matches doom
+# 短命令: gem q -rn doom
+# 你将看到一个匹配doom的详细列表。
+
+4. List remote gems
+gem list –remote --d
+#用子命令list列出远程安装的gems
+
+-->
+		  <!--a class="more" href="/blog/2014/11/28/gem-command/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2014/11/28/gem-command/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
 	
 	<ul class="pager">
       
@@ -514,27 +484,9 @@ GitHub Pages 有以下几个优点：
 		</li>
 	</a>
 	
-	<a href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
 	<a href="/blog/2015/05/04/linux-tar-command/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		学习 tar 压缩命令
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/01/install-openbox-wm/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
 		</li>
 	</a>
 	
@@ -547,6 +499,24 @@ GitHub Pages 有以下几个优点：
 	<a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		十个基础算法及其讲解
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/08/bash-special-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Bash 快捷键
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/04/vim-commands-frequently-used/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim 常用命令小结
+		</li>
+	</a>
+	
+	<a href="/blog/2015/02/04/remap-capslock-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim技巧——将 CapsLock 键映射成 Esc键
 		</li>
 	</a>
 	
@@ -584,7 +554,25 @@ GitHub Pages 有以下几个优点：
 	
 	
 		
+		<a href="/blog/category/#career-ref" rel="nofollow"><li><i class="icon-link"></i>career (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#computer science-ref" rel="nofollow"><li><i class="icon-link"></i>computer science (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#css-ref" rel="nofollow"><li><i class="icon-link"></i>css (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#database-ref" rel="nofollow"><li><i class="icon-link"></i>database (1)
 		</li></a>
     
 	
@@ -603,6 +591,12 @@ GitHub Pages 有以下几个优点：
 	
 		
 		<a href="/blog/category/#emacs-ref" rel="nofollow"><li><i class="icon-link"></i>emacs (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#featured-ref" rel="nofollow"><li><i class="icon-link"></i>featured (1)
 		</li></a>
     
 	
@@ -650,7 +644,7 @@ GitHub Pages 有以下几个优点：
 	
 	
 		
-		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (3)
+		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (4)
 		</li></a>
     
 	
@@ -662,13 +656,19 @@ GitHub Pages 有以下几个优点：
 	
 	
 		
-		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (7)
+		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (4)
 		</li></a>
     
 	
 	
 		
 		<a href="/blog/category/#markdown-ref" rel="nofollow"><li><i class="icon-link"></i>markdown (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#nginx-ref" rel="nofollow"><li><i class="icon-link"></i>nginx (1)
 		</li></a>
     
 	
@@ -686,7 +686,19 @@ GitHub Pages 有以下几个优点：
 	
 	
 		
+		<a href="/blog/category/#r language-ref" rel="nofollow"><li><i class="icon-link"></i>r language (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#ruby-ref" rel="nofollow"><li><i class="icon-link"></i>ruby (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ruby on rails-ref" rel="nofollow"><li><i class="icon-link"></i>ruby on rails (1)
 		</li></a>
     
 	
@@ -705,6 +717,12 @@ GitHub Pages 有以下几个优点：
 	
 		
 		<a href="/blog/category/#technique-ref" rel="nofollow"><li><i class="icon-link"></i>technique (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#test-ref" rel="nofollow"><li><i class="icon-link"></i>test (1)
 		</li></a>
     
 	
@@ -804,6 +822,34 @@ GitHub Pages 有以下几个优点：
     
 		
 		<li>
+		<!--a href="/blog/tag/#facebook-ref" rel="nofollow">facebook</a-->
+		<a href="/blog/tag/#facebook-ref" rel="nofollow">facebook
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox</a-->
+		<a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#resume-ref" rel="nofollow">resume</a-->
+		<a href="/blog/tag/#resume-ref" rel="nofollow">resume
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#cv-ref" rel="nofollow">cv</a-->
+		<a href="/blog/tag/#cv-ref" rel="nofollow">cv
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth</a-->
 		<a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth
 		</a>
@@ -874,8 +920,92 @@ GitHub Pages 有以下几个优点：
 	
 		
 		<li>
+		<!--a href="/blog/tag/#Flash-ref" rel="nofollow">Flash</a-->
+		<a href="/blog/tag/#Flash-ref" rel="nofollow">Flash
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Gorjanc+Gregor-ref" rel="nofollow">Gorjanc Gregor</a-->
+		<a href="/blog/tag/#Gorjanc Gregor-ref" rel="nofollow">Gorjanc Gregor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript</a-->
+		<a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#maptools-ref" rel="nofollow">maptools</a-->
+		<a href="/blog/tag/#maptools-ref" rel="nofollow">maptools
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#pointLabel%28%29-ref" rel="nofollow">pointLabel()</a-->
+		<a href="/blog/tag/#pointLabel()-ref" rel="nofollow">pointLabel()
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#R4X-ref" rel="nofollow">R4X</a-->
+		<a href="/blog/tag/#R4X-ref" rel="nofollow">R4X
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Romain+Francois-ref" rel="nofollow">Romain Francois</a-->
+		<a href="/blog/tag/#Romain Francois-ref" rel="nofollow">Romain Francois
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Simon+Urbanek-ref" rel="nofollow">Simon Urbanek</a-->
+		<a href="/blog/tag/#Simon Urbanek-ref" rel="nofollow">Simon Urbanek
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#snippets-ref" rel="nofollow">snippets</a-->
+		<a href="/blog/tag/#snippets-ref" rel="nofollow">snippets
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject</a-->
+		<a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#Tag+Cloud-ref" rel="nofollow">Tag Cloud</a-->
 		<a href="/blog/tag/#Tag Cloud-ref" rel="nofollow">Tag Cloud
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress</a-->
+		<a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus</a-->
+		<a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus
 		</a>
 		</li>
 	
@@ -904,6 +1034,13 @@ GitHub Pages 有以下几个优点：
 		<li>
 		<!--a href="/blog/tag/#javascript-ref" rel="nofollow">javascript</a-->
 		<a href="/blog/tag/#javascript-ref" rel="nofollow">javascript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB</a-->
+		<a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB
 		</a>
 		</li>
 	

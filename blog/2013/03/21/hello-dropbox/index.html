@@ -5,11 +5,11 @@
     * Author: Alfred Sun
     -->
     <meta charset="utf-8" />
-    <title>如何启用 root 用户登录 Fedora ？</title>
+    <title>Hello, Dropbox</title>
     <meta name="author" content="Alfred Sun" />
     <meta name="renderer" content="webkit">
-    <meta name="description" content="正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… | ]Alfred's Blog" />
-    <meta name="keywords" content="fedora, root, linux, login">
+    <meta name="description" content="I'm very excited to let you know that I'm joining Dropbox. After two years at Facebook I couldn't be more proud. Proud to have been part of somethi... | ]Alfred's Blog" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
     <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
@@ -64,8 +64,8 @@
 
 	<div id="content">
 		<div class="entry">
-			<h1 class="entry-title"><a href="/blog/2015/04/29/login-fedora-with-root/" title="如何启用 root 用户登录 Fedora ？">如何启用 root 用户登录 Fedora ？</a></h1>
-			<!--p class="entry-date">2015-04-29</p-->
+			<h1 class="entry-title"><a href="/blog/2013/03/21/hello-dropbox/" title="Hello, Dropbox">Hello, Dropbox</a></h1>
+			<!--p class="entry-date">2013-03-21</p-->
 			<div class="pageInfo">
 
   
@@ -90,9 +90,7 @@
 
 
 
-  
-
-<span><time datetime="2015-04-29T00:00:00+08:00" pubdate data-updated="true">2015-04-29</time></span>
+<span><time datetime="2013-03-21T00:00:00+08:00" pubdate data-updated="true">2013-03-21</time></span>
 
 
 
@@ -103,7 +101,7 @@
   
   
     
-		<a href="/blog/category/#linux-ref" title="Category: linux" rel="category">linux</a>
+		<a href="/blog/category/#career-ref" title="Category: career" rel="category">career</a>
     
   
 
@@ -122,56 +120,36 @@
   
   
     
-		<!--a href="/blog/tag/#Fedora-ref" title="Tag: Fedora" rel="tag">Fedora</a-->
-		<a href="/blog/tag/#Fedora-ref" title="Tag: Fedora" rel="tag">Fedora</a>&nbsp;
+		<!--a href="/blog/tag/#facebook-ref" title="Tag: facebook" rel="tag">facebook</a-->
+		<a href="/blog/tag/#facebook-ref" title="Tag: facebook" rel="tag">facebook</a>&nbsp;
     
-		<!--a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a-->
-		<a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a>
+		<!--a href="/blog/tag/#dropbox-ref" title="Tag: dropbox" rel="tag">dropbox</a-->
+		<a href="/blog/tag/#dropbox-ref" title="Tag: dropbox" rel="tag">dropbox</a>
     
   
 
 </div>
 
 
-			<p>以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。</p>
+			<p><img src="/media/pictures/8580803186_ccf9d4337b_o.png" width="50%" align="right">I&rsquo;m very excited to let you know that I&rsquo;m joining <a href="https://www.dropbox.com/">Dropbox</a>.</p>
 
-<p>在终端输入：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-</code></pre></div>
-<p>注释掉这段及前面加上#号，如下：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
-</code></pre></div>
-<p>保存之后注销再用 root 和密码登陆就好了。</p>
+<p>After two years at Facebook I couldn&rsquo;t be more proud. Proud to have been part of something as important as Facebook and proud of the work I&rsquo;ve done with shaping the future of mobile communication. It&rsquo;s truly been a fantastic time of my life - an experience rich of great people, mind-boggling challenges and once-in-a-lifetime experiences.</p>
 
-<p>修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  </p>
+<blockquote>
+<p>Look at the past for inspiration, but focus on the future, because tomorrow is shaped by the choices we make today.</p>
+</blockquote>
 
-<p>一般修改方法:  </p>
+<p>At Dropbox I&rsquo;m going to work hard to make all our lives better. Remove friction from technical details in our modern daily lives, and relieve us from worrying about our &ldquo;stuff&rdquo; - from quick snapshots and hasty notes to precious memories.</p>
 
-<p>在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">vim /etc/pam.d/gdm  
-</code></pre></div>
-<p>在这段 &ldquo;auth required pam<em>succeed</em>if.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  </p>
-
-<p>同样的 vim /etc/pam.d/gdm-password<br>
-也是在 auth required pam<em>succeed</em>if.so user != root quiet 前面加上 # 号注释</p>
-
-<p>保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  </p>
-
-<!--more-->
-
-<p>从博主目前的使用来看，Fedora 20 和 Fedora 21 都去除了这种权限设置，允许 root 登录系统。</p>
+<p>This is going to be such a fun adventure.</p>
 
 
 			
 			<footer>
 			<p class="meta">
 			
-            <a class="basic-alignment left" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" title="Previous Post: 十个基础算法及其讲解">&laquo; 十个基础算法及其讲解</a>
             
-            
-            <a class="basic-alignment right" href="/blog/2015/05/04/linux-tar-command/" title="Next Post: 学习 tar 压缩命令">学习 tar 压缩命令 &raquo;</a>
+            <a class="basic-alignment right" href="/blog/2013/05/26/difference-between-resume-and-cv/" title="Next Post: resume和cv的区别">resume和cv的区别 &raquo;</a>
             
 			</p>
 			</footer>
@@ -203,7 +181,7 @@ Password:
 					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
                     <script>
 var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
-window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"如何启用 root 用户登录 Fedora ？ | Vermillion Phoinix by Alfred Sun //正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"Hello, Dropbox | Vermillion Phoinix by Alfred Sun //I'm very excited to let you know that I'm joining Dropbox. After two years at Facebook I couldn't be more proud. Proud to have been part of something as important as Facebook and proud of the work I've done with shaping the future of mobile communication. It's truly been a fantastic time of my life. At Dropbox I'm going to work hard to make all our lives better. Remove friction from technical details in our modern daily lives, and relieve us from worrying about our 'stuff' — from quick snapshots and hasty notes to precious memories. ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                     </script>
 				</div>
 				<div style="margin-bottom: 52px;">
@@ -213,7 +191,7 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
 				</div>
 				<div id="disqus_thread"></div>
-				<div class="ds-thread" data-thread-key="/blog/2015/04/29/login-fedora-with-root" data-title="如何启用 root 用户登录 Fedora ？ | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/04/29/login-fedora-with-root/"></div>
+				<div class="ds-thread" data-thread-key="/blog/2013/03/21/hello-dropbox" data-title="Hello, Dropbox | Vermillion Phoinix by Alfred Sun" data-url="/blog/2013/03/21/hello-dropbox/"></div>
 			</div>
 
 			<div id="footer">
@@ -247,7 +225,7 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 
 		<div class="sidenav">
 			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
-			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/04/29/login-fedora-with-root/" target="_blank">
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2013/03/21/hello-dropbox/" target="_blank">
 				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
             <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
 		</div>
@@ -256,18 +234,6 @@ window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"
 			<h2>Related Blog</h2>
 			<ul class="artical-list">
 			
-				
-				
-					<li><a href="/blog/2015/06/18/daemon-implementation/">Linux 守护进程的实现</a></li>
-				
-				
-				
-					<li><a href="/blog/2015/05/13/bash-notes/">Bash 学习笔记</a></li>
-				
-				
-				
-					<li><a href="/blog/2015/05/04/linux-tar-command/">学习 tar 压缩命令</a></li>
-				
 				
 				
 				

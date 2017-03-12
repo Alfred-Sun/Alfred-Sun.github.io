@@ -235,27 +235,22 @@ Here Documents 的更多使用方法参考这里：http://tldp.org/LDP/abs/html/
 		  </header>
 		<div class="con">
 		  <ol>
-<li>Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings</li>
-<li>Set &ldquo;xsettings/Net/SoundThemeName&rdquo; in the Settings Manager (to a sound theme located in /usr/share/sounds).</li>
-<li>Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done automatically by install the libcanberra package, in Xubuntu and Fedora I had to manually create the file: see <a href="http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205">http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205</a>)</li>
-<li>Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)</li>
-<li>Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).</li>
+<li>Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings<br></li>
+<li>Set &ldquo;xsettings/Net/SoundThemeName&rdquo; in the Settings Manager (to a sound theme located in /usr/share/sounds).<br></li>
+<li>Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done automatically by install the libcanberra package, in Xubuntu and Fedora I had to manually create the file: see <a href="http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205">http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205</a>)<br></li>
+<li>Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)<br></li>
+<li>Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).<br></li>
 </ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># /etc/X11/xinit/xinitrc.d/50-xinput.sh</span>
 
-<p>// /etc/X11/xinit/xinitrc.d/50-xinput.sh</p>
-
-<p>if [ -z &ldquo;$GTK<em>MODULES&rdquo; ] ; then
-    GTK</em>MODULES=&ldquo;canberra-gtk-module&rdquo;
-else
-    GTK<em>MODULES=&ldquo;$GTK</em>MODULES:canberra-gtk-module&rdquo;
-fi
-export GTK_MODULES</p>
-
+<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&quot;$GTK_MODULES&quot;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="nv">GTK_MODULES</span><span class="o">=</span><span class="s2">&quot;canberra-gtk-module&quot;</span>
+<span class="k">else</span>
+    <span class="nv">GTK_MODULES</span><span class="o">=</span><span class="s2">&quot;$GTK_MODULES:canberra-gtk-module&quot;</span>
+<span class="k">fi</span>
+<span class="nb">export </span>GTK_MODULES
+</code></pre></div>
 <p>注销重新登录，声音就出现了。</p>
-
-<p>默认情况下，桌面环境安装的声音主题是 “freedesktop”，如果要更改，需要到 “xsettings/Net/SoundThemeName” 中设定。</p>
-
-<p>另外，可能你会发现并没有听见声音特效，这时你要确认下声音主题里面是否包含你所触发的事件的声音文件。</p>
  <!--post.excerpt | strip_html-->
 		  <!--
 Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings
@@ -264,21 +259,16 @@ Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done auto
 Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)
 Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).
 
+# /etc/X11/xinit/xinitrc.d/50-xinput.sh
 
-// /etc/X11/xinit/xinitrc.d/50-xinput.sh
-
-if [ -z &ldquo;$GTKMODULES&rdquo; ] ; then
-    GTKMODULES=&ldquo;canberra-gtk-module&rdquo;
+if [ -z &quot;$GTK_MODULES&quot; ] ; then
+    GTK_MODULES=&quot;canberra-gtk-module&quot;
 else
-    GTKMODULES=&ldquo;$GTKMODULES:canberra-gtk-module&rdquo;
+    GTK_MODULES=&quot;$GTK_MODULES:canberra-gtk-module&quot;
 fi
 export GTK_MODULES
 
 注销重新登录，声音就出现了。
-
-默认情况下，桌面环境安装的声音主题是 “freedesktop”，如果要更改，需要到 “xsettings/Net/SoundThemeName” 中设定。
-
-另外，可能你会发现并没有听见声音特效，这时你要确认下声音主题里面是否包含你所触发的事件的声音文件。
 
 -->
 		  <!--a class="more" href="/blog/2015/05/06/how-to-enable-event-sounds-in-xfce/">[继续阅读]</a-->
@@ -340,66 +330,6 @@ Microsoft Launches Visual Studio Code, A Free Cross-Platform Code Editor For OS 
 	
 	<article class="post">
 		<div class="date">
-		  <span class="day">05</span>
-		  <span class="month">May</span>
-		  <span class="year">2015</span>
-		 </div>
-		  <header>
-		  <h2><a href="/blog/2015/05/05/problems-with-using-chrome/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
-		  </header>
-		<div class="con">
-		  <p>在终端输入</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-</code></pre></div>
-<p>注释掉这段及前面加上#号  如下</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
-</code></pre></div>
-<p>保存之后注销再用root和密码登陆就好了。</p>
-
-<p>修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  </p>
-
-<p>一般修改方法:<br>
-在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改<br>
-gdit /etc/pam.d/gdm<br>
-在这段&quot;auth required pam<em>succeed</em>if.so user != root quiet&quot;加上#号注释掉就可以了  </p>
-
-<p>同样的gdit /etc/pam.d/gdm-password<br>
-也是在auth required pam<em>succeed</em>if.so user != root quiet前面加上#号注释<br>
-保存之后我们重启或者注销一次计算机就能以root进行登录系统了  </p>
- <!--post.excerpt | strip_html-->
-		  <!--在终端输入
-[test@fedora ~]$ su  
-Password:   
-[root@fedora test]# vim /etc/pam.d/gdm-password  
-
-注释掉这段及前面加上#号  如下
-#auth        required      pam_succeed_if.so user != root quiet  
-
-保存之后注销再用root和密码登陆就好了。
-
-修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  
-
-一般修改方法:
-在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
-gdit /etc/pam.d/gdm
-在这段&quot;auth required pamsucceedif.so user != root quiet&quot;加上#号注释掉就可以了  
-
-同样的gdit /etc/pam.d/gdm-password
-也是在auth required pamsucceedif.so user != root quiet前面加上#号注释
-保存之后我们重启或者注销一次计算机就能以root进行登录系统了  
-
--->
-		  <!--a class="more" href="/blog/2015/05/05/problems-with-using-chrome/">[继续阅读]</a-->
-		  <footer>
-			<a rel="nofollow" href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">Read on &rarr;</a>
-		  </footer>
-		</div>
-	</article>
-	
-	<article class="post">
-		<div class="date">
 		  <span class="day">04</span>
 		  <span class="month">May</span>
 		  <span class="year">2015</span>
@@ -408,171 +338,41 @@ gdit /etc/pam.d/gdm
 		  <h2><a href="/blog/2015/05/04/linux-tar-command/" title="学习 tar 压缩命令" target="_blank">学习 tar 压缩命令</a></h2>
 		  </header>
 		<div class="con">
-		  <p>linux解压 tar命令</p>
+		  <h2>linux解压 tar命令</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">tar [-cxtzjvfpPN] 文件与目录 ....
+</code></pre></div>
+<h2>参数：</h2>
 
-<p>tar [-cxtzjvfpPN] 文件与目录 &hellip;.</p>
-
-<p>参数：</p>
-
-<p>-c ：建立一个压缩文件的参数指令(create 的意思)； 
--x ：解开一个压缩文件的参数指令！ 
--t ：查看 tarfile 里面的文件！ 
-特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！ 
-因为不可能同时压缩与解压缩。 
--z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？ 
--j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？ 
--v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！ 
--f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数！ 
-　　　例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 
-　　　『 tar -zcvPf tfile sfile』才对喔！ 
--p ：使用原文件的原来属性（属性不会依据使用者而变） 
--P ：可以使用绝对路径来压缩！ 
--N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！ 
-&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！ 
-范例： 
-范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar 
-[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;<mark>仅打包，不压缩！ 
-[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;</mark>打包后，以 gzip 压缩 
-[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 </p>
-
-<h1>特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。</h1>
-
-<h1>如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～</h1>
-
-<h1>如果加 j 参数，则以 .tar.bz2 来作为附档名啊～</h1>
-
-<h1>上述指令在执行的时候，会显示一个警告讯息：</h1>
-
-<h1>『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。</h1>
-
-<p>范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ 
-[root@linux ~]# tar -ztvf /tmp/etc.tar.gz </p>
-
-<h1>由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时，</h1>
-
-<h1>就得要加上 z 这个参数了！这很重要的！</h1>
-
-<p>范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 
-[root@linux ~]# cd /usr/local/src 
-[root@linux src]# tar -zxvf /tmp/etc.tar.gz </p>
-
-<h1>在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说，</h1>
-
-<h1>我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ，</h1>
-
-<h1>则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc</h1>
-
-<h1>则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！</h1>
-
-<p>范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 
-[root@linux ~]# cd /tmp 
-[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd </p>
-
-<h1>我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件，</h1>
-
-<h1>就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！</h1>
-
-<p>范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ 
-[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc </p>
-
-<h1>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！</h1>
-
-<p>范例六：在 /home 当中，比 2005/06/01 新的文件才备份 
-[root@linux ~]# tar -N &quot;2005/06/01&rdquo; -zcvf home.tar.gz /home
-范例七：我要备份 /home, /etc ，但不要 /home/dmtsai 
-[root@linux ~]# tar &ndash;exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
-范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！ 
-[root@linux ~]# cd /tmp 
-[root@linux tmp]# tar -cvf - /etc | tar -xvf - </p>
-
-<h1>这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！</h1>
-
-<h1>要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～</h1>
-
-<h1>这分别代表 standard output, standard input 与管线命令啦！</h1>
+<p>-c ：建立一个压缩文件的参数指令(create 的意思)；<br>
+-x ：解开一个压缩文件的参数指令！<br>
+-t ：查看 tarfile 里面的文件！<br>
+<strong>特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！因为不可能同时压缩与解压缩。</strong><br>
+-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？<br>
+-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？<br>
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！<br>
+-f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数，例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 『 tar -zcvPf tfile sfile』才对喔！<br>
+-p ：使用原文件的原来属性（属性不会依据使用者而变）<br>
+-P ：可以使用绝对路径来压缩！<br>
+-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！<br>
+&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！  </p>
  <!--post.excerpt | strip_html-->
 		  <!--linux解压 tar命令
-
-tar [-cxtzjvfpPN] 文件与目录 &hellip;.
+tar [-cxtzjvfpPN] 文件与目录 ....
 
 参数：
 
--c ：建立一个压缩文件的参数指令(create 的意思)； 
--x ：解开一个压缩文件的参数指令！ 
--t ：查看 tarfile 里面的文件！ 
-特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！ 
-因为不可能同时压缩与解压缩。 
--z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？ 
--j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？ 
--v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！ 
--f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数！ 
-　　　例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 
-　　　『 tar -zcvPf tfile sfile』才对喔！ 
--p ：使用原文件的原来属性（属性不会依据使用者而变） 
--P ：可以使用绝对路径来压缩！ 
--N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！ 
-&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！ 
-范例： 
-范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar 
-[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;仅打包，不压缩！ 
-[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;打包后，以 gzip 压缩 
-[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 
-
-特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。
-
-如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～
-
-如果加 j 参数，则以 .tar.bz2 来作为附档名啊～
-
-上述指令在执行的时候，会显示一个警告讯息：
-
-『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。
-
-范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ 
-[root@linux ~]# tar -ztvf /tmp/etc.tar.gz 
-
-由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时，
-
-就得要加上 z 这个参数了！这很重要的！
-
-范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 
-[root@linux ~]# cd /usr/local/src 
-[root@linux src]# tar -zxvf /tmp/etc.tar.gz 
-
-在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说，
-
-我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ，
-
-则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc
-
-则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！
-
-范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 
-[root@linux ~]# cd /tmp 
-[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd 
-
-我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件，
-
-就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！
-
-范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ 
-[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc 
-
-这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！
-
-范例六：在 /home 当中，比 2005/06/01 新的文件才备份 
-[root@linux ~]# tar -N &quot;2005/06/01&rdquo; -zcvf home.tar.gz /home
-范例七：我要备份 /home, /etc ，但不要 /home/dmtsai 
-[root@linux ~]# tar &ndash;exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
-范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！ 
-[root@linux ~]# cd /tmp 
-[root@linux tmp]# tar -cvf - /etc | tar -xvf - 
-
-这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！
-
-要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～
-
-这分别代表 standard output, standard input 与管线命令啦！
+-c ：建立一个压缩文件的参数指令(create 的意思)；
+-x ：解开一个压缩文件的参数指令！
+-t ：查看 tarfile 里面的文件！
+特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！因为不可能同时压缩与解压缩。
+-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？
+-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！
+-f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数，例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 『 tar -zcvPf tfile sfile』才对喔！
+-p ：使用原文件的原来属性（属性不会依据使用者而变）
+-P ：可以使用绝对路径来压缩！
+-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！
+&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！  
 
 -->
 		  <!--a class="more" href="/blog/2015/05/04/linux-tar-command/">[继续阅读]</a-->
@@ -584,60 +384,130 @@ tar [-cxtzjvfpPN] 文件与目录 &hellip;.
 	
 	<article class="post">
 		<div class="date">
-		  <span class="day">03</span>
-		  <span class="month">May</span>
+		  <span class="day">29</span>
+		  <span class="month">Apr</span>
 		  <span class="year">2015</span>
 		 </div>
 		  <header>
-		  <h2><a href="/blog/2015/05/03/install-vmware-tools-on-linux/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
+		  <h2><a href="/blog/2015/04/29/login-fedora-with-root/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
 		  </header>
 		<div class="con">
-		  <p>在终端输入</p>
+		  <p>以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。</p>
+
+<p>在终端输入：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
 Password:   
 [root@fedora test]# vim /etc/pam.d/gdm-password  
 </code></pre></div>
-<p>注释掉这段及前面加上#号  如下</p>
+<p>注释掉这段及前面加上#号，如下：</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
 </code></pre></div>
-<p>保存之后注销再用root和密码登陆就好了。</p>
+<p>保存之后注销再用 root 和密码登陆就好了。</p>
 
-<p>修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  </p>
+<p>修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  </p>
 
-<p>一般修改方法:<br>
-在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改<br>
-gdit /etc/pam.d/gdm<br>
-在这段&quot;auth required pam<em>succeed</em>if.so user != root quiet&quot;加上#号注释掉就可以了  </p>
+<p>一般修改方法:  </p>
 
-<p>同样的gdit /etc/pam.d/gdm-password<br>
-也是在auth required pam<em>succeed</em>if.so user != root quiet前面加上#号注释<br>
-保存之后我们重启或者注销一次计算机就能以root进行登录系统了  </p>
+<p>在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">vim /etc/pam.d/gdm  
+</code></pre></div>
+<p>在这段 &ldquo;auth required pam<em>succeed</em>if.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  </p>
+
+<p>同样的 vim /etc/pam.d/gdm-password<br>
+也是在 auth required pam<em>succeed</em>if.so user != root quiet 前面加上 # 号注释</p>
+
+<p>保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  </p>
  <!--post.excerpt | strip_html-->
-		  <!--在终端输入
+		  <!--以前的 Fedora 发行版默认无法 root 登录系统，需要在普通账户下修改配置文件。
+
+在终端输入：
 [test@fedora ~]$ su  
 Password:   
 [root@fedora test]# vim /etc/pam.d/gdm-password  
 
-注释掉这段及前面加上#号  如下
+注释掉这段及前面加上#号，如下：
 #auth        required      pam_succeed_if.so user != root quiet  
 
-保存之后注销再用root和密码登陆就好了。
+保存之后注销再用 root 和密码登陆就好了。
 
-修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  
+修改目录 /etc/pam.d/gdm 与 /etc/pam.d/gdm-password 两个文件  
 
-一般修改方法:
-在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
-gdit /etc/pam.d/gdm
-在这段&quot;auth required pamsucceedif.so user != root quiet&quot;加上#号注释掉就可以了  
+一般修改方法:  
 
-同样的gdit /etc/pam.d/gdm-password
-也是在auth required pamsucceedif.so user != root quiet前面加上#号注释
-保存之后我们重启或者注销一次计算机就能以root进行登录系统了  
+在终端中输入su 命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
+vim /etc/pam.d/gdm  
+
+在这段 &ldquo;auth required pamsucceedif.so user != root quiet&rdquo; 加上 # 号注释掉就可以了  
+
+同样的 vim /etc/pam.d/gdm-password
+也是在 auth required pamsucceedif.so user != root quiet 前面加上 # 号注释
+
+保存之后我们重启或者注销一次计算机就能以 root 进行登录系统了  
 
 -->
-		  <!--a class="more" href="/blog/2015/05/03/install-vmware-tools-on-linux/">[继续阅读]</a-->
+		  <!--a class="more" href="/blog/2015/04/29/login-fedora-with-root/">[继续阅读]</a-->
 		  <footer>
-			<a rel="nofollow" href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">Read on &rarr;</a>
+			<a rel="nofollow" href="/blog/2015/04/29/login-fedora-with-root/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">11</span>
+		  <span class="month">Mar</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" title="十个基础算法及其讲解" target="_blank">十个基础算法及其讲解</a></h2>
+		  </header>
+		<div class="con">
+		  <p><img src="/media/pictures/ten-basic-algorithms-for-programmers/suanfa.jpg" alt="Algorithms"></p>
+
+<h2>算法一：快速排序算法</h2>
+
+<p><strong>快速排序</strong>是由东尼·霍尔所发展的一种排序算法。<br>
+在平均状况下，排序 n 个项目要 <strong>Ο(nlogn)</strong> 次比较。在最坏状况下则需要 Ο(n^2) 次比较，但这种状况并不常见。事实上，快速排序通常明显比其他 Ο(nlogn) 算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地被实现出来。</p>
+
+<p>快速排序使用<strong>分治法</strong>（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。</p>
+
+<p><img src="/media/pictures/ten-basic-algorithms-for-programmers/quicksort.gif" alt="QuickSort"></p>
+
+<h3>算法步骤</h3>
+
+<ol>
+<li>从数列中挑出一个元素，称为 “基准”（pivot）。</li>
+<li>重新排序数列，所有元素比<strong>基准值</strong>小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。</li>
+<li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
+</ol>
+
+<p>递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会退出，因为在每次的<strong>迭代</strong>（iteration）中，它至少会把一个元素摆到它最后的位置去。</p>
+ <!--post.excerpt | strip_html-->
+		  <!--
+
+算法一：快速排序算法
+
+快速排序是由东尼·霍尔所发展的一种排序算法。
+在平均状况下，排序 n 个项目要 Ο(nlogn) 次比较。在最坏状况下则需要 Ο(n^2) 次比较，但这种状况并不常见。事实上，快速排序通常明显比其他 Ο(nlogn) 算法更快，因为它的内部循环（inner loop）可以在大部分的架构上很有效率地被实现出来。
+
+快速排序使用分治法（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。
+
+
+
+算法步骤
+
+
+从数列中挑出一个元素，称为 “基准”（pivot）。
+重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
+递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。
+
+
+递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会退出，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。
+
+-->
+		  <!--a class="more" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">Read on &rarr;</a>
 		  </footer>
 		</div>
 	</article>
@@ -684,27 +554,9 @@ gdit /etc/pam.d/gdm
 		</li>
 	</a>
 	
-	<a href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
 	<a href="/blog/2015/05/04/linux-tar-command/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		学习 tar 压缩命令
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
-		</li>
-	</a>
-	
-	<a href="/blog/2015/05/01/install-openbox-wm/" target="_blank">
-		<li><i class="icon-hand-o-right"></i>
-		如何启用 root 用户登录 Fedora ？
 		</li>
 	</a>
 	
@@ -717,6 +569,24 @@ gdit /etc/pam.d/gdm
 	<a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">
 		<li><i class="icon-hand-o-right"></i>
 		十个基础算法及其讲解
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/08/bash-special-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Bash 快捷键
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/04/vim-commands-frequently-used/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim 常用命令小结
+		</li>
+	</a>
+	
+	<a href="/blog/2015/02/04/remap-capslock-key/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Vim技巧——将 CapsLock 键映射成 Esc键
 		</li>
 	</a>
 	
@@ -754,7 +624,25 @@ gdit /etc/pam.d/gdm
 	
 	
 		
+		<a href="/blog/category/#career-ref" rel="nofollow"><li><i class="icon-link"></i>career (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#computer science-ref" rel="nofollow"><li><i class="icon-link"></i>computer science (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#css-ref" rel="nofollow"><li><i class="icon-link"></i>css (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#database-ref" rel="nofollow"><li><i class="icon-link"></i>database (1)
 		</li></a>
     
 	
@@ -773,6 +661,12 @@ gdit /etc/pam.d/gdm
 	
 		
 		<a href="/blog/category/#emacs-ref" rel="nofollow"><li><i class="icon-link"></i>emacs (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#featured-ref" rel="nofollow"><li><i class="icon-link"></i>featured (1)
 		</li></a>
     
 	
@@ -820,7 +714,7 @@ gdit /etc/pam.d/gdm
 	
 	
 		
-		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (3)
+		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (4)
 		</li></a>
     
 	
@@ -832,13 +726,19 @@ gdit /etc/pam.d/gdm
 	
 	
 		
-		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (7)
+		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (4)
 		</li></a>
     
 	
 	
 		
 		<a href="/blog/category/#markdown-ref" rel="nofollow"><li><i class="icon-link"></i>markdown (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#nginx-ref" rel="nofollow"><li><i class="icon-link"></i>nginx (1)
 		</li></a>
     
 	
@@ -856,7 +756,19 @@ gdit /etc/pam.d/gdm
 	
 	
 		
+		<a href="/blog/category/#r language-ref" rel="nofollow"><li><i class="icon-link"></i>r language (1)
+		</li></a>
+    
+	
+	
+		
 		<a href="/blog/category/#ruby-ref" rel="nofollow"><li><i class="icon-link"></i>ruby (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ruby on rails-ref" rel="nofollow"><li><i class="icon-link"></i>ruby on rails (1)
 		</li></a>
     
 	
@@ -875,6 +787,12 @@ gdit /etc/pam.d/gdm
 	
 		
 		<a href="/blog/category/#technique-ref" rel="nofollow"><li><i class="icon-link"></i>technique (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#test-ref" rel="nofollow"><li><i class="icon-link"></i>test (1)
 		</li></a>
     
 	
@@ -974,6 +892,34 @@ gdit /etc/pam.d/gdm
     
 		
 		<li>
+		<!--a href="/blog/tag/#facebook-ref" rel="nofollow">facebook</a-->
+		<a href="/blog/tag/#facebook-ref" rel="nofollow">facebook
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox</a-->
+		<a href="/blog/tag/#dropbox-ref" rel="nofollow">dropbox
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#resume-ref" rel="nofollow">resume</a-->
+		<a href="/blog/tag/#resume-ref" rel="nofollow">resume
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#cv-ref" rel="nofollow">cv</a-->
+		<a href="/blog/tag/#cv-ref" rel="nofollow">cv
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth</a-->
 		<a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth
 		</a>
@@ -1044,8 +990,92 @@ gdit /etc/pam.d/gdm
 	
 		
 		<li>
+		<!--a href="/blog/tag/#Flash-ref" rel="nofollow">Flash</a-->
+		<a href="/blog/tag/#Flash-ref" rel="nofollow">Flash
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Gorjanc+Gregor-ref" rel="nofollow">Gorjanc Gregor</a-->
+		<a href="/blog/tag/#Gorjanc Gregor-ref" rel="nofollow">Gorjanc Gregor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript</a-->
+		<a href="/blog/tag/#JavaScript-ref" rel="nofollow">JavaScript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#maptools-ref" rel="nofollow">maptools</a-->
+		<a href="/blog/tag/#maptools-ref" rel="nofollow">maptools
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#pointLabel%28%29-ref" rel="nofollow">pointLabel()</a-->
+		<a href="/blog/tag/#pointLabel()-ref" rel="nofollow">pointLabel()
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#R4X-ref" rel="nofollow">R4X</a-->
+		<a href="/blog/tag/#R4X-ref" rel="nofollow">R4X
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Romain+Francois-ref" rel="nofollow">Romain Francois</a-->
+		<a href="/blog/tag/#Romain Francois-ref" rel="nofollow">Romain Francois
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Simon+Urbanek-ref" rel="nofollow">Simon Urbanek</a-->
+		<a href="/blog/tag/#Simon Urbanek-ref" rel="nofollow">Simon Urbanek
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#snippets-ref" rel="nofollow">snippets</a-->
+		<a href="/blog/tag/#snippets-ref" rel="nofollow">snippets
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject</a-->
+		<a href="/blog/tag/#SWFObject-ref" rel="nofollow">SWFObject
+		</a>
+		</li>
+	
+		
+		<li>
 		<!--a href="/blog/tag/#Tag+Cloud-ref" rel="nofollow">Tag Cloud</a-->
 		<a href="/blog/tag/#Tag Cloud-ref" rel="nofollow">Tag Cloud
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress</a-->
+		<a href="/blog/tag/#Wordpress-ref" rel="nofollow">Wordpress
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus</a-->
+		<a href="/blog/tag/#wp-cumulus-ref" rel="nofollow">wp-cumulus
 		</a>
 		</li>
 	
@@ -1074,6 +1104,13 @@ gdit /etc/pam.d/gdm
 		<li>
 		<!--a href="/blog/tag/#javascript-ref" rel="nofollow">javascript</a-->
 		<a href="/blog/tag/#javascript-ref" rel="nofollow">javascript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB</a-->
+		<a href="/blog/tag/#MongoDB-ref" rel="nofollow">MongoDB
 		</a>
 		</li>
 	
