@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>gem相关命令使用</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Alfred's Blog" />
+    <meta name="keywords" content="ruby, gem">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/11/28/gem-command/" title="gem相关命令使用">gem相关命令使用</a></h1>
+			<!--p class="entry-date">2014-11-28</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+<span><time datetime="2014-11-28T00:00:00+08:00" pubdate data-updated="true">2014-11-28</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#ruby-ref" title="Category: ruby" rel="category">ruby</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#gem-ref" title="Tag: gem" rel="tag">gem</a-->
+		<a href="/blog/tag/#gem-ref" title="Tag: gem" rel="tag">gem</a>
+    
+  
+
+</div>
+
+
+			<h2>1.显示 gem 的帮助和版本</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem –h/--help
+<span class="c">#显示gem的帮助</span>
+gem –v /--version
+<span class="c">#显示gem的版本号</span>
+</code></pre></div>
+<h2>2. 列出远程库的所有可用软件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --remote
+<span class="c"># 短命令: gem q -r</span>
+</code></pre></div>
+<p>你可以看到一个关于远程主机上所有软件的详细列表。</p>
+
+<h2>3. 查找远程主机上的特定软件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --remote --name-matches doom
+<span class="c"># 短命令: gem q -rn doom</span>
+<span class="c"># 你将看到一个匹配doom的详细列表。</span>
+</code></pre></div>
+<h2>4. List remote gems</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem list –remote --d
+<span class="c">#用子命令list列出远程安装的gems</span>
+</code></pre></div>
+<!--more-->
+
+<h3>4.1 安装一个远程软件</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem install --remote progressbar
+<span class="c"># 短命令: gem i -r progressbar –y</span>
+<span class="c"># 远程安装progressbar到你的主机，-y的意思是无条件的安装依赖包</span>
+gem install rails –remote
+<span class="c">#从远程服务器安装rails包，其中rails可以被替换成任何一个gem list –remote –d中显示的软件包</span>
+</code></pre></div>
+<h3>4.2 安装软件的特定版本</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem ins -r progressbar-0.0.3
+<span class="c"># 安装progressbar的0.0.3版本</span>
+gem ins -r progressbar --version <span class="s1">&#39;&gt; 0.0.1&#39;</span>
+<span class="c"># 将安装progressbar的大于0.0.1的最新版本</span>
+</code></pre></div>
+<h2>5. 查看一个已安装的软件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem specification progressbar
+<span class="c"># 短命令: gem spec progressbar</span>
+<span class="c"># 你会看到关于已安装的包progressbar的详细信息。</span>
+</code></pre></div>
+<h2>6. 卸载一个软件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem uninstall progressbar
+<span class="c"># 卸载了progressbar</span>
+</code></pre></div>
+<h2>7. Installed software</h2>
+
+<h3>7.1 将所有安装的软件列表</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --local
+<span class="c"># 短命令: &#39;gem q -l&#39;</span>
+</code></pre></div>
+<h3>7.2 查看某个已安装的软件</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem query --local --name-matches doom
+<span class="c"># 短命令: &#39;gem q -ln doom&#39;</span>
+<span class="c"># 或：gem list --local</span>
+</code></pre></div>
+<h3>7.3 需要注意的安装方法</h3>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem ins rake
+<span class="c"># 会先尝试本地安装，如果本地没有就会远程下载。</span>
+gem list -b ^C
+<span class="c"># 列出本地和远程的以C开头的软件</span>
+</code></pre></div>
+<h2>8. 浏览所有安装的软件和它们的说明文档</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem_server
+</code></pre></div>
+<p>会生成一个web服务器，打开<a href="http://localhost:8808">http://localhost:8808</a> ，就可以看到一个html详细列出了你需要的信息。</p>
+
+<h2>9. 使用配置文件</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem: --gen-rdoc --run-tests
+</code></pre></div>
+<p>如果你想安装软件后总是生成它们的文档和运行单元测试，你可以在配制文件里写上相关的命令，配置文件名是.gemrc，在主目录里。</p>
+
+<h2>10. 构建 gem 包</h2>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem build package.gemspec
+<span class="c">#运用bulid子命令构建gem包</span>
+</code></pre></div>
+<hr>
+
+<p>在 window 下安装 RoR（Ruby on Rails）真的是场噩梦&hellip;</p>
+
+<p>前天准备在一台win server 2003上安装RoR环境。<br>
+安装ruby 1.86不会有什么问题。直接下载安装windows onclick install 的exe完成安装。<br>
+完成后，很熟练地执行以下命令：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">gem install rails --include-dependenices
+gem install mongrel --include-dependenices
+</code></pre></div>
+<p>接下来，我还有安装rmagick ，因为在站点中有处理图片的需要。<br>
+当然，安装Rmagick，首先会去下载合适的版本包（里面包含有imagemagick的exe安装文件和rmagick rubygem 包）。<br>
+安装rmagick&hellip;gem 的时候可能会遇到 bufffer error 的错误。这个错误的解决办法在Rmagick上有说明。就是要升级rubygems。<br>
+执行如下命令 ： 
+    gem update &ndash;system
+把rubygems升级到最新（0.95）后再来执行安装rmagick..gem 就没有问题了。<br>
+似乎问题在一个个的解决。
+继续 <code>gem install mongrel_service --include-dependenices</code>
+错误出现了：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Building native extensions. This could take a while...
+ERROR: Error installing mongrel_service:
+ERROR: Failed to build gem native extension.
+c:/ruby/bin/ruby.exe extconf.rb install mongrel_service --include-dependencies
+checking for strncpy_s()... no
+creating Makefile
+nmake
+.....
+Gem files will remain installed in c:/ruby/lib/ruby/gems/1.8/gems/win32-api-1.0.
+5 for inspection.
+Results logged to c:/ruby/lib/ruby/gems/1.8/gems/win32-api-1.0.5/ext/gem_make.ou
+t
+</code></pre></div>
+<p>重新安装了几次还问题依旧&hellip;  搜索错误，也有遇到类似错误的。就是没有解决办&hellip;<br>
+经过多次尝试， 最后，比较了别人的环境和现在遇到问题的环境，最后一次尝试是把rubygems的版本回复到以前（0.92）。<br>
+具体做法是<code>gem uninstall rubygems-update</code><br>
+如果有多个版本必须请卸载掉别的版本，卸载过程会有提示。<br>
+最后把版本恢复到0.92。<br>
+一切恢复正常了&hellip;<br>
+由此我推断，是更新到最新的rubygems引起的安装错误。如果你也不信遇到了类似的问题，可以尝试一下&hellip;<br>
+注意：如果恢复后还发现版本是0.95，可以尝试进入..\ruby\gems\1.8\gems\rubygems-update-0.9.2目录下执行setup.rb</p>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/11/27/open-search-engine/" title="Previous Post: 给做技术的朋友们推荐两个开源搜索引擎(ZZ)">&laquo; 给做技术的朋友们推荐两个开源搜索引擎(ZZ)</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/12/05/github-pages/" title="Next Post: GitHub Pages 静态博客 - 个人建站实录">GitHub Pages 静态博客 - 个人建站实录 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"gem相关命令使用 | Vermillion Phoinix by Alfred Sun ","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/11/28/gem-command" data-title="gem相关命令使用 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/11/28/gem-command/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/11/28/gem-command/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

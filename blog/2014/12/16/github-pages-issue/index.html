@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>GitHub Pages Issue</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Alfred's Blog" />
+    <meta name="keywords" content="github pages, issue">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/12/16/github-pages-issue/" title="GitHub Pages Issue">GitHub Pages Issue</a></h1>
+			<!--p class="entry-date">2014-12-16</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+<span><time datetime="2014-12-16T00:00:00+08:00" pubdate data-updated="true">2014-12-16</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#github pages-ref" title="Category: github pages" rel="category">github pages</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+  
+
+</div>
+
+
+			<h2>1. Fork 别人的 Pages 代码库不工作</h2>
+
+<p>在 GitHub 上面 Fork 别人的网站代码库后，通过自己账户下的 URL 路径无法访问网站。<br>
+这时，必须手动更新一下从人家那里 Fork 来的代码，然后提交一次；之后，一般自己账户下的网站就能正常工作了。</p>
+
+<p>如果还是不行，试试点击 GitHub 仓库的 <strong>“Settings”</strong> 中的 <strong>“GitHub Pages”</strong> 条目下的 URL 看，而先不要直接在浏览器地址栏输入网站 URL。</p>
+
+<h2>2. Not found “_site” directory destination</h2>
+
+<p><font color="red"><b>“It&rsquo;s missing, and don&rsquo;t know why&hellip;”</b></font></p>
+
+<p>根据 Jekyll 的工作机制，本地运行 Jekyll build，默认将生成的静态网站文件放在根目录下的 <code>_site</code> 目录。而 GitHub Pages 后端以 Jekyll 作为渲染引擎，解析处理网站源文件，那么也要缓存静态文件到某个地方。<br>
+现在情况是，博主没有在网站 Repo 里面找到这样的结果目录，那么 GitHub 把生成的静态文件放到哪里了呢？  </p>
+
+<p>以前，一直以为一定会放在 Repo 下面，所以当注意到没有这个 <code>_site</code> 目录时，就认为 GitHub 丢失了它；亦或是隐藏起来。</p>
+
+<p>因为想不通原因，所以干脆发 Email 问 GitHub 的员工，这才明白，原来所有的 GitHub Pages 生成的静态文件都被统一起来集中管理，并非在每个 Repo 单设一个 destination。<br>
+按照 GitHub Pages 的 URL 说明，同一用户下面所有的项目页面应该位于用户页面的根目录下（路径名即为各个项目页的目录），我想这也是以用户名作为网页域名的原因了。</p>
+
+<blockquote>
+<p>“<em>You should not include the <strong>&#95;site</strong> directory in your repository. We run a Jekyll build on the contents of your repository and publish the result (usually generated to the <strong>&#95;site</strong> directory when running locally) to our <strong>GitHub Pages infrastructure</strong>.</em>” &emsp;&emsp;&emsp;&emsp;   &ndash; From: James Dennes <em>(GitHub Staff)</em></p>
+</blockquote>
+
+<hr>
+
+<h4>后记</h4>
+
+<p>后来自己琢磨了一会儿，貌似懂了，就没再去多想，但好想遗漏了点东西。<br>
+直到某天，偶然看 Git 的教程时，看到 Git hook 这个东西，顿时想起 Jekyll 文档也有这方面的介绍。然后又是好奇地回头看了看 Jekyll，此时联想到了这个问题。</p>
+
+<p>大胆猜测下，GitHub 的后端服务器用到了 <strong>“Git post-receive hook”</strong> 这样一个 Git 功能，它能够监听来自客户端 Git 操作触发的事件，在服务端执行一些脚本。也就是说，我们每次 Push 代码后，GitHub 服务端监听到了这个事件，然后运行脚本进行 Jekyll 后台编译更新代码库的输出内容，出现问题就发送 Email。<br>
+至于，Jekyll 输出到哪里了，正如那位兄弟所说，集中到某个地方统一管理了。</p>
+
+<p>这就是之前“遗漏”的点了，终于想通了。<br>
+同时这就是解释了上面第一个问题，Fork 他人代码后，并没有触发事件，GitHub 后台也就不会执行 Jekyll 编译网站，所有这个网站无法访问。</p>
+
+<p>Jekyll 里面关于 Git hook 的说明参考 <a href="http://jekyllrb.com/docs/deployment-methods/#automated-methods"><strong>Automated methods</strong></a>。</p>
+
+<h2>3. Windows 平台安装 Ruby</h2>
+
+<!--more-->
+
+<p>不要忘记安装下面这个东西，Jekyll 依赖的某些组件可能需要 DevKit 本地进行编译。<br>
+另外，安装 Ruby 过程中一定要将 Ruby 的执行目录添加到 Windows 当前用户的 <code>PATH</code> 环境变量中：<strong>“Add Ruby executables to your PATH”</strong>。</p>
+
+<p>- <a href="https://github.com/oneclick/rubyinstaller/wiki/Development-Kit">RubyInstaller Development Kit</a><br>
+- <a href="http://rubyinstaller.org/add-ons/devkit">DevKit Overview</a></p>
+
+<h2>4. Liquid Exception: cannot load such file &ndash; yajl/2.0/yajl</h2>
+
+<p>windows下如果以pygments.rb为高亮plugin，并使用Ruby 2.0及以上版本，会出现如下错误：</p>
+
+<p><img src="/media/pictures/github-pages-issue/yajl_load_error.gif" alt="yajl load error" title="cannot load yajl"></p>
+
+<p>原因是install的预编译 yajl-ruby gems <code>x86-mingw32</code> 无法兼容 Ruby 2.0<br>
+下面是 <a href="https://groups.google.com/d/msg/rubyinstaller/mg5ailNICvM/QbBfNByec-0J">RubyInstaller announcement for Ruby 2.0.0 release</a>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">* Existing pre-compiled gems are not Ruby 2.0 compatible 
+
+Ruby 2.0 introduces ABI breakage which means compiled C extensions with previous 
+1.9.3 will work with Ruby 2.0. 
+
+DO NOT install Ruby 2.0 on top of existing Ruby 1.9.3, or try to use compiled 
+extensions with it. 
+
+You will be required to force compilation of those gems: 
+
+    gem install &lt;name&gt; --platform=ruby 
+
+This will require you have the extra dependencies required for that gem to 
+compile. Look at the gem documentation for the requirements. 
+</code></pre></div>
+<p>解决方法，要么改用1.9.x的 Ruby ，要么下载要求的<a href="http://rubygems.org/gems/yajl-ruby/versions/1.1.0">.gem</a>文件(not the pre-compiled one)，重新安装<code>yajl</code>。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">gem uninstall yajl-ruby
+<span class="c"># 删除存在的问题 gems (x86-mingw32)</span>
+gem install yajl-ruby -v 1.1.0 --platform<span class="o">=</span>ruby
+<span class="c"># 安装要求的gem文件(必需指定version，pygments.rb 0.6.0 只依赖 yajl-ruby 1.1.0)</span>
+bundle check
+</code></pre></div>
+<p><strong>Note:</strong><br>
+Bundler will keep attempting to install x86-mingw32, so you will need to be careful when doing <code>bundle install</code> or <code>bundle update</code>.</p>
+
+<p>或者也可以试试下载<a href="http://rubygems.org/gems/yajl-ruby/versions/1.1.0">.gem</a>文件，本地编译（注意，version必须指定为 <strong>1.1.0</strong>），不过windows下面可能还有点问题，因为没有<code>make</code> <code>gcc</code>命令（默认Git Shell不会安装Linux的编译指令），所以需要下载安装native Win32下的GNU开发环境<a href="http://www.mingw.org/">MinGW</a>或者<a href="http://www.cygwin.com/">Cygwin</a>。</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c"># build it yourself by installing rubyinstaller, the devkit and running:</span>
+gem install gem-compiler
+gem fetch yajl-ruby --platform<span class="o">=</span>ruby -v 1.1.0
+gem compile yajl-ruby-1.1.0.gem
+
+<span class="c"># to use the binary gem:</span>
+gem uninstall yajl-ruby
+gem install yajl-ruby-1.1.0.gem
+</code></pre></div>
+<p>相关的 yajl-ruby issue:<br>
+- <a href="https://github.com/brianmario/yajl-ruby/issues/116">brianmario/yajl-ruby#116</a><br>
+- <a href="https://github.com/jekyll/jekyll-help/issues/50">jekyll/jekyll-help#50</a></p>
+
+<h2>5. Liquid Exception: No such file or directory - python C:/Ruby193/lib/ruby/gems/1.9.1/gems/pygments.rb-0.5.0/lib/pygments/mentos.py</h2>
+
+<p>Check your <code>PATH</code> environment variable, like <code>;C:\python27</code>;<br>
+Make sure that have installed Python 2.x and set env path for pygments.rb call.</p>
+
+<p>相关的 Jekyll issue:<br>
+- <a href="https://github.com/jekyll/jekyll/issues/2551">jekyll/jekyll#2551</a></p>
+
+<p><strong>Note:</strong><br>
+之所以要安裝 Python 是因為 代码高亮 plugin &ndash; <a href="https://github.com/tmm1/pygments.rb">pygments.rb</a>，是基于 Python 的代码高亮工具 <a href="http://pygments.org/">Pygments</a> 的一个 Ruby wrapper，内嵌 Python 解释器，兼容 Python 2.5、Python 2.6 和 Python 2.7。旧版的解释是，还需安装 RubyPython 调用 Python Pygments 包；雖然 Pygments 支援 Python 2 版和 3 版，不過由於 Ruby 和 Python 之間的橋接是用 RubyPython 完成，而 <a href="http://www.rubydoc.info/gems/rubypython/0.6.3/frames#Requirements">rubypython</a> 目前只支援 Python 2。所以還是乖乖安裝 2 版吧！（<a href="https://github.com/tmm1/pygments.rb/blob/master/README.md">见pygments.rb</a>的<code>README.md</code>）</p>
+
+<h2>6. Jekyll 强制 Categories 单词小写</h2>
+
+<p><code>post</code> 可以定义 categories 和 tags，但是 Jekyll 解析 post 时会自行将 <code>categories</code> 转成小写单词输出，而 <code>tags</code> 不会转换。<br>
+比如，post的YAML front matter 是：</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+<span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Mathematica//Math-Experiment</span>
+<span class="l-Scalar-Plain">Tags</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Formula Periodic Sequence</span>
+<span class="nn">---</span>
+</code></pre></div>
+<p>而 Jekyll 会将 category 转换为 <code>mathematica//math-experiment</code> 输出。<br>
+如果不想 Jekyll 输出小写 category，可以变通下让单词首字母大写显示，但无法还原 post 定义的样式。<br>
+而如果 GitHub 上面 deploy 的是 <code>_site</code> 文件，那么可以 local 更改源码 post.rb 文件让其输出最初定义的格式，不过这样可能有潜在的问题(可以规避)。具体见下面的 issue 链接。</p>
+
+<pre><code>{% for tag in page.categories %}
+&lt;a href="{{ site.url }}/categories/index.html#{{ page.categories | cgi_encode }}" data-toggle="tooltip" title="Other posts from the {{ <font color="red">tag | capitalize</font> }} category" rel="tag"&gt;{{ <font color="red">tag | capitalize</font> }}&lt;/a&gt;
+{% unless forloop.last %}&amp;nbsp;&amp;bull;&amp;nbsp;
+{% endunless %}
+{% endfor %}
+</code></pre>
+
+<p>相关的 Jekyll issue:<br>
+- <a href="http://stackoverflow.com/questions/19074064/why-jekyll-convert-my-capital-words-into-lowercase-in-categories">Why Jekyll convert my Capital words into lowercase in Categories</a><br>
+- <a href="https://github.com/jekyll/jekyll/issues/842">jekyll/jekyll#842</a></p>
+
+<h2>7. warning: cannot close fd before spawn; &lsquo;which&rsquo; is not recognized as an internal or external command, operable program or batch file</h2>
+
+<p>Windows环境下使用<code>pygments.rb</code>高亮code，即使plugin正常运行，但目前还存在这个麻烦的问题。因为是warning，所以本地运行Jekyll，一般可以忽略。<br>
+然而博主由于强迫症猝发，本着追求完美的心态，就仔细追查了这个问题的根源。<br>
+其实还是由Windows和Linux的系统环境造成的，确实比较麻烦。虽说解决方法有几个，目前 pygments.rb 0.6.0 仍然未得到解决。</p>
+
+<p><img src="/media/pictures/github-pages-issue/cannot_close_fd.png" alt="cannot close fd before spawn" title="&quot;cannot close fd before spawn&quot;"></p>
+
+<p>如图中所示，&#39;which&#39; not found 是因为Windows Shell环境找不到这个命令（Cygwin和MinGW是可以找到的）。<br>
+问题实质不在posix-spawn上，它没有调用<code>which</code>，而是pygments.rb调用<code>which</code>查询Windows下面Python的路径。由于pygments.rb要求Python 2.x，而Python 2.x和3.x可能同时在系统中存在，不同于Linux的是，Windows下无法判断<code>which</code>寻找到的<code>python</code>指令的版本，因而没有合适的处理这里。<br>
+此处的详细代码逻辑见<a href="https://github.com/koron/pygments.rb/commit/edf6665506b57b333c5f8838d86a9f7ab3016517">这里</a>。</p>
+
+<p>规避这个warning有两个变通的方法:<br>
+a. 上面链接的commit是其一，可以直接修改本地的 <a href="https://github.com/koron/pygments.rb/commit/edf6665506b57b333c5f8838d86a9f7ab3016517">popen.rb</a> 代码;</p>
+
+<pre># Detect a suitable Python binary to use. We can't just use `python2`
+# because apparently some old versions of Debian only have `python` or
+# something like that.
+def python_binary
+    <font color="cyan">if RUBY_PLATFORM =~ /(mswin|mingw|cygwin|bccwin)/
+        return 'python'
+    end</font>
+    @python_binary ||= begin
+        `which python2`
+        $?.success? ? "python2" : "python"
+    end
+end</pre>
+
+<p>b. 另一方法见<a href="https://github.com/hickford/pygments.rb/commit/c6554620e34f3b73c1915b287ac59cc9d977a20a">Fix Python hunting logic on Windows</a>。(需要注意的是，这个方法需要安装<a href="https://docs.python.org/3.3/using/windows.html#python-launcher-for-windows">Python Launcher</a>，目的是利用<code>py -2</code>调用Python 2.x解释器)</p>
+
+<p>相关的 GitHub Issue:<br>
+- <a href="https://github.com/tmm1/pygments.rb/pull/90">tmm1/pygments.rb#90</a><br>
+- <a href="https://github.com/tmm1/pygments.rb/pull/138">tmm1/pygments.rb#138</a><br>
+- <a href="https://github.com/rtomayko/posix-spawn/issues/61">rtomayko/posix-spawn#61</a><br>
+- <a href="https://github.com/jekyll/jekyll/issues/2789">jekyll/jekyll#2789</a><br>
+- <a href="https://github.com/jekyll/jekyll/issues/2052">jekyll/jekyll#2052</a></p>
+
+<h2>8. 在 Windows下使用 Jekyll 出现中文字符集错误</h2>
+
+<p>在 windows 下使用 Jekyll 时经常会遇到字符集错误，比如：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Liquid error: incompatible character encodings: UTF-8 and GBK
+</code></pre></div>
+<p>这里介绍几种解决方案。</p>
+
+<ul>
+<li><p><strong>修改 bash 的字符集</strong><br>
+在 <code>C:\Documents and Settings\用户名</code>下，找到文件 <code>.bash_profile</code>，后面加两行：</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">set </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">set </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+</code></pre></div></li>
+<li><p><strong>所有文档使用 utf-8 无 BOM 格式</strong><br>
+在 Windows 下新建的文本文件默认是 <strong>ANSI</strong> 格式的，而 Jekyll 只认 utf-8。如果遇到 ANSI 格式编码的文件，可以在 Notepad++ 中转换</p></li>
+<li><p><strong>使用 Unix 换行符</strong><br>
+可以在 Notepad++ 中转换，开启<strong>“显示所有字符”</strong>选项，这样就可以看出文档用的是 Windows 的换行符还是 Unix 的换行符。<br>
+在这种模式下，Windows 的换行符显示的是 <code>CR</code>，Unix 的换行符显示的是 <code>LF</code>。</p></li>
+<li><p><strong>Notepad++ 新建文档配置首选项</strong><br>
+在<strong>设置&ndash;&gt;首选项</strong>里，如下设置：<br>
+<img src="/media/pictures/github-pages-issue/utf-8_no_bom.png" alt="转换为utf-8编码"></p></li>
+<li><p><strong>注意 YAML 头部的格式</strong><br>
+模板文件的元数据以 YAML 的格式展现，YAML 头部经常会出现三个问题：<br>
+(1) 三短线前面不能有空格；<br>
+(2) <strong>“名: 值”对</strong>里冒号后面要有空格；<br>
+(3) 回车后不要有 Tab 符；<br>
+(4) 表示<strong>数组成员</strong>开始的 <code>-</code> 号后面要有空格<br>
+在 Notepad++ 中开启<strong>“显示所有字符”</strong>选项后，就可以看清空格和 Tab 符了</p></li>
+</ul>
+
+<p>除此之外，假如 post 文件名中含有中文，或者任何<strong>非 ASCII 编码的字符</strong>，那么 Jekyll 新版本依然能正常编译，只是本地预览时无法正常显示；不用担心，推送到 GitHub 上后是可以访问的。</p>
+
+<p><img src="/media/pictures/github-pages-issue/encode_error.jpg" alt="URL Encodeing Error"></p>
+
+<p>这是 Jekyll 本身问题，如果将生成的静态文件放到其他 <strong>Web 容器</strong>，比如 <strong>Apache</strong>、<strong>Nginx</strong>等，此时也是可以访问的。这类问题也可以扩展到 <strong>URL 路径中存在中文字符</strong>的情形。由于 Jekyll 对 utf-8 编码的处理的比较好，所以我们新建 page 或 post 时尽量使用英文命名。</p>
+
+<h2>9. Markdown 中的代码块高亮</h2>
+
+<p>Jekyll 原生提供 <code>{% highlight language %}</code> 命令来格式代码块，进行语法高亮。除此之外，基本主流 Markdown 解析器（包含 GitHub Flavored Markdown）还支持用一对3个反引号 <code>```</code> 的符号来标记代码块，简化上面的命令代码。</p>
+
+<p>博主在使用 Markdown 语法的过程中发现，对于第二种方式，只有 <code>redcarpet</code> 和 <code>kramdown</code> 这两个解析器能够识别并格式代码块为 Html 文本格式；而常用的 <code>rdiscount</code> 解析器不能识别这种标记，无法添加 Html 标签和 CSS 类来转换代码块。</p>
+
+<p>3 个解析器及相关 gem 组件的版本为：</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">gems</span>
+    <span class="p">{</span>
+      <span class="c1"># Jekyll</span>
+      <span class="s2">&quot;jekyll&quot;</span>                <span class="o">=&gt;</span> <span class="s2">&quot;2.4.0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;jekyll-coffeescript&quot;</span>   <span class="o">=&gt;</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;jekyll-sass-converter&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+
+      <span class="c1"># Converters</span>
+      <span class="s2">&quot;kramdown&quot;</span>              <span class="o">=&gt;</span> <span class="s2">&quot;1.3.1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;maruku&quot;</span>                <span class="o">=&gt;</span> <span class="s2">&quot;0.7.0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;rdiscount&quot;</span>             <span class="o">=&gt;</span> <span class="s2">&quot;2.1.7&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;redcarpet&quot;</span>             <span class="o">=&gt;</span> <span class="s2">&quot;3.1.2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;RedCloth&quot;</span>              <span class="o">=&gt;</span> <span class="s2">&quot;4.2.9&quot;</span><span class="p">,</span>
+
+      <span class="c1"># Liquid</span>
+      <span class="s2">&quot;liquid&quot;</span>                <span class="o">=&gt;</span> <span class="s2">&quot;2.6.1&quot;</span><span class="p">,</span>
+
+      <span class="c1"># Highlighters</span>
+      <span class="s2">&quot;pygments.rb&quot;</span>           <span class="o">=&gt;</span> <span class="s2">&quot;0.6.0&quot;</span><span class="p">,</span>
+
+      <span class="c1"># Plugins</span>
+      <span class="s2">&quot;jemoji&quot;</span>                <span class="o">=&gt;</span> <span class="s2">&quot;0.3.0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;jekyll-mentions&quot;</span>       <span class="o">=&gt;</span> <span class="s2">&quot;0.1.3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;jekyll-redirect-from&quot;</span>  <span class="o">=&gt;</span> <span class="s2">&quot;0.6.2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;jekyll-sitemap&quot;</span>        <span class="o">=&gt;</span> <span class="s2">&quot;0.6.0&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div>
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/12/15/use-highlight.js-for-jekyll/" title="Previous Post: Jekyll 中用 Highlight.js">&laquo; Jekyll 中用 Highlight.js</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/12/18/it-is-time-to-ignore-pagerank/" title="Next Post: 是时候放弃 PageRank 了">是时候放弃 PageRank 了 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"GitHub Pages Issue | Vermillion Phoinix by Alfred Sun ","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/16/github-pages-issue" data-title="GitHub Pages Issue | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/16/github-pages-issue/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/16/github-pages-issue/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+					<li><a href="/blog/2015/01/10/jekyll-liquid-syntax-documentation/">Jekyll/Liquid API 语法文档</a></li>
+				
+				
+				
+				
+				
+					<li><a href="/blog/2014/12/15/use-highlight.js-for-jekyll/">Jekyll 中用 Highlight.js</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/Use-google-code-prettify-for-jekyll/">Jekyll 中用 Google Code Prettify</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/">Jekyll 中用 SyntaxHighlighter</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/11/jekykll-jquery-asyn-load/">用Jekyll和jQuery实现异步加载文章列表</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/11/generate-tags-with-js-in-jekyll/">用js在jekyll博客中实现标签云和标签页</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

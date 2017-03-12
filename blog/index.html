@@ -1,50 +1,1339 @@
----
-layout: default
-title: Blog Excerpt
-navbar: blog
----
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta property="wb:webmaster" content="16d964b38ca99dc9" />
+  <title>Blog Excerpt</title>
+  <meta name="author" content="Alfred Sun">
 
-<section id="main-content">
-	{% for post in paginator.posts %}
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="apple-touch-icon-precomposed" href="/assets/images/touch-icon.png">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  <link href="/atom.xml" rel="alternate" title="Vermillion Phoinix by Alfred Sun" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog Excerpt - Vermillion Phoinix by Alfred Sun">
+  
+
+  <link rel="license" type="text/html" href="http://creativecommons.org/licenses/by/4.0/">
+
+
+  <link href="/assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!--link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"-->
+
+
+<!--script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script-->
+
+
+  
+  <link href="/assets/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/assets/stylesheets/ArchitectsDaughter.css" rel='stylesheet' type='text/css' />
+  <link href="/assets/stylesheets/font-awesome.css" rel='stylesheet' type='text/css' />
+  <link href="/assets/stylesheets/pygments_monokai.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/assets/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="/assets/javascripts/jquery-1.10.2.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content-wrapper" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div class="wrapper">
+      <header role="banner">
+        <!--a id="fork-me-on-github-ribbon" href="https://github.com/Alfred-Sun/octostrap3.git">
+  <img class="gh-ribbon" src="/images/forkme_right_blue_3276b1.png" alt="Fork me on GitHub">
+</a-->
+
+<div id="header">
+  <div class="inner">
+	<h1><a href="/">Vermillion Phoinix</a></h1>
+	<p>孤独，是给你思考自己的时间；在一个人的日子里，你要做的只有一件事：把自己变得<font color="red"><strong>更优秀</strong></font>！</p>
+
+	<a href="https://github.com/Alfred-Sun" class="button"><small>Follow me on</small> GitHub</a>
+  </div>
+</div>
+
+<!-- Google Custom Search >
+    <script>
+      (function() {
+        var cx = '005512552974801634858:xtncfmg2jaq';
+        var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+		
+		//gcse.src = '/javascripts/cse.js';
+		
+        //var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+      })();
+   </script -->
+
+<div id="menu">
+<div class="inner clearfix">
+	<ul class="top-nav">
+	  <li ><a href="/" rel="nofollow">Home</a></li>
+	  <li  class="current"><a href="/blog" rel="bookmark">Blog</a></li>
+	  <li  ><a href="/blog/archive/" rel="bookmark">Archive</a></li>
+	  <li  ><a href="/downloads/code/" rel="bookmark">Code</a></li>
+	  <li  ><a href="/about" rel="bookmark">About Me</a></li>
+	</ul>
+	<div class="site-search repo-scope js-site-search" role="search">
+		<a class="icon-rss" href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"></a>
+		
+		<form action="http://118.174.27.210/search" class="js-site-search-form" method="GET" target="_blank" >
+			<input type="hidden" name="q" value="site:alfred-sun.github.io" />
+			<input id="cse-search-field" type="text" name="q" results="0" placeholder=" " title="search" autocomplete="off" spellcheck="false" />
+		</form>
+		
+	</div>
+</div>
+</div>
+
+
+      </header>
+      <div id="content-wrapper" role="main" class="">
+        <div class="inner clearfix">
+          <section id="main-content">
+	
 	<article class="post">
 		<div class="date">
-		  <span class="day">{{ post.date | date:"%d" }}</span>
-		  <span class="month">{{ post.date | date:"%b" }}</span>
-		  <span class="year">{{ post.date | date:"%Y" }}</span>
+		  <span class="day">18</span>
+		  <span class="month">Jun</span>
+		  <span class="year">2015</span>
 		 </div>
 		  <header>
-		  <h2><a href="{{ root_url }}{{post.url}}" title="{{ post.title }}" target="_blank">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}{% if post.external-url %}&nbsp;&rarr;{% endif %}</a></h2>
+		  <h2><a href="/blog/2015/06/18/daemon-implementation/" title="Linux 守护进程的实现" target="_blank">Linux 守护进程的实现</a></h2>
 		  </header>
 		<div class="con">
-		  {{ post.excerpt }} <!--post.excerpt | strip_html-->
-		  <!--{{ post.content | split: site.excerpt_separator | first | strip_html }}-->
-		  <!--a class="more" href="{{ root_url }}{{ post.url }}">[继续阅读]</a-->
+		  <blockquote>
+<p><em><strong>Look at the past for inspiration, but focus on the future, because tomorrow is shaped by the choices we make today.</strong></em></p>
+</blockquote>
+
+<p>昨天突然地来了场面试，让我有点不知所措，好在好多好多天前复习了下，但是自感表现不是很好（<em>面试官的声音比较柔和，更是让我不知所措</em>）。询问了做过的项目后，看我简历上有写 Linux 进程相关的经历，就开始追问了，从 IPC 到 Redis 再到 Nginx 模块开发、网络编程，还问了下 Golang（老实讲，Go 初学，只照着官网文档看了一遍，几天后忘得差不多了），最后问了个问题，让我遗憾了好多天，就是本文的题目：<strong>如何实现守护进程？</strong></p>
+
+<p>本来这个应该知道的，前面看过 Nginx 和 Redis 基础架构，都是以 <strong>Daemon</strong> 的方式运行的。但是当时没查词典 “Daemon” 是什么意思，然而又感觉这个名词好像在哪里见过，结果便懵了，只能说不知道“<strong>守护进程</strong>”这个东西……归根到底还是因为没有相关服务端开发经验惹的祸。这不禁让我记起当年老大问我“SQL绑定变量”的原因是什么，只记得当时脸红过关羽；哎，只知道这样用，却不知这个东西叫啥……</p>
+
+<p>那么守护进程到底是做什么的呢？该如何实现呢？经过一番深刻地反省和检讨之后，博主认真学习怎么去实现守护进程。</p>
+
+<h2>守护进程 Daemon</h2>
+
+<p>守护进程，也即通常所说的 Daemon 进程，是 Linux 下一种特殊的后台服务进程，它独立于控制终端并且周期性的执行某种任务或者等待处理某些发生的事件。守护进程通常在系统引导装入时启动，在系统关闭时终止。Linux 系统下大多数服务都是通过守护进程实现的。</p>
+
+<p>守护进程的名称通常以 “d” 结尾，如 “httpd”、“crond”、“mysqld”等。</p>
+
+<p>控制终端是什么？<br>
+终端是用户与操作系统进行交流的界面。在 Linux 系统中，用户由终端登录系统登入系统后会得到一个 shell 进程，这个终端便成为这个 shell 进程的控制终端（Controlling Terminal）。shell 进程启动的其他进程，由于复制了父进程的信息，因此也都同依附于这个控制终端。<br>
+从终端启动的进程都依附于该终端，并受终端控制和影响。终端关闭，相应的进程都会自动关闭。守护进程脱离终端的目的，也即是不受终端变化的影响不被终端打断，当然也不想在终端显示执行过程中的信息。</p>
+ <!--post.excerpt | strip_html-->
+		  <!--
+Look at the past for inspiration, but focus on the future, because tomorrow is shaped by the choices we make today.
+
+
+昨天突然地来了场面试，让我有点不知所措，好在好多好多天前复习了下，但是自感表现不是很好（面试官的声音比较柔和，更是让我不知所措）。询问了做过的项目后，看我简历上有写 Linux 进程相关的经历，就开始追问了，从 IPC 到 Redis 再到 Nginx 模块开发、网络编程，还问了下 Golang（老实讲，Go 初学，只照着官网文档看了一遍，几天后忘得差不多了），最后问了个问题，让我遗憾了好多天，就是本文的题目：如何实现守护进程？
+
+本来这个应该知道的，前面看过 Nginx 和 Redis 基础架构，都是以 Daemon 的方式运行的。但是当时没查词典 “Daemon” 是什么意思，然而又感觉这个名词好像在哪里见过，结果便懵了，只能说不知道“守护进程”这个东西……归根到底还是因为没有相关服务端开发经验惹的祸。这不禁让我记起当年老大问我“SQL绑定变量”的原因是什么，只记得当时脸红过关羽；哎，只知道这样用，却不知这个东西叫啥……
+
+那么守护进程到底是做什么的呢？该如何实现呢？经过一番深刻地反省和检讨之后，博主认真学习怎么去实现守护进程。
+
+守护进程 Daemon
+
+守护进程，也即通常所说的 Daemon 进程，是 Linux 下一种特殊的后台服务进程，它独立于控制终端并且周期性的执行某种任务或者等待处理某些发生的事件。守护进程通常在系统引导装入时启动，在系统关闭时终止。Linux 系统下大多数服务都是通过守护进程实现的。
+
+守护进程的名称通常以 “d” 结尾，如 “httpd”、“crond”、“mysqld”等。
+
+控制终端是什么？
+终端是用户与操作系统进行交流的界面。在 Linux 系统中，用户由终端登录系统登入系统后会得到一个 shell 进程，这个终端便成为这个 shell 进程的控制终端（Controlling Terminal）。shell 进程启动的其他进程，由于复制了父进程的信息，因此也都同依附于这个控制终端。
+从终端启动的进程都依附于该终端，并受终端控制和影响。终端关闭，相应的进程都会自动关闭。守护进程脱离终端的目的，也即是不受终端变化的影响不被终端打断，当然也不想在终端显示执行过程中的信息。
+
+-->
+		  <!--a class="more" href="/blog/2015/06/18/daemon-implementation/">[继续阅读]</a-->
 		  <footer>
-			<a rel="nofollow" href="{{ root_url }}{{ post.url }}" target="_blank">{{ site.excerpt_link }}</a>
+			<a rel="nofollow" href="/blog/2015/06/18/daemon-implementation/" target="_blank">Read on &rarr;</a>
 		  </footer>
 		</div>
 	</article>
-	{% endfor %}
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">13</span>
+		  <span class="month">May</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/05/13/bash-notes/" title="Bash 学习笔记" target="_blank">Bash 学习笔记</a></h2>
+		  </header>
+		<div class="con">
+		  <h2>bash 多行注释</h2>
+
+<p>单行注释，井号 # 可以搞定，下面说多行的：通过 <strong>Here Documents</strong> 实现。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">:<span class="s">&lt;&lt;EOF</span>
+<span class="s">注释的代码...</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p>冒号 <code>:</code> 是空命令，表示什么都不做，亦即相当于注释了。<br>
+“EOF” 为 Here Documents 中的定义符号，名称任意，只要前后匹配就行。</p>
+
+<p>Here Documents 的更多使用方法参考这里：<a href="http://tldp.org/LDP/abs/html/here-docs.html">http://tldp.org/LDP/abs/html/here-docs.html</a>  </p>
+
+<p>说明: 这种方法当注释代码里出现<strong>变量引用</strong>或者是<strong>反引号</strong>时，bash 会去尝试解析他们，会提示错误信息，解决方法有下面几种:</p>
+ <!--post.excerpt | strip_html-->
+		  <!--bash 多行注释
+
+单行注释，井号 # 可以搞定，下面说多行的：通过 Here Documents 实现。
+:&lt;&lt;EOF
+注释的代码...
+EOF
+
+冒号 : 是空命令，表示什么都不做，亦即相当于注释了。
+“EOF” 为 Here Documents 中的定义符号，名称任意，只要前后匹配就行。
+
+Here Documents 的更多使用方法参考这里：http://tldp.org/LDP/abs/html/here-docs.html  
+
+说明: 这种方法当注释代码里出现变量引用或者是反引号时，bash 会去尝试解析他们，会提示错误信息，解决方法有下面几种:
+
+-->
+		  <!--a class="more" href="/blog/2015/05/13/bash-notes/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/05/13/bash-notes/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">06</span>
+		  <span class="month">May</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/05/06/how-to-enable-event-sounds-in-xfce/" title="启用 Xfce 桌面的事件声音" target="_blank">启用 Xfce 桌面的事件声音</a></h2>
+		  </header>
+		<div class="con">
+		  <ol>
+<li>Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings</li>
+<li>Set &ldquo;xsettings/Net/SoundThemeName&rdquo; in the Settings Manager (to a sound theme located in /usr/share/sounds).</li>
+<li>Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done automatically by install the libcanberra package, in Xubuntu and Fedora I had to manually create the file: see <a href="http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205">http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205</a>)</li>
+<li>Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)</li>
+<li>Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).</li>
+</ol>
+
+<p>// /etc/X11/xinit/xinitrc.d/50-xinput.sh</p>
+
+<p>if [ -z &ldquo;$GTK<em>MODULES&rdquo; ] ; then
+    GTK</em>MODULES=&ldquo;canberra-gtk-module&rdquo;
+else
+    GTK<em>MODULES=&ldquo;$GTK</em>MODULES:canberra-gtk-module&rdquo;
+fi
+export GTK_MODULES</p>
+
+<p>注销重新登录，声音就出现了。</p>
+
+<p>默认情况下，桌面环境安装的声音主题是 “freedesktop”，如果要更改，需要到 “xsettings/Net/SoundThemeName” 中设定。</p>
+
+<p>另外，可能你会发现并没有听见声音特效，这时你要确认下声音主题里面是否包含你所触发的事件的声音文件。</p>
+ <!--post.excerpt | strip_html-->
+		  <!--
+Enable &ldquo;Event Sounds&rdquo; in Settings Manager -&gt; Appearance -&gt; Settings
+Set &ldquo;xsettings/Net/SoundThemeName&rdquo; in the Settings Manager (to a sound theme located in /usr/share/sounds).
+Export GTK_MODULES=&ldquo;canberra-gtk-module&rdquo; (In Arch this was done automatically by install the libcanberra package, in Xubuntu and Fedora I had to manually create the file: see http://ubuntuforums.org/showthread.php?t=1869787&amp;page=2&amp;p=12008205&amp;viewfull=1#post12008205)
+Install the following packages: Arch (libcanberra libcanberra-pulse) Xubuntu (sox gnome-session-canberra) Fedora (libcanberra)
+Turn up &ldquo;System Sounds&rdquo; in pavucontrol (Pulseaudio).
+
+
+// /etc/X11/xinit/xinitrc.d/50-xinput.sh
+
+if [ -z &ldquo;$GTKMODULES&rdquo; ] ; then
+    GTKMODULES=&ldquo;canberra-gtk-module&rdquo;
+else
+    GTKMODULES=&ldquo;$GTKMODULES:canberra-gtk-module&rdquo;
+fi
+export GTK_MODULES
+
+注销重新登录，声音就出现了。
+
+默认情况下，桌面环境安装的声音主题是 “freedesktop”，如果要更改，需要到 “xsettings/Net/SoundThemeName” 中设定。
+
+另外，可能你会发现并没有听见声音特效，这时你要确认下声音主题里面是否包含你所触发的事件的声音文件。
+
+-->
+		  <!--a class="more" href="/blog/2015/05/06/how-to-enable-event-sounds-in-xfce/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/05/06/how-to-enable-event-sounds-in-xfce/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">05</span>
+		  <span class="month">May</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/05/05/visual-studio-code/" title="开源编辑器：Visual Studio Code" target="_blank">开源编辑器：Visual Studio Code</a></h2>
+		  </header>
+		<div class="con">
+		  <p>M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首个跨平台的代码编辑器。</p>
+
+<p><strong>Visual Studio Code</strong> 是一款面向云端应用开发的代码编辑器（轻量级 IDE ？），现阶段具备的功能有：</p>
+
+<ul>
+<li>具备家族标志性的代码补全功能</li>
+<li>突出文件导航定位的特点</li>
+<li>支持 Node.js 和 ASP.NET v5 应用开发</li>
+<li>具备 Node.js 调试功能，未来还将增添更多支持</li>
+<li>内置 Git 支持</li>
+</ul>
+
+<p><a href="https://code.visualstudio.com/">官方首页及下载地址</a></p>
+
+<p><a href="http://techcrunch.com/2015/04/29/microsoft-shocks-the-world-with-visual-studio-code-a-free-code-editor-for-os-x-linux-and-windows/#.geynzw:moa5"><strong>Microsoft Launches Visual Studio Code, A Free Cross-Platform Code Editor For OS X, Linux And Windows</strong></a> </p>
+ <!--post.excerpt | strip_html-->
+		  <!--M$ 的 Visual Studio 家族新添一名支持 Linux 的成员，成为它家首个跨平台的代码编辑器。
+
+Visual Studio Code 是一款面向云端应用开发的代码编辑器（轻量级 IDE ？），现阶段具备的功能有：
+
+
+具备家族标志性的代码补全功能
+突出文件导航定位的特点
+支持 Node.js 和 ASP.NET v5 应用开发
+具备 Node.js 调试功能，未来还将增添更多支持
+内置 Git 支持
+
+
+官方首页及下载地址
+
+Microsoft Launches Visual Studio Code, A Free Cross-Platform Code Editor For OS X, Linux And Windows 
+
+-->
+		  <!--a class="more" href="/blog/2015/05/05/visual-studio-code/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/05/05/visual-studio-code/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">05</span>
+		  <span class="month">May</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/05/05/problems-with-using-chrome/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
+		  </header>
+		<div class="con">
+		  <p>在终端输入</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
+Password:   
+[root@fedora test]# vim /etc/pam.d/gdm-password  
+</code></pre></div>
+<p>注释掉这段及前面加上#号  如下</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
+</code></pre></div>
+<p>保存之后注销再用root和密码登陆就好了。</p>
+
+<p>修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  </p>
+
+<p>一般修改方法:<br>
+在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改<br>
+gdit /etc/pam.d/gdm<br>
+在这段&quot;auth required pam<em>succeed</em>if.so user != root quiet&quot;加上#号注释掉就可以了  </p>
+
+<p>同样的gdit /etc/pam.d/gdm-password<br>
+也是在auth required pam<em>succeed</em>if.so user != root quiet前面加上#号注释<br>
+保存之后我们重启或者注销一次计算机就能以root进行登录系统了  </p>
+ <!--post.excerpt | strip_html-->
+		  <!--在终端输入
+[test@fedora ~]$ su  
+Password:   
+[root@fedora test]# vim /etc/pam.d/gdm-password  
+
+注释掉这段及前面加上#号  如下
+#auth        required      pam_succeed_if.so user != root quiet  
+
+保存之后注销再用root和密码登陆就好了。
+
+修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  
+
+一般修改方法:
+在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
+gdit /etc/pam.d/gdm
+在这段&quot;auth required pamsucceedif.so user != root quiet&quot;加上#号注释掉就可以了  
+
+同样的gdit /etc/pam.d/gdm-password
+也是在auth required pamsucceedif.so user != root quiet前面加上#号注释
+保存之后我们重启或者注销一次计算机就能以root进行登录系统了  
+
+-->
+		  <!--a class="more" href="/blog/2015/05/05/problems-with-using-chrome/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">04</span>
+		  <span class="month">May</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/05/04/linux-tar-command/" title="学习 tar 压缩命令" target="_blank">学习 tar 压缩命令</a></h2>
+		  </header>
+		<div class="con">
+		  <p>linux解压 tar命令</p>
+
+<p>tar [-cxtzjvfpPN] 文件与目录 &hellip;.</p>
+
+<p>参数：</p>
+
+<p>-c ：建立一个压缩文件的参数指令(create 的意思)； 
+-x ：解开一个压缩文件的参数指令！ 
+-t ：查看 tarfile 里面的文件！ 
+特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！ 
+因为不可能同时压缩与解压缩。 
+-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？ 
+-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？ 
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！ 
+-f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数！ 
+　　　例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 
+　　　『 tar -zcvPf tfile sfile』才对喔！ 
+-p ：使用原文件的原来属性（属性不会依据使用者而变） 
+-P ：可以使用绝对路径来压缩！ 
+-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！ 
+&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！ 
+范例： 
+范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar 
+[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;<mark>仅打包，不压缩！ 
+[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;</mark>打包后，以 gzip 压缩 
+[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 </p>
+
+<h1>特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。</h1>
+
+<h1>如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～</h1>
+
+<h1>如果加 j 参数，则以 .tar.bz2 来作为附档名啊～</h1>
+
+<h1>上述指令在执行的时候，会显示一个警告讯息：</h1>
+
+<h1>『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。</h1>
+
+<p>范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ 
+[root@linux ~]# tar -ztvf /tmp/etc.tar.gz </p>
+
+<h1>由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时，</h1>
+
+<h1>就得要加上 z 这个参数了！这很重要的！</h1>
+
+<p>范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 
+[root@linux ~]# cd /usr/local/src 
+[root@linux src]# tar -zxvf /tmp/etc.tar.gz </p>
+
+<h1>在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说，</h1>
+
+<h1>我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ，</h1>
+
+<h1>则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc</h1>
+
+<h1>则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！</h1>
+
+<p>范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 
+[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd </p>
+
+<h1>我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件，</h1>
+
+<h1>就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！</h1>
+
+<p>范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ 
+[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc </p>
+
+<h1>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！</h1>
+
+<p>范例六：在 /home 当中，比 2005/06/01 新的文件才备份 
+[root@linux ~]# tar -N &quot;2005/06/01&rdquo; -zcvf home.tar.gz /home
+范例七：我要备份 /home, /etc ，但不要 /home/dmtsai 
+[root@linux ~]# tar &ndash;exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
+范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！ 
+[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -cvf - /etc | tar -xvf - </p>
+
+<h1>这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！</h1>
+
+<h1>要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～</h1>
+
+<h1>这分别代表 standard output, standard input 与管线命令啦！</h1>
+ <!--post.excerpt | strip_html-->
+		  <!--linux解压 tar命令
+
+tar [-cxtzjvfpPN] 文件与目录 &hellip;.
+
+参数：
+
+-c ：建立一个压缩文件的参数指令(create 的意思)； 
+-x ：解开一个压缩文件的参数指令！ 
+-t ：查看 tarfile 里面的文件！ 
+特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！ 
+因为不可能同时压缩与解压缩。 
+-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？ 
+-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？ 
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！ 
+-f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数！ 
+　　　例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 
+　　　『 tar -zcvPf tfile sfile』才对喔！ 
+-p ：使用原文件的原来属性（属性不会依据使用者而变） 
+-P ：可以使用绝对路径来压缩！ 
+-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！ 
+&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！ 
+范例： 
+范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar 
+[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;仅打包，不压缩！ 
+[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;打包后，以 gzip 压缩 
+[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 
+
+特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。
+
+如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～
+
+如果加 j 参数，则以 .tar.bz2 来作为附档名啊～
+
+上述指令在执行的时候，会显示一个警告讯息：
+
+『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。
+
+范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ 
+[root@linux ~]# tar -ztvf /tmp/etc.tar.gz 
+
+由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时，
+
+就得要加上 z 这个参数了！这很重要的！
+
+范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 
+[root@linux ~]# cd /usr/local/src 
+[root@linux src]# tar -zxvf /tmp/etc.tar.gz 
+
+在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说，
+
+我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ，
+
+则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc
+
+则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！
+
+范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 
+[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd 
+
+我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件，
+
+就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！
+
+范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ 
+[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc 
+
+这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！
+
+范例六：在 /home 当中，比 2005/06/01 新的文件才备份 
+[root@linux ~]# tar -N &quot;2005/06/01&rdquo; -zcvf home.tar.gz /home
+范例七：我要备份 /home, /etc ，但不要 /home/dmtsai 
+[root@linux ~]# tar &ndash;exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
+范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！ 
+[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -cvf - /etc | tar -xvf - 
+
+这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！
+
+要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～
+
+这分别代表 standard output, standard input 与管线命令啦！
+
+-->
+		  <!--a class="more" href="/blog/2015/05/04/linux-tar-command/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/05/04/linux-tar-command/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
+	<article class="post">
+		<div class="date">
+		  <span class="day">03</span>
+		  <span class="month">May</span>
+		  <span class="year">2015</span>
+		 </div>
+		  <header>
+		  <h2><a href="/blog/2015/05/03/install-vmware-tools-on-linux/" title="如何启用 root 用户登录 Fedora ？" target="_blank">如何启用 root 用户登录 Fedora ？</a></h2>
+		  </header>
+		<div class="con">
+		  <p>在终端输入</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">[test@fedora ~]$ su  
+Password:   
+[root@fedora test]# vim /etc/pam.d/gdm-password  
+</code></pre></div>
+<p>注释掉这段及前面加上#号  如下</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#auth        required      pam_succeed_if.so user != root quiet  
+</code></pre></div>
+<p>保存之后注销再用root和密码登陆就好了。</p>
+
+<p>修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  </p>
+
+<p>一般修改方法:<br>
+在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改<br>
+gdit /etc/pam.d/gdm<br>
+在这段&quot;auth required pam<em>succeed</em>if.so user != root quiet&quot;加上#号注释掉就可以了  </p>
+
+<p>同样的gdit /etc/pam.d/gdm-password<br>
+也是在auth required pam<em>succeed</em>if.so user != root quiet前面加上#号注释<br>
+保存之后我们重启或者注销一次计算机就能以root进行登录系统了  </p>
+ <!--post.excerpt | strip_html-->
+		  <!--在终端输入
+[test@fedora ~]$ su  
+Password:   
+[root@fedora test]# vim /etc/pam.d/gdm-password  
+
+注释掉这段及前面加上#号  如下
+#auth        required      pam_succeed_if.so user != root quiet  
+
+保存之后注销再用root和密码登陆就好了。
+
+修改目录 /etc/pam.d/gdm与/etc/pam.d/gdm-password两个文件  
+
+一般修改方法:
+在终端中输入su命令并输入root密码这样我在终端中就有了root的操权限接下来我们使用gdit命令对其进行修改
+gdit /etc/pam.d/gdm
+在这段&quot;auth required pamsucceedif.so user != root quiet&quot;加上#号注释掉就可以了  
+
+同样的gdit /etc/pam.d/gdm-password
+也是在auth required pamsucceedif.so user != root quiet前面加上#号注释
+保存之后我们重启或者注销一次计算机就能以root进行登录系统了  
+
+-->
+		  <!--a class="more" href="/blog/2015/05/03/install-vmware-tools-on-linux/">[继续阅读]</a-->
+		  <footer>
+			<a rel="nofollow" href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">Read on &rarr;</a>
+		  </footer>
+		</div>
+	</article>
+	
 	
 	<ul class="pager">
-      {% if paginator.previous_page %}
-      <li class="previous"><a href="{{paginator.previous_page_path}}"><b>&laquo; Prev</b></a></li>
-      {% else %}
+      
       <li class="previous disabled"><a href="#"><b>&laquo; Prev</b></a></li>
-      {% endif %}
-      <li><a rel="nofollow" href="{{ root_url }}/{{ site.archive_dir }}"><b>Blog Archives</b></a></li>
-      {% if paginator.next_page %}
-      <li class="next"><a href="{{paginator.next_page_path}}"><b>Next &raquo;</b></a></li>
-      {% else %}
-      <li class="next disabled"><a href="#"><b>Next &raquo;</b></a></li>
-      {% endif %}
+      
+      <li><a rel="nofollow" href="/blog/archive/"><b>Blog Archives</b></a></li>
+      
+      <li class="next"><a href="/blog/page/2"><b>Next &raquo;</b></a></li>
+      
     </ul>
 	
 </section>
 
 <aside id="sidebar">
-	{% include asides/recent_posts.html %}
-	{% include asides/contact_info.html %}
-	{% include asides/categories_info.html %}
-	{% include asides/tags_info.html %}
+	<section>
+<h2>Recent Posts</h2>
+<ul class="recent_posts">
+	
+	<a href="/blog/2015/06/18/daemon-implementation/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Linux 守护进程的实现
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/13/bash-notes/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		Bash 学习笔记
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/06/how-to-enable-event-sounds-in-xfce/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		启用 Xfce 桌面的事件声音
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/05/visual-studio-code/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		开源编辑器：Visual Studio Code
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/05/problems-with-using-chrome/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		如何启用 root 用户登录 Fedora ？
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/04/linux-tar-command/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		学习 tar 压缩命令
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/03/install-vmware-tools-on-linux/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		如何启用 root 用户登录 Fedora ？
+		</li>
+	</a>
+	
+	<a href="/blog/2015/05/01/install-openbox-wm/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		如何启用 root 用户登录 Fedora ？
+		</li>
+	</a>
+	
+	<a href="/blog/2015/04/29/login-fedora-with-root/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		如何启用 root 用户登录 Fedora ？
+		</li>
+	</a>
+	
+	<a href="/blog/2015/03/11/ten-basic-algorithms-for-programmers/" target="_blank">
+		<li><i class="icon-hand-o-right"></i>
+		十个基础算法及其讲解
+		</li>
+	</a>
+	
+</ul>
+</section>
+	<section>
+  <h2>Contact Me</h2>
+  <ul class="sns-links">
+	<a href="http://github.com/Alfred-Sun" target="_blank"><li><i class="icon-github" title="GitHub"></i>@Alfred Sun</li></a>
+	<a href="http://weibo.com/symdfbb" target="_blank"><li><i class="icon-weibo" title="Weibo"></i>@sama</li></a>
+	<a href="http://hi.baidu.com/symdfbb" target="_blank"><li><i class="icon-paw" title="Baidu"></i>@baidu</li></a>
+	<a href="http://user.qzone.qq.com/914738897" target="_blank"><li><i class="icon-qq" title="QQ"></i>@qq</li></a>
+	<a href="http://bbs.whnet.edu.cn" target="_blank"><li><img src="/assets/images/dfbb_logosmall.gif" title="白云黄鹤" />@dfbb</li></a>
+	<a href="mailto:alfred.sunym@gmail.com"><li><i class="icon-envelope-o" title="Gmail"></i>@gmail.com</li></a>
+  </ul>
+</section>
+	
+
+
+<section>
+  <h2><a href="/blog/category/">Categories</a></h2>
+  <ul>
+    
+	
+		
+		<a href="/blog/category/#algorithms-ref" rel="nofollow"><li><i class="icon-link"></i>algorithms (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#bash-ref" rel="nofollow"><li><i class="icon-link"></i>bash (2)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#css-ref" rel="nofollow"><li><i class="icon-link"></i>css (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#de-ref" rel="nofollow"><li><i class="icon-link"></i>de (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#editor-ref" rel="nofollow"><li><i class="icon-link"></i>editor (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#emacs-ref" rel="nofollow"><li><i class="icon-link"></i>emacs (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#firefox-ref" rel="nofollow"><li><i class="icon-link"></i>firefox (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#git-ref" rel="nofollow"><li><i class="icon-link"></i>git (2)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#github-ref" rel="nofollow"><li><i class="icon-link"></i>github (2)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#github pages-ref" rel="nofollow"><li><i class="icon-link"></i>github pages (10)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#hosts-ref" rel="nofollow"><li><i class="icon-link"></i>hosts (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#html-ref" rel="nofollow"><li><i class="icon-link"></i>html (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ide-ref" rel="nofollow"><li><i class="icon-link"></i>ide (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#javascript-ref" rel="nofollow"><li><i class="icon-link"></i>javascript (3)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#jekyll-ref" rel="nofollow"><li><i class="icon-link"></i>jekyll (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#linux-ref" rel="nofollow"><li><i class="icon-link"></i>linux (7)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#markdown-ref" rel="nofollow"><li><i class="icon-link"></i>markdown (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#octopress-ref" rel="nofollow"><li><i class="icon-link"></i>octopress (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#python-ref" rel="nofollow"><li><i class="icon-link"></i>python (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#ruby-ref" rel="nofollow"><li><i class="icon-link"></i>ruby (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#seo-ref" rel="nofollow"><li><i class="icon-link"></i>seo (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#sites-ref" rel="nofollow"><li><i class="icon-link"></i>sites (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#technique-ref" rel="nofollow"><li><i class="icon-link"></i>technique (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#vim-ref" rel="nofollow"><li><i class="icon-link"></i>vim (5)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#wm-ref" rel="nofollow"><li><i class="icon-link"></i>wm (1)
+		</li></a>
+    
+	
+	
+		
+		<a href="/blog/category/#搜索引擎-ref" rel="nofollow"><li><i class="icon-link"></i>搜索引擎 (1)
+		</li></a>
+    
+	
+	
+	
+  </ul>
+</section>
+
+	<!--[if lt IE 9]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+<script src="/assets/javascripts/jquery.tagcanvas.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+/**
+ * This time the canvas is started using the jQuery  $(document).ready() event handler instead of using window.onload, though for these examples it shouldn't make any difference. If the page had contained images, using window.onload would have meant the canvas not starting until the images had loaded, whereas $(document).ready() happens earlier in the loading process.
+ *
+  window.onload = function() {
+	try {
+	  TagCanvas.Start('myCanvas','tags',{
+		textColour: '#ff0000',
+		outlineColour: '#ff00ff',
+		reverse: true,
+		depth: 0.8,
+		maxSpeed: 0.05
+	  });
+	} catch(e) {
+	  // something went wrong, hide the canvas container
+	  document.getElementById('myCanvasContainer').style.display = 'none';
+	}
+  };
+**/
+  $(document).ready(function() {
+	if(!$('#myCanvas').tagcanvas({
+	  textFont: null,//'Trebuchet MS, Helvetica, sans-serif',
+	  textColour: null,//'#f27',
+	  textHeight: 16,
+	  outlineMethod : 'block',
+	  outlineColour : 'rgb(135, 170, 250)',
+	  outlineIncrease: 5,
+	  outlineThickness: 3,
+	  outlineOffset: 1,
+	  outlineRadius: 30,
+	  pulsateTo: 0.2,
+	  pulsateTime: 0.5,
+	  wheelZoom: true,
+	  maxSpeed : 0.05,
+	  minBrightness : 0.2,
+	  depth : 0.92,
+	  freezeActive: true,
+	  freezeDecel: true,
+	  pulsateTo : 0.6,
+	  initial : [0.2, 0],
+	  lock : 'y',
+	  shape: 'vcylinder',
+	  decel : 0.98,
+	  reverse : true,
+	  hideTags : true,
+	  shadow : '#452',
+	  shadowBlur : 3,
+	  weight : false,
+	  imageScale : null,
+	  fadeIn : 1000,
+	  clickToFront : 800
+	},'tag-cloud-list-items')) {
+	  // something went wrong, hide the canvas container
+	  $('#myCanvasContainer').hide();
+	}
+  });
+</script>
+
+<section>
+  <h2><a href="/blog/tag/">Tag Cloud</a></h2>
+  <div id="myCanvasContainer">
+      <canvas width="240" height="320" id="myCanvas" style="background-color: #F9F9F9">
+        <!--p>In Internet Explorer versions up to 8, things inside the canvas are inaccessible!
+		Anything in here will be replaced on browsers that support the canvas element</p-->
+      </canvas>
+  </div>
+
+  <div id="tag-cloud-list-items"><ul>
+    
+		
+		<li>
+		<!--a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth</a-->
+		<a href="/blog/tag/#RedCloth-ref" rel="nofollow">RedCloth
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Jekyll-ref" rel="nofollow">Jekyll</a-->
+		<a href="/blog/tag/#Jekyll-ref" rel="nofollow">Jekyll
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#sso-ref" rel="nofollow">sso</a-->
+		<a href="/blog/tag/#sso-ref" rel="nofollow">sso
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#HTML-ref" rel="nofollow">HTML</a-->
+		<a href="/blog/tag/#HTML-ref" rel="nofollow">HTML
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#CSS-ref" rel="nofollow">CSS</a-->
+		<a href="/blog/tag/#CSS-ref" rel="nofollow">CSS
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Git-ref" rel="nofollow">Git</a-->
+		<a href="/blog/tag/#Git-ref" rel="nofollow">Git
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Bash-ref" rel="nofollow">Bash</a-->
+		<a href="/blog/tag/#Bash-ref" rel="nofollow">Bash
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Octopress-ref" rel="nofollow">Octopress</a-->
+		<a href="/blog/tag/#Octopress-ref" rel="nofollow">Octopress
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#GitHub+Pages-ref" rel="nofollow">GitHub Pages</a-->
+		<a href="/blog/tag/#GitHub Pages-ref" rel="nofollow">GitHub Pages
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#gem-ref" rel="nofollow">gem</a-->
+		<a href="/blog/tag/#gem-ref" rel="nofollow">gem
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Tag+Cloud-ref" rel="nofollow">Tag Cloud</a-->
+		<a href="/blog/tag/#Tag Cloud-ref" rel="nofollow">Tag Cloud
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#jekyll-ref" rel="nofollow">jekyll</a-->
+		<a href="/blog/tag/#jekyll-ref" rel="nofollow">jekyll
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#jQuery-ref" rel="nofollow">jQuery</a-->
+		<a href="/blog/tag/#jQuery-ref" rel="nofollow">jQuery
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#closure-ref" rel="nofollow">closure</a-->
+		<a href="/blog/tag/#closure-ref" rel="nofollow">closure
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#javascript-ref" rel="nofollow">javascript</a-->
+		<a href="/blog/tag/#javascript-ref" rel="nofollow">javascript
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SyntaxHighlighter-ref" rel="nofollow">SyntaxHighlighter</a-->
+		<a href="/blog/tag/#SyntaxHighlighter-ref" rel="nofollow">SyntaxHighlighter
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#google-code-prettify-ref" rel="nofollow">google-code-prettify</a-->
+		<a href="/blog/tag/#google-code-prettify-ref" rel="nofollow">google-code-prettify
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#highlight.js-ref" rel="nofollow">highlight.js</a-->
+		<a href="/blog/tag/#highlight.js-ref" rel="nofollow">highlight.js
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Google-ref" rel="nofollow">Google</a-->
+		<a href="/blog/tag/#Google-ref" rel="nofollow">Google
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Firefox-ref" rel="nofollow">Firefox</a-->
+		<a href="/blog/tag/#Firefox-ref" rel="nofollow">Firefox
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Python-ref" rel="nofollow">Python</a-->
+		<a href="/blog/tag/#Python-ref" rel="nofollow">Python
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Editor-ref" rel="nofollow">Editor</a-->
+		<a href="/blog/tag/#Editor-ref" rel="nofollow">Editor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#window-ref" rel="nofollow">window</a-->
+		<a href="/blog/tag/#window-ref" rel="nofollow">window
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#location-ref" rel="nofollow">location</a-->
+		<a href="/blog/tag/#location-ref" rel="nofollow">location
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Scroll-bars-ref" rel="nofollow">Scroll-bars</a-->
+		<a href="/blog/tag/#Scroll-bars-ref" rel="nofollow">Scroll-bars
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Liquid-ref" rel="nofollow">Liquid</a-->
+		<a href="/blog/tag/#Liquid-ref" rel="nofollow">Liquid
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Syntax-ref" rel="nofollow">Syntax</a-->
+		<a href="/blog/tag/#Syntax-ref" rel="nofollow">Syntax
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Markdown-ref" rel="nofollow">Markdown</a-->
+		<a href="/blog/tag/#Markdown-ref" rel="nofollow">Markdown
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Extensions-ref" rel="nofollow">Extensions</a-->
+		<a href="/blog/tag/#Extensions-ref" rel="nofollow">Extensions
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Hosts-ref" rel="nofollow">Hosts</a-->
+		<a href="/blog/tag/#Hosts-ref" rel="nofollow">Hosts
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#GitHub-ref" rel="nofollow">GitHub</a-->
+		<a href="/blog/tag/#GitHub-ref" rel="nofollow">GitHub
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#CLI-ref" rel="nofollow">CLI</a-->
+		<a href="/blog/tag/#CLI-ref" rel="nofollow">CLI
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#SSH-ref" rel="nofollow">SSH</a-->
+		<a href="/blog/tag/#SSH-ref" rel="nofollow">SSH
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#sites-ref" rel="nofollow">sites</a-->
+		<a href="/blog/tag/#sites-ref" rel="nofollow">sites
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Vim-ref" rel="nofollow">Vim</a-->
+		<a href="/blog/tag/#Vim-ref" rel="nofollow">Vim
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Emacs-ref" rel="nofollow">Emacs</a-->
+		<a href="/blog/tag/#Emacs-ref" rel="nofollow">Emacs
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#KeyMap-ref" rel="nofollow">KeyMap</a-->
+		<a href="/blog/tag/#KeyMap-ref" rel="nofollow">KeyMap
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Algorithms-ref" rel="nofollow">Algorithms</a-->
+		<a href="/blog/tag/#Algorithms-ref" rel="nofollow">Algorithms
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Fedora-ref" rel="nofollow">Fedora</a-->
+		<a href="/blog/tag/#Fedora-ref" rel="nofollow">Fedora
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Linux-ref" rel="nofollow">Linux</a-->
+		<a href="/blog/tag/#Linux-ref" rel="nofollow">Linux
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#tar-ref" rel="nofollow">tar</a-->
+		<a href="/blog/tag/#tar-ref" rel="nofollow">tar
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Open+Source-ref" rel="nofollow">Open Source</a-->
+		<a href="/blog/tag/#Open Source-ref" rel="nofollow">Open Source
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#editor-ref" rel="nofollow">editor</a-->
+		<a href="/blog/tag/#editor-ref" rel="nofollow">editor
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Xfce-ref" rel="nofollow">Xfce</a-->
+		<a href="/blog/tag/#Xfce-ref" rel="nofollow">Xfce
+		</a>
+		</li>
+	
+		
+		<li>
+		<!--a href="/blog/tag/#Daemon-ref" rel="nofollow">Daemon</a-->
+		<a href="/blog/tag/#Daemon-ref" rel="nofollow">Daemon
+		</a>
+		</li>
+	
+  </ul></div>
+</section>
+
 </aside>
+
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="inner clearfix">
+  <div id="f_left">Theme created by <a href="http://www.lessthanweb.com/products/plain-fields" target="_blank">Jason Long</a> - Powered by <a href="https://github.com/Alfred-Sun" rel="nofollow" target="_blank">Alfred Sun</a>
+</div>
+<div id="f_right">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Copyright
+	</a> &copy; 2017 - <a href="http://alfred-sun.github.io" title="Vermillion Phoinix by Alfred Sun" rel="nofollow" target="_blank">Alfred Sun</a> 
+	
+  <!-- CNZZ Statistics-synchronize -->
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<!--div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div-->
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+</div>
+
+      <!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+    </div>
+  </body>
+</html>

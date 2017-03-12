@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>单点登录 SSO 的实现原理</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Alfred's Blog" />
+    <meta name="keywords" content="SSO Principle">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/10/31/Single-Sign-On/" title="单点登录 SSO 的实现原理">单点登录 SSO 的实现原理</a></h1>
+			<!--p class="entry-date">2014-10-31</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+<span><time datetime="2014-10-31T00:00:00+08:00" pubdate data-updated="true">2014-10-31</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#technique-ref" title="Category: technique" rel="category">technique</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#sso-ref" title="Tag: sso" rel="tag">sso</a-->
+		<a href="/blog/tag/#sso-ref" title="Tag: sso" rel="tag">sso</a>
+    
+  
+
+</div>
+
+
+			<p><strong>单点登录 SSO</strong>（Single Sign On）说得简单点就是在一个<strong>多系统共存的环境下，用户在一处登录后，就不用在其他系统中登录</strong>，也就是用户的一次登录能得到其他所有系统的信任。</p>
+
+<p>单点登录在大型网站里使用得非常频繁，例如像阿里巴巴这样的网站，在网站的背后是成百上千的子系统，用户一次操作或交易可能涉及到几十个子系统的协作，如果每个子系统都需要用户认证，不仅用户会疯掉，各子系统也会为这种重复认证授权的逻辑搞疯掉。</p>
+
+<p>实现单点登录说到底就是要解决如何产生和存储那个信任，再就是其他系统如何验证这个信任的有效性，因此要点也就以下几个：</p>
+
+<!--more-->
+
+<ul>
+<li>存储信任</li>
+<li>验证信任</li>
+</ul>
+
+<p>只要解决了以上的问题，达到了开头讲得效果就可以说是 SSO。</p>
+
+<h2>客户端实现</h2>
+
+<p>最简单实现 SSO 的方法就是用 Cookie，实现流程如下所示：</p>
+
+<p><img src="/media/pictures/Single-Sign-On/sso.gif" alt="Storage of trust on Client" /></p>
+
+<p>不难发现以上的方案是把信任存储在客户端的 <strong>Cookie</strong> 里，这种方法虽然实现方便但立马会让人质疑两个问题：</p>
+
+<ul>
+<li><strong>Cookie 不安全</strong><br></li>
+<li><strong>不能跨域免登</strong><br></li>
+</ul>
+
+<p>对于第一个问题一般都是通过<strong>加密 Cookie</strong> 来处理；<br>
+第二个问题是硬伤，其实这种方案的思路的就是要把这个信任关系存储在客户端，要实现这个也不一定只能用 Cookie，用 flash 也能解决，flash 的 <strong>Shared Object API</strong> 就提供了存储能力。</p>
+
+<h2>服务端实现</h2>
+
+<p>一般说来，大型系统会采取在服务端存储信任关系的做法，实现流程如下所示：</p>
+
+<p><img src="/media/pictures/Single-Sign-On/sso_.gif" alt="Storage of trust on Server" /></p>
+
+<p>以上方案就是要把信任关系存储在<strong>单独的 SSO 系统</strong>（暂且这么称呼它）里，说起来只是简单地从客户端移到了服务端，但其中几个问题需要重点解决：</p>
+
+<ol>
+<li>如何高效存储大量临时性的信任数据？<br></li>
+<li>如何防止信息传递过程被篡改？<br></li>
+<li>如何让 SSO 系统信任登录系统和免登系统？<br></li>
+</ol>
+
+<p>对于第一个问题，一般可以采用类似与 memcached 的<strong>分布式缓存</strong>的方案，既能提供可扩展数据量的机制，也能提供高效访问。<br>
+对于第二个问题，一般采取<strong>数字签名</strong>的方法，要么通过数字证书签名，要么通过像 md5 的方式，这就需要 SSO 系统返回免登 URL 的时候对需验证的参数进行 md5 加密，并带上 token 一起返回，最后需免登的系统进行<strong>验证信任关系</strong>的时候，需把这个 token 传给 SSO 系统，SSO 系统通过对 token 的验证就可以辨别信息是否被改过。<br>
+对于最后一个问题，可以通过<strong>白名单</strong>来处理，说简单点只有在白名单上的系统才能请求生产信任关系，同理只有在白名单上的系统才能被免登录。</p>
+
+<h2>结束语</h2>
+
+<p>以上只是提供了些简单的实现技术，但需要强调的是这只是技术实现而已，仅仅是为了解决上面谈到的一些问题，SSO 本身来说并不是什么高科技，有了这个认识比较有利于我们深入探索 SSO。</p>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/09/29/Jekyll-Missing-dependency-RedCloth/" title="Previous Post: Jekyll missing dependency&#58; RedCloth">&laquo; Jekyll missing dependency&#58; RedCloth</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/11/02/make-css-menu/" title="Next Post: html中的&lt;ul&gt;标签中&lt;li&gt;横向排列">html中的&lt;ul&gt;标签中&lt;li&gt;横向排列 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"单点登录 SSO 的实现原理 | Vermillion Phoinix by Alfred Sun ","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/10/31/Single-Sign-On" data-title="单点登录 SSO 的实现原理 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/10/31/Single-Sign-On/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/10/31/Single-Sign-On/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

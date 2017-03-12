@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>Javascript 闭包(Closure)</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="要理解闭包，首先必须理解Javascript特殊的变量作用域。变量的作用域无非就是两种：全局变量和局部变量。Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。 | ]Alfred's Blog" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/12/11/javascript-closure/" title="Javascript 闭包(Closure)">Javascript 闭包(Closure)</a></h1>
+			<!--p class="entry-date">2014-12-11</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" title="Author: 阮一峰">阮一峰</a>
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2014-12-11T00:00:00+08:00" pubdate data-updated="true">2014-12-11</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#javascript-ref" title="Category: javascript" rel="category">javascript</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#closure-ref" title="Tag: closure" rel="tag">closure</a-->
+		<a href="/blog/tag/#closure-ref" title="Tag: closure" rel="tag">closure</a>&nbsp;
+    
+		<!--a href="/blog/tag/#javascript-ref" title="Tag: javascript" rel="tag">javascript</a-->
+		<a href="/blog/tag/#javascript-ref" title="Tag: javascript" rel="tag">javascript</a>
+    
+  
+
+</div>
+
+
+			<p>闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。<br>
+下面就是我的学习笔记，对于Javascript初学者应该是很有用的。</p>
+
+<h2>一、变量的作用域</h2>
+
+<p>要理解闭包，首先必须理解Javascript特殊的变量作用域。<br>
+变量的作用域无非就是两种：全局变量和局部变量。<br>
+Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">n</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+<span class="lineno">3</span>   <span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="p">}</span>
+<span class="lineno">5</span> <span class="nx">f1</span><span class="p">();</span> <span class="c1">// 999</span></code></pre></div>
+
+<p>另一方面，在函数外部自然无法读取函数内的局部变量。</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">n</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// error</span>
+</code></pre></div>
+<p>这里有一个地方需要注意，函数内部声明变量的时候，一定要使用var命令。如果不用的话，你实际上声明了一个全局变量！</p>
+
+<!--more-->
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="nx">n</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">f1</span><span class="p">();</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// 999</span>
+</code></pre></div>
+<h2>二、如何从外部读取局部变量？</h2>
+
+<p>出于种种原因，我们有时候需要得到函数内的局部变量。但是，前面已经说过了，正常情况下，这是办不到的，只有通过变通方法才能实现。<br>
+那就是在函数的内部，再定义一个函数。</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">n</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">f2</span><span class="p">(){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span> <span class="c1">// 999</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>在上面的代码中，函数f2就被包括在函数f1内部，这时f1内部的所有局部变量，对f2都是可见的。但是反过来就不行，f2内部的局部变量，对f1就是不可见的。这就是Javascript语言特有的&quot;链式作用域&quot;结构（chain scope），子对象会一级一级地向上寻找所有父对象的变量。所以，父对象的所有变量，对子对象都是可见的，反之则不成立。</p>
+
+<p>既然f2可以读取f1中的局部变量，那么只要把f2作为返回值，我们不就可以在f1外部读取它的内部变量了吗！</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">n</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">f2</span><span class="p">(){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span> 
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">f2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">result</span><span class="o">=</span><span class="nx">f1</span><span class="p">();</span>
+<span class="nx">result</span><span class="p">();</span> <span class="c1">// 999</span>
+</code></pre></div>
+<h2>三、闭包的概念</h2>
+
+<p>上一节代码中的f2函数，就是闭包。<br>
+各种专业文献上的&quot;闭包&quot;（closure）定义非常抽象，很难看懂。我的理解是，闭包就是能够读取其他函数内部变量的函数。</p>
+
+<p>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&quot;定义在一个函数内部的函数&quot;。<br>
+所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。</p>
+
+<h2>四、闭包的用途</h2>
+
+<p>闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。</p>
+
+<p>怎么来理解这句话呢？请看下面的代码。</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">n</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+    <span class="nx">nAdd</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nx">n</span><span class="o">+=</span><span class="mi">1</span><span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">f2</span><span class="p">(){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">f2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">result</span><span class="o">=</span><span class="nx">f1</span><span class="p">();</span>
+<span class="nx">result</span><span class="p">();</span> <span class="c1">// 999</span>
+<span class="nx">nAdd</span><span class="p">();</span>
+<span class="nx">result</span><span class="p">();</span> <span class="c1">// 1000</span>
+</code></pre></div>
+<p>在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。</p>
+
+<p>为什么会这样呢？<br>
+原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。  </p>
+
+<p>这段代码中另一个值得注意的地方，就是&quot;nAdd=function(){n+=1}&ldquo;这一行，首先在nAdd前面没有使用var关键字，因此nAdd是一个全局变量，而不是局部变量。其次，nAdd的值是一个匿名函数（anonymous function），而这个匿名函数本身也是一个闭包，所以nAdd相当于是一个setter，可以在函数外部对函数内部的局部变量进行操作。</p>
+
+<h2>五、使用闭包的注意点</h2>
+
+<p>1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</p>
+
+<p>2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</p>
+
+<h2>六、思考题</h2>
+
+<p>如果你能理解下面两段代码的运行结果，应该就算理解闭包的运行机制了。</p>
+
+<p>代码片段一:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;The Window&quot;</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
+<span class="lineno"> 3</span>  <span class="nx">name</span> <span class="o">:</span> <span class="s2">&quot;My Object&quot;</span><span class="p">,</span>
+<span class="lineno"> 4</span>  <span class="nx">getNameFunc</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 5</span>      <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 6</span>          <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="lineno"> 7</span>      <span class="p">};</span>
+<span class="lineno"> 8</span>  <span class="p">}</span>
+<span class="lineno"> 9</span> <span class="p">};</span>
+<span class="lineno">10</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">object</span><span class="p">.</span><span class="nx">getNameFunc</span><span class="p">()());</span></code></pre></div>
+
+<p>代码片段二:</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;The Window&quot;</span><span class="p">;</span>
+<span class="lineno"> 2</span> <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
+<span class="lineno"> 3</span>  <span class="nx">name</span> <span class="o">:</span> <span class="s2">&quot;My Object&quot;</span><span class="p">,</span>
+<span class="lineno"> 4</span>  <span class="nx">getNameFunc</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 5</span>      <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+<span class="lineno"> 6</span>      <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 7</span>          <span class="k">return</span> <span class="nx">that</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="lineno"> 8</span>      <span class="p">};</span>
+<span class="lineno"> 9</span>  <span class="p">}</span>
+<span class="lineno">10</span> <span class="p">};</span>
+<span class="lineno">11</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">object</span><span class="p">.</span><span class="nx">getNameFunc</span><span class="p">()());</span></code></pre></div>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/12/11/generate-tags-with-js-in-jekyll/" title="Previous Post: 用js在jekyll博客中实现标签云和标签页">&laquo; 用js在jekyll博客中实现标签云和标签页</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/12/11/jekykll-jquery-asyn-load/" title="Next Post: 用Jekyll和jQuery实现异步加载文章列表">用Jekyll和jQuery实现异步加载文章列表 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"Javascript 闭包(Closure) | Vermillion Phoinix by Alfred Sun //要理解闭包，首先必须理解Javascript特殊的变量作用域。变量的作用域无非就是两种：全局变量和局部变量。Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/11/javascript-closure" data-title="Javascript 闭包(Closure) | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/11/javascript-closure/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/11/javascript-closure/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+					<li><a href="/blog/2014/12/21/window-location/">window.location 属性</a></li>
+				
+				
+				
+				
+				
+					<li><a href="/blog/2014/11/26/getElement-from-iframe-by-Jquery/">jQuery 取得 iframe 中元素的几种方法（转载）</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>Linux 守护进程的实现</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="守护进程是什么？Linux 下面如何实现守护进程？本文会介绍笔者在经历一次悲剧的后台开发面试后的反思和总结。 | ]Alfred's Blog" />
+    <meta name="keywords" content="daemon, linux, process">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2015/06/18/daemon-implementation/" title="Linux 守护进程的实现">Linux 守护进程的实现</a></h1>
+			<!--p class="entry-date">2015-06-18</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2015-06-18T00:00:00+08:00" pubdate data-updated="true">2015-06-18</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#linux-ref" title="Category: linux" rel="category">linux</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a-->
+		<a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a>&nbsp;
+    
+		<!--a href="/blog/tag/#Daemon-ref" title="Tag: Daemon" rel="tag">Daemon</a-->
+		<a href="/blog/tag/#Daemon-ref" title="Tag: Daemon" rel="tag">Daemon</a>
+    
+  
+
+</div>
+
+
+			<blockquote>
+<p><em><strong>Look at the past for inspiration, but focus on the future, because tomorrow is shaped by the choices we make today.</strong></em></p>
+</blockquote>
+
+<p>昨天突然地来了场面试，让我有点不知所措，好在好多好多天前复习了下，但是自感表现不是很好（<em>面试官的声音比较柔和，更是让我不知所措</em>）。询问了做过的项目后，看我简历上有写 Linux 进程相关的经历，就开始追问了，从 IPC 到 Redis 再到 Nginx 模块开发、网络编程，还问了下 Golang（老实讲，Go 初学，只照着官网文档看了一遍，几天后忘得差不多了），最后问了个问题，让我遗憾了好多天，就是本文的题目：<strong>如何实现守护进程？</strong></p>
+
+<p>本来这个应该知道的，前面看过 Nginx 和 Redis 基础架构，都是以 <strong>Daemon</strong> 的方式运行的。但是当时没查词典 “Daemon” 是什么意思，然而又感觉这个名词好像在哪里见过，结果便懵了，只能说不知道“<strong>守护进程</strong>”这个东西……归根到底还是因为没有相关服务端开发经验惹的祸。这不禁让我记起当年老大问我“SQL绑定变量”的原因是什么，只记得当时脸红过关羽；哎，只知道这样用，却不知这个东西叫啥……</p>
+
+<p>那么守护进程到底是做什么的呢？该如何实现呢？经过一番深刻地反省和检讨之后，博主认真学习怎么去实现守护进程。</p>
+
+<h2>守护进程 Daemon</h2>
+
+<p>守护进程，也即通常所说的 Daemon 进程，是 Linux 下一种特殊的后台服务进程，它独立于控制终端并且周期性的执行某种任务或者等待处理某些发生的事件。守护进程通常在系统引导装入时启动，在系统关闭时终止。Linux 系统下大多数服务都是通过守护进程实现的。</p>
+
+<p>守护进程的名称通常以 “d” 结尾，如 “httpd”、“crond”、“mysqld”等。</p>
+
+<p>控制终端是什么？<br>
+终端是用户与操作系统进行交流的界面。在 Linux 系统中，用户由终端登录系统登入系统后会得到一个 shell 进程，这个终端便成为这个 shell 进程的控制终端（Controlling Terminal）。shell 进程启动的其他进程，由于复制了父进程的信息，因此也都同依附于这个控制终端。<br>
+从终端启动的进程都依附于该终端，并受终端控制和影响。终端关闭，相应的进程都会自动关闭。守护进程脱离终端的目的，也即是不受终端变化的影响不被终端打断，当然也不想在终端显示执行过程中的信息。</p>
+
+<!--more-->
+
+<p><strong>如果不想进程受到用户、终端或其他变化的影响，就必须把它变成守护进程。</strong></p>
+
+<h2>如何实现守护进程</h2>
+
+<p>守护进程属于 Linux 进程管理的范畴。其首要的特性是<strong>后台运行</strong>；其次，要与从启动它的父进程的运行环境隔离开来，需要处理的内容大致包括会话、控制终端、进程组、文件描述符、文件权限掩码以及工作目录等。<br>
+守护进程可以在 Linux 启动时从脚本 <code>/etc/rc.d</code> 启动，也可以由作业规划进程 <code>crond</code> 启动，还可以通过用户终端（一般是 Shell）启动。</p>
+
+<p>实现一个守护进程，其实就是将普通进程按照上述特性改造为守护进程的过程。<br>
+需要注意的一点是，不同版本的 Unix 系统其实现机制不同，BSD 和 Linux 下的实现细节就不同。</p>
+
+<p>根据上述的特性，我们便可以创建一个简单的守护进程，这里以 Linux 系统下从终端 Shell 来启动为例。</p>
+
+<h3>1、创建子进程，父进程退出</h3>
+
+<p>编写守护进程第一步，就是要使得进程独立于终端后台运行。为避免终端挂起，将父进程退出，造成程序已经退出的假象，而后面的工作都在子进程完成，这样控制终端也可以继续执行其他命令，从而在形式上脱离控制终端的控制。</p>
+
+<p>由于父进程先于子进程退出，子进程就变为孤儿进程，并由 init 进程作为其父进程收养。</p>
+
+<h3>2、子进程创建新会话</h3>
+
+<p>经过上一步，子进程已经后台运行，然而系统调用 <code>fork</code> 创建子进程，子进程便复制了原父进程的进程控制块（PCB），相应地继承了一些信息，包括会话、进程组、控制终端等信息。尽管父进程已经退出，但子进程的会话、进程组、控制终端的信息没有改变。为使子进程完全摆脱父进程的环境，需要调用 <code>setsid</code> 函数。</p>
+
+<p>这里有必要说一下两个概念：<strong>会话</strong>和<strong>进程组</strong>。  </p>
+
+<p>进程组：一个或多个进程的集合。拥有唯一的标识进程组 ID，每个进程组都有一个组长进程，该进程的进程号等于其进程组的 ID。进程组 ID 不会因组长进程退出而受到影响，<code>fork</code> 调用也不会改变进程组 ID。</p>
+
+<p>会话：一个或多个进程组的集合。新建会话时，当前进程（会话中唯一的进程）成为会话首进程，<strong>也是当前进程组的组长进程</strong>，其进程号为会话 ID，同样也是该进程组的 ID。它通常是登录 shell，也可以是调用 <code>setsid</code> 新建会话的孤儿进程。<br>
+注意：组长进程调用 <code>setsid</code> ，则出错返回，无法新建会话。</p>
+
+<p>通常，会话开始于用户登录，终止于用户退出，期间的所有进程都属于这个会话。一个会话一般包含一个<strong>会话首进程</strong>、一个<strong>前台进程组</strong>和一个<strong>后台进程组</strong>，控制终端可有可无；此外，前台进程组只有一个，后台进程组可以有多个，这些进程组共享一个控制终端。</p>
+
+<ul>
+<li><p>前台进程组：<br>
+该进程组中的进程可以<strong>向终端设备进行读、写操作</strong>（属于该组的进程可以从终端获得输入）。该进程组的 ID 等于控制终端进程组 ID，通常据此来判断前台进程组。</p></li>
+<li><p>后台进程组：<br>
+会话中除了会话首进程和前台进程组以外的所有进程，都属于后台进程组。该进程组中的进程<strong>只能向终端设备进行写操作</strong>。</p></li>
+</ul>
+
+<p>下图为会话、进程组、进程和控制终端之间的关系（登录 shell 进程本身属于一个单独的进程组）。</p>
+
+<p><img src="/media/pictures/daemon-implementation/session.png" alt="session"></p>
+
+<p><em>想了解更多关于会话 <strong>Sessions</strong> 内容，可以认真读一下 <a href="http://www.apuebook.com/"><strong>APUE</strong></a> 这本书。</em></p>
+
+<p>如果调用进程非组长进程，那么就能创建一个新会话：  </p>
+
+<ul>
+<li>该进程变成新会话的首进程</li>
+<li>该进程成为一个新进程组的组长进程</li>
+<li>该进程没有控制终端，如果之前有，则会被中断（<strong>会话过程对控制终端的独占性</strong>）</li>
+</ul>
+
+<p>也就是说：<strong>组长进程不能成为新会话首进程，新会话首进程必定成为组长进程</strong>。</p>
+
+<p>到此为止，我们熟悉了会话与进程间的关系，那么如何新建一个会话呢？</p>
+
+<p>通过调用 <code>setsid</code> 函数可以创建一个新会话，调用进程担任新会话的首进程，其作用有：  </p>
+
+<ul>
+<li>使当前进程脱离原会话的控制</li>
+<li>使当前进程脱离原进程组的控制</li>
+<li>使当前进程脱离原控制终端的控制</li>
+</ul>
+
+<p>这样，当前进程才能实现真正意义上完全独立出来，摆脱其他进程的控制。</p>
+
+<p>另外，要提一下，尽管进程变成无终端的会话首进程，但是它仍然可以重新申请打开一个控制终端。可以通过再次创建子进程结束当前进程，<strong>使进程不再是会话首进程</strong>来禁止进程重新打开控制终端。</p>
+
+<h3>3、改变当前目录为根目录</h3>
+
+<p>直接调用 <code>chdir</code> 函数切换到根目录下。<br>
+由于进程运行过程中，当前目录所在的文件系统（如：“/mnt/usb”）是不能卸载的，为避免对以后的使用造成麻烦，改变工作目录为根目录是必要的。如有特殊需要，也可以改变到特定目录，如“/tmp”。</p>
+
+<h3>4、重设文件权限掩码</h3>
+
+<p><code>fork</code> 函数创建的子进程，继承了父进程的文件操作权限，为防止对以后使用文件带来问题，需要重设<strong>文件权限掩码</strong>。</p>
+
+<p>文件权限掩码，设定了文件权限中要屏蔽掉的对应位。这个跟文件权限的八进制数字模式表示差不多，将现有存取权限减去权限掩码（或做异或运算），就可产生新建文件时的预设权限。</p>
+
+<p>调用 <code>umask</code> 设置文件权限掩码，通常是重设为 0，清除掩码，这样可以大大增强守护进程的灵活性。</p>
+
+<h3>5、关闭文件描述符</h3>
+
+<p>同文件权限掩码一样，子进程可能继承了父进程打开的文件，而这些文件可能永远不会被用到，但它们一样消耗系统资源，而且可能导致所在的文件系统无法卸下，因此需要一一关闭它们。由于守护进程脱离了终端运行，因此标准输入、标准输出、标准错误输出这3个文件描述符也要关闭。通常按如下方式来关闭：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXFILE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</code></pre></div>
+<p>这里要注意下，<code>param.h</code> 头文件中定义了一个常量 <code>NOFILE</code>，表示最大允许的文件描述符，但是我们尽量不要用它，而是通过调用函数 <code>getdtablesize</code> 返回进程文件描述符表中的项数（即打开的文件数目）：</p>
+
+<blockquote>
+<p>/* The following are not really correct but it is a value we used for a
+long time<br>
+and which seems to be usable. People should not use <strong>NOFILE</strong> and <strong>NCARGS</strong> anyway. */<br>
+<strong>#define NOFILE 256</strong><br>
+<strong>#define NCARGS 131072</strong>  </p>
+</blockquote>
+
+<hr>
+
+<p>至此为止，一个简单的守护进程就建立起来了。<br>
+另外，有些 Unix 提供一个 <code>daemon</code> 的 C 库函数，实现守护进程。（BSD 和 Linux 均提供这个函数）：</p>
+
+<blockquote>
+<p><strong>NAME</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;  daemon - run in the background</p>
+
+<p><strong>SYNOPSIS</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;  #include &lt;unistd.h&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;  int daemon(int nochdir, int noclose);</p>
+
+<p><strong>DESCRIPTION</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;  The  daemon()  function  is  for programs wishing to detach themselves from the controlling terminal and run in the background as system daemons.</p>
+</blockquote>
+
+<h2>守护进程实例</h2>
+
+<p>代码说明：</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;time.h&gt;</span>
+<span class="cp">#include &lt;unistd.h&gt;</span>
+<span class="cp">#include &lt;sys/param.h&gt;</span>
+<span class="cp">#include &lt;sys/types.h&gt;</span>
+<span class="cp">#include &lt;sys/stat.h&gt;</span>
+<span class="cp">#include &lt;fcntl.h&gt;</span>
+
+<span class="c1">// 守护进程初始化函数</span>
+<span class="kt">void</span> <span class="nf">init_daemon</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">pid_t</span> <span class="n">pid</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">())</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Fork error !</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">// 父进程退出</span>
+    <span class="p">}</span>
+
+    <span class="n">setsid</span><span class="p">();</span>           <span class="c1">// 子进程开启新会话，并成为会话首进程和组长进程</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">())</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Fork error !</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">// 结束第一子进程，第二子进程不再是会话首进程</span>
+    <span class="p">}</span>
+    <span class="n">chdir</span><span class="p">(</span><span class="s">&quot;/tmp&quot;</span><span class="p">);</span>      <span class="c1">// 改变工作目录</span>
+    <span class="n">umask</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>           <span class="c1">// 重设文件掩码</span>
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">getdtablesize</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">close</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>        <span class="c1">// 关闭打开的文件描述符</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">fp</span><span class="p">;</span>
+    <span class="kt">time_t</span> <span class="n">t</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;This is a daemon:  &quot;</span><span class="p">};</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">datetime</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">//printf(&quot;The NOFILE is: %d\n&quot;, NOFILE);</span>
+    <span class="c1">//printf(&quot;The tablesize is: %d\n&quot;, getdtablesize());</span>
+    <span class="c1">//printf(&quot;The pid is: %d\n&quot;, getpid());</span>
+
+    <span class="c1">// 初始化 Daemon 进程</span>
+    <span class="n">init_daemon</span><span class="p">();</span>
+
+    <span class="c1">// 每隔一分钟记录运行状态</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="p">(</span><span class="n">fp</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/tmp/daemon.log&quot;</span><span class="p">,</span> <span class="n">O_CREAT</span><span class="o">|</span><span class="n">O_WRONLY</span><span class="o">|</span><span class="n">O_APPEND</span><span class="p">,</span> <span class="mo">0600</span><span class="p">)))</span> <span class="p">{</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Open file error !</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+          <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">datetime</span> <span class="o">=</span> <span class="n">asctime</span><span class="p">(</span><span class="n">localtime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t</span><span class="p">));</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">datetime</span><span class="p">);</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="n">close</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>测试结果：</p>
+
+<p><img src="/media/pictures/daemon-implementation/daemon-log.png" alt="test result"></p>
+
+<h2>僵尸进程</h2>
+
+<p>提到守护进程，就不得不说一下另一类特殊进程——<strong>僵尸进程</strong>。</p>
+
+<p>那什么是僵尸进程呢？<br>
+以前看的书上大致都说“如果父进程中没有等待子进程的结束，那么子进程就会变成僵尸进程”，所以就想当然地认为“如果父进程先于子进程结束，那么子进程就成为僵尸进程”。<br>
+事实上，这是完全错误的理解，<strong>父进程先于子进程结束</strong>，这时的子进程应该称作“<strong>孤儿进程</strong>（Orphan）”，它将被 1 号进程（init 进程）接管，init 进程成为其父进程。而僵尸进程是<strong>子进程先于父进程结束</strong>，而且父进程没有函数调用 <code>wait()</code> 或 <code>waitpid()</code> 等待子进程结束，也没有注册 <code>SIGCHLD</code> 信号处理函数，结果使得子进程的<strong>进程列表信息</strong>无法回收，就变成了僵尸进程（Zombie）。</p>
+
+<p><strong>一个已经终止，但是其父进程尚未对其进行善后处理（获取终止子进程的有关信息、释放它仍占用的资源）的进程被称为僵尸进程。</strong></p>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2015/05/13/bash-notes/" title="Previous Post: Bash 学习笔记">&laquo; Bash 学习笔记</a>
+            
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"Linux 守护进程的实现 | Vermillion Phoinix by Alfred Sun //守护进程是什么？Linux 下面如何实现守护进程？本文会介绍笔者在经历一次悲剧的后台开发面试后的反思和总结。 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2015/06/18/daemon-implementation" data-title="Linux 守护进程的实现 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/06/18/daemon-implementation/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/06/18/daemon-implementation/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+				
+					<li><a href="/blog/2015/05/13/bash-notes/">Bash 学习笔记</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/05/problems-with-using-chrome/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/04/linux-tar-command/">学习 tar 压缩命令</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/03/install-vmware-tools-on-linux/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/01/install-openbox-wm/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/04/29/login-fedora-with-root/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

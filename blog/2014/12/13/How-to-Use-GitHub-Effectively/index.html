@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>如何高效利用GitHub</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。 | ]Alfred's Blog" />
+    <meta name="keywords" content="GitHub Usage">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/12/13/How-to-Use-GitHub-Effectively/" title="如何高效利用GitHub">如何高效利用GitHub</a></h1>
+			<!--p class="entry-date">2014-12-13</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	<a href="http://www.yangzhiping.com/tech/github.html" title="Author: 阳志平">阳志平</a>
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2014-12-13T00:00:00+08:00" pubdate data-updated="true">2014-12-13</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#github-ref" title="Category: github" rel="category">github</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+  
+
+</div>
+
+
+			<p>正是Github，让社会化编程成为现实。本文尝试谈谈GitHub的文化、技巧与影响。</p>
+
+<ul>
+<li>Q1：GitHub是什么</li>
+<li>Q2：GitHub风格</li>
+<li>Q3: 在GitHub，如何跟牛人学习</li>
+<li>Q4: 享受纯粹的写作与演讲</li>
+<li>Q5: 代码帮你找工作</li>
+<li>Q6: GitHub还在影响一些什么</li>
+<li>Q7: 除了GitHub，还可以选择什么？</li>
+</ul>
+
+<h2>Q1：GitHub是什么</h2>
+
+<h2>A1：一家公司</h2>
+
+<p>位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。</p>
+
+<!--more-->
+
+<p><img src="http://www.yangzhiping.com/images/tech/Octocat.png" alt="GitHub"></p>
+
+<p>在此之前，它是由Tom与Chris 在本地程序员聚会中，开始的一个用于托管git的项目。正如每个伟大的传奇都开始于一场冒险，Tom在这篇文章<a href="http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html">我如何辞掉微软30万年薪邀约，创办GitHub</a>中谈到：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">当我老去，回顾一生，我想说，“哇，那是一场冒险“；而不是，“哇，我真的很安稳。“
+</code></pre></div>
+<p>另一位创始人Chris也详细描述了GitHub初创的前因后果，他说道：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Do whatever you want.
+</code></pre></div>
+<p>于是，在2008年4月10号这一天，GitHub正式成立。</p>
+
+<p>目前看来，GitHub这场冒险已经胜出。根据来自维基百科关于GitHub的描述，我们可以形象地看出GitHub的增长速度：</p>
+
+<p><img src="http://www.yangzhiping.com/images/tech/github-repos.png" alt="GitHub"></p>
+
+<p>今天，GitHub已是：</p>
+
+<ul>
+<li>一个拥有143万开发者的社区。其中不乏Linux发明者Torvalds这样的顶级黑客，以及Rails创始人DHH这样的年轻极客。</li>
+<li>这个星球上最流行的开源托管服务。目前已托管431万git项目，不仅越来越多知名开源项目迁入GitHub，比如Ruby on Rails、jQuery、Ruby、Erlang/OTP；近三年流行的开源库往往在GitHub首发，例如：BootStrap、Node.js、CoffeScript等。</li>
+<li>alexa全球排名414的网站。</li>
+</ul>
+
+<h2>Q2：GitHub风格</h2>
+
+<h2>A2: GitHub只是GitHub</h2>
+
+<p>强调敏捷开发与快速原型，而又的确成功的创业团队，常具备一个重要气质：有自己的文化风格。如GitHub，又如37signals。通过他们的快速开发，向用户证明了团队在技术上的能力，并且时常有惊喜。同时，通过强调特立独行的文化，将对半衰期过短的产品族群的信任转为对GitHub团队的信任。</p>
+
+<p>Gravatars的创始人（对，就是互联网最流行的头像托管系统）、Jekyll（对，它就是我近几年用的博客系统）作者、GitHub创始人，现任CTO Tom在GitHub第一年学到的10大教训、创业学校演讲中谈到GitHub文化的方方面面。我尝试将这种风格总结为以下要点：</p>
+
+<ul>
+<li>专注创作，高创意</li>
+<li>运营良好与较高的内外满意度</li>
+<li>高利润，较低的融资额或零融资</li>
+<li>创业公司多半死在钱上，就让我们先从钱谈起：</li>
+</ul>
+
+<h3>高利润，较低的融资额或者零融资</h3>
+
+<p>类似于GitHub这样的公司，拿到风险投资很难吗？恰恰相反，创始人PJ Hyett 在Hacker News的一篇评论中提到，自从GitHub创办以来，已与几十个VC沟通过。但是，直到今天，GitHub的融资额还是为零，并引以为豪。让我们看看GitHub官网的自我介绍：</p>
+
+<p><img src="http://www.yangzhiping.com/images/github/vc.png" alt="GitHub"></p>
+
+<h3>运营良好与较高的内外满意度</h3>
+
+<p>在Quora上有人问道，GitHub是否寻找被收购？，还是PJ Hyett ，他的回答是：No。</p>
+
+<p>GitHub从一开始就运营良好，员工拥有较高满意度，看看这些不太一样的做法：</p>
+
+<ul>
+<li>每一位GitHub公司的新员工，官方博客将发表文章欢迎。</li>
+<li>在GitHub内部，没有经理，需求内容与优先级由项目组自行决策。</li>
+<li>选择自己的工作时间、工作地点。</li>
+<li>员工来自开源社区。</li>
+<li>能开源的尽可能开源。</li>
+</ul>
+
+<p>富有激情、创意的员工使得GitHub得到了社区的广泛认同，从而拥有极高的客户满意度，并从创业一开始就盈利。一份早期的调查表明，GitHub很快成为Git托管首选。</p>
+
+<h3>专注创作，高创意</h3>
+
+<p>GitHub59名全职员工仅有29名员工在本地工作！不仅仅是工作地点的安排富有创意，GitHub员工Holman, 详细介绍了GitHub的工作方式：</p>
+
+<ul>
+<li>时间并不能说明什么</li>
+<li>异步工作方式</li>
+<li>创造力很重要</li>
+</ul>
+
+<h2>Q3:在GitHub，如何跟牛人学习</h2>
+
+<h2>A3:在学习区刻意练习</h2>
+
+<h3>追随牛人，与他们一起修行</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">修行之道：
+关注大师的言行，
+跟随大师的举动，
+和大师一并修行，
+领会大师的意境，
+成为真正的大师。
+</code></pre></div>
+<p>正如这首禅诗所言，与其在墙内仰望牛人，不如直接在GitHub：</p>
+
+<ul>
+<li>watch、fork牛人们</li>
+<li>对他们的项目提交pull request</li>
+<li>主动给牛人们的项目写wiki或提交测试用例，或者问题</li>
+<li>还可以帮他们翻译中文</li>
+</ul>
+
+<p>GitHub本身建构在git之上，git成为勾搭大师们的必要工具，以下读物成为首选：</p>
+
+<ul>
+<li>git大白话入门，木有高深内容</li>
+<li>为什么git胜过X&hellip;</li>
+</ul>
+
+<p>如果希望进一步深入，可以阅读已有中文翻译版的材料：</p>
+
+<ul>
+<li>progit：GitHub公司传道士schacon所作，已翻译成多国语言，当然，有中文版。</li>
+<li>Git Magic：已有志愿者翻译中文版。</li>
+</ul>
+
+<p>同样，如果希望了解更多GitHub自身的知识，GitHub官方文档值得推荐：</p>
+
+<ul>
+<li>The GitHub Hep</li>
+</ul>
+
+<h3>牛人在哪里？</h3>
+
+<ul>
+<li>GitHub上的代码库本身：尤其是：Explore、热门关注信息库两个栏目</li>
+<li>GitHub官方推荐：GitHub自身的官方博客与GitHub员工们的个人博客推荐的项目与开发者</li>
+<li>各类社交媒体上提到的的GitHub库：尤其是Hacker News上提到的GitHub库。</li>
+</ul>
+
+<p>关于学习的心理学研究，常常会谈到一个术语：元认知、元学习、元知识。是的，关于认知的认知、关于学习的学习、关于知识的知识，你对这些信息的偏好与熟练掌握，会让你在学习一门新东西时更加轻车熟路。对一手信息进行回溯，比如作者、创始人、最初文献出处，总是会让你更容易理解知识。</p>
+
+<h3>在学习区刻意练习：借助GitStats进行项目统计</h3>
+
+<p>在如何学习一门新的编程语言？——在学习区刻意练习中，我已谈过：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">学习编程最好的方式是在学习区刻意练习。
+</code></pre></div>
+<p>如何进行自我监督？</p>
+
+<p>借助于GitStats，我们能很好地统计自己的每个项目的工作量，从而看到工作进展。</p>
+
+<p>用法如下，</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#复制GitStats项目到本地</span>
+<span class="nb">cd</span> ~/dev
+git clone git://github.com/trybeee/GitStats.git
+python ~/dev/gitstats/git-stats /youproject public
+</code></pre></div>
+<p>以下为生成结果示范：</p>
+
+<p>每周代码提交次数：</p>
+
+<p><img src="http://www.yangzhiping.com/images/github/day_week.png" alt="github"></p>
+
+<p>每天代码提交行数：</p>
+
+<p><img src="http://www.yangzhiping.com/images/github/lines_of_code.png" alt="github"></p>
+
+<p>如果Fork别人的项目或者多人合作项目，最好每人都拥有一个独立分支，然后由项目维护人合并。如何建立自己的分支？</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 分支的创建和合并</span>
+<span class="c"># git branch yourbranch </span>
+<span class="c"># git checkout yourbranch    切换到yourbranch</span>
+
+<span class="c"># 开发yourbranch分支，然后开发之后与master分支合并</span>
+
+<span class="c"># git checkout master</span>
+<span class="c"># git merge yourbranch</span>
+<span class="c"># git branch -d yourbranch    合并完后删除本地分支</span>
+</code></pre></div>
+<p>如何将牛人的远程分支更新到自己的本地分支？</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 查看当前项目下远程</span>
+<span class="c"># git remote</span>
+<span class="c"># 增加新的分支链接，例如</span>
+git remote add niuren giturl…
+<span class="c"># 获取牛人的远程更新</span>
+git fetch niuren
+<span class="c"># 将牛人的远程更新合并到本地分支</span>
+git merge niuren/master
+</code></pre></div>
+<h3>生产力小技巧</h3>
+
+<p><strong>codeshelver：给git库做标签</strong>
+观察的项目如果多了，怎么管理？用codeshelver，安装扩展之后，可以对GitHub项目做标签。</p>
+
+<p><strong>gollum：利用git与github做wiki</strong>
+gollum是一个基于git的轻型wiki系统。</p>
+
+<p><strong>GitHubwatcher: 监测重点项目</strong>
+GitHubwatcher适用于通知不频繁的情景。</p>
+
+<p><strong>GitHub官方资源</strong>
+GitHub官方列出了一些有用的脚本与书签。</p>
+
+<p><strong>社区驱动的安装与配置文件</strong>
+GitHub中各类配置文件层出不穷，一些常用的：</p>
+
+<ul>
+<li>osh-my-zsh：将终端从bash改为zsh之后，可考虑安装社区驱动的zsh配置文件，含有多个插件。可参考旧文zsh与oh-my-zsh</li>
+<li>gitignore：GitHub官方出品</li>
+<li>yourchili:服务器各类安装shell，比如安装nginx等。</li>
+</ul>
+
+<h2>Q4: 享受纯粹的写作与演讲</h2>
+
+<h2>A4：回归创作的初始</h2>
+
+<h3>写作</h3>
+
+<p>早在2008年，就有技术图书作者通过Git来写作，以下是示范：</p>
+
+<ul>
+<li>Node.js初学者教材，中文版在这里。</li>
+<li>backbone基础</li>
+<li>Sinatra教程</li>
+</ul>
+
+<p>你能想到的技术前沿话题，大多能在GitHub找到相应的培训材料或者开源图书。</p>
+
+<p>个人写作照样适用。在前文理想的写作环境：Git+GitHub+Markdown+Jekyll，我已经格外赞美过这些美好事物了。</p>
+
+<p>暖色调的灯光，足够宽度的工作台，听着清脆的键盘声音，基于Git、GitHub、Markdown与Jekyll来写作，不担心写废与排版，只关注最纯粹的写作，是一种享受。我有时候会想，如果Git、Github、Markdown、Jekyll，再加上Yaml、Json的作者，让这些作者们重新来设计今天互联网基础架构偏文本的部分，会诞生一些什么？</p>
+
+<h3>个人博客</h3>
+
+<p>借助于Jekyllbootstrap，可以在Github上快速搭建一个基于jekyll的博客系统。</p>
+
+<p>除了这个简单易行的办法之外，还存在一些其他方法，例如：</p>
+
+<ul>
+<li>Jekyll：参考告别wordpress，拥抱jekyll</li>
+<li>Octopress：参考Ruby开源项目介绍(1)：octopress——像黑客一样写博客</li>
+<li>GitHub Pages：参考GitHub Pages</li>
+</ul>
+
+<h3>演讲</h3>
+
+<p>借助于GitHub，可以享受更纯粹、更酷的演讲。GitHub 2011年收购Ordered List之后，从此可以通过speakerdeck更好的分享ppt文档。</p>
+
+<p>我们还可以：</p>
+
+<ul>
+<li>使用GitHub著名传教士、Progit作者Scott Chacon开发的showoff</li>
+<li>来自开源社区的其他演讲库impress.js</li>
+</ul>
+
+<h2>Q5: 代码帮你找工作</h2>
+
+<h2>A5：GitHub简历很诚实</h2>
+
+<p>NumEricR（非GitHub工作人员）基于GitHub Pages功能做了一个<a href="http://resume.github.com">简历生成器</a>，使用极其简单，登陆网站GitHub简历生成器，填入你的GitHub网站用户名即可。</p>
+
+<p>fredwu是Ruby中文社区活跃份子，他的开源项目angel_nest，一个天使投资与创业者对接的网站，适合Ruby初学者升级为Ruby中级开发者时学习，也在Hacker News上被热烈讨论过，让我们来看看他的简历：</p>
+
+<p><a href="http://resume.GitHub.com/?fredwu">http://resume.GitHub.com/?fredwu</a></p>
+
+<p>正是因为GitHub上的代码无法造假，也容易通过你关注的项目来了解知识面的宽度与深度。现在越来越多知名公司活跃在GitHub，发布开源库并招募各类人才，例如：Facebook、Twitter、Yahoo &hellip;</p>
+
+<p>开始有了第三方网站提供基于GitHub的人才招聘服务，例如：</p>
+
+<ul>
+<li>GitHire: 通过它，可以找出你所在地区的程序员。</li>
+<li>Gitalytics.com: 通过它，能评估某位程序员在GitHub、LinkedIn、StackOverflow、hackernews等多个网站的影响力。</li>
+</ul>
+
+<h2>Q6: GitHub还在影响一些什么</h2>
+
+<h2>A6：让计算机增强人类智慧</h2>
+
+<p>很多年前，在某个名声显赫的学府中，两位先后拿过图灵奖的牛人有一段对话：</p>
+
+<ul>
+<li>牛人A：我们要给机器赋予智慧，让他们有自我意识！</li>
+<li>牛人B：你要给机器做那么多好事？那你打算给人类做点什么呢？
+这段对话来自《失控》。牛人A是明斯基，他最喜欢将人类看做有血肉的机器，他的框架理论成为认知心理学、人工智能入门基础。牛人B则是恩格尔巴特。当明斯基1961年发表他著名的文章人工智能走向时，恩格尔巴特还籍籍无名。直到次年，恩格尔巴特发表宏文：人类智力的增强：一种概念框架。提出不同于明斯基的另一条增强人类智力的道路：不要尝试发明自动打字的机器，而是尝试发明鼠标，并且他真的发明鼠标成功了！</li>
+</ul>
+
+<p>从近些年的发展来看，仍然是明斯基占上风，但是，三十年河东，三十年河西，明斯基的人工智能方向又有多少年没有大突破了？相反，来自恩格尔巴特的群件、集体智慧等思想，逐步成为步入Web2.0时代之后的共识。无关对错，可以说，恩格尔巴特为增强人类智力，提供了可行的框架。与其去发明聪明的、昂贵的、功能一体化的智能机器人，还不如发明类似于鼠标这样笨笨的、廉价的、功能单一的人类智慧服务单件。明斯基的机器人很容易陷入死胡同，没有上升到哲学的高度。现在慢慢又回到恩格尔巴特这个方向来了。比如现在IBM开始宣传的认知计算。</p>
+
+<p>从git与GitHub设计与解决的问题本质来看，明显加速了代码生产流程，促进了卓越智力产品的诞生。这就是一种典型的web2.0对智力生产流程的改良与人类智慧的增强。同样，某种意义上，小说写作网站也起到类似作用。但是，学术界尤其是社会科学类的智力产品生产似乎还停留在一个古老阶段。在开源领域，好想法层出不穷，极客影响极客，最终产生的是酷玩意。这些酷玩意抛弃浮华，直奔问题本质。那么，有没有科学界的GitHub？？</p>
+
+<p>类似问题层出不穷，以下为其他领域产品不完全名单。</p>
+
+<h3>学术研究</h3>
+
+<ul>
+<li>除了较早的arXiv、PLoS之外，较有气象的可以推荐mendeley、开放期刊目录</li>
+</ul>
+
+<h3>数据</h3>
+
+<ul>
+<li>buzzdata:数据分享更容易
+科学计算</li>
+<li>opani：雏形中，支持R、Python等多种。</li>
+</ul>
+
+<h3>教育</h3>
+
+<ul>
+<li>OpenStudy：一个社会性学习网络，通过互助来更好地学习，主题涉及到计算机、数学、写作等。</li>
+<li>openhatch: 通过练习、任务等帮助新手更好地进入开源社区</li>
+</ul>
+
+<h2>Q7:除了GitHub，还可以选择什么？</h2>
+
+<h2>A7：nil</h2>
+
+<p>因为进化的需要，多数裸猿存在选择强迫症：哪种程序语言更好？哪个web开发框架更好？当然，最令宅男技术男们羡慕的问题是，高白瘦御姐还是青春小萝莉好？:D</p>
+
+<p>除了GitHub之外，</p>
+
+<ul>
+<li>中国山寨品是不是更好？（为什么不写他们名字，你懂的，山寨品总是善于争论谁是第一个山寨的，各自的排名先后:D）</li>
+<li>免费的BitBucket是不是更适合Python程序员？</li>
+<li>作为一名折腾族，我不自己搭建一个gitlabhq，是不是对不起自己？</li>
+</ul>
+
+<p>我们可以理解，正是因为无数条分岔路口，让人类不再受制于某种基因、特定疾病、独裁家族，从而拥有无限的可能。但是，这种选择强迫症与远古时代可怜的信息量相比较，</p>
+
+<ul>
+<li>今天这个大数据时代，它还会有助于人类作为族群的整体进化与作为个体的幸福吗？</li>
+<li>今天一位一线城市30岁大学毕业生经历的选择与孔子整个一生经历的选择，纯论数量，谁多谁少？</li>
+</ul>
+
+<p>生命如此短暂，为什么总要将青春浪费在不断的选择之中呢？罚你，回头阅读心理学家施瓦茨（Barry Schwartz）的TED演讲：选择之困惑——为何多即是少，1百遍啊1百遍。请记住施瓦茨的演讲要点：</p>
+
+<ul>
+<li>更多的选择不代表更多的自由；</li>
+<li>更多的选择导致决策的延迟和降低的满意感；</li>
+<li>快乐之秘诀，在于降低自己的期望值。</li>
+</ul>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/12/11/jekykll-jquery-asyn-load/" title="Previous Post: 用Jekyll和jQuery实现异步加载文章列表">&laquo; 用Jekyll和jQuery实现异步加载文章列表</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/" title="Next Post: Jekyll 中用 SyntaxHighlighter">Jekyll 中用 SyntaxHighlighter &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"如何高效利用GitHub | Vermillion Phoinix by Alfred Sun //位于旧金山，由Chris Wanstrath, PJ Hyett 与Tom Preston-Werner三位开发者在2008年4月创办。迄今拥有59名全职员工，主要提供基于git的版本托管服务。 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/13/How-to-Use-GitHub-Effectively" data-title="如何高效利用GitHub | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/13/How-to-Use-GitHub-Effectively/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/13/How-to-Use-GitHub-Effectively/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+					<li><a href="/blog/2015/01/16/create-and-initialize-repo-on-github/">利用 CLI 新建 GitHub 仓库</a></li>
+				
+				
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

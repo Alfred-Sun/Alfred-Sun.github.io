@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>html中的&lt;ul&gt;标签中&lt;li&gt;横向排列</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="如何写出横向菜单的HTML页面 | ]Alfred's Blog" />
+    <meta name="keywords" content="CSS, ul, li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/11/02/make-css-menu/" title="html中的&lt;ul&gt;标签中&lt;li&gt;横向排列">html中的&lt;ul&gt;标签中&lt;li&gt;横向排列</a></h1>
+			<!--p class="entry-date">2014-11-02</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+<span><time datetime="2014-11-02T00:00:00+08:00" pubdate data-updated="true">2014-11-02</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#html-ref" title="Category: html" rel="category">html</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#HTML-ref" title="Tag: HTML" rel="tag">HTML</a-->
+		<a href="/blog/tag/#HTML-ref" title="Tag: HTML" rel="tag">HTML</a>&nbsp;
+    
+		<!--a href="/blog/tag/#CSS-ref" title="Tag: CSS" rel="tag">CSS</a-->
+		<a href="/blog/tag/#CSS-ref" title="Tag: CSS" rel="tag">CSS</a>
+    
+  
+
+</div>
+
+
+			<p>2011-07-22 20:10  html css float class  文档浏览器</p>
+
+<h2>编写横向菜单的HTML代码架构</h2>
+
+<p>请将以下代码添加到HTML文档的导航栏区域中。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;menu&quot;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.baidu.com&quot;</span><span class="nt">&gt;</span>Baidu.Com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+ <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.Code52.Net&quot;</span><span class="nt">&gt;</span>Code52.Net<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+ <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.yahoo.com&quot;</span><span class="nt">&gt;</span>Yahoo.Com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+ <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span> <span class="na">class=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>Google.Com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div>
+<!--more-->
+
+<h2>编写CSS代码</h2>
+
+<h3>1、设置公共样式</h3>
+
+<p>请将以下CSS代码添加到HTML文档的<head>&hellip;</head>标签范围中。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="p">{</span> 
+<span class="k">font</span><span class="o">:</span><span class="m">12px</span> <span class="n">verdana</span><span class="o">,</span> <span class="n">arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span> <span class="c">/* 设置文字大小和字体样式 */</span>
+<span class="p">}</span>
+<span class="nf">#menu</span><span class="o">,</span> <span class="nf">#menu</span> <span class="nt">li</span> <span class="p">{</span>
+<span class="k">list-style</span><span class="o">:</span><span class="k">none</span><span class="p">;</span> <span class="c">/* 将默认的列表符号去掉 */</span>
+<span class="k">padding</span><span class="o">:</span><span class="m">0</span><span class="p">;</span> <span class="c">/* 将默认的内边距去掉 */</span>
+<span class="k">margin</span><span class="o">:</span><span class="m">0</span><span class="p">;</span> <span class="c">/* 将默认的外边距去掉 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<p>大家都知道，<code>&lt;ul&gt;</code>中的各条目<code>&lt;li&gt;</code>，默认都是纵向排列的，我们需要定义CSS来让其横向排列起来。</p>
+
+<p>Tips：因为我们现在将导航栏拉出来独立讲解，所以需要设置一些公共样式，如果您在 body 或其他地方已经重设了默认效果，以上代码可以去掉</p>
+
+<h3>2、让文字横排</h3>
+
+<p>大家都知道，<code>&lt;ul&gt;</code>标签下的项目<code>&lt;li&gt;</code>默认是纵向排列的，我们需要定义额外的CSS属性让其横向排列。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="p">{</span> 
+<span class="k">float</span><span class="o">:</span><span class="k">left</span><span class="p">;</span> <span class="c">/* 往左浮动 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<h3>3、设置链接样式</h3>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
+<span class="k">display</span><span class="o">:</span><span class="k">block</span><span class="p">;</span> <span class="c">/* 将链接设为块级元素 */</span>
+<span class="k">padding</span><span class="o">:</span><span class="m">8px</span> <span class="m">50px</span><span class="p">;</span> <span class="c">/* 设置内边距 */</span>
+<span class="k">background</span><span class="o">:</span><span class="m">#3A4953</span><span class="p">;</span> <span class="c">/* 设置背景色 */</span>
+<span class="k">color</span><span class="o">:</span><span class="m">#fff</span><span class="p">;</span> <span class="c">/* 设置文字颜色 */</span>
+<span class="k">text-decoration</span><span class="o">:</span><span class="k">none</span><span class="p">;</span> <span class="c">/* 去掉下划线 */</span>
+<span class="k">border-right</span><span class="o">:</span><span class="m">1px</span> <span class="k">solid</span> <span class="m">#000</span><span class="p">;</span> <span class="c">/* 在左侧加上分隔线 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<p>我们用内边距（即填充padding）的方式，让每个菜单变得宽一些，如果你的菜单是中英文混排的，建议设置单个菜单的高宽，这样可以避免中英文字符行高不一致导致的高度误差。设置固定高度的方式：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
+<span class="k">display</span><span class="o">:</span><span class="k">block</span><span class="p">;</span> <span class="c">/* 将链接设为块级元素 */</span>
+<span class="k">width</span><span class="o">:</span><span class="m">150px</span><span class="p">;</span> <span class="c">/* 设置宽度 */</span>
+<span class="k">height</span><span class="o">:</span><span class="m">30px</span><span class="p">;</span> <span class="c">/* 设置高度 */</span>
+<span class="k">line-height</span><span class="o">:</span><span class="m">30px</span><span class="p">;</span> <span class="c">/* 设置行高，将行高和高度设置同一个值，可以让单行文本垂直居中 */</span>
+<span class="k">text-align</span><span class="o">:</span><span class="k">center</span><span class="p">;</span> <span class="c">/* 居中对齐文字 */</span>
+<span class="k">background</span><span class="o">:</span><span class="m">#3A4953</span><span class="p">;</span> <span class="c">/* 设置背景色 */</span>
+<span class="k">color</span><span class="o">:</span><span class="m">#fff</span><span class="p">;</span> <span class="c">/* 设置文字颜色 */</span>
+<span class="k">text-decoration</span><span class="o">:</span><span class="k">none</span><span class="p">;</span> <span class="c">/* 去掉下划线 */</span>
+<span class="k">border-right</span><span class="o">:</span><span class="m">1px</span> <span class="k">solid</span> <span class="m">#000</span><span class="p">;</span> <span class="c">/* 在左侧加上分隔线 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<h3>4、链接悬停效果</h3>
+
+<p>通过以上几步的综合作用，一个横向导航栏的初步框架就出现了。此步主要是定义链接的悬停效果，让导航栏更美观。当然，如果要让导航栏更炫丽，你可以在CSS悬停属性上定义背景图片。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+<span class="k">background</span><span class="o">:</span><span class="m">#146C9C</span><span class="p">;</span> <span class="c">/* 变换背景色 */</span>
+<span class="k">color</span><span class="o">:</span><span class="m">#fff</span><span class="p">;</span> <span class="c">/* 变换文字颜色 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<p>这里的代码一个缺陷，最右边会多出来一个边框，由于 :first-child 伪类不被IE系列浏览器所支持，我们只能单独写一个样式，将最后一个边框去掉，同时要给 HTML 代码增加一个额外选择符。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;menu&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.baidu.com&quot;</span><span class="nt">&gt;</span>Baidu.Com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.Code52.Net&quot;</span><span class="nt">&gt;</span>Code52.Net<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.yahoo.com&quot;</span><span class="nt">&gt;</span>Yahoo.com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span> <span class="na">class=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>Google.com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+
+<span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span><span class="nc">.last</span> <span class="p">{</span>
+<span class="k">border-right</span><span class="o">:</span><span class="m">0</span><span class="p">;</span> <span class="c">/* 去掉左侧边框 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+<p>好了，到这里一个简单的横向导航菜单就制作完成了，是不是很简单？ 下面给出完整代码：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="p">{</span> 
+ <span class="k">font</span><span class="o">:</span><span class="m">12px</span> <span class="n">verdana</span><span class="o">,</span> <span class="n">arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span> 
+<span class="p">}</span>
+<span class="nf">#menu</span><span class="o">,</span> <span class="nf">#menu</span> <span class="nt">li</span> <span class="p">{</span>
+ <span class="k">list-style</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
+ <span class="k">padding</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+ <span class="k">margin</span><span class="o">:</span><span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="p">{</span> 
+ <span class="k">float</span><span class="o">:</span><span class="k">left</span><span class="p">;</span> 
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
+ <span class="k">display</span><span class="o">:</span><span class="k">block</span><span class="p">;</span>
+ <span class="c">/* 如果是中英文混排的文字，建议用固定宽度</span>
+<span class="c"> width:150px;</span>
+<span class="c"> height:30px;</span>
+<span class="c"> line-height:30px;</span>
+<span class="c"> text-align:center;</span>
+<span class="c"> */</span>
+ <span class="k">padding</span><span class="o">:</span><span class="m">8px</span> <span class="m">50px</span><span class="p">;</span>
+ <span class="k">background</span><span class="o">:</span><span class="m">#3A4953</span><span class="p">;</span>
+ <span class="k">color</span><span class="o">:</span><span class="m">#fff</span><span class="p">;</span>
+ <span class="k">text-decoration</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
+ <span class="k">border-right</span><span class="o">:</span><span class="m">1px</span> <span class="k">solid</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+ <span class="k">background</span><span class="o">:</span><span class="m">#146C9C</span><span class="p">;</span>
+ <span class="k">color</span><span class="o">:</span><span class="m">#fff</span><span class="p">;</span>
+ <span class="k">text-decoration</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
+ <span class="k">border-right</span><span class="o">:</span><span class="m">1px</span> <span class="k">solid</span> <span class="m">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span><span class="nc">.last</span> <span class="p">{</span>
+ <span class="k">border-right</span><span class="o">:</span><span class="m">0</span><span class="p">;</span> <span class="c">/* 去掉左侧边框 */</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;menu&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.baidu.com&quot;</span><span class="nt">&gt;</span>Baidu.Com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.Code52.Net&quot;</span><span class="nt">&gt;</span>Code52.Net<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.yahoo.com&quot;</span><span class="nt">&gt;</span>Yahoo.com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span> <span class="na">class=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>Google.com<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div>
+<p>现在，你可以自己动手在 Html 文件里面测试一下效果。</p>
+
+<p>上面的CSS样式，我修改了一下。如下：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="nf">#menu</span> <span class="p">{</span>
+<span class="k">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
+<span class="k">font-weight</span><span class="o">:</span> <span class="k">bolder</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span><span class="p">{</span>
+<span class="k">list-style-image</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="k">list-style-type</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="k">background-color</span><span class="o">:</span> <span class="m">#999999</span><span class="p">;</span>
+<span class="k">border-right</span><span class="o">-</span><span class="k">width</span><span class="o">:</span> <span class="m">1px</span><span class="p">;</span>
+<span class="k">border-right</span><span class="o">-</span><span class="n">style</span><span class="o">:</span> <span class="k">solid</span><span class="p">;</span>
+<span class="k">border-right</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#000000</span><span class="p">;</span>
+<span class="k">float</span><span class="o">:</span> <span class="k">left</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span><span class="p">{</span>
+<span class="k">color</span><span class="o">:</span> <span class="m">#FFFFFF</span><span class="p">;</span>
+<span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="k">margin</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+<span class="k">padding-top</span><span class="o">:</span> <span class="m">8px</span><span class="p">;</span>
+<span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="c">/* 作为一个块 */</span>
+<span class="k">padding-right</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span> <span class="c">/* 设置块的属性 */</span>
+<span class="k">padding-bottom</span><span class="o">:</span> <span class="m">8px</span><span class="p">;</span>
+<span class="k">padding-left</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nf">#menu</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover</span><span class="p">{</span>
+<span class="k">background-color</span><span class="o">:</span> <span class="m">#0099CC</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/10/31/Single-Sign-On/" title="Previous Post: 单点登录 SSO 的实现原理">&laquo; 单点登录 SSO 的实现原理</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/11/23/disable-login-each-git-push/" title="Next Post: Git Push 避免用户名和密码方法">Git Push 避免用户名和密码方法 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"html中的&lt;ul&gt;标签中&lt;li&gt;横向排列 | Vermillion Phoinix by Alfred Sun //如何写出横向菜单的HTML页面 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/11/02/make-css-menu" data-title="html中的&lt;ul&gt;标签中&lt;li&gt;横向排列 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/11/02/make-css-menu/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/11/02/make-css-menu/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

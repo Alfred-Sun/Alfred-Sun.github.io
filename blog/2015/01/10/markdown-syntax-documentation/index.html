@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>讲解 Markdown</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Markdown Syntax Documentation 刚开始接触markdown的时候，觉得好简单好方便，随着使用的深入，发现 Markdown 好像在很多地方有很多不同的实现，语法特性各不相同，顿时陷入迷茫 | ]Alfred's Blog" />
+    <meta name="keywords" content="Markdown, Syntax">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2015/01/10/markdown-syntax-documentation/" title="讲解 Markdown">讲解 Markdown</a></h1>
+			<!--p class="entry-date">2015-01-10</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2015-01-10T00:00:00+08:00" pubdate data-updated="true">2015-01-10</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#markdown-ref" title="Category: markdown" rel="category">markdown</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#Markdown-ref" title="Tag: Markdown" rel="tag">Markdown</a-->
+		<a href="/blog/tag/#Markdown-ref" title="Tag: Markdown" rel="tag">Markdown</a>&nbsp;
+    
+		<!--a href="/blog/tag/#Syntax-ref" title="Tag: Syntax" rel="tag">Syntax</a-->
+		<a href="/blog/tag/#Syntax-ref" title="Tag: Syntax" rel="tag">Syntax</a>&nbsp;
+    
+		<!--a href="/blog/tag/#Extensions-ref" title="Tag: Extensions" rel="tag">Extensions</a-->
+		<a href="/blog/tag/#Extensions-ref" title="Tag: Extensions" rel="tag">Extensions</a>
+    
+  
+
+</div>
+
+
+			<blockquote>
+<p><em>Markdown is a text-to-HTML conversion tool for web writers.<br>
+Markdown allows you to write using an <strong>easy-to-read, easy-to-write</strong> plain text format, then convert it to structurally valid XHTML (or HTML).</em>
+<div style="text-align:right;margin-top:5px;"> –  <a href="http://daringfireball.net/projects/markdown/"><b>John Gruber</b></a></div></p>
+</blockquote>
+
+<h2>开始用 Markdown 写博客</h2>
+
+<p>让博客程序写文章时支持 Markdown 语法：用过 GitHub 的同学对 Markdown 都不陌生，对比常见的富文本编辑器，它至少有以下优点：</p>
+
+<ul>
+<li>纯文本，兼容性极强，可以用所有文本编辑器打开</li>
+<li>格式转换方便，Markdown 可以轻松转换为各种格式</li>
+<li>让你专注于文字而不是排版</li>
+<li>Markdown 的标记语法有极好的可读性</li>
+<li>在 Markdown 中，依然可以使用 html 标记</li>
+</ul>
+
+<p>对于喜欢贴代码的程序员来说，GFM(GitHub Flavored Markdown) 定义的<a href="https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks">代码块语法</a>方便好用。Sublime Text 对 Markdown 的语法高亮也支持得也很好，一目了然。Web 上也有强大的 <a href="http://codemirror.net/mode/gfm/index.html">CodeMirror</a> 支持 Markdown 的编写。</p>
+
+<!--more-->
+
+<p><img src="/media/pictures/markdown-syntax-documentation/markdown.png" alt="markdown"></p>
+
+<p>解析 Markdown 语法，有两个库：运行于浏览器和 Nodejs 的 JavaScript 库 <a href="https://github.com/chjj/marked">marked</a>，和 Python 库 <a href="http://pythonhosted.org/Markdown/">Markdown</a>。它们除了支持 Markdown 的<a href="http://daringfireball.net/projects/markdown/syntax">基本语法</a>外，还支持表格、代码块、TOC(Table Of Contents) 等扩展功能。</p>
+
+<p>最近，身边不少技术强爱折腾的朋友都把自己博客换成 Nodejs + Markdown 了。如果不想自己开发，也可以用 <a href="http://jekyllrb.com/">Jekyll</a> 或 <a href="http://octopress.org/">Octopress</a> 等系统。它们都支持 Markdown，都能很好的跟 github 整合。</p>
+
+<p>还有一家叫 <a href="http://postach.io/">postach.io</a> 的网站比较有趣，在这里写博客的方式很特别：绑定 <a href="http://www.evernote.com/">Evernote</a> 帐号，在指定记事本新建 Note 并添加名为 published 的 tag，同步即可。当然，postach.io 也支持 Markdown。</p>
+
+<p>现在 GitHub 和 GitCafe，都很容易将项目变成博客，还支持绑定域名、本地搭建服务等高级功能，可以去官网了解。</p>
+
+<h2>Markdown 语法说明</h2>
+
+<h3>语法文档</h3>
+
+<p><img src="/media/pictures/markdown-syntax-documentation/markdownsheet.png" alt="Markdown Cheat Sheet" title="markdown cheat sheet"></p>
+
+<p><strong>标准 Markdown 语法</strong>: <a href="http://alfred-sun.github.io/markdown-syntax-zhtw/">翻译版</a><br>
+官方 Markdown 语法: <a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a><br>
+一份语法速查表: <a href="/media/documents/markdown-syntax-cheat-sheet.pdf">Markdown语法速查表</a><br>
+GFM Syntax Guide: an <a href="/media/pictures/markdown-syntax-documentation/Github%20Flavored%20MarkDown.jpg">overview of Markdown syntax</a> used anywhere on GitHub.com<br>
+另一份别人整理的 Markdown/GFM 语法: <a href="/media/documents/MarkDown%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80.pdf">MarkDown轻量级标记语言</a></p>
+
+<h3>Personal Notes</h3>
+
+<ol>
+<li><p>嵌套的列表：<br>
+Create nested lists by indenting list items by two spaces.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">1. Item 1
+  1. A corollary to the above item.
+  2. Yet another point to consider.
+2. Item 2
+  * A corollary that does not need to be ordered.
+    * This is indented four spaces, because it&#39;s two spaces further than the item above.
+    * You might want to consider making a new list.
+3. Item 3
+</code></pre></div></li>
+<li><p>加强的代码块：<br>
+行内代码用单个反引号<code>`</code>包住，即可显示原有格式的文本。<br>
+跨行代码块，可以不用缩进4个空格，使用3个反引号<code>```</code>包住文本区块(Fenced code blocks)：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Check out this neat program I wrote:
+
+```
+x = 0
+x = 2 + 2
+what is x
+```
+</code></pre></div>
+<p>这样Code blocks更容易语法高亮，直接在标记后接语言识别符。例如，高亮一段 Ruby 代码：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">```ruby
+require &#39;redcarpet&#39;
+markdown = Redcarpet.new(&quot;Hello World!&quot;)
+puts markdown.to_html
+```
+</code></pre></div></li>
+<li><p>表格支持：<br>
+建表格使用连字符<code>-</code>和竖线<code>|</code>，区分开表头和单元格：</p>
+
+<pre>
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+</pre>
+
+<p>想好看一些的话，也可以在开头和结尾加竖线：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+</code></pre></div>
+<p>顶部的连字符无需一定匹配表头文本的长度（但必须保证<strong>至少3个连字符</strong>）；也可以添加行内的Markdown语法文本，如链接、加粗、删除线等：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">| Name | Description          |
+| ------------- | ----------- |
+| Help      | ~~Display the~~ help window.|
+| Close     | _Closes_ a window     |
+</code></pre></div>
+<p>表头行使用冒号<code>:</code>实现表格内列的文本对齐方式：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |
+</code></pre></div>
+<p>冒号在最左边表示该列文本左对齐，最右边表示文本右对齐，两边都加冒号表示居中对齐文本。</p></li>
+<li><p>LaTeX 公式   </p>
+
+<h4>示例:</h4>
+
+<p><img src="/media/pictures/markdown-syntax-documentation/MathJax.png" alt="MathJax LaTeX demo"></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// $$ 表示整行公式：
+
+$$\sum_{i=1}^n a_i=0$$
+
+$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$
+</code></pre></div>
+<p>访问 <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax Tutorial</a> 参考更多使用方法。<br>
+MathJax 文档：<a href="http://docs.mathjax.org/en/latest/mathjax.html"><em>What is MathJax ?</em></a></p>
+
+<blockquote style="margin-left:0px;"><p><a href="http://www.mathjax.org" title="Beautiful math in all browsers" target="_blank" class="external"><strong>MathJax</strong></a> is an open-source JavaScript display engine for mathematics(<a href="http://www.latex-project.org" title="LaTeX – A document preparation system" target="_blank" class="external">LaTeX</a>, <a href="http://www.w3.org/TR/MathML3" target="_blank" class="external">MathML</a>, and <a href="http://www1.chapman.edu/%7Ejipsen/mathml/asciimath.html" target="_blank" class="external">AsciiMath</a> notation) that works in all modern browsers.</p></blockquote>
+
+<!--[**MathJax**][MathJax_] is an open-source JavaScript display engine for mathematics([LaTeX][], [MathML][], and [AsciiMath][] notation) that works in all modern browsers.--></li>
+<li><p>流程图   </p>
+
+<h4>示例:</h4>
+
+<p style="
+margin-top: -25px;
+"><img src="/media/pictures/markdown-syntax-documentation/flowchart.svg" alt="flowchart.js demo"></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">```flow
+st=&gt;start: Start:&gt;http://alfred-sun.github.io
+io=&gt;inputoutput: verification
+op=&gt;operation: Your Operation
+cond=&gt;condition: Yes or No?
+sub=&gt;subroutine: Your Subroutine
+e=&gt;end:&gt;https://github.com/adrai/flowchart.js
+
+st-&gt;io-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;sub-&gt;io
+```
+</code></pre></div>
+<h4>更多语法参考：<a href="http://adrai.github.io/flowchart.js/">流程图语法参考</a> <em>(View on <a href="https://github.com/adrai/flowchart.js" title="flowchart.js"><strong>GitHub</strong></a>)</em></h4></li>
+<li><p>序列图   </p>
+
+<h4>示例:</h4>
+
+<p><img src="/media/pictures/markdown-syntax-documentation/diagram.svg" alt="js-sequence-diagrams demo"></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">```seq
+Andrew-&gt;China: Says Hello
+Note right of China: China thinks\nabout it
+China--&gt;Andrew: How are you?
+Andrew-&gt;&gt;China: I am good thanks!
+```
+</code></pre></div>
+<h4>更多语法参考：<a href="http://bramp.github.io/js-sequence-diagrams/">序列图语法参考</a> <em>(View on <a href="https://github.com/bramp/js-sequence-diagrams" title="js-sequence-diagrams"><strong>GitHub</strong></a>)</em></h4></li>
+<li><p>注脚<br>
+使用 <code>[^keyword]</code> 表示注脚。例如：</p>
+
+<p>这是第一个注脚<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup>的样例。<br>
+这是第二个注脚<sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup>的样例。</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">这是第一个注脚[^footnote1]的样例。   
+这是第二个注脚[^footnote2]的样例。
+...
+[^footnote1]: 这是一个 *注脚* 的 **文本**。
+[^footnote2]: 这是另一个 *注脚* 的 **文本**。
+</code></pre></div></li>
+</ol>
+
+<h2>一些 Markdown 参考</h2>
+
+<p>Markdown是一种网络书写语言，其目标是实现易读易写，且兼容HTML语言。Markdown的流行得益于Github和Stackoverflow，Stackoverflow的代码块以及Github上的README.md文件格式都是通过Markdown表现的。另外还有支持各大浏览器的写邮件的Markdown插件：<a href="https://github.com/adam-p/markdown-here">Markdown Here</a></p>
+
+<p>使用Markdown可以书写自由书籍，关于此，您可以参看文章<a href="http://www.ituring.com.cn/article/828">用Markdown来写自由书籍-开源技术的方案</a>，<a href="http://www.larrycaiyu.com/2011/12/31/ebook-by-markdown.html">开源书和开源技术-Markdown篇</a>一文也介绍了一些Markdown与开源书和开源技术之间的渊源。已经有一些开源书籍使用Markdown书写了，亚嵌教育的开源书籍<a href="http://www.lumit.org/LASO/">源码开放学ARM</a>、蒋鑫老师的<a href="http://www.worldhello.net/gotgithub/">GotGithub</a>一书，这些开源书籍都给学习者提供很大帮助。Markdown书写已经是一种开源精神体现。好了，既然Markdown与自由书写这么默契，我们怎么用Markdown来写自己的README.md，自己的博客甚至自己的开源书籍呢？</p>
+
+<p>这里有一份翻译的<a href="http://wowubuntu.com/markdown/">Markdown的语法</a>，从<a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md">这里</a>看可能更直观。Markdown语法是如此简单，以至于还不到1000行就描述完了。初学者您可以参考<a href="http://jianshu.io/p/q81RER">献给写作者的Markdown新手指南</a>。Github的Markdown语法大部分都与传统Markdown语法一样，可以看看<a href="https://help.github.com/articles/markdown-basics">markdown-basics</a>，但也有些扩展，扩展内容在文档<a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a>中。</p>
+
+<p>在使用Markdown过程中，您也许还需要一个实时显示Markdown文档预览的工具，这方面的工具有很多，这里推荐几个在线的Markdown文档编辑器：</p>
+
+<ol>
+<li><strong>Dillinger</strong>:       <a href="http://dillinger.io/">http://dillinger.io/</a></li>
+<li><strong>StackEdit</strong>:       <a href="https://stackedit.io/">https://stackedit.io/</a></li>
+<li><strong>印象笔记</strong>:        <a href="http://maxiang.info/">http://maxiang.info/</a></li>
+</ol>
+
+<p>“<a href="http://www.jianshu.com/p/51474fb08d04">免费Markdown写作工具简评</a>”一文提供了有关于Markdown文档编辑器的更多信息。
+谷歌浏览器貌似也有<a href="https://github.com/volca/markdown-preview">Markdown的预览插件</a>，这样您就可以用记事本编辑，用浏览器预览了。
+印象笔记也有Chrome的扩展，可在商店搜素“马克飞象”。</p>
+
+<p>我们说Markdown是为了书写自由电子书，那么Markdown如何生成pdf或html格式的文档呢？我们可以借助Markdown文档编辑器的功能，StackEdit 就能胜任，使用StackEdit左上角的菜单，&quot;Save As&hellip;&ldquo;就可以做到。</p>
+
+<p>还有2款集编辑与Markdown预览于一身的不错工具 <a href="http://www.everedit.net">Everedit</a> 和 <strong><a href="https://www.zybuluo.com/mdeditor">Cmd Markdown</a></strong>，国产的哦..</p>
+
+<p>最后，你可以在Github上找到这样一篇文章: <a href="https://github.com/Alfred-Sun/Markdown/blob/master/README.md" title="彪悍的人生不需要解释">MARKDOWN是什么</a></p>
+
+<!--http://jianshu.io/p/pgN9Rb-->
+
+<h2>Markdown 各种扩展</h2>
+
+<h3>PHP Markdown Extra</h3>
+
+<p>Markdown的php解析与实现，并且增加了许多有用的扩展。<a href="https://michelf.ca/projects/php-markdown/extra/">PHP Markdown Extra</a>其中几个比较重要的改进有：</p>
+
+<ul>
+<li>支持在html块元素中插入markdown语法</li>
+<li>支持为一些元素添加id或class，比如为header添加id属性，用带锚点的链接导航。例如：</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">[Link back to header 1](#header1)
+
+Header 1               {#header1}
+========
+
+## Header 2 ##         {#header2}</code></pre></div>
+
+<p>支持元素包括<code>header</code>、<code>code block</code>、<code>link</code>、<code>image</code></p>
+
+<ul>
+<li>支持将代码块用`或者~包起来，这样可以避免一些二义，还可以为代码块添加id或class</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.html #example-1}
+<span class="nt">&lt;p&gt;</span>paragraph <span class="nt">&lt;b&gt;</span>emphasis<span class="nt">&lt;/b&gt;</span>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre></div>
+
+<ul>
+<li>支持手写的表格</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">| Function name | Description                    |
+| ------------- | ------------------------------ |
+| `help()`      | Display the help window.       |
+| `destroy()`   | **Destroy your computer!**     |</code></pre></div>
+
+<ul>
+<li>支持<code>dl</code>和<code>dt</code>在markdown中的对应语法</li>
+<li>支持脚注引用</li>
+</ul>
+
+<pre><code>That's some text with a footnote.[&#94;1]
+
+[&#94;1&#93;: And that's the footnote.
+</code></pre>
+
+<ul>
+<li>支持专有名词<code>abbr</code></li>
+<li>避免下划线出现在单词中间，导致斜体输出</li>
+</ul>
+
+<h3>Maruku</h3>
+
+<p>在 &quot;始作俑者 PHP Markdown Extra&rdquo; 后，很多基于 Ruby 的 Markdown 解释器开始浮现。其中，<a href="https://github.com/bhollis/maruku">Maruku</a> 号称：</p>
+
+<ul>
+<li>支持原生Markdown</li>
+<li>支持所有PHP Markdown Extra的特性</li>
+<li>支持新的元数据语法，实际上就是给元素添加属性的能力</li>
+<li>支持<a href="https://github.com/bhollis/maruku/blob/master/docs/math.md">公式格式</a>输出</li>
+<li>支持自动生成 <strong><a href="https://golem.ph.utexas.edu/%7Edistler/maruku/#toc-generation">Table of Contents</a></strong></li>
+</ul>
+
+<p>Maruku的语法详见<a href="https://github.com/bhollis/maruku/blob/master/docs/markdown_syntax.md">这里</a></p>
+
+<p>不过，该项目已经停止维护了。</p>
+
+<h3>Kramdown</h3>
+
+<p>同样是ruby开发的解释器，<a href="http://kramdown.gettalong.org/quickref.html">kramdown</a>吸取了Maruku几乎所有的特点，功能更为强大。其中有特点的功能有：</p>
+
+<ol>
+<li>改进了一些二义语法</li>
+<li>引入EOB标记<code>^</code>作为块元素的分隔符</li>
+<li>手写table的语法更加强大一些，支持table中的header和footer</li>
+<li>同样支持ALD(Attribute List Definitions属性列表定义)</li>
+<li>同样支持 <strong><a href="http://kramdown.gettalong.org/converter/html.html#math-support">LaTeX</a></strong> 编辑显示支持</li>
+<li>还支持注释，以及在转化时配置一些转化选项</li>
+</ol>
+
+<p><a href="https://help.github.com/articles/migrating-your-pages-site-from-maruku">Github-Page 推荐使用这个解释器</a></p>
+
+<h3>RDiscount</h3>
+
+<p><a href="http://dafoster.net/projects/rdiscount/">RDiscount</a>又是一个基于Ruby开发的解释器，不过它是基于<a href="http://www.pell.portland.or.us/%7Eorc/Code/discount/">Discount</a>的语法移植的，所以语法规则需要参考<a href="http://www.pell.portland.or.us/%7Eorc/Code/discount/#Language.extensions">Discount</a>。其语法支持几种上面没有提到过的特性：</p>
+
+<ul>
+<li>文本居中，即输出<code>&lt;center&gt;</code></li>
+<li>图片大小定义<code>![dust mite](http://dust.mite =150x150)</code></li>
+<li>输出<code>alpha</code>列表：<code>&lt;ol type=&#39;a&#39;&gt;&lt;/ol&gt;</code></li>
+</ul>
+
+<h3>Redcarpet</h3>
+
+<p><a href="https://github.com/vmg/redcarpet">Redcarpet</a>是一个转化库，可以在标准Markdown的基础上，配置一些额外的功能：</p>
+
+<ul>
+<li>单词中间的<code>_</code>不处理</li>
+<li>转化PHP-Markdown风格的手写表格</li>
+<li>转化PHP-Markdown风格的带包含的代码块，也可禁用标准markdown的代码块语法</li>
+<li>自动link生成</li>
+<li>删除线支持：<code>~~good~~</code></li>
+<li>高亮标签<code>&lt;mark&gt;&lt;/mark&gt;</code>通过<code>==highlighted==</code>输出</li>
+<li>引用标签<code>&lt;q&gt;&lt;/q&gt;</code>通过<code>&quot;quote&quot;</code>输出</li>
+<li>转化PHP-Markdown风格脚注</li>
+<li>一些二义性的约束支持</li>
+</ul>
+
+<h3>Github 支持</h3>
+
+<p>Github Page 对于上述的基于 Ruby 的 markdown 是支持的，从<a href="https://pages.github.com/versions/">这里</a>可以看到。另外，Github 对于 Issue、comments、pull request descriptions 等，还定义了 GFM(<a href="https://help.github.com/articles/github-flavored-markdown">GitHub Flavored Markdown</a>)，其中的语法一般基本来源于上面的提到的东西。除此之外，GitHub 还支持一些额外的特性：</p>
+
+<ul>
+<li>支持把列表变成带勾选框的任务列表</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">- [x] @mentions, #refs, [links](), **formatting**, and <span class="nt">&lt;del&gt;</span>tags<span class="nt">&lt;/del&gt;</span> are supported 
+- [x] list syntax is required (any unordered or ordered list supported) 
+- [x] this is a complete item 
+- [ ] this is an incomplete item</code></pre></div>
+
+<ul>
+<li>站内对分支、问题、用户等对象的直接引用</li>
+</ul>
+
+<pre><code>* SHA: <font color="red">a5c3785ed8d6a35868bc169f07e40e889087fd2e</font>
+* User@SHA: <font color="yellow">jlord@a5c3785ed8d6a35868bc169f07e40e889087fd2e</font>
+* User/Repository@SHA: <font color="red">jlord/sheetsee.js@a5c3785ed8d6a35868bc169f07e40e889087fd2e</font>
+* #Num: <font color="yellow">#26</font>
+* GH-Num: <font color="red">GH-26</font>
+* User#Num: <font color="yellow">jlord#26</font>
+* User/Repository#Num: <font color="red">jlord/sheetsee.js#26</font>
+</code></pre>
+
+<ul>
+<li>表情 <a href="http://www.emoji-cheat-sheet.com/">Emoji</a></li>
+<li>支持部分 HTML 标签 (<a href="https://github.com/github/markup/tree/master#html-sanitization">GitHub Markup</a>)</li>
+</ul>
+
+<h3>MultiMarkdown</h3>
+
+<p>MMD(<a href="http://fletcherpenney.net/multimarkdown/">MultiMarkdown</a>) 是 C 实现的 Markdown 解析器，支持几乎任何OS平台；<br>
+Markdown 语法的超集，不仅加强了 PHP Markdown Extra 一些功能，如对表格、注脚、引用、公式的支持，而且能转换输出更多类型的文档：HTML，LaTeX，PDF，ODF，RTF，甚至是 MS Word。</p>
+
+<p>The many output formats of MultiMarkdown：
+<img src="/media/pictures/markdown-syntax-documentation/OPML-MMD-Map.png" alt="multiple output formats" title="Example: MultiMarkdown output formats" style="background-color:#222;"></p>
+
+<blockquote>
+<ul>
+<li>最初的 MMD(MultiMarkdown v2) 改自 Markdown.pl Perl脚本；<br></li>
+<li>MultiMarkdown v3(aka <strong>peg-multimarkdown</strong>) 在 John MacFarlane 的 <a href="https://github.com/jgm/peg-markdown">peg-markdown</a> 基础上构建的，其核心的 PEG(parsing expression grammar) 提高了 MMD 可靠性；<br></li>
+<li>最新的 <a href="https://github.com/fletcher/MultiMarkdown-4/">MultiMarkdown v4</a> 性能上做了很多优化，完全重写 MMD v3，仅保留了PEG和部分重要的程序，是目前最出色的版本。</li>
+</ul>
+</blockquote>
+
+<p>其他的特性：</p>
+
+<ul>
+<li>支持自定义输出任何 <a href="http://en.wikipedia.org/wiki/XSLT">XSLT</a> 格式的文档</li>
+<li>多文件批处理</li>
+<li>支持主要OS上的拖拽操作</li>
+<li>支持集成进 <a href="http://macromates.com/">TextMate</a></li>
+<li><a href="http://www.omnigroup.com/omnioutliner/">OmniOutliner</a> Plugin 使得本地 OmniOutliner 大纲输出为 MDD 文本文件</li>
+<li>MMD QuickLook 生成器实现对 MMD 文本或 OS X Finder 找到的 <a href="http://en.wikipedia.org/wiki/OPML">OPML</a> 文件的预览</li>
+</ul>
+
+<h3>Pandoc’s Markdown</h3>
+
+<p>以上扩展，某种意义上来讲，并不是针对写作的。开源界传说中的高富帅社区 - <a href="http://www.haskell.org/">Haskell</a>社区，其作品 <a href="http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown">Pandoc</a> 给了我们更好的选择，在多个方面完败 MMD，参考：<a href="https://github.com/jgm/pandoc/wiki/Pandoc-vs-Multimarkdown">Pandoc vs Multimarkdown</a>。</p>
+
+<p>Haskell是什么？一种编程语言。每位资深的开发者学习它，都会有些不知所措，因为，它的编程思路不同于通常意义上类似于C#、Python、Java这些流行的编程语言。它来自一群高智商的开发者的贡献，据说人人有PHD学位，是<a href="http://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B8%E5%BC%8F%E7%B7%A8%E7%A8%8B">函数式编程语言</a>的典范。<a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> 作者<a href="http://johnmacfarlane.net/">John MacFarlane</a>也不例外。</p>
+
+<p>Pandoc 是一个 Haskell 库，一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc 以命令行形式实现与用户的交互，可支持多种操作系统，支持大量的文本类型的输入输出。</p>
+
+<h4>Pandoc支持的标记语言格式</h4>
+
+<table>
+<tbody><tr>
+<th width="185px">Pandoc 可读取的源格式</th>
+<th>Pandoc 可生成的目标格式</th>
+</tr>
+
+<tr><td><ul style="margin-bottom:0px;">
+<li><a href="http://daringfireball.net/projects/markdown/" title="Markdown">Markdown</a></li>
+<li><a href="http://docutils.sourceforge.net/docs/ref/rst/introduction.html" title="ReStructuredText">reStructuredText</a></li>
+<li><a href="http://redcloth.org/textile" title="Textile">textile</a></li>
+<li><a href="http://www.w3.org/TR/html40/" title="HTML">HTML</a></li>
+<li><a href="http://www.docbook.org/" title="DocBook">DocBook</a></li>
+<li><a href="http://www.latex-project.org/" title="LaTeX">LaTeX</a></li>
+<li><a href="http://www.mediawiki.org/wiki/Help:Formatting" title="MediaWiki">MediaWiki markup</a></li>
+<li><a href="http://twiki.org/cgi-bin/view/TWiki/TextFormattingRules" title="TWiki">TWiki markup</a></li>
+<li><a href="http://dev.opml.org/spec2.html" title="OPML">OPML</a></li>
+<li><a href="http://www.gnu.org/software/emacs/" title="Emacs">Emacs</a></li>
+<li><a href="http://orgmode.org/" title="Org-模式">Org-Mode</a></li>
+<li><a href="http://txt2tags.org/" title="Txt2Tags">Txt2Tags</a></li>
+<li><a href="http://www.microsoft.com/interop/openup/openxml/default.aspx" title="Microsoft Word docx">Microsoft Word docx</a></li>
+<li><a href="http://en.wikipedia.org/wiki/EPUB" title="EPUB">EPUB</a></li>
+<li><a href="http://www.haskell.org/haddock/doc/html/ch03s08.html" title="Haddock">Haddock markup</a></li>
+</ul></td>
+
+<td><ul style="margin-bottom:0px;">
+<li>HTML格式：包括<a href="http://www.w3.org/TR/xhtml1/">XHTML</a>，<a href="http://www.w3.org/TR/html5/">HTML5</a>及HTML slide shows(<a href="http://www.w3.org/Talks/Tools/Slidy">Slidy</a>, <a href="http://lab.hakim.se/reveal-js/">reveal.js</a>, <a href="http://goessner.net/articles/slideous/">Slideous</a>, <a href="http://meyerweb.com/eric/tools/s5/">S5</a>, or <a href="http://paulrouget.com/dzslides/">DZSlides</a>)</li>
+<li>文字处理软件格式：包括Microsoft Word docx、OpenOffice/LibreOffice<a href="http://en.wikipedia.org/wiki/OpenDocument" title="ODT">ODT</a>、<a href="http://opendocument.xml.org/" title="OpenDocument XML">OpenDocument XML</a></li>
+<li>电子书Ebooks格式：包括EPUB（第2版及第3版）、<a href="http://www.fictionbook.org/index.php/Eng:XML_Schema_Fictionbook_2.1" title="FictionBook">FictionBook2</a></li>
+<li>技术文档格式：包括<a href="http://www.docbook.org/" title="DocBook">DocBook</a>、<a href="http://www.gnu.org/software/texinfo/" title="GNU TexInfo">GNU TexInfo</a>、<a href="http://www.gnu.org/software/groff/groff.html" title="手册页">Groff man</a> pages、<a href="http://www.haskell.org/haddock/doc/html/ch03s08.html" title="Haddock">Haddock markup</a></li>
+<li>页面布局格式：<a href="https://www.adobe.com/content/dam/Adobe/en/devnet/indesign/cs55-docs/IDML/idml-specification.pdf" title="InDesign ICML">InDesign ICML</a></li>
+<li>大纲处理标记语言格式：<a href="http://dev.opml.org/spec2.html" title="OPML">OPML</a></li>
+<li>TeX格式：包括LaTeX、<a href="http://www.pragma-ade.nl/" title="ConTeXt">ConTeXt</a>、<a href="http://zh.wikipedia.org/wiki/Beamer_(LaTeX)" title="Beamer (LaTeX)">LaTeX Beamer slides</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Portable_Document_Format">PDF</a>格式：需要LaTeX支持</li>
+<li>轻量级标记语言格式：包括Markdown、reStructuredText、Textile、Org-Mode、MediaWiki markup、<a href="http://www.methods.co.nz/asciidoc/" title="AsciiDoc">AsciiDoc</a>、<a href="https://www.dokuwiki.org/wiki:syntax">DokuWiki markup</a>、Emacs</li>
+<li>自定义格式：可使用<a href="http://www.lua.org/" title="Lua">lua</a>自定义转换规则</li>
+</ul></td>
+</tr></tbody>
+</table>
+
+<p>更详细的格式信息可参见项目主页上的<a href="http://johnmacfarlane.net/pandoc/diagram.png">图示</a></p>
+
+<h4>Pandoc for markdown</h4>
+
+<p>Pandoc Markdown是John Gruber markdown 语法的改进和加强版，包含对脚注、上标、下标、自动引用和参考书目、document metadata (title/author/date)、表格、定义型列表、加强的代码块、删除线、内容目录结构、LaTeX公式、HTML区块内的markdown文本等的支持。<br>
+这些强化功能可以通过<code>markdown_strict</code>输入输出格式选项来开启或关闭(单独控制某个功能的启用禁用可以使用<code>+EXTENSION</code>或<code>-EXTENSION</code>)，参看 <a href="http://johnmacfarlane.net/pandoc/README.html#options">Pandoc’s markdown</a>。<br>
+这里有一份繁体中文翻译版的 <a href="http://pages.tzengyuxio.me/pandoc/">Pandoc 版本 Markdown 語法</a><br>
+另一篇简版说明文档：<a href="http://alfred-sun.github.io/markx-pandoc/" title="pandoc.herokuapp.com">Pandoc Markdown写作规范</a></p>
+
+<p>与多数通过正则表达式实现markdown转HTML的工具不同，Pandoc是模块化设计，对于每个输入输出的格式都有单独的一个模块；它含有一组解析指定文本格式的readers和一组转换为目标文本格式的writers。这样，只需添加一个文本格式的reader或者writer模块，就能增加Pandoc对这个格式文本的输入输出支持。</p>
+
+<p>关于Pandoc的安装使用，不愿看英文Guide的可以看看下面这篇文章，通俗易懂。<br>
+<a href="http://www.yangzhiping.com/tech/pandoc.html">Markdown写作进阶：Pandoc入门浅谈</a></p>
+
+<h2>结束语</h2>
+
+<p>Markdown纯文本非常简洁，让笔者注重文字而非排版，值得学习使用。然而，目前Markdown文本的解析工具有很多，虽然都支持标准Markdown语法，但各个解析器间语法各有不同，提供的扩展功能也各有千秋。尽管标准语法已经满足大部分写作需求，但是有些时候确实急需某项高级功能实现，就像博主，目前还只用标准语法，特殊的功能只能通过嵌入HTML文本来实现，不仅麻烦，而且直接违背了Markdown读写趋简的宗旨。既然不想被这么多工具的语法搞晕，又想偶尔能使用高级功能，那么，选择一款扩展功能丰富又满足需求的工具，是一个很好的办法。Pandoc是个不错的选择，尤其适用于文献的写作排版，可以节省大量时间，这也作者的编写这个工具的初衷；而且，博主非常喜欢多种文档间转换这个功能。</p>
+
+<p>有了Pandoc，再找个Pandoc编辑器，比如 <a href="https://github.com/vim-pandoc/vim-pandoc">Pandoc Vim</a>、<a href="http://www.sublimetext.com/">Sublime Text</a>或者<a href="https://github.com/textmate/textmate">TextMate</a>，是不是看起来很有Geek范儿&hellip;</p>
+
+<p>更多Pandoc编辑器、插件请参考：<strong><a href="https://github.com/jgm/pandoc/wiki/Pandoc-Extras">Pandoc-Extras</a></strong></p>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>这是一个 <em>注脚</em> 的 <strong>文本</strong>。&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn2">
+<p>这是另一个 <em>注脚</em> 的 <strong>文本</strong>。&nbsp;<a href="#fnref2" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2015/01/10/jekyll-liquid-syntax-documentation/" title="Previous Post: Jekyll/Liquid API 语法文档">&laquo; Jekyll/Liquid API 语法文档</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2015/01/11/google-hosts/" title="Next Post: 最新 Google Hosts 文件">最新 Google Hosts 文件 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"讲解 Markdown | Vermillion Phoinix by Alfred Sun //Markdown Syntax Documentation 刚开始接触markdown的时候，觉得好简单好方便，随着使用的深入，发现 Markdown 好像在很多地方有很多不同的实现，语法特性各不相同，顿时陷入迷茫 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2015/01/10/markdown-syntax-documentation" data-title="讲解 Markdown | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/01/10/markdown-syntax-documentation/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/01/10/markdown-syntax-documentation/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

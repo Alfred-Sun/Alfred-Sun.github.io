@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>Vim技巧——将 CapsLock 键映射成 Esc键</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="CapsLock键对我们来说基本就是多余的，而且在键盘中的位置根本不合理，一不小心就按到了CapsLock，然后就出错了。Esc又是Vim下使用最为频繁的按键，将CapsLock替换成Esc真是再好不过了，而且不用担心按ESC的时候按到了该死的F1 | ]Alfred's Blog" />
+    <meta name="keywords" content="Remap Caps Lock on ESC key in different OSs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2015/02/04/remap-capslock-key/" title="Vim技巧——将 CapsLock 键映射成 Esc键">Vim技巧——将 CapsLock 键映射成 Esc键</a></h1>
+			<!--p class="entry-date">2015-02-04</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	<a href="http://mingxinglai.com/cn/2013/05/change-capslock-to-esc/" title="Author: 赖明星">赖明星</a>
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2015-02-04T00:00:00+08:00" pubdate data-updated="true">2015-02-04</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#vim-ref" title="Category: vim" rel="category">vim</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#Vim-ref" title="Tag: Vim" rel="tag">Vim</a-->
+		<a href="/blog/tag/#Vim-ref" title="Tag: Vim" rel="tag">Vim</a>&nbsp;
+    
+		<!--a href="/blog/tag/#KeyMap-ref" title="Tag: KeyMap" rel="tag">KeyMap</a-->
+		<a href="/blog/tag/#KeyMap-ref" title="Tag: KeyMap" rel="tag">KeyMap</a>
+    
+  
+
+</div>
+
+
+			<h2>1. Linux 下将 CapsLock 转换成 Esc</h2>
+
+<p>作为一个 vimer，Caps Lock 键根本就是多余的，而且在键盘中的位置根本不合理，一不小心就按到了 Caps Lock，然后就出错了。Esc 又是 vim 下使用最为频繁的按键，将Caps Lock替换成Esc真是再好不过了，而且不用担心按ESC的时候按到了该死的F1。</p>
+
+<p>Linux 将Caps Lock转换成Esc非常简单，只要在<code>.profile</code>文件最后加入下面这条语句，让linux每次开机去帮我们执行它（<a href="http://c2.com/cgi/wiki?RemapCapsLock">参考文章</a>）：</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">xmodmap -e <span class="s1">&#39;clear Lock&#39;</span> -e <span class="s1">&#39;keycode 0x42 = Escape&#39;</span>
+</code></pre></div>
+<p>当你不需要的时候，将这条语句删除，重启即可。</p>
+
+<p>可能有人会问，这样对于连续的大写不是就不方便了吗？我们可以先用小写，然后选中该段文中，按 <strong>U</strong>，就变成大写了。对于在vim中的大写，这里还有一个小技巧推荐给大家：</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">&quot;change word to uppercase, I love this very much</span>
+<span class="nb">inoremap</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span> <span class="p">&lt;</span>esc<span class="p">&gt;</span>gUiwea
+</code></pre></div>
+<p>将上面这条语句是放在<code>.vimrc</code>文件里的，它的作用就是在编辑状态下，按<code>ctrl+u</code>，将你刚刚输入的那个单词变成大写。谁用谁知道。对一个用vim 作为主要编辑器的人，有了上面两条技巧以后， Caps Lock 就是多余的了。</p>
+
+<!--more-->
+
+<h2>2. Windows 下将 CapsLock 转换成 Esc</h2>
+
+<p>Windows 将Caps Lock转换成Esc，搜索引擎搜&quot;windows Esc Caps lock&quot;，很轻松就找到了下面的答案：</p>
+
+<p>将下面代码保存为 capslock2esc.reg：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&quot;Scancode Map&quot;=hex:00,00,00,00,00,00,00,00,03,00,00,00,3a,00,01,00,01,00,3a,00,00,00,00,00
+</code></pre></div>
+<p>然后双击写入注册表，重启系统。</p>
+
+<p>这个解决方案交换了Caps Lock与Esc，这样当我向同事请教问题的时候，他需要在我的电脑上操作，按Esc确是Caps Lock 显然让他很不习惯，所以，如何将Caps Lock转换成Esc ，而不是交换它们。我找到了<a href="http://xyztony1985.blog.163.com/blog/static/3611782011752420104/">这篇文章</a>，讲得不错，可惜有错误。</p>
+
+<h3>解读</h3>
+
+<p>为了完整，把这篇文章转过来了，并修正了错误。方法还是和上面的一样，不过多了解析。<br>
+下面分析&quot;<strong>Scancode Map</strong>&ldquo;后面一长串2进制数字， 为方便分析，拆分为每8位一行，并加上行号，结果如下：</p>
+
+<ol>
+<li>00,00,00,00,</li>
+<li>00,00,00,00,</li>
+<li>03,00,00,00,</li>
+<li>3a,00,01,00,</li>
+<li>01,00,3a,00,</li>
+<li>00,00,00,00</li>
+</ol>
+
+<p>头两行和最后一行，是固定的，都是8个0。<br>
+第3行，表示共更改了多少个按键，本例为3个，怎么算的？从第4行开始，到最末尾行（虽然严格来说末行不算），每行算1个，4、5、6行，刚好3个<br>
+第4行，前后各4位，分别代表某个按键。本例为将0100的按键映射为3a00。3a00代表CapsLock键，0100代表Esc键<br>
+第5行，同理，3a00的按键映射为0100，即映CapsLock射为Esc<br>
+第6行，已经讲了，末行，固定8个0。如果需要增加更多的映射，可以在此行之上，不断加类似4、5行格式的。当然，最后的结果，还是要将各行合为一行的。</p>
+
+<p>每行的4个数字，两个数字一组，代表一个按键，在映射时，他们的关系类似与c语言的<code>char *strcpy(char *strDest, const char *strSource)</code>函数，把后面一组的意义赋给前一组。</p>
+
+<p>综上所述，将Caps Lock映射成Esc，而不是交换Esc与Caps Lock的代码如下：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&quot;Scancode Map&quot;=hex:00,00,00,00,00,00,00,00,02,00,00,00,01,00,3a,00,00,00,00,00
+</code></pre></div>
+<p>还原按键时，只需要在注册表的路径(<code>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]</code>)下，删除<strong>Scancode Map</strong>键即可。</p>
+
+<h3>附录</h3>
+
+<p>部分按键映射对照表：</p>
+
+<table><thead>
+<tr>
+<th>Special Keys</th>
+<th>Scan Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Escape</strong></td>
+<td><strong>01    00</strong></td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>0F    00</td>
+</tr>
+<tr>
+<td><strong>Caps Lock</strong></td>
+<td><strong>3A    00</strong></td>
+</tr>
+<tr>
+<td>Left Alt</td>
+<td>38    00</td>
+</tr>
+<tr>
+<td>Left Ctrl</td>
+<td>1D    00</td>
+</tr>
+<tr>
+<td>Left Shift</td>
+<td>2A    00</td>
+</tr>
+<tr>
+<td>Left Windows</td>
+<td>5B    E0</td>
+</tr>
+<tr>
+<td>Right Alt</td>
+<td>38    E0</td>
+</tr>
+<tr>
+<td>Right Ctrl</td>
+<td>1D    E0</td>
+</tr>
+<tr>
+<td>Right Shift</td>
+<td>36    00</td>
+</tr>
+<tr>
+<td>Right Windows</td>
+<td>5C    E0</td>
+</tr>
+<tr>
+<td>Backspace</td>
+<td>0E    00</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>53    E0</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>1C    00</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>39    00</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>52    E0</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>47    E0</td>
+</tr>
+<tr>
+<td>End</td>
+<td>4F    E0</td>
+</tr>
+<tr>
+<td>Num    Lock</td>
+<td>45    00</td>
+</tr>
+<tr>
+<td>Page   Down</td>
+<td>51    E0</td>
+</tr>
+<tr>
+<td>Page   Up</td>
+<td>49    E0</td>
+</tr>
+<tr>
+<td>Scroll Lock</td>
+<td>46    00</td>
+</tr>
+</tbody></table>
+
+<p>还有一个特殊的值 —— <strong>00 00</strong>，表示啥也不干，如果要将某个按键禁用，只需映射为 <strong>00 00</strong>。</p>
+
+<hr>
+
+<h2>3. 参考资料</h2>
+
+<ul>
+<li><a href="http://c2.com/cgi/wiki?RemapCapsLock">http://c2.com/cgi/wiki?RemapCapsLock</a><br></li>
+<li><a href="http://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim">http://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim</a><br></li>
+<li><a href="https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc">https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc</a><br></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/windows/hardware/jj128267(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/hardware/jj128267(v=vs.85).aspx</a><br></li>
+<li><a href="http://www.doc88.com/p-10453230875.html">http://www.doc88.com/p-10453230875.html</a></li>
+</ul>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2015/02/04/emacs-vs-vim/" title="Previous Post: Emacs vs Vim：神的编辑器和编辑器之神">&laquo; Emacs vs Vim：神的编辑器和编辑器之神</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2015/03/04/vim-commands-frequently-used/" title="Next Post: Vim 常用命令小结">Vim 常用命令小结 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"Vim技巧——将 CapsLock 键映射成 Esc键 | Vermillion Phoinix by Alfred Sun //CapsLock键对我们来说基本就是多余的，而且在键盘中的位置根本不合理，一不小心就按到了CapsLock，然后就出错了。Esc又是Vim下使用最为频繁的按键，将CapsLock替换成Esc真是再好不过了，而且不用担心按ESC的时候按到了该死的F1 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2015/02/04/remap-capslock-key" data-title="Vim技巧——将 CapsLock 键映射成 Esc键 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/02/04/remap-capslock-key/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/02/04/remap-capslock-key/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+					<li><a href="/blog/2015/03/04/vim-commands-frequently-used/">Vim 常用命令小结</a></li>
+				
+				
+				
+				
+				
+					<li><a href="/blog/2015/02/04/emacs-vs-vim/">Emacs vs Vim：神的编辑器和编辑器之神</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/01/28/vim-tricks/">一些 Vim 小技巧</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/01/21/vim-configure-file/">VIM 中文编码问题</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

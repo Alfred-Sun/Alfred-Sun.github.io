@@ -1,22 +1,29 @@
----
-layout: null
-title: CSS 设置 WebKit 滚动条实例
-keywords: CSS, WebKit
-description: CSS 设置 WebKit 滚动条实例
----
 <!doctype html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="{{site.author.name}}" />
-	<meta name="keywords" content="{{ page.keywords }}" />
-	<meta name="description" content="{{ page.description }}" />
-	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
-    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
-    <link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
-	<title>{{ page.title }}</title>
-	{% include baidu_statistics.html %}
-	{% include google_analytics.html %}
+    <meta name="author" content="Alfred Sun" />
+	<meta name="keywords" content="CSS, WebKit" />
+	<meta name="description" content="CSS 设置 WebKit 滚动条实例" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="Vermillion Phoinix by Alfred Sun" type="application/atom+xml">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/demo_style.css" />
+	<title>CSS 设置 WebKit 滚动条实例</title>
+	
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+	
+
 	<!--[if lt IE 9]>
 	<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -50,11 +57,11 @@ description: CSS 设置 WebKit 滚动条实例
   <body>
 	<div class="container">
 		<div class="top">
-			<a href="{{ site.root }}/">Skip to home</a>
-			<span style="float: right;">{{ site.subtitle }}</span>
+			<a href="/">Skip to home</a>
+			<span style="float: right;">Vermillion Phoinix</span>
 		</div>
 		<div class="main">
-			<h1>{{ page.title }}</h1>
+			<h1>CSS 设置 WebKit 滚动条实例</h1>
 			<div class="content">
 				<script>
 					for (var i=0; i<30; ++i) {
@@ -65,7 +72,13 @@ description: CSS 设置 WebKit 滚动条实例
 		</div>
 	</div>
 	<div style="display:none">
-	{% include cnzz_statistics.html %}
+	
+  <!-- CNZZ Statistics-synchronize -->
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
 	</div>
   </body>
 </html>

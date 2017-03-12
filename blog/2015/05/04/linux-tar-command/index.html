@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>学习 tar 压缩命令</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… | ]Alfred's Blog" />
+    <meta name="keywords" content="linux, tar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2015/05/04/linux-tar-command/" title="学习 tar 压缩命令">学习 tar 压缩命令</a></h1>
+			<!--p class="entry-date">2015-05-04</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2015-05-04T00:00:00+08:00" pubdate data-updated="true">2015-05-04</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#linux-ref" title="Category: linux" rel="category">linux</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#tar-ref" title="Tag: tar" rel="tag">tar</a-->
+		<a href="/blog/tag/#tar-ref" title="Tag: tar" rel="tag">tar</a>&nbsp;
+    
+		<!--a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a-->
+		<a href="/blog/tag/#Linux-ref" title="Tag: Linux" rel="tag">Linux</a>
+    
+  
+
+</div>
+
+
+			<p>linux解压 tar命令</p>
+
+<p>tar [-cxtzjvfpPN] 文件与目录 &hellip;.</p>
+
+<p>参数：</p>
+
+<p>-c ：建立一个压缩文件的参数指令(create 的意思)； 
+-x ：解开一个压缩文件的参数指令！ 
+-t ：查看 tarfile 里面的文件！ 
+特别注意，在参数的下达中， c/x/t 仅能存在一个！不可同时存在！ 
+因为不可能同时压缩与解压缩。 
+-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？ 
+-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？ 
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！ 
+-f ：使用档名，请留意，在 f 之后要立即接档名喔！不要再加参数！ 
+　　　例如使用『 tar -zcvfP tfile sfile』就是错误的写法，要写成 
+　　　『 tar -zcvPf tfile sfile』才对喔！ 
+-p ：使用原文件的原来属性（属性不会依据使用者而变） 
+-P ：可以使用绝对路径来压缩！ 
+-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！ 
+&ndash;exclude FILE：在压缩的过程中，不要将 FILE 打包！ 
+范例： 
+范例一：将整个 /etc 目录下的文件全部打包成为 /tmp/etc.tar 
+[root@linux ~]# tar -cvf /tmp/etc.tar /etc&lt;<mark>仅打包，不压缩！ 
+[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc&lt;</mark>打包后，以 gzip 压缩 
+[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc&lt;==打包后，以 bzip2 压缩 </p>
+
+<h1>特别注意，在参数 f 之后的文件档名是自己取的，我们习惯上都用 .tar 来作为辨识。</h1>
+
+<h1>如果加 z 参数，则以 .tar.gz 或 .tgz 来代表 gzip 压缩过的 tar file ～</h1>
+
+<h1>如果加 j 参数，则以 .tar.bz2 来作为附档名啊～</h1>
+
+<h1>上述指令在执行的时候，会显示一个警告讯息：</h1>
+
+<h1>『tar: Removing leading `/&ldquo; from member names』那是关於绝对路径的特殊设定。</h1>
+
+<p>范例二：查阅上述 /tmp/etc.tar.gz 文件内有哪些文件？ 
+[root@linux ~]# tar -ztvf /tmp/etc.tar.gz </p>
+
+<h1>由於我们使用 gzip 压缩，所以要查阅该 tar file 内的文件时，</h1>
+
+<h1>就得要加上 z 这个参数了！这很重要的！</h1>
+
+<p>范例三：将 /tmp/etc.tar.gz 文件解压缩在 /usr/local/src 底下 
+[root@linux ~]# cd /usr/local/src 
+[root@linux src]# tar -zxvf /tmp/etc.tar.gz </p>
+
+<h1>在预设的情况下，我们可以将压缩档在任何地方解开的！以这个范例来说，</h1>
+
+<h1>我先将工作目录变换到 /usr/local/src 底下，并且解开 /tmp/etc.tar.gz ，</h1>
+
+<h1>则解开的目录会在 /usr/local/src/etc 呢！另外，如果您进入 /usr/local/src/etc</h1>
+
+<h1>则会发现，该目录下的文件属性与 /etc/ 可能会有所不同喔！</h1>
+
+<p>范例四：在 /tmp 底下，我只想要将 /tmp/etc.tar.gz 内的 etc/passwd 解开而已 
+[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -zxvf /tmp/etc.tar.gz etc/passwd </p>
+
+<h1>我可以透过 tar -ztvf 来查阅 tarfile 内的文件名称，如果单只要一个文件，</h1>
+
+<h1>就可以透过这个方式来下达！注意到！ etc.tar.gz 内的根目录 / 是被拿掉了！</h1>
+
+<p>范例五：将 /etc/ 内的所有文件备份下来，并且保存其权限！ 
+[root@linux ~]# tar -zxvpf /tmp/etc.tar.gz /etc </p>
+
+<h1>这个 -p 的属性是很重要的，尤其是当您要保留原本文件的属性时！</h1>
+
+<p>范例六：在 /home 当中，比 2005/06/01 新的文件才备份 
+[root@linux ~]# tar -N &quot;2005/06/01&rdquo; -zcvf home.tar.gz /home
+范例七：我要备份 /home, /etc ，但不要 /home/dmtsai 
+[root@linux ~]# tar &ndash;exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
+范例八：将 /etc/ 打包后直接解开在 /tmp 底下，而不产生文件！ 
+[root@linux ~]# cd /tmp 
+[root@linux tmp]# tar -cvf - /etc | tar -xvf - </p>
+
+<h1>这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！</h1>
+
+<h1>要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～</h1>
+
+<h1>这分别代表 standard output, standard input 与管线命令啦！</h1>
+
+<!--more-->
+
+<p>tar命令详解</p>
+
+<p>-c: 建立压缩档案</p>
+
+<p>-x：解压</p>
+
+<p>-t：查看内容</p>
+
+<p>-r：向压缩归档文件末尾追加文件</p>
+
+<p>-u：更新原压缩包中的文件</p>
+
+<p>这五个是独立的命令，压缩解压都要用到其中一个，可以和别的命令连用但只能用其中一个。</p>
+
+<p>下面的参数是根据需要在压缩或解压档案时可选的。</p>
+
+<p>-z：有gzip属性的</p>
+
+<p>-j：有bz2属性的</p>
+
+<p>-Z：有compress属性的</p>
+
+<p>-v：显示所有过程</p>
+
+<p>-O：将文件解开到标准输出</p>
+
+<p>参数-f是必须的</p>
+
+<p>-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</p>
+
+<h1>tar -cf all.tar *.jpg 这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。</h1>
+
+<h1>tar -rf all.tar *.gif 这条命令是将所有.gif的文件增加到all.tar的包里面去。-r是表示增加文件的意思。</h1>
+
+<h1>tar -uf all.tar logo.gif 这条命令是更新原来tar包all.tar中logo.gif文件，-u是表示更新文件的意思。</h1>
+
+<h1>tar -tf all.tar 这条命令是列出all.tar包中所有文件，-t是列出文件的意思</h1>
+
+<h1>tar -xf all.tar 这条命令是解出all.tar包中所有文件，-x是解开的意思</h1>
+
+<p>查看
+tar -tf aaa.tar.gz   在不解压的情况下查看压缩包的内容</p>
+
+<p>压缩</p>
+
+<p>tar –cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg</p>
+
+<p>tar –czf jpg.tar.gz *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+
+<p>tar –cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+
+<p>tar –cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+
+<p>解压</p>
+
+<p>tar –xvf file.tar //解压 tar包</p>
+
+<p>tar -xzvf file.tar.gz //解压tar.gz</p>
+
+<p>tar -xjvf file.tar.bz2   //解压 tar.bz2tar –xZvf file.tar.Z //解压tar.Z</p>
+
+<p>总结</p>
+
+<p>1、*.tar 用 tar –xvf 解压</p>
+
+<p>2、*.gz 用 gzip -d或者gunzip 解压</p>
+
+<p>3、<em>.tar.gz和</em>.tgz 用 tar –xzf 解压</p>
+
+<p>4、*.bz2 用 bzip2 -d或者用bunzip2 解压</p>
+
+<p>5、*.tar.bz2用tar –xjf 解压</p>
+
+<p>6、*.Z 用 uncompress 解压</p>
+
+<p>7、*.tar.Z 用tar –xZf 解压</p>
+
+<p><img src="/media/pictures/test.png" alt="image"></p>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2015/05/03/install-vmware-tools-on-linux/" title="Previous Post: 如何启用 root 用户登录 Fedora ？">&laquo; 如何启用 root 用户登录 Fedora ？</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2015/05/05/problems-with-using-chrome/" title="Next Post: 如何启用 root 用户登录 Fedora ？">如何启用 root 用户登录 Fedora ？ &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"学习 tar 压缩命令 | Vermillion Phoinix by Alfred Sun //正常安装 Fedora 的情况下，是无法使用 root 登录系统的。那么如何设置一下，才能获取 root 登录权限呢？以前碰到过几次，然后查了查就做到了；可惜过了段时间后又忘记了，因此简单在这里写写，给自己强化下记忆…… ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2015/05/04/linux-tar-command" data-title="学习 tar 压缩命令 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2015/05/04/linux-tar-command/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2015/05/04/linux-tar-command/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+					<li><a href="/blog/2015/06/18/daemon-implementation/">Linux 守护进程的实现</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/13/bash-notes/">Bash 学习笔记</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/05/problems-with-using-chrome/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+				
+				
+				
+					<li><a href="/blog/2015/05/03/install-vmware-tools-on-linux/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/05/01/install-openbox-wm/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+				
+					<li><a href="/blog/2015/04/29/login-fedora-with-root/">如何启用 root 用户登录 Fedora ？</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

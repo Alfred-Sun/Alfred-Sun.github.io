@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>window.location 属性</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Alfred's Blog" />
+    <meta name="keywords" content="window.location, javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/12/21/window-location/" title="window.location 属性">window.location 属性</a></h1>
+			<!--p class="entry-date">2014-12-21</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2014-12-21T00:00:00+08:00" pubdate data-updated="true">2014-12-21</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#javascript-ref" title="Category: javascript" rel="category">javascript</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#window-ref" title="Tag: window" rel="tag">window</a-->
+		<a href="/blog/tag/#window-ref" title="Tag: window" rel="tag">window</a>&nbsp;
+    
+		<!--a href="/blog/tag/#location-ref" title="Tag: location" rel="tag">location</a-->
+		<a href="/blog/tag/#location-ref" title="Tag: location" rel="tag">location</a>
+    
+  
+
+</div>
+
+
+			<p>window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。<br>
+<strong>Note</strong>: window.location 对象在编写时可不使用 window 这个前缀。</p>
+
+<h2>Window Location 对象</h2>
+
+<p>原生 JavaScript window.location 对象所包含的属性:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">hash</td>
+<td style="text-align: center">从井号 (#) 开始的 URL（锚）</td>
+</tr>
+<tr>
+<td style="text-align: left">host</td>
+<td style="text-align: center">主机名和当前 URL 的端口号</td>
+</tr>
+<tr>
+<td style="text-align: left">hostname</td>
+<td style="text-align: center">当前 URL 的主机名</td>
+</tr>
+<tr>
+<td style="text-align: left">href</td>
+<td style="text-align: center">完整的 URL</td>
+</tr>
+<tr>
+<td style="text-align: left">pathname</td>
+<td style="text-align: center">当前 URL 的路径部分</td>
+</tr>
+<tr>
+<td style="text-align: left">port</td>
+<td style="text-align: center">当前 URL 的端口号</td>
+</tr>
+<tr>
+<td style="text-align: left">protocol</td>
+<td style="text-align: center">当前 URL 的协议</td>
+</tr>
+<tr>
+<td style="text-align: left">search</td>
+<td style="text-align: center">从问号 (?) 开始的 URL(查询部分)</td>
+</tr>
+</tbody></table>
+
+<!--more-->
+
+<p><strong>1. window.location.hash</strong></p>
+
+<p>要使用 JS 定位锚点，完全可以使用 window.hash 配合元素 ID 完成。比如快速定位到页面的某条评论，则直接使用如下代码即可：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="s2">&quot;#comment-5981&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>另外 Twitter、Facebook、Google 等已经开始大量使用 #! 这种形式的 hash 方法处理异步交互页面的 URL 可回溯功能。</p>
+
+<p><strong>2. window.location.search</strong></p>
+
+<p>如果有这样一个 URL 地址：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">http://www.google.com.hk/search?hl=zh-CN&amp;source=hp&amp;biw=1400&amp;bih=935&amp;q=%E8%8A%92%E6%9E%9C%E5%B0%8F%E7%AB%99&amp;aq=f&amp;aqi=&amp;aql=&amp;oq=
+</code></pre></div>
+<p>要利用 JS 脚本捕获页面 GET 方式请求的诸参数？可直接使用 <code>window.location.search</code> 获得，然后通过 split 方法结合循环遍历，组织数据格式。</p>
+
+<p>另外，如果根据用户的搜索条件刷新页面，只需直接设置 <code>window.location.search</code> 即可。</p>
+
+<h2>location.hash 属性介绍</h2>
+
+<p>location是javascript里边管理地址栏的内置对象，比如location.href管理页面的url，用<code>location.href=url</code>就可以直接将页面重定向url。而location.hash则可以用来获取或设置页面的标签值。比如<code>http://domain/#admin</code>的location.hash=&ldquo;#admin&quot;。利用这个属性值可以做一个非常有意义的事情。</p>
+
+<p>很多人都喜欢收藏网页，以便于以后的浏览。不过对于Ajax页面来说的话，一般用一个页面来处理所有的事务，也就是说，如果你浏览到一个Ajax页面里边有意思的内容，想将它收藏起来，可是地址只有一个呀，下次你打开这个地址，还是得像以往一样不断地去点击网页，找到你钟情的那个页面。另外的话，浏览器上的“前进”“后退”按钮也会失效，这对于很多习惯了传统页面的用户来说，是一个很大的使用障碍。</p>
+
+<p>那么，怎么用location.hash来解决这两个问题呢？其实一点也不神秘。</p>
+
+<p>比如，某管理系统，主要功能有三个：普通搜索、高级搜索、后台管理，我分别给它们分配一个hash值：#search、#advsearch、#admin，在页面初始化的时候，通过<code>window.location.hash</code>来判断用户需要访问的页面，然后通过javascript来调整显示页面。比如：</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">hash</span><span class="p">;</span>
+<span class="nx">hash</span><span class="o">=</span><span class="p">(</span><span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;#search&quot;</span><span class="o">:</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">;</span> 
+<span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="o">=</span><span class="nx">hash</span><span class="p">;</span> 
+  <span class="c1">//调整地址栏地址，使前进、后退按钮能使用 </span>
+<span class="k">switch</span><span class="p">(</span><span class="nx">hash</span><span class="p">){</span>   
+<span class="k">case</span> <span class="s2">&quot;#search&quot;</span><span class="o">:</span>  
+    <span class="nx">selectPanel</span><span class="p">(</span><span class="s2">&quot;pnlSearch&quot;</span><span class="p">);</span>   <span class="c1">//显示普通搜索面板  </span>
+    <span class="k">break</span><span class="p">;</span>    
+<span class="k">case</span> <span class="s2">&quot;#advsearch&quot;</span><span class="o">:</span>    
+    <span class="p">...</span>
+<span class="k">case</span> <span class="s2">&quot;#admin&quot;</span><span class="o">:</span>  
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>通过<code>window.location.hash=hash</code>这个语句来调整地址栏的地址，使得浏览器里边的“前进”、“后退”按钮能正常使用（实质上欺骗了浏览器）。然后再根据hash值的不同来显示不同的面板（用户可以收藏对应的面板了），这就使得Ajax页面的浏览趋于传统化了。</p>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/12/21/python-ide/" title="Previous Post: Python IDE 开发工具">&laquo; Python IDE 开发工具</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/12/24/scrollbar-customized-with-css-style/" title="Next Post: CSS自定义浏览器滚动条样式">CSS自定义浏览器滚动条样式 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"window.location 属性 | Vermillion Phoinix by Alfred Sun ","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/21/window-location" data-title="window.location 属性 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/21/window-location/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/21/window-location/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+				
+					<li><a href="/blog/2014/12/11/javascript-closure/">Javascript 闭包(Closure)</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/11/26/getElement-from-iframe-by-Jquery/">jQuery 取得 iframe 中元素的几种方法（转载）</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

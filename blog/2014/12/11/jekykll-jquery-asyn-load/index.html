@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>用Jekyll和jQuery实现异步加载文章列表</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="本文主要讨论如何用jekyll模板生成json，使用jQuery的插件waypoint，实现异步加载文章列表 | ]Alfred's Blog" />
+    <meta name="keywords" content="jekyll, javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/12/11/jekykll-jquery-asyn-load/" title="用Jekyll和jQuery实现异步加载文章列表">用Jekyll和jQuery实现异步加载文章列表</a></h1>
+			<!--p class="entry-date">2014-12-11</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	<a href="http://yanping.me/cn/blog/2012/10/10/asynchronous-loading-post-list-with-jekyll-and-jQuery/" title="Author: ypchen">ypchen</a>
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+<span><time datetime="2014-12-11T02:30:00+08:00" pubdate data-updated="true">2014-12-11</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#github pages-ref" title="Category: github pages" rel="category">github pages</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#jekyll-ref" title="Tag: jekyll" rel="tag">jekyll</a-->
+		<a href="/blog/tag/#jekyll-ref" title="Tag: jekyll" rel="tag">jekyll</a>&nbsp;
+    
+		<!--a href="/blog/tag/#javascript-ref" title="Tag: javascript" rel="tag">javascript</a-->
+		<a href="/blog/tag/#javascript-ref" title="Tag: javascript" rel="tag">javascript</a>
+    
+  
+
+</div>
+
+
+			<h2>前言(Introduction)</h2>
+
+<blockquote>
+<p>本文主要讨论如何用基于jQuery的插件waypoint，实现异步加载jekyll模板生成的json文件，生成文章列表。</p>
+</blockquote>
+
+<p>在<a href="http://art.yanping.me/archives/">一博客的文章列表</a>里使用了异步加载的技术，不过直接看页面的html源代码是看不出来的。编译之前的代码在<a href="https://github.com/yanping/art/blob/gh-pages/archives/index.html">这里</a>。</p>
+
+<!--more-->
+
+<h2>文章列表 JSON 数据</h2>
+
+<p>首先，生成文章列表数据的json模板（记得保存问json格式的文件）：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">---
+layout: nil
+---
+
+[
+{% for post in site.posts %}
+  {&quot;title&quot;:&quot;{{post.title}}&quot;, 
+  &quot;url&quot;:&quot;{{site.url}}{{post.url}}&quot;, 
+  &quot;date&quot;:&quot;{{ post.date | date:&#39;%Y-%m-%d&#39; }}&quot;, 
+  &quot;tags&quot;:[{% for tag in post.tags %}&quot;{{tag}}&quot;{% if forloop.last == false %} ,{% endif %}{% endfor %}]}
+  {% if forloop.last == false %},{% endif %}{% endfor %}
+]
+</code></pre></div>
+<p>这在前面的<a href="http://chen.yanping.me/cn/blog/2012/04/19/jekyll-with-json/">文章</a>里提到过。<br>
+(Alfred Sun: 博主感觉同一博客里面异步加载文章列表意义不大；因为每次访问GitHub博客时，都会执行Jekyll生成新的网站，当然JSON文件每次也会一起重新生成；与其写代码异步加载费时费力，不如直接写进HTML，随同页面一起载入。唯一有用之处，就如作者所言，维护多个博客时，相互间可以引用文章列表。)</p>
+
+<p>但是如果JSON文件不在同一域中，出于安全性考虑就无法用<code>getJSON</code>请求它；这种情况下，可以将JSON数据包在JS文件里面，然后浏览器跨域加载外部JS就可以了，演示实例看<a href="/media/demo/get_json_of_posts.html">这里</a>。</p>
+
+<h2>设定参数</h2>
+
+<p>头部YAML数据部分：</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">default</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">全部文章</span>
+<span class="l-Scalar-Plain">initItem</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">50</span>
+<span class="l-Scalar-Plain">perPageItem</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">100</span>
+<span class="nn">---</span>
+</code></pre></div>
+<p><code>initItem</code>是初始加载时显示的文章主题数，<code>perPageItem</code>是每次页面下拉到底部时读取json数据并新生成的文章主题数。<br>
+这两个参数用于异步加载方法，同时还要用到一个jQuery Plugin - <a href="http://imakewebthings.com/waypoints/">Waypoints</a></p>
+
+<h2>动态加载文章</h2>
+
+<p>初始加载网页时，文章主题列表是静态的html，由jekyll生成：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;posts&quot;</span><span class="nt">&gt;</span>
+{% for post in site.posts limit:page.initItem %}
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;listing-item&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;time</span> <span class="na">datetime=</span><span class="s">&quot;{{ post.date | date:&quot;</span><span class="err">%</span><span class="na">Y-</span><span class="err">%</span><span class="na">m-</span><span class="err">%</span><span class="na">d</span><span class="err">&quot;</span> <span class="err">}}&quot;</span><span class="nt">&gt;</span>{{ post.date | date:&quot;%Y-%m-%d&quot; }}<span class="nt">&lt;/time&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{site.baseurl}}{{ post.url }}&quot;</span> <span class="na">title=</span><span class="s">&quot;{{ post.title }}&quot;</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>{% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div>
+<p>上面的<code>limit:page.initItem</code>限定了列表的项数不超过<code>initItem</code>。当向下拉页面，waypoint会捕捉到页面下拉到底部的事件，并调用<em>getJSON</em>方法来读取json数据，形成文章列表。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">{% if site.posts.size &gt; page.initItem %}
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/js/jquery-1.7.1.min.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/js/waypoints.min.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 关于waypoint，请看 http://imakewebthings.com/jquery-waypoints/</span>
+    <span class="kd">var</span> <span class="nx">$loading</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;div class=&#39;loading&#39; style=&#39;text-align:center&#39;&gt;&lt;img src=&#39;/images/loading.gif&#39;&gt;&lt;/div&gt;&quot;</span><span class="p">),</span>
+    <span class="nx">$footer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;footer&#39;</span><span class="p">),</span>
+    <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">offset</span><span class="o">:</span> <span class="s1">&#39;100%&#39;</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="p">{{</span> <span class="nx">page</span><span class="p">.</span><span class="nx">initItem</span> <span class="p">}};</span> <span class="c1">// 初始文章数</span>
+    <span class="kd">var</span> <span class="nx">count_sup</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 循环上界，初始为0</span>
+    <span class="nx">$footer</span><span class="p">.</span><span class="nx">waypoint</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">direction</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">$footer</span><span class="p">.</span><span class="nx">waypoint</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.posts&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">$loading</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s2">&quot;../post.json&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+        <span class="nx">count_sup</span> <span class="o">=</span> <span class="nx">count</span> <span class="o">+</span> <span class="p">{{</span> <span class="nx">page</span><span class="p">.</span><span class="nx">perPageItem</span> <span class="p">}};</span> <span class="c1">// 循环上界每次增加page.perPageItem项</span>
+        <span class="kd">var</span> <span class="nx">delta</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 局部计数器</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&gt;=</span> <span class="nx">count</span> <span class="o">&amp;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">count_sup</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">content</span> <span class="o">+=</span> <span class="s2">&quot;&lt;li class=&#39;listing-item&#39;&gt;&lt;time datetime=&#39;&quot;</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">date</span> <span class="o">+</span> <span class="s2">&quot;&#39;&gt;&quot;</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">date</span> <span class="o">+</span> <span class="s2">&quot;&lt;/time&gt;&quot;</span><span class="p">;</span>
+            <span class="nx">content</span> <span class="o">+=</span> <span class="s2">&quot;&lt;a href=&#39;&quot;</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">&quot;&#39; title=&#39;&quot;</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="s2">&quot;&#39;&gt;&quot;</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="s2">&quot;&lt;/a&gt;&lt;/li&gt;&quot;</span><span class="p">;</span>
+            <span class="nx">delta</span><span class="o">++</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="nx">count</span> <span class="o">+=</span> <span class="nx">delta</span><span class="p">;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.loading&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.posts&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">$footer</span><span class="p">.</span><span class="nx">waypoint</span><span class="p">(</span><span class="nx">opts</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">},</span> <span class="nx">opts</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+{% endif %}
+</code></pre></div>
+<p>关于这段代码，要注意以下几点：</p>
+
+<ol>
+<li>上面的代码一开始有个判断语句，当文章数不大于<code>initItem</code>时，后面的js代码不会进入最终生成的html中。</li>
+<li>充分利用Liquid模板的特性，在js代码中，也引用了Liquid模板数据<code>{{ page.initItem }}</code>和<code>{{ page.perPageItem }}</code></li>
+<li><code>.getJSON()</code>读取数据形成列表之后，语句:</li>
+</ol>
+<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">$footer</span><span class="p">.</span><span class="nx">waypoint</span><span class="p">(</span><span class="nx">opts</span><span class="p">);</span>
+</code></pre></div>
+<p>是要判断已经加载的文章主题数是否到达总数，如果比总数小，就会在新的底部<code>$footer</code>上注册为<strong>waypoint</strong>，然后再向下拉页面，到达底部还会触发事件，然后接着读取数据，直到数据已经读取完毕。</p>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/12/11/javascript-closure/" title="Previous Post: Javascript 闭包(Closure)">&laquo; Javascript 闭包(Closure)</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/12/13/How-to-Use-GitHub-Effectively/" title="Next Post: 如何高效利用GitHub">如何高效利用GitHub &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"用Jekyll和jQuery实现异步加载文章列表 | Vermillion Phoinix by Alfred Sun //本文主要讨论如何用jekyll模板生成json，使用jQuery的插件waypoint，实现异步加载文章列表 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/11/jekykll-jquery-asyn-load" data-title="用Jekyll和jQuery实现异步加载文章列表 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/11/jekykll-jquery-asyn-load/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/11/jekykll-jquery-asyn-load/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+					<li><a href="/blog/2015/01/10/jekyll-liquid-syntax-documentation/">Jekyll/Liquid API 语法文档</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/16/github-pages-issue/">GitHub Pages Issue</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/use-highlight.js-for-jekyll/">Jekyll 中用 Highlight.js</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/Use-google-code-prettify-for-jekyll/">Jekyll 中用 Google Code Prettify</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/">Jekyll 中用 SyntaxHighlighter</a></li>
+				
+				
+				
+				
+				
+					<li><a href="/blog/2014/12/11/generate-tags-with-js-in-jekyll/">用js在jekyll博客中实现标签云和标签页</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

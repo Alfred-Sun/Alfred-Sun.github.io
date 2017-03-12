@@ -1,21 +1,28 @@
----
-layout: null
-title: highlight.js test - live themes demo
-keywords: highlight.js, css themes
-description: highlight.js CSS Themes and test sets
----
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="author" content="{{site.author.name}}" />
-	<meta name="keywords" content="{{ page.keywords }}" />
-	<meta name="description" content="{{ page.description }}" />
-	<link rel="shortcut icon" type="image/x-icon" href="{{ site.root }}/{{ site.asset_dir.images }}/favicon.ico">
-    <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
-	<link rel="stylesheet" type="text/css" href="{{ site.root }}/{{ site.asset_dir.stylesheets }}/demo_style.css" />
-	<title>{{ page.title }}</title>
-	{% include baidu_statistics.html %}
-	{% include google_analytics.html %}
+	<meta name="author" content="Alfred Sun" />
+	<meta name="keywords" content="highlight.js, css themes" />
+	<meta name="description" content="highlight.js CSS Themes and test sets" />
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link href="/atom.xml" rel="alternate" title="Vermillion Phoinix by Alfred Sun" type="application/atom+xml">
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/demo_style.css" />
+	<title>highlight.js test - live themes demo</title>
+	
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+	
+
 
   <meta charset="utf-8">
 
@@ -194,8 +201,8 @@ description: highlight.js CSS Themes and test sets
 
 <div>
 	<div class="top">
-		<a href="{{ site.root }}/">Skip to home</a>
-		<span style="float: right;">{{ site.subtitle }}</span>
+		<a href="/">Skip to home</a>
+		<span style="float: right;">Vermillion Phoinix</span>
 	</div>
 	<a href="https://github.com/isagalaev/highlight.js"><img style="position: fixed; top: 0.4px; right: 0; border: 0; z-index: 10000;" src="../../forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
 	<div class="main">
@@ -627,7 +634,7 @@ NOTE: AsciiDoc is quite cool, you should try it.</code></pre>
 
   <tr>
     <th>Django templates
-    <td class="django">{% raw %}
+    <td class="django">
 <pre><code>{% if articles|length %}
 {% for article in articles %}
 
@@ -644,11 +651,11 @@ NOTE: AsciiDoc is quite cool, you should try it.</code></pre>
 Comments may be long and multiline.
 Markup is &lt;em&gt;not&lt;/em&gt; highlighted within comments.
 {% endcomment %}
-</code></pre>{% endraw %}
+</code></pre>
 
   <tr>
     <th>Handlebars
-    <td class="handlebars">{% raw %}
+    <td class="handlebars">
 <pre>
 <code>&lt;h3&gt;Hours&lt;/h3&gt;
 
@@ -657,7 +664,7 @@ Markup is &lt;em&gt;not&lt;/em&gt; highlighted within comments.
   &lt;li {{bindAttr hello="world"}}&gt;{{firstName}}&lt;/li&gt;
   {{/each}}
 &lt;/ul&gt;
-</code></pre>{% endraw %}
+</code></pre>
 
   <tr>
     <th>CSS
@@ -2734,7 +2741,13 @@ end;</code></pre>
 </div>
 
 <div style="display:none">
-	{% include cnzz_statistics.html %}
+	
+  <!-- CNZZ Statistics-synchronize -->
+<script type="text/javascript">
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
 </div>
 
 </body>

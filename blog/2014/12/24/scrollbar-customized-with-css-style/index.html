@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>CSS自定义浏览器滚动条样式</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="总结IE、Firefox、Chrome三大浏览器滚动条样式属性，用CSS设置滚动条样式的方法 | ]Alfred's Blog" />
+    <meta name="keywords" content="scrollbar, css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/12/24/scrollbar-customized-with-css-style/" title="CSS自定义浏览器滚动条样式">CSS自定义浏览器滚动条样式</a></h1>
+			<!--p class="entry-date">2014-12-24</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	Alfred Sun
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2014-12-24T00:00:00+08:00" pubdate data-updated="true">2014-12-24</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#css-ref" title="Category: css" rel="category">css</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#CSS-ref" title="Tag: CSS" rel="tag">CSS</a-->
+		<a href="/blog/tag/#CSS-ref" title="Tag: CSS" rel="tag">CSS</a>&nbsp;
+    
+		<!--a href="/blog/tag/#Scroll-bars-ref" title="Tag: Scroll-bars" rel="tag">Scroll-bars</a-->
+		<a href="/blog/tag/#Scroll-bars-ref" title="Tag: Scroll-bars" rel="tag">Scroll-bars</a>
+    
+  
+
+</div>
+
+
+			<h2>前言</h2>
+
+<p>浏览器默认的滚动条看久了，不免有些审美疲劳，想得自己动手整整。网上查阅一番后，总结一下。<br>
+IE浏览器有几个设置滚条的样式，不过只能设置颜色之类的，而且webkit下面也不支持。无意间看到网易邮箱的滚动条样子很好看，一开始以为是用div模拟的，结果一看，利用的CSS来设置的，而且是webkit浏览器。</p>
+
+<p><img src="/media/pictures/scrollbar-customized-with-css-style/webkit_css.jpg" alt="webkit scrollbar"></p>
+
+<p>得好好研究这几个属性下。</p>
+
+<!--more-->
+
+<h2>WebKit浏览器CSS设置滚动条</h2>
+
+<p>主要有下面7个属性:</p>
+
+<ol>
+<li><strong>::-webkit-scrollbar</strong>              滚动条整体部分，可以设置宽度啥的</li>
+<li><strong>::-webkit-scrollbar-button</strong>       滚动条两端的按钮</li>
+<li><strong>::-webkit-scrollbar-track</strong>        外层轨道</li>
+<li><strong>::-webkit-scrollbar-track-piece</strong>  内层轨道，滚动条中间部分（除去）</li>
+<li><strong>::-webkit-scrollbar-thumb</strong>        拖动条，滑块</li>
+<li><strong>::-webkit-scrollbar-corner</strong>       边角</li>
+<li><strong>::-webkit-resizer</strong>                定义右下角拖动块的样式</li>
+</ol>
+
+<p>具体所指如下图:</p>
+
+<p><img src="/media/pictures/scrollbar-customized-with-css-style/webkit_scrollbar.png" alt="webkit scrollbar"></p>
+
+<p>上面是滚动条的主要设置属性，还有更详尽的CSS属性伪类，可以更丰富滚动条样式。</p>
+
+<p><strong>:horizontal</strong> 水平方向的滚动条<br>
+<strong>:vertical</strong> 垂直方向的滚动条<br>
+<strong>:decrement</strong> 应用于按钮和内层轨道(track piece)。它用来指示按钮或者内层轨道是否会减小视窗的位置(比如，垂直滚动条的上面，水平滚动条的左边)<br>
+<strong>:increment</strong> 和decrement类似，用来指示按钮或内层轨道是否会增大视窗的位置(比如，垂直滚动条的下面和水平滚动条的右边)<br>
+<strong>:start</strong> 也应用于按钮和滑块。它用来定义对象是否放到滑块的前面。<br>
+<strong>:end</strong> 类似于start伪类，标识对象是否放到滑块的后面。<br>
+<strong>:double-button</strong> 该伪类以用于按钮和内层轨道。用于判断一个按钮是不是放在滚动条同一端的一对按钮中的一个。对于内层轨道来说，它表示内层轨道是否紧靠一对按钮。<br>
+<strong>:single-button</strong> 类似于double-button伪类。对按钮来说，它用于判断一个按钮是否自己独立的在滚动条的一段。对内层轨道来说，它表示内层轨道是否紧靠一个single-button。<br>
+<strong>:no-button</strong> 用于内层轨道，表示内层轨道是否要滚动到滚动条的终端，比如，滚动条两端没有按钮的时候。<br>
+<strong>:corner-present</strong> 用于所有滚动条轨道，指示滚动条圆角是否显示。<br>
+<strong>:window-inactive</strong> 用于所有的滚动条轨道，指示应用滚动条的某个页面容器(元素)是否当前被激活。(在webkit最近的版本中，该伪类也可以用于::selection伪元素。webkit团队有计划扩展它并推动成为一个标准的伪类)</p>
+
+<p>另外，<strong>:enabled</strong>、<strong>:disabled</strong>、<strong>:hover</strong> 和 <strong>:active</strong> 等伪类同样可以用于滚动条中。</p>
+
+<p>值得一提的是，WebKit伪类和伪元素的实现很强大，虽然类目有些多，但是我们可以把滚动条当成一个页面元素来定义，也差不多可以用上一些高级的CSS3属性，比如渐变、圆角、RGBA等等，当然有些地方也可以用图片，然后图片也可以转换成Base64，总之，可以尽情发挥了。</p>
+
+<p>写个实例 <strong><a href="/media/demo/webkit_css_scrollbar.html">Demo</a></strong>（请在webkit浏览器下观看）。</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/* 设置滚动条的样式 */</span>
+<span class="o">:</span><span class="nd">:-webkit-scrollbar</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* 滚动槽 */</span>
+<span class="o">:</span><span class="nd">:-webkit-scrollbar-track</span> <span class="p">{</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="k">inset</span> <span class="m">0</span> <span class="m">0</span> <span class="m">6px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">3</span><span class="p">);</span>
+    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* 滚动条滑块 */</span>
+<span class="o">:</span><span class="nd">:-webkit-scrollbar-thumb</span> <span class="p">{</span>
+    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+    <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="p">);</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="k">inset</span> <span class="m">0</span> <span class="m">0</span> <span class="m">6px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="o">:</span><span class="nd">:-webkit-scrollbar-thumb:window-inactive</span> <span class="p">{</span>
+    <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">.</span><span class="m">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>IE下面CSS设置滚动条</h2>
+
+<p>IE下面就比较简单了，自定义的属性比较少，全是颜色。</p>
+
+<ol>
+<li><strong>scrollbar-arrow-color</strong>: color; /<em>三角箭头的颜色</em>/</li>
+<li><strong>scrollbar-face-color</strong>: color; /<em>立体滚动条的颜色（包括箭头部分的背景色）</em>/</li>
+<li><strong>scrollbar-3dlight-color</strong>: color; /<em>立体滚动条亮边的颜色</em>/</li>
+<li><strong>scrollbar-highlight-color</strong>: color; /<em>滚动条的高亮颜色（左阴影？）</em>/</li>
+<li><strong>scrollbar-shadow-color</strong>: color; /<em>立体滚动条阴影的颜色</em>/</li>
+<li><strong>scrollbar-darkshadow-color</strong>: color; /<em>立体滚动条外阴影的颜色</em>/</li>
+<li><strong>scrollbar-track-color</strong>: color; /<em>立体滚动条背景颜色</em>/</li>
+<li><strong>scrollbar-base-color</strong>:color; /<em>滚动条的基色</em>/</li>
+</ol>
+
+<p>大概就这些，也可以定义cursor来定义滚动条的鼠标手势。</p>
+
+<h2>Firefox浏览器滚动条样式插件</h2>
+
+<p>吐槽下，作为三大浏览器的火狐居然没有相关CSS。</p>
+
+<p><a href="http://www.firefoxfan.com/Firefox-Stylish/297.html" target="_blank" title="清新漂亮的圆角蓝色火狐滚动条样式"><img src="/media/pictures/scrollbar-customized-with-css-style/firefox_scrollbar.png" alt="webkit scrollbar" align="right"></a></p>
+
+<p>火狐不支持滚动条样式调整，火狐浏览器未开放针对滚动条样式的设定。且也不支持css代码关于这些浏览器属性的控制。如果非要样式效果，只能滚动效果用JS来做，使用图片代替按钮。</p>
+
+<p>不过博主发现，本地的Firefox可以通过安装<a href="https://addons.mozilla.org/zh-CN/firefox/addon/stylish/" title="Firefox Stylish">Stylish</a>扩展定制滚动条样式，下面分享个效果图给大家看（见右图）。</p>
+
+<p>你可以下载这个样式<a href="/media/documents/firefox_stylish_scrollbar.css" target="_blank" title="Download"><i class="icon-file-text" style="display: inline;
+margin-left: 5px;color:#111;"></i> <strong>Stylesheet</strong></a>，粘贴到Firefox Stylish里面体验下效果。</p>
+
+<!--[![webkit scrollbar](/media/pictures/scrollbar-customized-with-css-style/firefox_scrollbar.png)]()-->
+
+<h2>滚动条(兼容Firefox、IE、Chrome)[修改jsScrollbar]</h2>
+
+<p>发现一个不错的完全<code>JS+CSS</code>定制的Scrollbar，兼容三大浏览器，出自<a href="http://lullabyus.iteye.com/blog/1314957" title="滚动条(兼容火狐、IE、chrome)">这里</a>；只不过，假如页面很复杂的话，这个就不如浏览器原生的流畅。代码如下。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;title&gt;</span>无标题文档<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+<span class="o">*</span><span class="p">{</span> <span class="k">margin</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span> <span class="k">padding</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span> <span class="k">list-style</span><span class="o">:</span><span class="k">none</span><span class="p">;}</span>
+<span class="nc">.box</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span><span class="m">500px</span><span class="p">;</span> <span class="k">margin</span><span class="o">:</span><span class="m">0</span> <span class="k">auto</span><span class="p">;</span> <span class="k">position</span><span class="o">:</span><span class="k">relative</span><span class="p">;</span> <span class="k">top</span><span class="o">:</span><span class="m">100px</span><span class="p">;</span>  <span class="p">}</span>
+<span class="nc">.Container</span> <span class="p">{</span> <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span> <span class="k">top</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span> <span class="k">left</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span> <span class="k">width</span><span class="o">:</span> <span class="m">400px</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="k">background-color</span><span class="o">:</span> <span class="m">#EEE</span><span class="p">;</span> <span class="p">}</span>
+<span class="nf">#Scroller-1</span> <span class="p">{</span>  <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>  <span class="k">overflow</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span> <span class="k">width</span><span class="o">:</span> <span class="m">400px</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nf">#Scroller-1</span> <span class="nt">p</span> <span class="p">{</span> <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span> <span class="m">20px</span><span class="p">;</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Verdana</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">11px</span><span class="p">;</span> <span class="k">text-indent</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span> <span class="k">color</span><span class="o">:</span> <span class="m">#777</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.Scroller-Container</span> <span class="p">{</span> <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span> <span class="k">top</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span> <span class="k">left</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.Scrollbar-Track</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span> <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span> <span class="k">top</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span> <span class="k">right</span><span class="o">:</span><span class="m">0px</span><span class="p">;</span> <span class="k">background-color</span><span class="o">:</span> <span class="m">#EEE</span><span class="p">;</span> <span class="k">cursor</span><span class="o">:</span><span class="k">pointer</span><span class="p">;</span>  <span class="p">}</span>
+<span class="nc">.Scrollbar-Handle</span> <span class="p">{</span> <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span> <span class="k">top</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span> <span class="k">left</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span> <span class="k">width</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span> <span class="k">height</span><span class="o">:</span> <span class="m">30px</span><span class="p">;</span> <span class="k">background-color</span><span class="o">:</span> <span class="m">#CCC</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="kd">var</span> <span class="nx">scroller</span>  <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">scrollbar</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">scroller</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">jsScroller</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;Scroller-1&quot;</span><span class="p">),</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+  <span class="nx">scrollbar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">jsScrollbar</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Container&quot;</span><span class="p">),</span> <span class="nx">scroller</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span> <span class="nx">jsScroller</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Scroller-Container&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">o</span> <span class="o">=</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="c1">// 以 o 为对象，将对象包含的class名为Scroller-Container的元素付给 对象 o           </span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Private methods</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_setPos</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewableWidth</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">totalWidth</span><span class="p">)</span> 
+            <span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewableWidth</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">totalWidth</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewableHeight</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">totalHeight</span><span class="p">)</span> 
+            <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewableHeight</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">totalHeight</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="kd">with</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">left</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_x</span> <span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">;</span>
+            <span class="nx">top</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="c1">//Public Methods</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">content</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">totalHeight</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">totalWidth</span>  <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">with</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">left</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+            <span class="nx">top</span>  <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">scrollBy</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setPos</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_x</span> <span class="o">+</span> <span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">+</span> <span class="nx">y</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">scrollTo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setPos</span><span class="p">(</span><span class="o">-</span><span class="nx">x</span><span class="p">,</span> <span class="o">-</span><span class="nx">y</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stopScroll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">scrollTimer</span><span class="p">)</span> <span class="nb">window</span><span class="p">.</span><span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">scrollTimer</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">startScroll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">stopScroll</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">scrollTimer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span>
+            <span class="kd">function</span><span class="p">(){</span> <span class="nx">self</span><span class="p">.</span><span class="nx">scrollBy</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span> <span class="p">},</span> <span class="mi">40</span>
+        <span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">swapContent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">o</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Scroller-Container&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">o</span> <span class="o">=</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewableWidth</span>  <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewableHeight</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="c1">//variables</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">content</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">viewableWidth</span>  <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">viewableHeight</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">totalWidth</span>  <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">totalHeight</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">scrollTimer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="p">};</span>
+
+
+<span class="kd">function</span> <span class="nx">jsScrollbar</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//Arguments that were passed</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parent</span> <span class="o">=</span> <span class="nx">o</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_src</span>    <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">auto</span>    <span class="o">=</span> <span class="nx">a</span> <span class="o">?</span> <span class="nx">a</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">eventHandler</span> <span class="o">=</span> <span class="nx">ev</span> <span class="o">?</span> <span class="nx">ev</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+        <span class="c1">//Component Objects</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_up</span>   <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_findComponent</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Up&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_down</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_findComponent</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Down&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_yTrack</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_findComponent</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Track&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_findComponent</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Handle&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_yTrack</span><span class="p">);</span>
+        <span class="c1">//Height and position properties</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_trackTop</span> <span class="o">=</span> <span class="nx">findOffsetTop</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_yTrack</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_trackHeight</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_yTrack</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_handleHeight</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">//Misc. variables</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_scrollDist</span>  <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_scrollTimer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_selectFunc</span>  <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_grabPoint</span>   <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_tempTarget</span>  <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_tempDistX</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_tempDistY</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_disabled</span>    <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ratio</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">totalHeight</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">viewableHeight</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_trackHeight</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleHeight</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">ondragstart</span>  <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="kc">false</span><span class="p">;};</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">onmousedown</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="kc">false</span><span class="p">;};</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">){</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_addEvent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">content</span><span class="p">,</span> <span class="s2">&quot;mousewheel&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarWheel</span><span class="p">);</span>          
+        <span class="p">}</span><span class="c1">//W3C </span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_addEvent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">content</span><span class="p">,</span> <span class="s2">&quot;DOMMouseScroll&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarWheel</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_removeEvent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">,</span> <span class="s2">&quot;mousedown&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarClick</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_addEvent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">,</span> <span class="s2">&quot;mousedown&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarClick</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+        <span class="kd">with</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">top</span>  <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+            <span class="nx">left</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_moveContent</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">totalHeight</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">viewableHeight</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s2">&quot;hidden&quot;</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">auto</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s2">&quot;hidden&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_disabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s2">&quot;visible&quot;</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_parent</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span>  <span class="o">=</span> <span class="s2">&quot;visible&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_addEvent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="nx">o</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="nx">o</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="o">+</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">f</span><span class="p">);</span>
+        <span class="k">else</span> <span class="nx">o</span><span class="p">[</span><span class="s1">&#39;on&#39;</span><span class="o">+</span> <span class="nx">t</span><span class="p">]</span> <span class="o">=</span> <span class="nx">f</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_removeEvent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">)</span> <span class="nx">o</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">)</span> <span class="nx">o</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="o">+</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">f</span><span class="p">);</span>
+        <span class="k">else</span> <span class="nx">o</span><span class="p">[</span><span class="s1">&#39;on&#39;</span><span class="o">+</span> <span class="nx">t</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_findComponent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">kids</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">kids</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">kids</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">&amp;&amp;</span> <span class="nx">kids</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">className</span> <span class="o">==</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">kids</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="c1">//Thank you, Quirksmode</span>
+    <span class="kd">function</span> <span class="nx">findOffsetTop</span> <span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">t</span> <span class="o">+=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
+                <span class="nx">o</span>  <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">t</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarClick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_disabled</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+        <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">?</span> <span class="nx">e</span> <span class="o">:</span> <span class="nx">event</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Up&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_scrollUp</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Down&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_scrollDown</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Track&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_scrollTrack</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Scrollbar-Handle&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_scrollHandle</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_tempTarget</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_selectFunc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">onselectstart</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">onselectstart</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="kc">false</span><span class="p">;};</span>
+
+        <span class="nx">self</span><span class="p">.</span><span class="nx">eventHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="s2">&quot;mousedown&quot;</span><span class="p">);</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_addEvent</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span> <span class="s2">&quot;mouseup&quot;</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_stopScroll</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarDrag</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">?</span> <span class="nx">e</span> <span class="o">:</span> <span class="nx">event</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">-</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_trackTop</span><span class="p">;</span>
+        <span class="kd">with</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&gt;=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_trackHeight</span> <span class="o">-</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_handleHeight</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_grabPoint</span><span class="p">)</span>
+                <span class="nx">top</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_trackHeight</span> <span class="o">-</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_handleHeight</span> <span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&lt;=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_grabPoint</span><span class="p">)</span> <span class="nx">top</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+            <span class="k">else</span> <span class="nx">top</span> <span class="o">=</span> <span class="nx">v</span> <span class="o">-</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_grabPoint</span> <span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">;</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">_y</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">top</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_moveContent</span><span class="p">();</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarWheel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span> <span class="o">?</span> <span class="nx">e</span> <span class="o">:</span> <span class="nx">event</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">dir</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">wheelDelta</span> <span class="o">&gt;=</span> <span class="mi">120</span><span class="p">)</span> <span class="nx">dir</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">wheelDelta</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">120</span><span class="p">)</span> <span class="nx">dir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">detail</span> <span class="o">&gt;=</span><span class="mi">3</span><span class="p">)</span> <span class="nx">dir</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">detail</span> <span class="o">&lt;=-</span><span class="mi">3</span><span class="p">)</span> <span class="nx">dir</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+        <span class="nx">self</span><span class="p">.</span><span class="nx">scrollBy</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">dir</span> <span class="o">*</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_startScroll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_tempDistX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_tempDistY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_scrollTimer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">scrollBy</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_tempDistX</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_tempDistY</span><span class="p">);</span> 
+        <span class="p">},</span> <span class="mi">40</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_stopScroll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_removeEvent</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span> <span class="s2">&quot;mousemove&quot;</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_scrollbarDrag</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_removeEvent</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span> <span class="s2">&quot;mouseup&quot;</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_stopScroll</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_selectFunc</span><span class="p">)</span> <span class="nb">document</span><span class="p">.</span><span class="nx">onselectstart</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_selectFunc</span><span class="p">;</span>
+        <span class="k">else</span> <span class="nb">document</span><span class="p">.</span><span class="nx">onselectstart</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">};</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_scrollTimer</span><span class="p">)</span> <span class="nb">window</span><span class="p">.</span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_scrollTimer</span><span class="p">);</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">eventHandler</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_tempTarget</span><span class="p">,</span> <span class="s2">&quot;mouseup&quot;</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollUp</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_startScroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">_scrollDist</span><span class="p">);};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollDown</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_startScroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollDist</span><span class="p">);};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollTrack</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">curY</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">curY</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_trackTop</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleHeight</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scrollHandle</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">curY</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_grabPoint</span> <span class="o">=</span> <span class="nx">curY</span> <span class="o">-</span> <span class="nx">findOffsetTop</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_addEvent</span><span class="p">(</span><span class="nb">document</span><span class="p">,</span> <span class="s2">&quot;mousemove&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarDrag</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_scroll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_trackHeight</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleHeight</span><span class="p">)</span> 
+            <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_trackHeight</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleHeight</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_yHandle</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_moveContent</span><span class="p">();</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_moveContent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ratio</span><span class="p">));</span>
+    <span class="p">};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">scrollBy</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">_y</span> <span class="o">+</span> <span class="nx">y</span><span class="p">)</span><span class="o">/</span><span class="k">this</span><span class="p">.</span><span class="nx">_ratio</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">scrollTo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">y</span><span class="o">/</span><span class="k">this</span><span class="p">.</span><span class="nx">_ratio</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">swapContent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span><span class="c1">// 判断浏览器</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">){</span> 
+            <span class="k">this</span><span class="p">.</span><span class="nx">_removeEvent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">content</span><span class="p">,</span> <span class="s2">&quot;mousewheel&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarWheel</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span><span class="c1">//W3C </span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_removeEvent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">content</span><span class="p">,</span> <span class="s2">&quot;DOMMouseScroll&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_scrollbarWheel</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_src</span><span class="p">.</span><span class="nx">swapContent</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;box&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;Container&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;Scroller-1&quot;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;left: 0px; top: -596px;&quot;</span> <span class="na">class=</span><span class="s">&quot;Scroller-Container&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+     iaculis, ante et congue feugiat, elit wisi commodo metus, ut commodo 
+    ligula enim ac justo. Pellentesque id ligula. Class aptent taciti 
+    sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. 
+    Phasellus vitae mi a elit dictum volutpat. Pellentesque nec arcu. Etiam 
+    blandit. Phasellus egestas dolor ut lacus. Sed enim justo, sagittis ut, 
+    condimentum non, ullamcorper eu, neque. In hac habitasse platea 
+    dictumst. Integer ipsum risus, sagittis ac, imperdiet ac, interdum sed, 
+    libero. Praesent commodo. Mauris congue, urna eget hendrerit elementum, 
+    dolor ligula ultrices neque, in elementum ante erat et elit.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Vivamus vehicula. Integer cursus massa et nisl. Morbi pretium 
+    sem eget risus. Vestibulum nec est. Donec feugiat purus et ligula. 
+    Quisque semper. Sed eu ante. Curabitur suscipit porttitor libero. Nam 
+    eros leo, sollicitudin eget, tincidunt vitae, facilisis a, dui. Proin 
+    neque. Aliquam erat volutpat. Pellentesque felis.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Aliquam consequat. Proin feugiat ultricies dui. Suspendisse 
+    mollis dui nec nunc. Nam tristique, ante vitae imperdiet vestibulum, 
+    elit nulla rhoncus nisl, vitae tincidunt dolor dui eu mi. In hac 
+    habitasse platea dictumst. Nunc blandit dolor vel mauris. Proin wisi. 
+    Nam pharetra ultrices tellus. Sed arcu. Lorem ipsum dolor sit amet, 
+    consectetuer adipiscing elit. Nullam ultricies semper wisi. Sed nisl. 
+    Donec blandit. Nunc vitae urna sed nisl mattis ornare.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+     iaculis, ante et congue feugiat, elit wisi commodo metus, ut commodo 
+    ligula enim ac justo. Pellentesque id ligula. Class aptent taciti 
+    sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. 
+    Phasellus vitae mi a elit dictum volutpat. Pellentesque nec arcu. Etiam 
+    blandit. Phasellus egestas dolor ut lacus. Sed enim justo, sagittis ut, 
+    condimentum non, ullamcorper eu, neque. In hac habitasse platea 
+    dictumst. Integer ipsum risus, sagittis ac, imperdiet ac, interdum sed, 
+    libero. Praesent commodo. Mauris congue, urna eget hendrerit elementum, 
+    dolor ligula ultrices neque, in elementum ante erat et elit.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Vivamus vehicula. Integer cursus massa et nisl. Morbi pretium 
+    sem eget risus. Vestibulum nec est. Donec feugiat purus et ligula. 
+    Quisque semper. Sed eu ante. Curabitur suscipit porttitor libero. Nam 
+    eros leo, sollicitudin eget, tincidunt vitae, facilisis a, dui. Proin 
+    neque. Aliquam erat volutpat. Pellentesque felis.<span class="nt">&lt;/p&gt;</span>
+          <span class="nt">&lt;p&gt;</span>Aliquam consequat. Proin feugiat ultricies dui. Suspendisse 
+    mollis dui nec nunc. Nam tristique, ante vitae imperdiet vestibulum, 
+    elit nulla rhoncus nisl, vitae tincidunt dolor dui eu mi. In hac 
+    habitasse platea dictumst. Nunc blandit dolor vel mauris. Proin wisi. 
+    Nam pharetra ultrices tellus. Sed arcu. Lorem ipsum dolor sit amet, 
+    consectetuer adipiscing elit. Nullam ultricies semper wisi. Sed nisl. 
+    Donec blandit. Nunc vitae urna sed nisl mattis ornare.<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;visibility: visible;&quot;</span> <span class="na">id=</span><span class="s">&quot;Scrollbar-Container&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;Scrollbar-Track&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;top: 70px; left: 0px; visibility: visible;&quot;</span> <span class="na">class=</span><span class="s">&quot;Scrollbar-Handle&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<p>其效果图如下所示：</p>
+
+<div style="width:85%;height:200px;margin:auto;display:block;">
+<iframe width="100%" height="200px" allowTransparency="true" frameborder="0" scrolling="no" src="/media/demo/scrollbar_customized.html"></iframe>
+</div>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/12/21/window-location/" title="Previous Post: window.location 属性">&laquo; window.location 属性</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2015/01/10/jekyll-liquid-syntax-documentation/" title="Next Post: Jekyll/Liquid API 语法文档">Jekyll/Liquid API 语法文档 &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"CSS自定义浏览器滚动条样式 | Vermillion Phoinix by Alfred Sun //总结IE、Firefox、Chrome三大浏览器滚动条样式属性，用CSS设置滚动条样式的方法 ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/12/24/scrollbar-customized-with-css-style" data-title="CSS自定义浏览器滚动条样式 | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/12/24/scrollbar-customized-with-css-style/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/12/24/scrollbar-customized-with-css-style/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>

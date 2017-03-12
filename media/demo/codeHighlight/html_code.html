@@ -1,9 +1,7 @@
----
----
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html><head>
-<script src="{{ site.root }}/{{ site.asset_dir.javascripts }}/google-code-prettify/prettify.js"></script>
-<script src="{{ site.root }}/{{ site.asset_dir.javascripts }}/google-code-prettify/lang-css.js"></script>
+<script src="/assets/javascripts/google-code-prettify/prettify.js"></script>
+<script src="/assets/javascripts/google-code-prettify/lang-css.js"></script>
 <style>
 body { margin: 0; padding: 0 }
 pre { margin: 0 }
@@ -36,7 +34,7 @@ function adjustHeightInParent() {
   link.rel = 'stylesheet';
   link.type = 'text/css';
   link.href = themeName === 'default'
-      ? '{{ site.root }}/{{ site.asset_dir.javascripts }}/google-code-prettify/prettify.css' : themeName + '.css';
+      ? '/assets/javascripts/google-code-prettify/prettify.css' : themeName + '.css';
   document.getElementsByTagName('head')[0].appendChild(link);
 })();
 </script>

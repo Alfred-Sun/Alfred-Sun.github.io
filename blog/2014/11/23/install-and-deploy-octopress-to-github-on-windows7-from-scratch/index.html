@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author: Alfred Sun
+    -->
+    <meta charset="utf-8" />
+    <title>在 Windows7 下从头开始安装部署 Octopress</title>
+    <meta name="author" content="Alfred Sun" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="介绍如何在 Windows 7 下从头开始安装、配置、使用 Octopress，并说明如何部署到 GitHub | ]Alfred's Blog" />
+    <meta name="keywords" content="Octopress, GitHub Pages, Win 7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href="/assets/stylesheets/font-awesome.css" type='text/css' />
+    <link rel="stylesheet" href="/assets/stylesheets/default.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/stylesheets/pygments_monokai.css" type="text/css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/assets/javascripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    
+    
+  <!-- Baidu Statistics-asynchronize -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?a8e39b00a0e3f52df3e0deea5d0a691b";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+
+</head>
+
+  <body>
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Alfred Sun</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="mailto:alfred.sunym@gmail.com" title="Gmail" style="margin-left:-5px;"><img src="/assets/images/gmail.png" alt="" width="25"/></a>
+			<a href="http://github.com/Alfred-Sun" title="GitHub" target="_blank"><!--style="text-align:right"--><img src="/assets/images/GitHub-Mark.png" alt="" width="25"/></a>
+            <a href="http://www.hust.edu.cn" title="HUST" target="_blank" style="text-align:center;"><img src="/assets/images/hust.png" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <!--
+	* post content
+	-->
+	<!--link rel="stylesheet" href="/assets/javascripts/google-code-prettify/prettify.css" /-->
+	<style type="text/css">
+		body { background:#e8e8e8; }
+		@media screen and (max-width: 750px){
+			body { background:#fff; }
+		}
+		@media screen and (max-width: 1020px){
+			body { background:#fff; }
+		}
+	</style>
+
+	<div id="content">
+		<div class="entry">
+			<h1 class="entry-title"><a href="/blog/2014/11/23/install-and-deploy-octopress-to-github-on-windows7-from-scratch/" title="在 Windows7 下从头开始安装部署 Octopress">在 Windows7 下从头开始安装部署 Octopress</a></h1>
+			<!--p class="entry-date">2014-11-23</p-->
+			<div class="pageInfo">
+
+  
+
+
+	<span>Posted by 
+	
+	<a href="http://sinosmond.github.io/blog/2012/03/12/install-and-deploy-octopress-to-github-on-windows7-from-scratch/" title="Author: sinosmond">sinosmond</a>
+	
+	</span>
+
+
+
+<span class="point">•</span>
+
+
+
+
+
+
+
+
+
+
+  
+
+<span><time datetime="2014-11-23T09:14:00+08:00" pubdate data-updated="true">2014-11-23</time></span>
+
+
+
+
+
+<span class="point">•</span>
+<span class="categories">
+  
+  
+    
+		<a href="/blog/category/#octopress-ref" title="Category: octopress" rel="category">octopress</a>,
+    
+		<a href="/blog/category/#github pages-ref" title="Category: github pages" rel="category">github pages</a>
+    
+  
+
+</span>
+
+
+
+<span class="comment">
+<a href="#comments_container" title="Comments"><i class="icon-comment-o"></i></a>
+</span>
+</div>
+
+
+
+<div class="pageTag">
+  
+  
+    
+		<!--a href="/blog/tag/#Octopress-ref" title="Tag: Octopress" rel="tag">Octopress</a-->
+		<a href="/blog/tag/#Octopress-ref" title="Tag: Octopress" rel="tag">Octopress</a>&nbsp;
+    
+		<!--a href="/blog/tag/#GitHub+Pages-ref" title="Tag: GitHub Pages" rel="tag">GitHub Pages</a-->
+		<a href="/blog/tag/#GitHub Pages-ref" title="Tag: GitHub Pages" rel="tag">GitHub Pages</a>
+    
+  
+
+</div>
+
+
+			<h2>进入 Octopress 的世界</h2>
+
+<h3>Octopress 简介</h3>
+
+<ul>
+<li><a href="http://octopress.org/">Octopress</a> 是一款基于 <a href="http://jekyllrb.com/">Jekyll</a> 的静态网站生成系统。
+
+<ul>
+<li>使用 Markdown 标记语言书写源文件，通过 Markdown 解析器转换为 HTML 文件</li>
+<li>通过 Octopress 提供的站点模板提供所需的 Web 资产文件 （Javascript、CSS、image 等）</li>
+<li>只包含静态网页，无需数据库支持，对系统要求低且迁移方便<br></li>
+<li>以编写程序的方式编制网站，便于实现版本控制</li>
+</ul></li>
+<li><a href="http://octopress.org/">Octopress</a> / <a href="http://jekyllrb.com/">Jekyll</a> 使用简洁的 Ruby 框架实现。
+
+<ul>
+<li>Octopress 以 rake 任务的形式实现静态站点页面生成, 操作十分简单</li>
+<li>Octopress 以 rake 任务的形式实现到普通网站和 <a href="http://github.com">Github</a> 的发布 </li>
+<li>Octopress 与 Github 完美结合，你无需学习过多的 git 命令语法，使非专业人士的使用成为可能</li>
+</ul></li>
+</ul>
+
+<!--more-->
+
+<h3>在 Windows 7 下安装必要的工具</h3>
+
+<ul>
+<li>Octopress 在 Git 中维护，需要安装 Git
+
+<ul>
+<li>到 <a href="http://git-scm.com/downloads">msysgit</a> 查找下载最新版本（最好同时安装相应的基于Winows平台的 GUI 客户端工具，如：<a href="http://git-scm.com/downloads/guis"><strong>Git Extensions</strong></a>）</li>
+<li>当前的最新版本 <strong>Git-1.9.5-preview20141217.exe</strong>，下载后直接安装</li>
+</ul></li>
+<li>Octopress/Jekyll 是 Ruby 应用程序，需要安装 Ruby 
+
+<ul>
+<li>到 <a href="https://www.ruby-lang.org/en/documentation/installation/#rubyinstaller">Installing Ruby</a> 查看 <strong>RubyInstaller</strong> 安装说明</li>
+<li>要求安装 <a href="http://rubyinstaller.org/downloads/">Ruby 1.9.3</a> 或更高版本（实测 Win 7 下 <strong>ruby 2.0.0p598 (2014-11-13) [i386-mingw32]</strong> 和 Linux 下 <strong>ruby 2.2.0p0 (2014-12-25 revision 49005) [i686-linux]</strong> 可用）</li>
+<li>安装后，确保 <code>C:\Ruby193\bin</code> 在 Windows 当前用户的 <code>PATH</code> 环境变量中<br></li>
+</ul></li>
+<li>Ruby 的模块工具 gem 在生成本地模块时可能需要用到编译环境
+
+<ul>
+<li>有两种选择：<a href="http://www.mingw.org/">MinGW and MSYS</a> 或 <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">RubyInstaller DevKit</a></li>
+<li>本文选择 RubyInstaller 推荐的 <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">RubyInstaller DevKit</a></li>
+<li>下载 <a href="https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe">RubyInstaller DevKit</a> （之所以要 DevKit 是因為在安裝 Octopress 時，所需要用到的 ruby gems 會需要在本地編譯，如：rdiscount）DevKit 的版本要对应 Ruby 的版本</li>
+<li>安装需执行如下步骤：（development kit 是一套基於 MSYS/MinGW 下的 C/C++ 編譯環境工具組，安裝時跟著官網上的指示即可）
+
+<ul>
+<li>将 DevKit 自解压包释放到 C:\DevKit ，执行 <code>cd C:\DevKit</code></li>
+<li>在 Windows CMD 窗口中执行  <code>ruby dk.rb init</code>  （產生 config.yaml，裡面有你的 ruby 路徑，一般會幫你設好）</li>
+<li>在 Windows CMD 窗口中执行  <code>ruby dk.rb install</code></li>
+</ul></li>
+<li>保险起见，安装之后先更新一下 gem 是个好习惯：<code>gem update --system</code>、 <code>gem update</code></li>
+</ul></li>
+<li>Jekyll/Octopress 使用 Python 编写的代码加亮系统 <a href="http://pygments.org/">Pygments</a>，需要安装 Python 2.x
+
+<ul>
+<li>直接在 <a href="https://www.python.org/downloads/">Python.org</a> 下载安装 Python 2.7.9，确保 <strong>“Add python.exe to Path”</strong></li>
+<li>或者到 <a href="http://www.activestate.com/activepython">ActiveState</a> 下载最新的 ActivePython-2.7 版 (<del><em>执行</em>  <code>easy_install pygments</code></del>  <strong>Obsoleted</strong>)</li>
+</ul></li>
+</ul>
+
+<!-- 到 [RailsInstaller](http://rubyforge.org/frs/?group_id=167) 查找下载最新版本 -->
+
+<h3>软件安装后的 Windows 7 环境说明和配置</h3>
+
+<ul>
+<li>两种命令行环境
+
+<ul>
+<li>Windows 7 自己的 CMD 窗口，用于输入 DOS 类命令</li>
+<li>MINGW/Git Bash 窗口启动了 Bash，可以输入类 Linux 命令</li>
+</ul></li>
+<li>环境变量 (<strong>可选</strong>，Git 本身自带 Bash，安装过程会自行设置，MINGW 非必要工具)
+
+<ul>
+<li>在 Windows 的 “高级系统设置” 中设置的 环境变量 可以被 MINGW 窗口<strong>继承</strong></li>
+<li>为避免中文乱码，设置 <code>LANG</code> 和 <code>LC_ALL</code> 两个环境变量，其值均为 <code>zh_CN.UTF-8</code></li>
+<li>在 CMD 窗口中测试： <code>echo %LANG%   %LC_ALL%</code> </li>
+<li>在 MINGW 窗口中测试： <code>echo $LANG   $LC_ALL</code></li>
+<li>MINGW/Git Bash 窗口启动了 Bash，可以使用 <code>~/.bash_profile</code> 环境设置文件设置环境变量、命令别名等 </li>
+<li><code>$ echo &quot;export LANG LC_ALL&quot; &gt; ~/.bash_profile</code></li>
+<li><code>$ echo &quot;alias ll=&#39;ls -l --color=tty&#39;&quot;  &gt;&gt; ~/.bash_profile</code></li>
+<li><code>$ echo &quot;alias ls=&#39;ls --color=tty&#39;&quot;     &gt;&gt; ~/.bash_profile</code></li>
+<li><strong>注意：若希望<code>~/.bash_profile</code>中的设置生效，请启动 MINGW/Git Bash 窗口，而不是Windows 的 CMD窗口</strong></li>
+</ul></li>
+</ul>
+
+<h3>ruby 环境的初始配置</h3>
+
+<ul>
+<li>设置 gem 的更新源
+
+<ul>
+<li><code>gem sources --remove http://rubygems.org/</code></li>
+<li><code>gem sources -a http://ruby.taobao.org/</code></li>
+<li><code>gem sources -l # 请确保只有 http://ruby.taobao.org 一行输出</code></li>
+</ul></li>
+<li>安装 bundler
+
+<ul>
+<li><code>gem install bundler</code></li>
+</ul></li>
+</ul>
+
+<h3>安装 Octopress</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># 1. 进入 Bash 环境，克隆 Octopress 到本地代码仓库</span>
+<span class="nv">$ </span>mkdir ~/repos
+<span class="nv">$ </span><span class="nb">cd</span> ~/repos
+<span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress
+<span class="nv">$ </span><span class="nb">cd</span> ~/repos/octopress
+<span class="c"># 2. 修改 Octopress 的 GEM 源</span>
+<span class="nv">$ </span>vim Gemfile    <span class="c"># 或 notepad Gemfile</span>
+将行 ： <span class="nb">source</span> <span class="s2">&quot;http://rubygems.org/&quot;</span>
+改为 ： <span class="nb">source</span> <span class="s2">&quot;http://ruby.taobao.org/&quot;</span>
+<span class="c"># 3. 安装 Octopress 所需的 GEM 组件 (Gemfile)</span>
+<span class="nv">$ </span>bundle install
+</code></pre></div>
+<h3>生成 Octopress 默认模版文件</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>rake install  <span class="c"># 或者 &quot;rake install[classic]&quot;  安裝預設的 Octopress 樣式</span>
+rake aborted!
+You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. 
+Using bundle <span class="nb">exec </span>may solve this.
+
+<span class="o">(</span>See full trace by running task with --trace<span class="o">)</span>
+</code></pre></div>
+<h4>解决方法</h4>
+
+<ol>
+<li><code>$ bundle update; rake install</code></li>
+<li>调整 rake
+
+<ul>
+<li>在 Windows 的 CMD 窗口里：修改 rake.bat 文件</li>
+<li>在 Git Bash 里：设置别名</li>
+</ul></li>
+</ol>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;alias rake=&#39;bundle exec rake&#39;&quot;</span> &gt;&gt; ~/.bash_profile
+<span class="nv">$ </span>. ~/.bash_profile
+<span class="nv">$ </span><span class="nb">alias</span>
+<span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s1">&#39;bundle exec rake&#39;</span>
+<span class="nv">$ </span>rake install
+</code></pre></div>
+<h3>Git 和 GitHub</h3>
+
+<ul>
+<li>学习 Git 参考
+
+<ul>
+<li><a href="http://zh-cn.whygitisbetterthanx.com/">为啥 Git 最棒</a></li>
+<li><a href="http://rogerdudler.github.com/git-guide/index.zh.html">git - 简易指南</a></li>
+<li><a href="http://www-cs-students.stanford.edu/%7Eblynn/gitmagic/intl/zh_cn/">git 魔法</a> &ndash; <a href="https://github.com/blynn/gitmagic">git</a></li>
+<li><a href="http://www.kuqin.com/managetool/20110705/92113.html">10篇写给Git初学者的最佳教程</a></li>
+</ul></li>
+<li>学习 GitHub 参考
+
+<ul>
+<li><a href="http://www.yangzhiping.com/tech/github.html">如何高效利用GitHub</a></li>
+<li><a href="http://www.worldhello.net/gotgithub/">GotGitHub</a></li>
+<li><a href="http://help.github.com/">The GitHub Hep</a></li>
+</ul></li>
+</ul>
+
+<h3>设置本地仓库和远程仓库的关联</h3>
+
+<p><strong>创建 GitHub 账号和仓库</strong></p>
+
+<ul>
+<li>假定您注册了 <code>&lt;USERNAME&gt;</code> 的账号</li>
+<li>下面的操作假定您创建了 <code>octopress</code> 的仓库，部署为 <strong>GitHub Project Pages</strong>
+
+<ul>
+<li>在本地版本库中设置远程版本库的别名<br>
+
+<ul>
+<li><code>$ git remote add myblog git@github.com:alfred/octopress.git</code></li>
+</ul></li>
+</ul></li>
+<li>下面的操作假定您创建了 <code>&lt;USERNAME&gt;.github.io</code> 的仓库，部署为 <strong>GitHub User Pages</strong>
+
+<ul>
+<li>本例使用 alfred.github.io，请用 <code>&lt;USERNAME&gt;.github.io</code> 替换之 </li>
+<li>在本地版本库中设置远程版本库的别名<br>
+
+<ul>
+<li><code>$ git remote add myblog git@github.com:alfred/alfred.github.io.git</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2>配置和使用 Octopress</h2>
+
+<h3>Octopress 的基本配置</h3>
+
+<ul>
+<li>编辑 _config.yml 文件 ，根据您自己的需要修改其值，<a href="http://octopress.org/docs/configuring/">参考</a></li>
+<li><strong>若文件中包括中文，则存成 UTF-8 编码格式</strong> </li>
+</ul>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># ----------------------- #</span>
+<span class="c1">#      Main Configs       #</span>
+<span class="c1"># ----------------------- #</span>
+<span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span>                <span class="c1"># For rewriting urls for RSS, etc</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span>              <span class="c1"># Used in the header and title tags</span>
+<span class="l-Scalar-Plain">subtitle</span><span class="p-Indicator">:</span>           <span class="c1"># A description used in the header</span>
+<span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span>             <span class="c1"># Your name, for RSS, Copyright, Metadata</span>
+<span class="l-Scalar-Plain">simple_search</span><span class="p-Indicator">:</span>      <span class="c1"># Search engine for simple site search</span>
+<span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span>        <span class="c1"># A default meta description for your site</span>
+<span class="l-Scalar-Plain">subscribe_rss</span><span class="p-Indicator">:</span>      <span class="c1"># Url for your blog&#39;s feed, defauts to /atom.xml</span>
+<span class="l-Scalar-Plain">subscribe_email</span><span class="p-Indicator">:</span>    <span class="c1"># Url to subscribe by email (service required)</span>
+<span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span>              <span class="c1"># Email address for the RSS feed if you want it.</span>
+</code></pre></div>
+<h3>编辑新页面</h3>
+
+<ul>
+<li>生成 Blog/静态 页面<br>
+
+<ul>
+<li><code>rake new_post[&quot;article name&quot;]</code> : 生成指定的 Blog Post 初始页面</li>
+<li><code>rake new_page[&quot;page name&quot;]</code> : 生成指定的静态初始页面</li>
+</ul></li>
+<li>使用你惯用的编辑器修改新生成的文件
+
+<ul>
+<li>使用 YAML 语法设置本页面属性，用 Markdown 语法书写文章内容</li>
+<li><strong>若文件中包括中文，则存成 UTF-8 编码格式</strong></li>
+<li><a href="/blog/2015/01/10/markdown-syntax-documentation/"><strong>讲解 Markdown</strong></a></li>
+<li><a href="http://alfred-sun.github.io/markdown-syntax-zhtw/">Markdown 语法说明</a></li>
+<li><a href="http://daringfireball.net/projects/markdown/dingus">Markdown: Dingus</a> 是一个在线转换工具</li>
+<li>若使用 kramdown 解析器，参考 <a href="http://kramdown.rubyforge.org/syntax.html">kramdown 语法</a> </li>
+<li><a href="http://johnmacfarlane.net/pandoc/try">Markdown 和多种标记语言的在线转换</a></li>
+<li><a href="http://babelmark.bobtfish.net/">Markdown 多种实现的在线比较</a></li>
+</ul></li>
+<li><p><strong>不能在 ZSH 中输入命令的问题</strong><br>
+Octopress 提供了许多 Rake 任务，可以方便地完成一些操作。<br>
+常用的命令是 <code>rake new_post[&quot;title&quot;]</code>，但是在 ZSH 下，输入这样的命令，会提示错误：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">zsh: no matches found: new_post[...]
+</code></pre></div>
+<p>原因是诸如 <code>[]</code> 之类的不是正确的命令字符。当然，我们也可以使用转义符来解决这一问题。但每次都需要敲入转义符，实在是太麻烦了。<br>
+解决方案是命令改成 <code>rake &#39;new_post[title]&#39;</code>，或者在 <code>~/.zshrc</code> 文件下，加这一行内容：</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s2">&quot;noglob rake&quot;</span>    <span class="c"># 停止 wildcard 功能</span>
+</code></pre></div></li>
+</ul>
+
+<h3>首次提交到 GitHub</h3>
+
+<ol>
+<li><code>rake setup_github_pages</code> ：配置 Octopress 与 GitHub 的连接，<a href="http://octopress.org/docs/deploying/github/">参考</a></li>
+<li><code>rake generate</code> ：生成静态文件</li>
+<li><code>rake watch</code> ：监听 source 和 sass 目录中源文件的变动并重新生成</li>
+<li><code>rake preview</code> ：监听并在本机 4000端口生成访问内容 <a href="http://localhost:4000">http://localhost:4000</a></li>
+<li><code>rake deploy</code> ：发布生成的网站文件到 GitHub（不建议该方式；由于 Octopress 只发布生成的文件，建议将生成静态文件操作和 Git 操作分离 <a href="http://en.wikipedia.org/wiki/Unix_philosophy#Mike_Gancarz:_The_UNIX_Philosophy" title="Make each program do one thing well">&ldquo;Unix 哲学&rdquo;</a>）</li>
+</ol>
+
+<h3>使用 rake 任务管理 Blog</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>rake -T
+rake clean                     <span class="c"># Clean out caches: .pygments-cache, .gist-c...</span>
+rake copydot<span class="o">[</span><span class="nb">source</span>,dest<span class="o">]</span>      <span class="c"># copy dot files for deployment</span>
+rake deploy                    <span class="c"># Default deploy task</span>
+rake gen_deploy                <span class="c"># Generate website and deploy</span>
+rake generate                  <span class="c"># Generate jekyll site</span>
+rake install<span class="o">[</span>theme<span class="o">]</span>            <span class="c"># Initial setup for Octopress: copies the de...</span>
+rake integrate                 <span class="c"># Move all stashed posts back into the posts...</span>
+rake isolate<span class="o">[</span>filename<span class="o">]</span>         <span class="c"># Move all other posts than the one currentl...</span>
+rake list                      <span class="c"># list tasks</span>
+rake new_page<span class="o">[</span>filename<span class="o">]</span>        <span class="c"># Create a new page in source/(filename)/ind...</span>
+rake new_post<span class="o">[</span>title<span class="o">]</span>           <span class="c"># Begin a new post in source/_posts</span>
+rake preview                   <span class="c"># preview the site in a web browser</span>
+rake push                      <span class="c"># deploy public directory to github pages</span>
+rake rsync                     <span class="c"># Deploy website via rsync</span>
+rake set_root_dir<span class="o">[</span>dir<span class="o">]</span>         <span class="c"># Update configurations to support publishin...</span>
+rake setup_github_pages<span class="o">[</span>repo<span class="o">]</span>  <span class="c"># Set up _deploy folder and deploy branch fo...</span>
+rake update_source<span class="o">[</span>theme<span class="o">]</span>      <span class="c"># Move source to source.old, install source ...</span>
+rake update_style<span class="o">[</span>theme<span class="o">]</span>       <span class="c"># Move sass to sass.old, install sass theme ...</span>
+rake watch                     <span class="c"># Watch the site and regenerate when it changes</span>
+</code></pre></div>
+<h3>更新远程管理源码的仓库分支</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git add .
+git commit -m <span class="s2">&quot;your message&quot;</span>
+git push myblog <span class="nb">source</span>
+</code></pre></div>
+<h3>进一步配置 Octopress</h3>
+
+<ul>
+<li>配置 社会化网络 应用</li>
+<li>选择您中意的网站注册，获得用户名或网络代码，将代码存入 <code>source/_includes/{post,custom}</code> 目录<br></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>类型</th>
+<th>国外服务</th>
+<th>国内服务</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Feed 烧制</td>
+<td><a href="http://feedburner.google.com">FeedBurner</a></td>
+<td><a href="http://www.feedsky.com/">FeedSky</a></td>
+</tr>
+<tr>
+<td>分享到</td>
+<td><a href="http://www.addthis.com/">AddThis</a></td>
+<td><a href="http://www.jiathis.com/">JiaThis</a>， <a href="http://share.baidu.com/">百度分享</a></td>
+</tr>
+<tr>
+<td>微博</td>
+<td>Twitter</td>
+<td>weibo.com</td>
+</tr>
+<tr>
+<td>网络书签</td>
+<td><a href="http://delicious.com/">Delicious</a>， <a href="http://www.google.com/bookmarks">Google Bookmarks</a></td>
+<td><a href="http://shuqian.qq.com/">QQ书签</a>， <a href="http://cang.baidu.com/">百度搜藏</a></td>
+</tr>
+<tr>
+<td>网络图床</td>
+<td><a href="http://www.flickr.com/">Flickr</a>， <a href="http://imgur.com/">Imgur</a></td>
+<td><a href="http://www.yupoo.com/">yupoo</a>， <a href="http://www.poco.cn/">POCO</a></td>
+</tr>
+<tr>
+<td>网络评论</td>
+<td><a href="http://disqus.com/">Disqus</a></td>
+<td><a href="http://uyan.cc/">友言</a>， <a href="http://duoshuo.com/">多说</a></td>
+</tr>
+<tr>
+<td>数据统计</td>
+<td><a href="http://www.google.com/analytics/">Google Analytics</a></td>
+<td><a href="http://tongji.baidu.com/web/welcome/login">百度统计</a>， <a href="http://www.cnzz.com/">CNZZ</a></td>
+</tr>
+</tbody></table>
+
+<h3>配置举例1：为每一篇Blog结尾添加 “JiaThis”</h3>
+
+<p>1、在 <code>_config.yml</code> 尾部添加如下行</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># JiaThis</span>
+<span class="l-Scalar-Plain">jiathis</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>2、在 <code>source/_includes/post/sharing.html</code> 尾部的 <code>&lt;/div&gt;</code> 之前添加如下行</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{% if site.jiathis %}
+  {% include post/jiathis.html %}
+{% endif %}   
+</code></pre></div>
+<p>3、创建 <code>source/_includes/post/jiathis.html</code> 文件，将从 <a href="http://www.jiathis.com/">JiaThis</a> 获得的代码放入其中</p>
+
+<h3>配置举例2： 配置侧栏</h3>
+
+<ul>
+<li>在 <code>_config.yml</code> 中指定显示内容和显示顺序</li>
+<li>显示内容
+
+<ul>
+<li>系统默认的显示边栏的内容基于 source/_includes 目录保存为 <code>asides/*.html</code></li>
+<li>用户自定义的边栏内容基于 source/_includes 目录保存为 <code>custom/asides/*.html</code></li>
+</ul></li>
+<li>显示顺序
+
+<ul>
+<li><code>blog_index_asides</code> 控制Blog主页的边栏显示</li>
+<li><code>post_asides</code> 控制每一个单独的Blog页面显示时的边栏（对应 <code>rake new_post[]</code>）</li>
+<li><code>page_asides</code> 控制静态页面显示时的边栏（对应 <code>rake new_page[]</code>）</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">blog_index_asides</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/feeds.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/recent_posts.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/recent_comments.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/opers.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/github.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/twitter.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/delicious.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/pinboard.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/googleplus.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/weibo.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/copyleft.html</span>
+
+<span class="l-Scalar-Plain">post_asides</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/recent_posts.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/recent_comments.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/opers.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/copyleft.html</span>
+
+<span class="l-Scalar-Plain">page_asides</span><span class="p-Indicator">:</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">asides/recent_posts.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/recent_comments.html</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom/asides/copyleft.html</span>
+</code></pre></div>
+<h3>一些 Octopress 资源</h3>
+
+<ul>
+<li>使用 Octopress 的 Sites 示例<br>
+<a href="https://github.com/imathis/octopress/wiki/Octopress-Sites">https://github.com/imathis/octopress/wiki/Octopress-Sites</a></li>
+<li>第三方主题模板<br>
+<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes</a></li>
+</ul>
+
+<h2>更新本地 Octopress</h2>
+
+<h3>如何更新</h3>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git pull octopress master     <span class="c"># Get the latest Octopress</span>
+bundle install                <span class="c"># Keep gems updated</span>
+rake update_source            <span class="c"># update the template&#39;s source</span>
+rake update_style             <span class="c"># update the template&#39;s style</span>
+</code></pre></div>
+<p>更新 Octopress 的 插件、模板主题、gemfiles、rakefile 和 配置文件，保留用户的文件改动，<a href="http://octopress.org/docs/updating/">参考</a>。</p>
+
+<p><code>rake update</code> ： 更新模板的 <code>/source</code> 和 <code>/sass</code> 目录，等同于一起执行 <code>update_style</code> 和 <code>update_source</code>。</p>
+
+<h3>更新模板的 Style 文件</h3>
+
+<p>用 pull 的新代码，更新本地仓库的 <code>/sass</code> 目录：</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">rake update_style
+</code></pre></div>
+<ol>
+<li>移动 <code>/sass</code> 到 <code>/sass.old</code></li>
+<li>复制 <code>.themes/classic/sass</code> 到 <code>/sass</code></li>
+<li>用 <code>/sass.old/custom</code> 替换 <code>/sass/custom</code></li>
+</ol>
+
+<h3>更新模板的 Source 目录</h3>
+
+<p>用 pull 的新代码，更新本地仓库的 <code>/source</code> 目录：</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">rake update_source
+</code></pre></div>
+<ol>
+<li>移动 <code>/source</code> 到 <code>/source.old</code></li>
+<li>复制 <code>.themes/classic/source</code> 到 <code>/source</code></li>
+<li>Copy back everything in <code>/source.old</code> (<code>cp -rn</code> - without replacing)</li>
+<li>用 <code>/source.old/_includes/custom/</code> 替换 <code>/source/_includes/custom/</code></li>
+</ol>
+
+<p>这样，那些新加的文件（如：<code>_posts</code>、<code>about.html</code> 等），还有用户在 <code>source/_includes/custom</code> 定制的文件，都能保留下来。</p>
+
+<h2>参考链接
+<ul>
+<li><a href="http://agiledon.github.io/blog/2012/12/25/octopress-issues-solution-and-tips/">http://agiledon.github.io/blog/2012/12/25/octopress-issues-solution-and-tips/</a></li>
+<li><a href="http://tonytonyjan.net/2012/03/01/install-octopress-on-windows/">http://tonytonyjan.net/2012/03/01/install-octopress-on-windows/</a></li>
+<li><a href="http://chen.yanping.me/cn/blog/2011/12/26/octopress-on-windows/">http://chen.yanping.me/cn/blog/2011/12/26/octopress-on-windows/</a></li>
+<li><a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/</a></li>
+<li><a href="http://www.yangzhiping.com/tech/octopress.html">http://www.yangzhiping.com/tech/octopress.html</a></li>
+<li><a href="http://blog.xupeng.me/2011/12/14/migrate-to-octopress/">http://blog.xupeng.me/2011/12/14/migrate-to-octopress/</a></li>
+</ul>
+
+
+			
+			<footer>
+			<p class="meta">
+			
+            <a class="basic-alignment left" href="/blog/2014/11/23/disable-login-each-git-push/" title="Previous Post: Git Push 避免用户名和密码方法">&laquo; Git Push 避免用户名和密码方法</a>
+            
+            
+            <a class="basic-alignment right" href="/blog/2014/11/26/getElement-from-iframe-by-Jquery/" title="Next Post: jQuery 取得 iframe 中元素的几种方法（转载）">jQuery 取得 iframe 中元素的几种方法（转载） &raquo;</a>
+            
+			</p>
+			</footer>
+			
+
+			<div id="comments_container">
+				<div style="margin-bottom: 20px;" class="right">
+					<!--script type="text/javascript" charset="utf-8">
+					(function(){
+					  var _w = 86 , _h = 16;
+					  var param = {
+						url:location.href,
+						type:'6',
+						count:'', /**是否显示分享数，1显示(可选)*/
+						appkey:'2175179791', /**您申请的应用appkey,显示分享来源(可选)*/
+						title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+						pic:'', /**分享图片的路径(可选)*/
+						ralateUid:'1660678190', /**关联用户的UID，分享微博会@该用户(可选)*/
+						language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+						rnd:new Date().valueOf()
+					  }
+					  var temp = [];
+					  for( var p in param ){
+						temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+					  }
+					  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+					})()
+					</script-->
+					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a><!--//在此处增加或删除标签来进行展现控制--></div>
+                    <script>
+var pic_url="",pic_all=$(".entry").find("img");if(pic_all.length!==0){pic_url=pic_all[0].src;}
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2175179791"},"bdWbuid":"1660678190","bdText":"在 Windows7 下从头开始安装部署 Octopress | Vermillion Phoinix by Alfred Sun //介绍如何在 Windows 7 下从头开始安装、配置、使用 Octopress，并说明如何部署到 GitHub ...","bdMini":"2","bdMiniList":false,"bdPic":pic_url,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+				</div>
+				<div style="margin-bottom: 52px;">
+					<p style="float: left; margin-bottom: 25px; margin-right: 15px; font-size: 18px; font-weight: bold;">[Comments]: </p>
+					<ul><li>
+					<a href="#" class="comment" onclick="return false;">Disqus </a></li>
+					<li><a href="#" class="comment_" onclick="return false;">Duoshuo</a></li>
+				</div>
+				<div id="disqus_thread"></div>
+				<div class="ds-thread" data-thread-key="/blog/2014/11/23/install-and-deploy-octopress-to-github-on-windows7-from-scratch" data-title="在 Windows7 下从头开始安装部署 Octopress | Vermillion Phoinix by Alfred Sun" data-url="/blog/2014/11/23/install-and-deploy-octopress-to-github-on-windows7-from-scratch/"></div>
+			</div>
+
+			<div id="footer">
+			<div class="hide">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253608568'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1253608568%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+<div class="scroll-top-down">
+	<div class="js-scroll-top" title="返回顶部"><i class="icon-chevron-circle-up"></i></div>
+	<div class="js-scroll-comment" title="查看评论"><i class="icon-comments-o"></i></div>
+	<div class="js-scroll-down" title="转到底部"><i class="icon-chevron-circle-down"></i></div>
+</div>
+
+			<!-- % include disqus.html % 
+% include facebook_like.html %
+% include google_plus_one.html %
+% include twitter_sharing.html % -->
+<script type="text/javascript" src="/assets/javascripts/main.min.js"></script>
+<script>
+  $(function() {
+	  //$("#qr-code").popup({transition: "all 0.3s"});
+	  //$("#system-tip").popup({transition: "all 0.3s"});
+	  //$("#system-confirm-tip").popup({transition: "all 0.3s"});
+	  Tmt.global.scrollTopDown();
+	  //Tmt.nav_dropdown.bound();
+	  //Tmt.global.globalSearch($(".top-serarch-form"));
+  });
+</script>
+
+			</div>
+		</div> <!-- end of entry -->
+
+		<div class="sidenav">
+			<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=0&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=0&isFans=0&uid=1660678190&verifier=9abf32ae&dpc=1"></iframe>
+			<!-- a href="http://9.douban.com/reader/subscribe?url=http://alfred-sun.github.io/blog/2014/11/23/install-and-deploy-octopress-to-github-on-windows7-from-scratch/" target="_blank">
+				<img src="http://img3.douban.com/f/ninetaps/dbd3f87c660f664b629daaeee36f5075ed553eb7/pics/feedbutton1.gif"/></a>
+            <script type="text/javascript" src="http://9.douban.com/js/button_widget.js"></script -->
+		</div>
+
+		<div class="sidenav">
+			<h2>Related Blog</h2>
+			<ul class="artical-list">
+			
+				
+				
+				
+			
+				
+				
+					<li><a href="/blog/2015/01/10/jekyll-liquid-syntax-documentation/">Jekyll/Liquid API 语法文档</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/16/github-pages-issue/">GitHub Pages Issue</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/use-highlight.js-for-jekyll/">Jekyll 中用 Highlight.js</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/Use-google-code-prettify-for-jekyll/">Jekyll 中用 Google Code Prettify</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/15/Use-Syntaxhighlighter-for-Jekyll/">Jekyll 中用 SyntaxHighlighter</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/11/jekykll-jquery-asyn-load/">用Jekyll和jQuery实现异步加载文章列表</a></li>
+				
+				
+				
+					<li><a href="/blog/2014/12/11/generate-tags-with-js-in-jekyll/">用js在jekyll博客中实现标签云和标签页</a></li>
+				
+				
+			
+			</ul>
+		</div>
+	</div> <!-- end of content -->
+	<script src="/assets/javascripts/post.min.js" type="text/javascript"></script>
+
+    <!--div class="hide">
+        <script type="text/javascript" src="http://js.tongji.linezing.com/2727758/tongji.js"></script>
+        <noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2727758/tongji.gif"/></a></noscript>
+        <!--span id="cnzz_stat_icon_1253608568"><a href="http://www.cnzz.com/stat/website.php?web_id=1253608568" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="http://icon.cnzz.com/img/pic1.gif"></a></span>
+        <script src=" http://s11.cnzz.com/z_stat.php?id=1253608568&amp;show=pic1" type="text/javascript"></script>
+        <script src="http://c.cnzz.com/core.php?web_id=1253608568&amp;show=pic1&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    </div-->
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+  </body>
+</html>
