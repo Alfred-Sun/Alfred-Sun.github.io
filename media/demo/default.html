@@ -50,6 +50,7 @@ description: manage super-links of kinds of files
 		.main a{color:blue;}
 		.main a:hover{color: #E50E79;}
 		.main a:visited{color:#916;}
+		.main button{float:left;margin:13px 3px;}
 	</style>
   </head>
   <body>
@@ -61,8 +62,12 @@ description: manage super-links of kinds of files
 		<div class="main">
 			<h1>{{ page.title }}</h1>
 			<div class="content">
-			<h2>谢文东3 风云再起 全集</h2>
-			<table style="margin-top:20px;"><tr>
+			<div>
+			<h2 style="float:left;">谢文东3 风云再起 全集</h2>
+			<button id="expand_js" style="display:inline-block;">Expand</button>
+			<button id="collapse_js" style="display:none;">Collapse</button>
+			<table id="con_xwd_video" style="margin-top:20px;display:none";">
+			<tr>
 			<td><ul>
 			<li><a href="http://115.com/lb/5lbezkjxaf83">风云再起 第 90 集</a></li>
 			<li><a href="http://pan.baidu.com/s/1B7slS">风云再起 第 91 集</a></li>
@@ -95,7 +100,25 @@ description: manage super-links of kinds of files
 			<li><a href="http://pan.baidu.com/s/1i3690yh">风云再起 第 114 集</a></li>
 			<li><a href="http://pan.baidu.com/s/1mgoSxAg">风云再起 第 115 集</a></li>
 			<li><a href="http://pan.baidu.com/s/1o6BOZwe">风云再起 第 116 集</a></li>
-			</ul></td></tr></table>
+			</ul></td>
+			</tr>
+			</table>
+			</div>
+			<script>
+				var expand_btn=document.getElementById("expand_js");
+				var collapse_btn=document.getElementById("collapse_js");
+				var content_xwd=document.getElementById("con_xwd_video");
+				expand_btn.onclick = function() {
+					expand_btn.setAttribute("style", "display:none");
+					collapse_btn.setAttribute("style", "display:inline-block");
+					content_xwd.setAttribute("style", "display:block");
+				};
+				collapse_btn.onclick = function() {
+					collapse_btn.setAttribute("style", "display:none");
+					expand_btn.setAttribute("style", "display:inline-block");
+					content_xwd.setAttribute("style", "display:none");
+				};
+			</script>
 			</div>
 			<br /><br />
 			<div class="ds-thread" data-thread-key="media/demo/default.html" data-title="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}" {% if page.url %}data-url="{{ page.url }}"{% endif %}></div>
