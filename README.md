@@ -16,3 +16,4 @@ The following directories and their contents are Copyright Alfred Sun. You may n
 * media/
 
 All other directories and files are MIT Licensed. Feel free to use the HTML and CSS as you please. If you do use them, a link back to https://github.com/Alfred-Sun/Alfred-Sun.github.io would be appreciated, but is not required.
+
