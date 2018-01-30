@@ -1,4 +1,4 @@
-My blog, powered by <i>Alfred Sun</i>:   http://Alfred-Sun.github.io
+My blog, powered by <i>Alfred Sun</i>:   https://Alfred-Sun.github.io
 
 # This is the data for my blog
 
